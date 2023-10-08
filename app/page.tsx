@@ -21,7 +21,7 @@ export default function Home() {
 
           <Link
             href="/"
-            className=" border-5  h-10 w-20 flex justify-center items-center font-medium text-black"
+            className=" border-5  h-10 w-20 flex justify-center items-center font-medium text-black" 
           > 
             About
           </Link>
@@ -62,7 +62,7 @@ export default function Home() {
               </Link>
               <h1 className="border-5 flex justify-center items-center h-20 w-48 border-black font-medium text-black ">
                 &lt;-- Sign In
-              </h1>
+              </h1> 
             </div>
           </article>
           <aside className="px-5 flex  w-6/12 items-start justify-center flex-col container bg-gray-100 "></aside>
