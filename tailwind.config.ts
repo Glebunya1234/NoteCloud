@@ -6,9 +6,11 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  theme: {
+  theme: { 
     extend: {
-      
+      colors: {
+        'bg-mygrey': '#242426',
+      }
     },
   },
   plugins: [require("daisyui")],
