@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="bg-white">
+    <div className="bg-white overflow-hidden ">
       <header className="h-22 flex justify-center px-20 py-5 bg-white border-b-4 border-gray-200">
         <div className="flex w-full justify-center items-center"></div>
         <nav className="flex w-full justify-center items-center">
@@ -42,7 +42,7 @@ export default function Home() {
           </Link>
         </nav>
       </header>
-      <main className="h-[calc(100vh-80px)]  py-0 flex flex-col">
+      <main className="h-[calc(100vh-84px)]  py-0 flex flex-col ">
         <div className=" w-full h-full flex px-10">
           <article className="px-5 flex w-6/12 items-start justify-center flex-col ">
             <h1 className="text-black text-8xl font-bold">Welcome</h1>
@@ -67,7 +67,7 @@ export default function Home() {
           </article>
           <aside className="px-5 flex  w-6/12 items-start justify-center flex-col container bg-gray-100 "></aside>
         </div>
-        <footer className="h-20 flex justify-center px-20 py-5 bg-white border-t-4 border-gray-200">
+        <footer className="h-20 flex justify-center px-20 py-5 bg-white border-t-4 border-gray-200 ">
        
         </footer>
       </main>
