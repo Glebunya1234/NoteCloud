@@ -2,8 +2,38 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Logo from "@/Image/logoNC.png";
+import {useEffect, useState} from "react"
+import { authh } from "@/app/firebaseConfig"
+import {signInWithPopup, signOut, onAuthStateChanged, GoogleAuthProvider} from "firebase/auth"
+import { User } from "firebase/auth";
 
 export default function auth() {
+const [user, setUser] = useState<User | null | undefined>(null)
+
+const googleSignIn = () => {
+  const provider = new GoogleAuthProvider()
+  signInWithPopup(authh, provider)
+}
+  useEffect (()=>{
+    const unsubcribe = onAuthStateChanged(authh,(currentUser: User | null)=> {
+      setUser(currentUser)
+    })
+    return() => unsubcribe() 
+  }, [user])
+
+
+    const handleSignInWithGoogle = async () => {
+      try {
+         await googleSignIn()
+
+      }
+      catch(error)
+      {
+        console.log(error)
+      }
+    };
+ 
+
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
       <div className="w-1/2 h-2/3 flex bg-center shadow-2xl  backdrop-blur-lg  rounded-3xl overflow-hidden">
@@ -32,7 +62,7 @@ export default function auth() {
               />
               <button className="btn glass w-80 m-1">Log In</button>
               <div className="divider p-5">OR</div>
-              <button className="btn btn-ghost">
+              <button className="btn btn-ghost" onClick={handleSignInWithGoogle}>
                 <span>
                   <svg
                     class="svg"
