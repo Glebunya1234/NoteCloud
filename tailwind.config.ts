@@ -10,15 +10,24 @@ const config: Config = {
     extend: {
       colors: {
         'bg-mygrey': '#242426',
+        'bg-myyellow': '#fff67a',
+        'bg-mydurkgrey': '#3e4043',
       },
       width: {
-        'w-1200': '900px',
+        'w-900': '900px',
+        'w-300': '300px',
         'w90%':'90%',
         
+      },
+      height:{
+        'h90%':'90%',
       },
       minWidth:{
         'wmin':'620px',
         'wm90%':'90%'
+      },
+      transitionDelay:{
+        
       }
     },
   },
