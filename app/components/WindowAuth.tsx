@@ -4,7 +4,10 @@ import { motion } from "framer-motion";
 import Logo from "@/Image/logoNC.png";
 import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { authh } from "@/app/firebaseConfig";
+import { useRouter } from "next/navigation";
+import { authh } from "@/app/firebaseConfig" ;
+
+
 import {
   signInWithPopup,
   signOut,
@@ -13,23 +16,34 @@ import {
 } from "firebase/auth";
 import SvgGoogle from "./Svg-Google";
 
-
 export default function WindowAuth() {
   const [userss, setUser] = useState<User | null | undefined>(null);
+  const router = useRouter();
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(authh, provider);
+    const result = signInWithPopup(authh, provider);
+
+   
+      
+
   };
   useEffect(() => {
     const unsubcribe = onAuthStateChanged(authh, (currentUser: User | null) => {
       setUser(currentUser);
+      if(userss!==null){
+        console.log("usess: ",userss)
+        router.push("/abobus/");
+      }
+      
     });
+    
     return () => unsubcribe();
   }, [userss]);
-
+ 
   const handleSignInWithGoogle = () => {
     googleSignIn();
+   
   };
 
   return (
@@ -59,8 +73,11 @@ export default function WindowAuth() {
             />
             <button className="btn glass w-w90% max-w-xs m-1">Log In</button>
             <div className="divider p-5">OR</div>
-            <button className="btn btn-ghost w-w90% max-w-xs m-1" onClick={handleSignInWithGoogle}>
-              <SvgGoogle/>
+            <button
+              className="btn btn-ghost w-w90% max-w-xs m-1"
+              onClick={handleSignInWithGoogle}
+            >
+              <SvgGoogle />
               <div>Continue with Google</div>
             </button>
           </div>
