@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Logo from "@/Image/logoNC.png";
-import { User } from "firebase/auth";
+import { User, signInWithRedirect } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authh } from "@/app/firebaseConfig" ;
@@ -22,7 +22,7 @@ export default function WindowAuth() {
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    const result = signInWithPopup(authh, provider);
+    const result = signInWithRedirect(authh, provider);
 
    
       
@@ -33,7 +33,8 @@ export default function WindowAuth() {
       setUser(currentUser);
       if(userss!==null){
         console.log("usess: ",userss)
-        router.push("/abobus/");
+        router.push(`/profile/${userss?.uid}`);
+        
       }
       
     });
