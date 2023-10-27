@@ -10,6 +10,15 @@ const config: Config = {
     extend: {
       colors: {
         'bg-mygrey': '#242426',
+      },
+      width: {
+        'w-1200': '900px',
+        'w90%':'90%',
+        
+      },
+      minWidth:{
+        'wmin':'620px',
+        'wm90%':'90%'
       }
     },
   },
