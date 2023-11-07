@@ -11,9 +11,9 @@ export default function AddNewUser() {
     //add doc
     const newdoc = doc(mydatabase, 'collection-users/MpDlhqv9ipbqizZjviJB0YeDM6L2');
     const docData: user_collect_datatype = {
-        displayName: "",
-        email: "",
-        photoURL: "",
+        displayName: `${name}`,
+        email: `${eml}`,
+        photoURL: `${photo}`,
         password:""
     };
     setDoc(newdoc, docData);

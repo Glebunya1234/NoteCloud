@@ -1,39 +1,35 @@
-import AddNewUser, {} from "@/app/firebase/Methods/AddNewUser"
+
 import styles from "@/app/components/StyleAuthComponents/style-inputs.module.css";
+import { useState } from "react";
+import { RegisterButton } from "./ButtonSignUpEmailPassw";
+import { AllertToast, showSuccessToast } from "../Toast/toast";
 
+export function RegisterInputs() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-export function RegisterInputName() {
-    return (
+  return (
+    <>
       <input
         type="text"
-        placeholder="Name"
+        placeholder="Email"
         className={styles.authinputs}
+        onChange={(e) => setEmail(e.target.value)}
       />
-    );
-  }
-
-
-
-  export function RegisterInputNamePassword() {
-    return (
       <input
         type="text"
         placeholder="Password"
         className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
+        onChange={(e) => setPassword(e.target.value)}
       />
-    );
-  }
-  export function RegisterInputNameConfirmPassword() {
-    return (
       <input
         type="text"
         placeholder="Confirm the password"
         className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
       />
-    );
-  }
+      <RegisterButton email={email} password={password} showSuccessToast={showSuccessToast} />
+      
+    </>
+  );
+}
 
-
-  export function RegisterButton() {
-    return <button className="btn glass w-w90% max-w-xs m-1 " onClick={() => {AddNewUser()}}>Sign Up</button>;
-  }

@@ -24,5 +24,5 @@ export function InputSignInPassword() {
 
 
 export function ButtonSignIn() {
-  return <button className="btn glass w-w90% max-w-xs m-1 " onClick={() => {}}>Log In</button>;
+  return <button className="btn glass w-w90% max-w-xs m-1 " onClick={() => {console.log("hello log in")}}>Log In</button>;
 }

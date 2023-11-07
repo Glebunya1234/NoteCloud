@@ -8,7 +8,7 @@ import { authh } from "@/app/firebase/Config/firebaseConfig";
 import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
 import SvgGoogle from "../Svg-Google";
 
-export default function WindowAuth() {
+export default function ButtonGoogle() {
   const [userss, setUser] = useState<User | null | undefined>(null);
   const router = useRouter();
 
