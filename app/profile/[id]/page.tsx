@@ -11,9 +11,15 @@ import Image from "next/image";
 import { authh, mydatabase } from "@/app/firebase/Config/firebaseConfig";
 import { useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
+
+import readDoc from "@/app/firebase/Methods/ReadDataForUser";
 import { useEffect } from "react";
+import { AllertToast, showSuccessToast } from "@/app/components/Toast/toast";
 
 export default async function userPage({ params }: { params: { id: string } }) {
+  readDoc(params.id);
+  console.log(params);
+
   const router = useRouter();
   const handleSignUp = () => {
     try {
@@ -23,13 +29,6 @@ export default async function userPage({ params }: { params: { id: string } }) {
       console.log(error);
     }
   };
-
-  const docRef = doc(mydatabase, "collection-users", `${params.id}`);
-  const docSnap = await getDoc(docRef);
-  const UserData = docSnap.data();
-  
-
-  
 
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
@@ -45,7 +44,6 @@ export default async function userPage({ params }: { params: { id: string } }) {
             <img
               className="mask mask-circle"
               src="https://lh3.googleusercontent.com/a/ACg8ocLEPkaYChKDjS3eUDCBFl_W-cSwM6noThVKg4G6msD61no=s96-c"
-            
             />
             <h1>{}</h1>
           </section>
@@ -74,6 +72,7 @@ export default async function userPage({ params }: { params: { id: string } }) {
           <main className="w-full h-full"></main>
         </div>
       </div>
+      <AllertToast />
     </div>
   );
 }

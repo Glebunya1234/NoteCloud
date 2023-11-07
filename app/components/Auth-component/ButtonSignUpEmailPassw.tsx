@@ -14,8 +14,11 @@ export function RegisterButton({ email, password }: emailAndPassw) {
         const user = userCredential.user;
 
         //Show Toasts
+        console.log("userrrrrrrr",user);
+        console.log("authh",auth);
         showSuccessToast("Successfully registered!");
-        console.log(user);
+        AddNewUser({ userID: `${user.uid}`, displayName: " ", email: email,password: password, photoURL: ""})
+      
       })
       .catch((error) => {
 

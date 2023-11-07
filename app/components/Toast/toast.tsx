@@ -6,9 +6,8 @@ export function AllertToast() {
         position="bottom-right"
         reverseOrder={false}
         gutter={8}
-        containerClassName=""
-        containerStyle={{}}
         toastOptions={{
+          duration: 4000,
           style: {
             padding: "16px",
             backgroundColor: "rgba(25, 25, 25, 0.7)",
@@ -30,8 +29,6 @@ export function showErrorToast(message: string) {
 
 export function showMessangeToast(message: string, delay: number) {
   setTimeout(() => {
-    toast(`${message}`, {
-      duration: 6000,
-    });
+    toast(`${message}`);
   }, delay);
 }

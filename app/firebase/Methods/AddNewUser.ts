@@ -1,20 +1,22 @@
 import { doc, setDoc } from "firebase/firestore";
 import { mydatabase } from "../Config/firebaseConfig";
-import { user_collect_datatype } from "@/app/firebase/Interfaсe/collection-user-datatype"
-export default function AddNewUser() {
-
-    const name = "Глеб Буцкий"
-    const eml= "glebbuckiy@gmail.com"
-    const photo = "https://lh3.googleusercontent.com/a/ACg8ocLEPkaYChKDjS3eUDCBFl_W-cSwM6noThVKg4G6msD61no=s96-c"
-
+import { emailAndPassw, user_collect_datatype } from "@/app/firebase/Interfaсe/collection-user-datatype"
+export default function AddNewUser({
+    userID,
+    displayName = "",
+    email,
+    password,
+    photoURL,
+}: user_collect_datatype) {
 
     //add doc
-    const newdoc = doc(mydatabase, 'collection-users/MpDlhqv9ipbqizZjviJB0YeDM6L2');
+    const newdoc = doc(mydatabase, `collection-users/${userID}`);
     const docData: user_collect_datatype = {
-        displayName: `${name}`,
-        email: `${eml}`,
-        photoURL: `${photo}`,
-        password:""
+        userID: `${userID}`,
+        displayName: `${displayName}`,
+        email: `${email}`,
+        photoURL: `${photoURL}`,
+        password: `${password}`
     };
     setDoc(newdoc, docData);
 }

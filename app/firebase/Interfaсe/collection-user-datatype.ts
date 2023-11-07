@@ -2,6 +2,7 @@
 
 
 export interface user_collect_datatype {
+    userID: string;
     displayName: string;
     password: string;
     email: string;

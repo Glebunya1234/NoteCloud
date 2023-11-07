@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { Firestore, doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
+import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -26,17 +26,6 @@ export const mydatabase = getFirestore(app)
 
 
 //add doc
-const newdoc = doc(mydatabase, 'collection-users/MpDlhqv9ipbqizZjviJB0YeDM6L2');
-
-//list doc
-function readDoc(){
-  onSnapshot(newdoc, (docSnapsh) => {
-    if(docSnapsh.exists()){
-      const docData = docSnapsh.data();
-      console.log(`my data = ${JSON.stringify(docData)}`);
-    }
-  })
-}
 
 
-readDoc();
+
