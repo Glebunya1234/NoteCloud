@@ -9,6 +9,7 @@ import {
   InputSignInPassword,
 } from "./components/Auth-component/Inputs-SignIn";
 import { useState } from "react";
+import { RegisterButton, RegisterInputName, RegisterInputNameConfirmPassword, RegisterInputNamePassword } from "./components/Auth-component/Register-input";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Log In");
@@ -55,11 +56,10 @@ export default function Home() {
                 </>
               ) : (
                 <>
-                  <InputSignInLogin />
-                  <InputSignInPassword />
-                  <InputSignInLogin />
-                  <InputSignInPassword />
-                  <ButtonSignIn />
+                  <RegisterInputName/>
+                  <RegisterInputNamePassword/>
+                  <RegisterInputNameConfirmPassword/>
+                  <RegisterButton/>
                 </>
               )}
               <div className="divider p-5">OR</div>

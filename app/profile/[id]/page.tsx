@@ -6,12 +6,14 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
 } from "firebase/auth";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import Image from "next/image";
-import { authh } from "@/app/firebaseConfig";
+import { authh, mydatabase } from "@/app/firebase/Config/firebaseConfig";
 import { useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
+import { useEffect } from "react";
 
-export default function userPage({ params }: { params: { id: string } }) {
+export default async function userPage({ params }: { params: { id: string } }) {
   const router = useRouter();
   const handleSignUp = () => {
     try {
@@ -21,6 +23,13 @@ export default function userPage({ params }: { params: { id: string } }) {
       console.log(error);
     }
   };
+
+  const docRef = doc(mydatabase, "collection-users", `${params.id}`);
+  const docSnap = await getDoc(docRef);
+  const UserData = docSnap.data();
+  
+
+  
 
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
@@ -35,14 +44,17 @@ export default function userPage({ params }: { params: { id: string } }) {
           <section className="w-full h-24 flex items-center justify-center ">
             <img
               className="mask mask-circle"
-              src="https://lh3.googleusercontent.com/a/ACg8ocKywbPxgKG4hzjnzqYanbDy2jv6UrE4anferjpEt4FV1Q=s96-c"
+              src="https://lh3.googleusercontent.com/a/ACg8ocLEPkaYChKDjS3eUDCBFl_W-cSwM6noThVKg4G6msD61no=s96-c"
+            
             />
+            <h1>{}</h1>
           </section>
         </div>
         <div className="w-full h-full">
           <header className="w-full h-24 flex items-center p-5">
             <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 font-mono font-light">
               Your&nbsp;Tasks
+              {}
             </h1>
             <input
               type="text"

@@ -1,9 +1,12 @@
+
+
+
 export function InputSignInLogin() {
   return (
     <input
       type="text"
       placeholder="Login"
-      className="input input-bordered w-w90% max-w-xs  m-1 mt-5"
+      className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
     />
   );
 }
@@ -13,11 +16,13 @@ export function InputSignInPassword() {
     <input
       type="text"
       placeholder="Password"
-      className="input input-bordered w-w90% max-w-xs m-1"
+      className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
+      
     />
   );
 }
 
+
 export function ButtonSignIn() {
-  return <button className="btn glass w-w90% max-w-xs m-1">Log In</button>;
+  return <button className="btn glass w-w90% max-w-xs m-1 " onClick={() => {}}>Log In</button>;
 }

@@ -3,7 +3,7 @@
 import { User, signInWithRedirect } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authh } from "@/app/firebaseConfig";
+import { authh } from "@/app/firebase/Config/firebaseConfig";
 
 import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
 import SvgGoogle from "../Svg-Google";
