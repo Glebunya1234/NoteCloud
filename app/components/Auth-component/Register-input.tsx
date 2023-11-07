@@ -27,7 +27,7 @@ export function RegisterInputs() {
         placeholder="Confirm the password"
         className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
       />
-      <RegisterButton email={email} password={password} showSuccessToast={showSuccessToast} />
+      <RegisterButton email={email} password={password}/>
       
     </>
   );

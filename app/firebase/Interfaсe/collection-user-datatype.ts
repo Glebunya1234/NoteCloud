@@ -1,4 +1,6 @@
-import {ToastFunction } from "@/app/components/Toast/toast";
+
+
+
 export interface user_collect_datatype {
     displayName: string;
     password: string;
@@ -8,5 +10,4 @@ export interface user_collect_datatype {
 export interface emailAndPassw {
     email: string;
     password: string;
-    showSuccessToast: ToastFunction;
 }
