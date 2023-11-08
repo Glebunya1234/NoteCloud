@@ -7,7 +7,7 @@ import { AllertToast, showSuccessToast } from "../Toast/toast";
 export function RegisterInputs() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [confpassword, setConfPassword] = useState("");
   return (
     <>
       <input
@@ -17,17 +17,18 @@ export function RegisterInputs() {
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
-        type="text"
+        type="password"
         placeholder="Password"
-        className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
+        className={styles.authinputs}
         onChange={(e) => setPassword(e.target.value)}
       />
       <input
-        type="text"
+        type="password"
         placeholder="Confirm the password"
-        className="input input-bordered w-full bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
+        className={styles.authinputs}
+        onChange={(e) => setConfPassword(e.target.value)}
       />
-      <RegisterButton email={email} password={password}/>
+      <RegisterButton email={email} password={password} confirm_password={confpassword}/>
       
     </>
   );

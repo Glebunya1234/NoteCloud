@@ -22,7 +22,7 @@ export default function ButtonGoogle() {
     const unsubcribe = onAuthStateChanged(authh, (currentUser: User | null) => {
       setUser(currentUser);
       if (userss !== null) {
-        showSuccessToast("Successful login!")
+       
         console.log("usess: ", userss);
         router.push(`/profile/${userss?.uid}`);
       }
