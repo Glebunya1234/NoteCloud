@@ -10,15 +10,15 @@ import {
 
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import Image from "next/image";
-import { authh, mydatabase } from "@/app/firebase/Config/firebaseConfig";
+import { authh, mydatabase } from "@/firebase/Config/firebaseConfig";
 import { notFound, useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
 
-import {readDoc} from "@/app/firebase/Methods/ReadDataForUser";
+import {readDoc} from "@/firebase/Methods/ReadDataForUser";
 import { useEffect } from "react";
-import { AllertToast, showSuccessToast } from "@/app/components/Toast/toast";
-import { userService } from "@/app/firebase/Methods/UserServ";
-import {User} from "@/app/firebase/Methods/UserServ";
+import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
+import { userService } from "@/firebase/Methods/UserServ";
+import {User} from "@/firebase/Methods/UserServ";
 const getUser = async(id:string):Promise<User>=>{
   try{
     return await userService.getById(id);

@@ -1,15 +1,15 @@
-import AddNewUser from "@/app/firebase/Methods/AddNewUser";
+import AddNewUser from "@/firebase/Methods/AddNewUser";
 import {
   emailAndPassw,
   emailAndPasswAndConfPassw,
-} from "@/app/firebase/Interfaсe/collection-user-datatype";
+} from "@/firebase/Interfaсe/collection-user-datatype";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import {
   showErrorToast,
   showMessangeToast,
   showSuccessToast,
-} from "../Toast/toast";
+} from "../../Toast/toast";
 
 export function RegisterButton({
   email,

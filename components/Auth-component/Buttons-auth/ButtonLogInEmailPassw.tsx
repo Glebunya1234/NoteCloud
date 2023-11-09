@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { emailAndPassw } from "@/app/firebase/Interfaсe/collection-user-datatype";
-import { showErrorToast, showMessangeToast, showSuccessToast } from "../Toast/toast";
+import { emailAndPassw } from "@/firebase/Interfaсe/collection-user-datatype";
+import { showErrorToast, showMessangeToast, showSuccessToast } from "@/components/Toast/toast"
 
 
 

@@ -1,8 +1,7 @@
-
-import styles from "@/app/components/StyleAuthComponents/style-inputs.module.css";
+import styles from "@/components/StyleAuthComponents/style-inputs.module.css";
 import { useState } from "react";
-import { RegisterButton } from "./ButtonSignUpEmailPassw";
-import { AllertToast, showSuccessToast } from "../Toast/toast";
+import { RegisterButton } from "../Buttons-auth/ButtonSignUpEmailPassw";
+import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
 
 export function RegisterInputs() {
   const [email, setEmail] = useState("");

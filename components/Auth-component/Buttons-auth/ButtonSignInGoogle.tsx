@@ -3,11 +3,11 @@
 import { User, signInWithRedirect } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { authh } from "@/app/firebase/Config/firebaseConfig";
+import { authh } from "@/firebase/Config/firebaseConfig";
 
 import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
-import SvgGoogle from "../Svg-Google";
-import { showSuccessToast } from "../Toast/toast";
+import SvgGoogle from "../../../Image/Svg-Google";
+import { showSuccessToast } from "@/components/Toast/toast";
 
 
 export default function ButtonGoogle() {
