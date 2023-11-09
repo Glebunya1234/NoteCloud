@@ -5,22 +5,33 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
+
 } from "firebase/auth";
+
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import { authh, mydatabase } from "@/app/firebase/Config/firebaseConfig";
-import { useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
 
-import readDoc from "@/app/firebase/Methods/ReadDataForUser";
+import {readDoc} from "@/app/firebase/Methods/ReadDataForUser";
 import { useEffect } from "react";
 import { AllertToast, showSuccessToast } from "@/app/components/Toast/toast";
+import { userService } from "@/app/firebase/Methods/UserServ";
+import {User} from "@/app/firebase/Methods/UserServ";
+const getUser = async(id:string):Promise<User>=>{
+  try{
+    return await userService.getById(id);
+  }
+  catch(error){
+   notFound()
+  }
+}
 
 export default async function userPage({ params }: { params: { id: string } }) {
-  readDoc(params.id);
-  console.log(params);
-
   const router = useRouter();
+ const user =  getUser(params.id);
+ console.log(user)
   const handleSignUp = () => {
     try {
       signOut(authh);
@@ -29,6 +40,10 @@ export default async function userPage({ params }: { params: { id: string } }) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    
+  }, []);
 
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
@@ -45,14 +60,13 @@ export default async function userPage({ params }: { params: { id: string } }) {
               className="mask mask-circle"
               src="https://lh3.googleusercontent.com/a/ACg8ocLEPkaYChKDjS3eUDCBFl_W-cSwM6noThVKg4G6msD61no=s96-c"
             />
-            <h1>{}</h1>
+            <h1></h1>
           </section>
         </div>
         <div className="w-full h-full">
           <header className="w-full h-24 flex items-center p-5">
             <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 font-mono font-light">
               Your&nbsp;Tasks
-              {}
             </h1>
             <input
               type="text"

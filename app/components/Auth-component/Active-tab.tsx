@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 
 import { RegisterInputs } from "./Register-input";

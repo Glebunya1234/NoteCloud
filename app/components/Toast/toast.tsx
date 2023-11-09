@@ -1,3 +1,4 @@
+"use client";
 import toast, { Toaster } from "react-hot-toast";
 export function AllertToast() {
   return (
