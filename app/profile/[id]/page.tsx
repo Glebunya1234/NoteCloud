@@ -5,7 +5,6 @@ import {
   signOut,
   onAuthStateChanged,
   GoogleAuthProvider,
-
 } from "firebase/auth";
 
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
@@ -14,24 +13,24 @@ import { authh, mydatabase } from "@/firebase/Config/firebaseConfig";
 import { notFound, useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
 
-import {readDoc} from "@/firebase/Methods/ReadDataForUser";
+import { readDoc } from "@/firebase/Methods/ReadDataForUser";
 import { useEffect } from "react";
 import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
 import { userService } from "@/firebase/Methods/UserServ";
-import {User} from "@/firebase/Methods/UserServ";
-const getUser = async(id:string):Promise<User>=>{
-  try{
+import { MyUser } from "@/firebase/Methods/UserServ";
+// import {getUser} from "@/firebase/Methods/GetUser";
+
+const getUser = async (id: string): Promise<MyUser> => {
+  try {
     return await userService.getById(id);
+  } catch (error) {
+    notFound();
   }
-  catch(error){
-   notFound()
-  }
-}
+};
 
 export default async function userPage({ params }: { params: { id: string } }) {
   const router = useRouter();
- const user =  getUser(params.id);
- console.log(user)
+
   const handleSignUp = () => {
     try {
       signOut(authh);
@@ -40,10 +39,20 @@ export default async function userPage({ params }: { params: { id: string } }) {
       console.log(error);
     }
   };
+  const googleUser = await getUser(params.id);
+  let src_url;
+  if (googleUser.photoURL === " ") {
+    src_url = googleUser.photoURL;
+  } else {
+    src_url =
+      "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek=";
+  }
 
-  useEffect(() => {
-    
-  }, []);
+  console.log("src_url = ", src_url);
+
+  // useEffect(() => {
+
+  // }, []);
 
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
@@ -58,7 +67,10 @@ export default async function userPage({ params }: { params: { id: string } }) {
           <section className="w-full h-24 flex items-center justify-center ">
             <img
               className="mask mask-circle"
-              src="https://lh3.googleusercontent.com/a/ACg8ocLEPkaYChKDjS3eUDCBFl_W-cSwM6noThVKg4G6msD61no=s96-c"
+              src={src_url}
+              width={100}
+              height={100}
+              alt="User Avatar"
             />
             <h1></h1>
           </section>

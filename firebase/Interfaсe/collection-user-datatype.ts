@@ -1,18 +1,18 @@
 
 
 
-export interface user_collect_datatype {
+export interface Iuser_collect_datatype {
     userID: string;
     displayName: string;
     password: string;
     email: string;
     photoURL: string;
 }
-export interface emailAndPassw {
+export interface IemailAndPassw {
     email: string;
     password: string;
 }
-export interface emailAndPasswAndConfPassw {
+export interface IemailAndPasswAndConfPassw {
     email: string;
     password: string;
     confirm_password: string;

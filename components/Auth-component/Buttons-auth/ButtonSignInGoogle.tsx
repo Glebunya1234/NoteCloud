@@ -8,32 +8,51 @@ import { authh } from "@/firebase/Config/firebaseConfig";
 import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
 import SvgGoogle from "../../../Image/Svg-Google";
 import { showSuccessToast } from "@/components/Toast/toast";
+import { readDoc } from "@/firebase/Methods/ReadDataForUser";
 
+import { Iuser_collect_datatype } from "@/firebase/Interfaсe/collection-user-datatype";
+import { MyUser, userService } from "@/firebase/Methods/UserServ";
+import { getOrCreateUser } from "@/firebase/Methods/GetUser";
 
 export default function ButtonGoogle() {
-  const [userss, setUser] = useState<User | null | undefined>(null);
   const router = useRouter();
+  const [userss, setUser] = useState<User | null | undefined>(null);
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
     signInWithRedirect(authh, provider);
   };
-  useEffect(() => {
-    const unsubcribe = onAuthStateChanged(authh, (currentUser: User | null) => {
-      setUser(currentUser);
-      if (userss !== null) {
-       
-        console.log("usess: ", userss);
-        router.push(`/profile/${userss?.uid}`);
-      }
-    });
-
-    return () => unsubcribe();
-  }, [userss]);
 
   const handleSignInWithGoogle = () => {
     googleSignIn();
   };
+
+  useEffect(() => {
+    const unsubcribe = onAuthStateChanged(
+      authh,
+      (currentUser: User | null) => {
+        setUser(currentUser);
+
+        if (userss !== null) {
+          const userData: Iuser_collect_datatype = {
+            displayName: `${userss?.displayName}`,
+            email: `${userss?.email}`,
+            photoURL: `${userss?.photoURL}`,
+            userID: `${userss?.uid}`,
+            password: " ",
+          };
+          //если пользователь есть то выведет его данные а если нет то создаст а потом выведет
+          router.push(`/profile/${userss?.uid}`);
+          const googleUser = getOrCreateUser(userData.userID, userData);
+
+          console.log("googleUser: ", googleUser);
+
+        }
+      }
+    );
+
+    return () => unsubcribe();
+  }, [userss]);
 
   return (
     <button

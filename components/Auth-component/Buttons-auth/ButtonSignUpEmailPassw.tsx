@@ -1,7 +1,7 @@
 import AddNewUser from "@/firebase/Methods/AddNewUser";
 import {
-  emailAndPassw,
-  emailAndPasswAndConfPassw,
+  IemailAndPassw,
+  IemailAndPasswAndConfPassw,
 } from "@/firebase/Interfaсe/collection-user-datatype";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
@@ -15,7 +15,7 @@ export function RegisterButton({
   email,
   password,
   confirm_password,
-}: emailAndPasswAndConfPassw) {
+}: IemailAndPasswAndConfPassw) {
   const auth = getAuth();
 
   const handleSignUp = () => {

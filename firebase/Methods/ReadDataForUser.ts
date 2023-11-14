@@ -3,7 +3,7 @@ import { doc, getFirestore, onSnapshot, query, setDoc, where } from "firebase/fi
 import { mydatabase } from "../Config/firebaseConfig";
 
 import { notFound } from "next/navigation";
-import { user_collect_datatype } from "../Interfaсe/collection-user-datatype";
+import { Iuser_collect_datatype } from "../Interfaсe/collection-user-datatype";
 import { getDoc } from "firebase/firestore/lite";
 
 export  function readDoc(userID:string){
@@ -15,7 +15,7 @@ export  function readDoc(userID:string){
             console.log(`my data = ${JSON.stringify(docData)}`);
         }
         else{
-         
+         console.log("Not found user", userID);
         }
     })
     
