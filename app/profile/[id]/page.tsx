@@ -14,7 +14,7 @@ import { notFound, useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
 
 import { readDoc } from "@/firebase/Methods/ReadDataForUser";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
 import { userService } from "@/firebase/Methods/UserServ";
 import { MyUser } from "@/firebase/Methods/UserServ";
@@ -30,7 +30,6 @@ const getUser = async (id: string): Promise<MyUser> => {
 
 export default async function userPage({ params }: { params: { id: string } }) {
   const router = useRouter();
-
   const handleSignUp = () => {
     try {
       signOut(authh);
@@ -39,20 +38,21 @@ export default async function userPage({ params }: { params: { id: string } }) {
       console.log(error);
     }
   };
-  const googleUser = await getUser(params.id);
-  let src_url;
-  if (googleUser.photoURL === " ") {
-    src_url = googleUser.photoURL;
+
+
+const googleUser = await getUser(params.id);
+ let setSrc;
+  const defaultAvatar =
+    "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek=";
+
+  if (googleUser.photoURL !== " ") {
+  setSrc = googleUser.photoURL;
+   console.log("src_url = ", setSrc);
   } else {
-    src_url =
-      "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek=";
+    setSrc = defaultAvatar;
+    console.log("src_url = ", setSrc);
   }
 
-  console.log("src_url = ", src_url);
-
-  // useEffect(() => {
-
-  // }, []);
 
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
@@ -67,7 +67,7 @@ export default async function userPage({ params }: { params: { id: string } }) {
           <section className="w-full h-24 flex items-center justify-center ">
             <img
               className="mask mask-circle"
-              src={src_url}
+              src={setSrc}
               width={100}
               height={100}
               alt="User Avatar"
