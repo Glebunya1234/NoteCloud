@@ -17,7 +17,7 @@ export class MyUser {
     ) {
         this.userID = userID;
         this.displayName = displayName;
-  
+
         this.email = email;
         this.photoURL = photoURL;
     }
@@ -42,16 +42,16 @@ const userConvertor = {
 
 
 class UserService {
-    async getById(userID: string): Promise<MyUser> {
+    async getById(userID: string): Promise<MyUser | null> {
         const docSnapsh = await getDoc(
             doc(mydatabase, "collection-users", userID).withConverter(userConvertor),
         );
         if (docSnapsh.exists()) {
             return docSnapsh.data()
         }
-        else{
-           
-            throw new Error(`Not Found user ${userID}`)
+        else {
+
+            return null
         }
     }
     // async createOrUpdateUser(user: User): Promise<void> {
@@ -65,10 +65,10 @@ class UserService {
     //     }
     // }
 
-    async getOrCreateUser(userID: string, userData: Partial<Iuser_collect_datatype>): Promise<MyUser> {
+    async getOrCreateUser(userID: string, userData: Partial<Iuser_collect_datatype>): Promise<MyUser | null> {
         try {
             return await this.getById(userID);
-        } catch (error) {            
+        } catch (error) {
             const newdoc = doc(mydatabase, `collection-users/${userID}`);
             const docData: Iuser_collect_datatype = {
                 userID: `${userID}`,
@@ -80,7 +80,7 @@ class UserService {
             setDoc(newdoc, docData);
 
             return await this.getById(userID);
-           
+
         }
     }
 }

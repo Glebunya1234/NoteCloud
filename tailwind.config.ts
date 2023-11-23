@@ -23,7 +23,7 @@ const config: Config = {
         'h90%':'90%',
       },
       minWidth:{
-        'wmin':'620px',
+        'wmin':'700px',
         'wm90%':'90%'
       },
       transitionDelay:{
