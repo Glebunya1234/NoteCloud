@@ -30,6 +30,8 @@ import { userService } from "@/firebase/Methods/UserServ";
 import { MyUser } from "@/firebase/Methods/UserServ";
 import { Console } from "console";
 import SvgCloseX from "@/Image/Svg-CloseX";
+import ButtonWhatchTodo from "@/components/Profile-components/Button-WathTodos";
+import ButtonWhatchHome from "@/components/Profile-components/Button-WathHome";
 // import {getUser} from "@/firebase/Methods/GetUser";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -88,6 +90,10 @@ export default async function userPage({ params }: { params: { id: string } }) {
               alt="User Avatar"
             />
             <h1></h1>
+          </section>
+          <section className="w-full my-16 px-10 flex items-center flex-col justify-center ">
+            <ButtonWhatchHome/>
+            <ButtonWhatchTodo/>
           </section>
         </div>
         <div className="w-full h-full">
