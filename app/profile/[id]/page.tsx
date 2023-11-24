@@ -106,7 +106,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
             <dialog id="my_modal_2" className="modal">
               <div className="modal-box bg-bg-mygrey">
-                <h3 className="font-bold text-lg mb-2">Fast edit your profile</h3>
+                <h3 className="font-bold text-lg mb-2 ">Fast edit your profile</h3>
 
                 {/* Первая пара инпута и кнопки */}
                 <span className="label-text">Edit your name</span>
@@ -117,7 +117,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                     className="input input-ghost w-full bg-transparent max-w-4xl  ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
                   />
                   <button className="btn btn-square bg-transparent border-[#3a393c] ml-2 hover:bg-bg-mydurkgrey">
-                    <FiCheck />
+                    <FiCheck style={{ fontSize: '20px' }}/>
                   </button>
                 </div>
                 <span className="label-text">Upload a photo...</span>
@@ -125,15 +125,15 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                 <div className="flex items-center">
                   <input
                     type="file"
-                    className="file-input w-full bg-transparent max-w-4xl  ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
+                    className="file-input w-full bg-transparent max-w-4xl ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
                   />
                   <button className="btn btn-square bg-transparent border-[#3a393c]  ml-2 hover:bg-bg-mydurkgrey">
-                    <FiCheck />
+                    <FiCheck  style={{ fontSize: '20px' }} />
                   </button>
                 </div>
 
                 {/* Текст ниже */}
-                <p className="py-4">Press ESC key or click outside to close</p>
+                <p className="mt-5 text-xs text-right">Press ESC key or click outside to close</p>
               </div>
 
               <form method="dialog" className="modal-backdrop">
@@ -168,7 +168,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               SignOut
             </button>
             <button className="btn btn-square bg-transparent border-[#3a393c] rounded-2xl ml-5  hover:bg-bg-mydurkgrey">
-              <CgClose />
+              <CgClose style={{ fontSize: '20px' }}/>
             </button>
           </header>
           <main className="w-full h-full"></main>
