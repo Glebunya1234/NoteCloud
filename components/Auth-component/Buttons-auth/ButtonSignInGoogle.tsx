@@ -4,14 +4,10 @@ import { User, signInWithRedirect } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authh } from "@/firebase/Config/firebaseConfig";
-
 import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
-import SvgGoogle from "../../../Image/Svg-Google";
+import SvgGoogle from "../../../assets/Svg-Google";
 import { showSuccessToast } from "@/components/Toast/toast";
-import { readDoc } from "@/firebase/Methods/ReadDataForUser";
-
 import { Iuser_collect_datatype } from "@/firebase/Interfaсe/collection-user-datatype";
-import { MyUser, userService } from "@/firebase/Methods/UserServ";
 import { getOrCreateUser } from "@/firebase/Methods/GetUser";
 
 export default function ButtonGoogle() {
@@ -44,7 +40,7 @@ export default function ButtonGoogle() {
           //если пользователь есть то выведет его данные а если нет то создаст а потом выведет
           router.push(`/profile/${userss?.uid}`);
           const googleUser = getOrCreateUser(userData.userID, userData);
-
+          showSuccessToast("Successful login!");
           console.log("googleUser: ", googleUser);
 
         }

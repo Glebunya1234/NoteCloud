@@ -1,26 +1,12 @@
 "use client";
-import Link from "next/link";
-import {
-  signInWithPopup,
-  signOut,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-} from "firebase/auth";
 
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  query,
-  setDoc,
-  where,
-} from "firebase/firestore";
+import { signOut } from "firebase/auth";
+
 import Image from "next/image";
 import { CgSearch } from "react-icons/cg";
 import { CgClose } from "react-icons/cg";
 import { authh, mydatabase } from "@/firebase/Config/firebaseConfig";
-import { notFound, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import Logo from "@/Image/logoNC.png";
 
 import { readDoc, readDocTodo } from "@/firebase/Methods/ReadDataForUser";
@@ -28,28 +14,19 @@ import { useEffect, useState } from "react";
 import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
 import { userService } from "@/firebase/Methods/UserServ";
 import { MyUser } from "@/firebase/Methods/UserServ";
-import { Console } from "console";
-import SvgCloseX from "@/Image/Svg-CloseX";
-import ButtonWhatchTodo from "@/components/Profile-components/Button-WathTodos";
-import ButtonWhatchHome from "@/components/Profile-components/Button-WathHome";
+
+import ButtonMenuNavigations from "@/components/Profile-components/Button-MenuNav";
 // import {getUser} from "@/firebase/Methods/GetUser";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
-  const router = useRouter();
-
-  try {
     return await userService.getById(id);
-  } catch (error) {
-    router.push("../");
-    throw await error;
-  }
 };
 
-export default async function userPage({ params }: { params: { id: string } }) {
+const UserPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
-  const googleUser = await getUser(params.id);
-  let setSrc =
-    "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek=";
+  const [activeMain, setActiveMain] = useState("h");
+  const [setSrc, setSetSrc] = useState("https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek="); // Лучше использовать useState для изменения состояния
+  // const googleUser = await getUser(params.id);
 
   const handleSignUp = () => {
     try {
@@ -60,17 +37,29 @@ export default async function userPage({ params }: { params: { id: string } }) {
     }
   };
 
-  if (googleUser !== null) {
-    if (googleUser.photoURL !== "") {
-      setSrc = googleUser.photoURL;
-      console.log("src_url = ", setSrc);
-    } else {
-      console.log("src_url = ", setSrc);
-    }
-  } else {
-    router.push("../");
-  }
-  readDocTodo(params.id);
+  useEffect(() => {
+    const fetchData = async () => {
+        const googleUser = await getUser(params.id);
+        if (googleUser !== null) {
+          if (googleUser.photoURL !== "") {
+            setSetSrc(googleUser.photoURL);
+          } else {
+            setSetSrc("https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek=");
+          }
+        } else {
+          router.push("../404");
+        }
+    };
+
+    fetchData();
+  }, []);// Пустой массив завершает эффект после монтирования
+
+  const handleButtonClick = (buttonName: string) => {
+    setActiveMain(buttonName);
+    console.log("buttonName==", buttonName);
+  };
+
+  // readDocTodo(params.id);
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen">
       <div className="w-11/12 h-h90% min-w-wmin max-w-1/2 flex  shadow-2xl  bg-bg-mygrey  rounded-3xl overflow-hidden">
@@ -83,17 +72,19 @@ export default async function userPage({ params }: { params: { id: string } }) {
           </section>
           <section className="w-full h-24 flex items-center justify-center ">
             <img
-              className="mask mask-circle"
-              src={setSrc}
-              width={100}
-              height={100}
-              alt="User Avatar"
-            />
+                className="mask mask-circle"
+                src={setSrc}
+                width={100}
+                height={100}
+                alt="User Avatar"
+              />
+
             <h1></h1>
           </section>
           <section className="w-full my-16 px-10 flex items-center flex-col justify-center ">
-            <ButtonWhatchHome/>
-            <ButtonWhatchTodo/>
+            {/* <ButtonWhatchHome />
+            <ButtonWhatchTodo /> */}
+            <ButtonMenuNavigations onButtonClick={handleButtonClick} />
           </section>
         </div>
         <div className="w-full h-full">
@@ -129,3 +120,4 @@ export default async function userPage({ params }: { params: { id: string } }) {
     </div>
   );
 }
+export default UserPage;
