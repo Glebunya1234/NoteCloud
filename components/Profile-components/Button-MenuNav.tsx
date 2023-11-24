@@ -1,22 +1,28 @@
-"use client"
+"use client";
 import SvgHome from "@/assets/Svg-Home";
 import { useState } from "react";
 import { CgHomeAlt, CgLaptop } from "react-icons/cg";
 import { FiBook } from "react-icons/fi";
 
-
-
-const ButtonMenuNavigations: React.FC<{ onButtonClick: (buttonName: string) => void }> = ({ onButtonClick }) => {
+const ButtonMenuNavigations: React.FC<{
+  onButtonClick: (buttonName: string) => void;
+}> = ({ onButtonClick }) => {
   return (
     <>
-      <button className="btn btn-ghost my-1 w-full rounded-2xl"  onClick={() => onButtonClick('Home')}>
+      <button
+        className="btn btn-ghost my-1 w-full rounded-2xl"
+        onClick={() => onButtonClick("Home")}
+      >
         <div className="flex text-center justify-center">
           <SvgHome />
           <p className="mx-1">Home</p>
         </div>
       </button>
 
-      <button className="btn btn-ghost my-1 w-full rounded-2xl" onClick={() => onButtonClick('Todos')}>
+      <button
+        className="btn btn-ghost my-1 w-full rounded-2xl"
+        onClick={() => onButtonClick("Todos")}
+      >
         <div className="flex text-center justify-center">
           <FiBook />
           <p className="mx-1">Todos</p>
@@ -24,5 +30,5 @@ const ButtonMenuNavigations: React.FC<{ onButtonClick: (buttonName: string) => v
       </button>
     </>
   );
-}
+};
 export default ButtonMenuNavigations;
