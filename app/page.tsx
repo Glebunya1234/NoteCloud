@@ -1,7 +1,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Logo from "@/Image/logoNC.png";
+import Logo from "@/assets/logoNC.png";
 import ButtonGoogle from "../components/Auth-component/Buttons-auth/ButtonSignInGoogle";
 import { ActiveTabs } from "../components/Auth-component/Active-tab";
 import { AllertToast } from "../components/Toast/toast";

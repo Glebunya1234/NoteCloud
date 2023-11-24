@@ -8,7 +8,7 @@ import { CgSearch } from "react-icons/cg";
 import { CgClose } from "react-icons/cg";
 import { authh, mydatabase } from "@/firebase/Config/firebaseConfig";
 import { useRouter } from "next/navigation";
-import Logo from "@/Image/logoNC.png";
+import Logo from "@/assets/logoNC.png";
 
 import { readDoc, readDocTodo } from "@/firebase/Methods/ReadDataForUser";
 import { useEffect, useState } from "react";
@@ -17,6 +17,8 @@ import { userService } from "@/firebase/Methods/UserServ";
 import { MyUser } from "@/firebase/Methods/UserServ";
 
 import ButtonMenuNavigations from "@/components/Profile-components/Button-MenuNav";
+import HomeContent from "@/components/Profile-components/HomeContent";
+import TodosContent from "@/components/Profile-components/TodoContent";
 // import {getUser} from "@/firebase/Methods/GetUser";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -26,10 +28,8 @@ const getUser = async (id: string): Promise<MyUser | null> => {
 const UserPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const [activeMain, setActiveMain] = useState("h");
-  const [setSrc, setSetSrc] = useState(
-    "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek="
-  ); // Лучше использовать useState для изменения состояния
-  // const googleUser = await getUser(params.id);
+  const [setSrc, setSetSrc] = useState("https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg");
+  const [userDisplayName, setuserDisplayName] = useState<string | null>("");
 
   const handleSignUp = () => {
     try {
@@ -44,12 +44,21 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     const fetchData = async () => {
       const googleUser = await getUser(params.id);
       if (googleUser !== null) {
+        //Проверка на аватар
         if (googleUser.photoURL !== "") {
           setSetSrc(googleUser.photoURL);
         } else {
           setSetSrc(
-            "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek="
+            // "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek="
+            "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg"
           );
+        }
+        console.log(googleUser.displayName);
+        //Проверка на ник нейм
+        if (googleUser.displayName !== "") {
+          setuserDisplayName(googleUser.displayName);
+        } else {
+          setuserDisplayName("");
         }
       } else {
         router.push("../404");
@@ -90,13 +99,14 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           </section>
           <section className="w-full h-auto py-3 flex items-center justify-center flex-col">
             <img
-              className="mask mask-circle "
+              className="mask mask-circle"
               src={setSrc}
               width={100}
               height={100}
-              alt="User Avatar"
+              alt="Avatar"
+              
             />
-            <h3 className="py-1 font-bold">Cellweller</h3>
+            <h3 className="py-2 font-bold">{userDisplayName}</h3>
             <button
               className="btn btn-outline btn-xs w-13 rounded-2xl"
               onClick={openModal}
@@ -106,7 +116,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
             <dialog id="my_modal_2" className="modal">
               <div className="modal-box bg-bg-mygrey">
-                <h3 className="font-bold text-lg mb-2 ">Fast edit your profile</h3>
+                <h3 className="font-bold text-lg mb-2 ">
+                  Fast edit your profile
+                </h3>
 
                 {/* Первая пара инпута и кнопки */}
                 <span className="label-text">Edit your name</span>
@@ -117,7 +129,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                     className="input input-ghost w-full bg-transparent max-w-4xl  ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
                   />
                   <button className="btn btn-square bg-transparent border-[#3a393c] ml-2 hover:bg-bg-mydurkgrey">
-                    <FiCheck style={{ fontSize: '20px' }}/>
+                    <FiCheck style={{ fontSize: "20px" }} />
                   </button>
                 </div>
                 <span className="label-text">Upload a photo...</span>
@@ -128,12 +140,14 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                     className="file-input w-full bg-transparent max-w-4xl ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
                   />
                   <button className="btn btn-square bg-transparent border-[#3a393c]  ml-2 hover:bg-bg-mydurkgrey">
-                    <FiCheck  style={{ fontSize: '20px' }} />
+                    <FiCheck style={{ fontSize: "20px" }} />
                   </button>
                 </div>
 
                 {/* Текст ниже */}
-                <p className="mt-5 text-xs text-right">Press ESC key or click outside to close</p>
+                <p className="mt-5 text-xs text-right">
+                  Press ESC key or click outside to close
+                </p>
               </div>
 
               <form method="dialog" className="modal-backdrop">
@@ -141,7 +155,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               </form>
             </dialog>
           </section>
-          <section className="w-full my-2 px-10 flex items-center flex-col justify-center ">
+          <section className="w-full my-5 px-10 flex items-center flex-col justify-center ">
             <ButtonMenuNavigations onButtonClick={handleButtonClick} />
           </section>
         </div>
@@ -168,10 +182,13 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               SignOut
             </button>
             <button className="btn btn-square bg-transparent border-[#3a393c] rounded-2xl ml-5  hover:bg-bg-mydurkgrey">
-              <CgClose style={{ fontSize: '20px' }}/>
+              <CgClose style={{ fontSize: "20px" }} />
             </button>
           </header>
-          <main className="w-full h-full"></main>
+          <main className="w-full h-full">
+          {activeMain === 'Home' && <HomeContent/>}
+          {activeMain === 'Todos' && <TodosContent />}
+          </main>
         </div>
       </div>
       <AllertToast />
