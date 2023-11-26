@@ -27,7 +27,8 @@ const getUser = async (id: string): Promise<MyUser | null> => {
 
 const UserPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
-  const [activeMain, setActiveMain] = useState("h");
+  const [activeMain, setActiveMain] = useState("Home");
+  const [blocks, setBlocks] = useState([]);
   const [setSrc, setSetSrc] = useState("https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg");
   const [userDisplayName, setuserDisplayName] = useState<string | null>("");
 
@@ -43,9 +44,11 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     const fetchData = async () => {
       const googleUser = await getUser(params.id);
+      console.log(googleUser);
       if (googleUser !== null) {
         //Проверка на аватар
         if (googleUser.photoURL !== "") {
+    
           setSetSrc(googleUser.photoURL);
         } else {
           setSetSrc(
@@ -64,8 +67,18 @@ const UserPage = ({ params }: { params: { id: string } }) => {
         router.push("../404");
       }
     };
+    const TodosData = async () => {
+      try {
+        const data = await readDocTodo(params.id);
+        console.log(data)
+       
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
     fetchData();
+    TodosData();
   }, []); // Пустой массив завершает эффект после монтирования
 
   const handleButtonClick = (buttonName: string) => {
@@ -93,7 +106,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
         <div className="border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full flex items-center  flex-col ">
           <section className="w-full h-24 flex items-center justify-center ">
             <Image src={Logo} width={30} height={30} alt="__" />
-            <h1 className="text-center text-3xl mx-2 text-gray-300 font-mono font-bold">
+            <h1 className="text-center text-lg mx-2 text-gray-300 font-Orbitron">
               NoteCloud
             </h1>
           </section>
@@ -159,9 +172,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             <ButtonMenuNavigations onButtonClick={handleButtonClick} />
           </section>
         </div>
-        <div className="w-full h-full">
+        <div className="w-full h-full flex flex-col">
           <header className="w-full h-24 flex items-center p-5">
-            <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 font-mono font-light">
+            <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
               Your&nbsp;Tasks
             </h1>
             <div className="relative w-full mr-5">
@@ -185,10 +198,11 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               <CgClose style={{ fontSize: "20px" }} />
             </button>
           </header>
-          <main className="w-full h-full">
+          <main className="w-full h-full flex justify-center items-center">
           {activeMain === 'Home' && <HomeContent/>}
-          {activeMain === 'Todos' && <TodosContent />}
+          {activeMain === 'Todos' && <TodosContent id={params.id}/>}
           </main>
+          <div className="h-24 w-full"></div>
         </div>
       </div>
       <AllertToast />

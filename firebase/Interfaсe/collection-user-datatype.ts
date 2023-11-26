@@ -17,3 +17,10 @@ export interface IemailAndPasswAndConfPassw {
     password: string;
     confirm_password: string;
 }
+export interface IdataTodos {
+    nameBlock: string;
+    titleTodos: string;
+    teg: string;
+    userId:string;
+    // Добавьте другие поля задачи, если необходимо
+  }

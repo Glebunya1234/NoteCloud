@@ -26,9 +26,12 @@ const config: Config = {
         'wmin':'700px',
         'wm90%':'90%'
       },
-      transitionDelay:{
-        
-      }
+      fontFamily: {
+        'Orbitron': ["Orbitron"],
+        'Ubuntu': ["Ubuntu"],
+        'Raleway': ["Raleway"],
+        'Poppins': ["Poppins"],
+      },
     },
   },
   plugins: [require("daisyui")],

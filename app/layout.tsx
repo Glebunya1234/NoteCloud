@@ -1,8 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Poppins, Raleway } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
+
+const fonts = Poppins({weight: "400", subsets:['devanagari']})
 
 export const metadata: Metadata = {
   title: "NoteCloud",
@@ -16,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={fonts.className}>{children}</body>
       <meta name="viewport" content="initial-scale=1, width=device-width" />
     </html>
   );

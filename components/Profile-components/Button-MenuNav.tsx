@@ -14,7 +14,7 @@ const ButtonMenuNavigations: React.FC<{
         onClick={() => onButtonClick("Home")}
       >
         <div className="flex text-center justify-center">
-          <SvgHome />
+          <CgHomeAlt />
           <p className="mx-1">Home</p>
         </div>
       </button>

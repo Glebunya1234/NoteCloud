@@ -15,7 +15,7 @@ export default function Home() {
         <div className="w-6/12 px-8 py-9 max-h-full ">
           <div className="w-full h-full flex flex-col items-center rounded-3xl overflow-hidden pt-8 bg-opacity-70 bg-bg-mygrey shadow-2xl">
             <Image src={Logo} width={80} height={80} alt="NoteCloud" />
-            <h1 className="text-center text-3xl text-gray-300 font-sans font-bold">
+            <h1 className="text-center font-Orbitron text-gray-300 text-2xl">
               NoteCloud
             </h1>
             <div className="flex w-full h-full flex-col  items-center py-9 ">
