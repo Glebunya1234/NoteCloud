@@ -18,13 +18,15 @@ const config: Config = {
         'w-300': '300px',
         'w90%':'90%',
         
+        
       },
       height:{
         'h90%':'90%',
       },
       minWidth:{
         'wmin':'700px',
-        'wm90%':'90%'
+        'wm90%':'90%',
+        'blockContent72rem':'18rem'
       },
       fontFamily: {
         'Orbitron': ["Orbitron"],

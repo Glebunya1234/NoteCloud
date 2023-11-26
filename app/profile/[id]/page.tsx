@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
 import { userService } from "@/firebase/Methods/UserServ";
 import { MyUser } from "@/firebase/Methods/UserServ";
-
+import { HiOutlinePlus } from "react-icons/hi";
 import ButtonMenuNavigations from "@/components/Profile-components/Button-MenuNav";
 import HomeContent from "@/components/Profile-components/HomeContent";
 import TodosContent from "@/components/Profile-components/TodoContent";
@@ -29,7 +29,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const router = useRouter();
   const [activeMain, setActiveMain] = useState("Home");
   const [blocks, setBlocks] = useState([]);
-  const [setSrc, setSetSrc] = useState("https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg");
+  const [setSrc, setSetSrc] = useState(
+    "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg"
+  );
   const [userDisplayName, setuserDisplayName] = useState<string | null>("");
 
   const handleSignUp = () => {
@@ -48,7 +50,6 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       if (googleUser !== null) {
         //Проверка на аватар
         if (googleUser.photoURL !== "") {
-    
           setSetSrc(googleUser.photoURL);
         } else {
           setSetSrc(
@@ -67,18 +68,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
         router.push("../404");
       }
     };
-    const TodosData = async () => {
-      try {
-        const data = await readDocTodo(params.id);
-        console.log(data)
-       
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
     fetchData();
-    TodosData();
   }, []); // Пустой массив завершает эффект после монтирования
 
   const handleButtonClick = (buttonName: string) => {
@@ -117,7 +107,6 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               width={100}
               height={100}
               alt="Avatar"
-              
             />
             <h3 className="py-2 font-bold">{userDisplayName}</h3>
             <button
@@ -198,11 +187,15 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               <CgClose style={{ fontSize: "20px" }} />
             </button>
           </header>
-          <main className="w-full h-full flex justify-center items-center">
-          {activeMain === 'Home' && <HomeContent/>}
-          {activeMain === 'Todos' && <TodosContent id={params.id}/>}
+          <main className="w-full h-full flex overflow-auto">
+            {activeMain === "Home" && <HomeContent />}
+            {activeMain === "Todos" && <TodosContent id={params.id} />}
           </main>
-          <div className="h-24 w-full"></div>
+          <div className="h-24 w-full flex justify-end pb-5">
+            <button className="btn btn-circle btn-ghost btn-lg text-black mx-5 z-50 bg-bg-myyellow">
+            <HiOutlinePlus />
+            </button>
+          </div>
         </div>
       </div>
       <AllertToast />
