@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { authh } from "@/firebase/Config/firebaseConfig";
 import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
-import SvgGoogle from "../../../assets/Svg-Google";
 import { showSuccessToast } from "@/components/Toast/toast";
 import { Iuser_collect_datatype } from "@/firebase/Interfaсe/collection-user-datatype";
 import { getOrCreateUser } from "@/firebase/Methods/GetUser";
-
+import Image from "next/image";
+import googleSvg from "@/public/google.svg"
 export default function ButtonGoogle() {
   const router = useRouter();
   const [userss, setUser] = useState<User | null | undefined>(null);
@@ -55,7 +55,7 @@ export default function ButtonGoogle() {
       className="btn btn-ghost w-w90% max-w-xs m-1"
       onClick={handleSignInWithGoogle}
     >
-      <SvgGoogle />
+      <Image src={googleSvg} alt="Google Logo"/>
       <div>Continue with Google</div>
     </button>
   );

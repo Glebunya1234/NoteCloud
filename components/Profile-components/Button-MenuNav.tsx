@@ -1,5 +1,4 @@
 "use client";
-import SvgHome from "@/assets/Svg-Home";
 import { useState } from "react";
 import { CgHomeAlt, CgLaptop } from "react-icons/cg";
 import { FiBook } from "react-icons/fi";
