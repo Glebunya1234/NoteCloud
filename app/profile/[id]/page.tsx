@@ -9,7 +9,7 @@ import { CgClose } from "react-icons/cg";
 import { authh, mydatabase } from "@/firebase/Config/firebaseConfig";
 import { useRouter } from "next/navigation";
 import Logo from "@/assets/logoNC.png";
-
+import Logo2 from "@/public/logoNC.svg";
 import { readDoc, readDocTodo } from "@/firebase/Methods/ReadDataForUser";
 import { useEffect, useState } from "react";
 import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
@@ -95,7 +95,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       <div className="w-11/12 h-h90% min-w-wmin max-w-1/2 flex  shadow-2xl  bg-bg-mygrey  rounded-3xl overflow-hidden">
         <div className="border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full flex items-center  flex-col ">
           <section className="w-full h-24 flex items-center justify-center ">
-            <Image src={Logo} width={30} height={30} alt="__" />
+            <Image src={Logo2} width={30} height={30} alt="__" />
             <h1 className="text-center text-lg mx-2 text-gray-300 font-Orbitron">
               NoteCloud
             </h1>

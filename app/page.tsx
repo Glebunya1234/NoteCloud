@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Logo from "@/assets/logoNC.png";
+import Logo2 from "@/public/logoNC.svg";
 import ButtonGoogle from "../components/Auth-component/Buttons-auth/ButtonSignInGoogle";
 import { ActiveTabs } from "../components/Auth-component/Active-tab";
 import { AllertToast } from "../components/Toast/toast";
@@ -14,7 +15,7 @@ export default function Home() {
 
         <div className="w-6/12 px-8 py-9 max-h-full ">
           <div className="w-full h-full flex flex-col items-center rounded-3xl overflow-hidden pt-8 bg-opacity-70 bg-bg-mygrey shadow-2xl">
-            <Image src={Logo} width={80} height={80} alt="NoteCloud" />
+            <Image src={Logo2} width={80} height={80} alt="NoteCloud" />
             <h1 className="text-center font-Orbitron text-gray-300 text-2xl">
               NoteCloud
             </h1>
