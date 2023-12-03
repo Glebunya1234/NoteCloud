@@ -1,8 +1,7 @@
 "use client";
 import { useState } from "react";
-
-import { RegisterInputs } from "../Inputs/Register-input";
-import { LogInInputs } from "../Inputs/LogIn-input";
+import { RegisterInputs } from "@/components/Inputs/Register-input";
+import { LogInInputs } from "@/components/Inputs/LogIn-input";
 
 export function ActiveTabs() {
   const [activeTab, setActiveTab] = useState("Log In");

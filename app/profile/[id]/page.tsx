@@ -6,20 +6,20 @@ import { FiCheck } from "react-icons/fi";
 import Image from "next/image";
 import { CgSearch } from "react-icons/cg";
 import { CgClose } from "react-icons/cg";
-import { authh, mydatabase } from "@/services/Firebase/firebaseConfig";
+import { authh} from "@/services/Firebase-Config/firebaseConfig";
 import { useRouter } from "next/navigation";
-import Logo from "@/assets/logoNC.png";
+
 import Logo2 from "@/public/logoNC.svg";
-import { readDoc, readDocTodo } from "@/firebase/Methods/ReadDataForUser";
+
 import { useEffect, useState } from "react";
 import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
 import { userService } from "@/services/User-Service/UserServ";
 import { MyUser } from "@/services/User-Service/UserServ";
 import { HiOutlinePlus } from "react-icons/hi";
-import ButtonMenuNavigations from "@/components/Profile-components/Button-MenuNav";
-import HomeContent from "@/components/Profile-components/HomeContent";
-import TodosContent from "@/components/Profile-components/TodoContent";
-// import {getUser} from "@/firebase/Methods/GetUser";
+import ButtonMenuNavigations from "@/components/Navigations/Button-MenuNav";
+import HomeContent from "@/components/Profile/HomePage/HomePage";
+import TodosContent from "@/components/Profile/TodosPage/TodoPage";
+
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -78,7 +78,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
   const openModal = () => {
     const modal = document.getElementById(
-      "my_modal_2"
+      "my_modal_22"
     ) as HTMLDialogElement | null;
     if (modal) {
       if (typeof modal.showModal === "function") {
@@ -116,7 +116,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               <p className="mx-1">Edit</p>
             </button>
 
-            <dialog id="my_modal_2" className="modal">
+            <dialog id="my_modal_22" className="modal">
               <div className="modal-box bg-bg-mygrey">
                 <h3 className="font-bold text-lg mb-2 ">
                   Fast edit your profile

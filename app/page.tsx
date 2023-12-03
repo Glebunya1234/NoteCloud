@@ -1,13 +1,12 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import Logo from "@/assets/logoNC.png";
 import Logo2 from "@/public/logoNC.svg";
-import ButtonGoogle from "../components/Auth-component/Buttons/ButtonSignInGoogle";
-import { ActiveTabs } from "../components/Auth-component/Tabs-auth/Active-tab";
+import ButtonGoogle from "../components/Buttons/ButtonSignInGoogle";
+import { ActiveTabs } from "../components/Tabs/Active-tab";
 import { AllertToast } from "../components/Toast/toast";
 
-export default function Home() {
+export default function AuthPage() {
   return (
     <div className="flex justify-center items-center bg-cover  bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen bg-white">
       <div className="w-w-900 min-w-wmin max-w-1/2 flex bg-center shadow-2xl  backdrop-blur-lg  rounded-3xl overflow-hidden transition ease-linear duration-1000 ">

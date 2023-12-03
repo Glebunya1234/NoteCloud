@@ -1,9 +1,9 @@
 import { IdataTodos } from "@/types/Сollection-Todoes-interfaces/types";
-import { readDocTodo } from "@/firebase/Methods/ReadDataForUser";
+import { readDocTodo } from "@/services/Firebase-Methods/ReadDataForUser";
 import { useEffect, useState } from "react";
 import { CgClose,} from "react-icons/cg";
 import { HiPencil } from "react-icons/hi";
-import AddNewTaskComnponent from "../Task-components/AddnewTask";
+import AddNewTaskComnponent from "@/components/Task-components/AddnewTask";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<IdataTodos[][]>([]);

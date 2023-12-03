@@ -1,6 +1,6 @@
 
 import { DocumentData, QueryDocumentSnapshot, SnapshotOptions, doc, getDoc, setDoc } from "firebase/firestore";
-import { mydatabase } from "../Firebase/firebaseConfig";
+import { mydatabase } from "../Firebase-Config/firebaseConfig";
 import { notFound, useRouter } from "next/navigation";
 import { Iuser_collect_datatype } from "../../types/Сollection-User-interfaces/types";
 

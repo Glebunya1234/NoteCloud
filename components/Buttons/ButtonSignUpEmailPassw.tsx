@@ -1,4 +1,4 @@
-import AddNewUser from "@/firebase/Methods/AddNewUser";
+import AddNewUser from "@/services/Firebase-Methods/AddNewUser";
 import {
   IemailAndPassw,
   IemailAndPasswAndConfPassw,
@@ -9,7 +9,7 @@ import {
   showErrorToast,
   showMessangeToast,
   showSuccessToast,
-} from "../../Toast/toast";
+} from "../Toast/toast";
 
 export function RegisterButton({
   email,
