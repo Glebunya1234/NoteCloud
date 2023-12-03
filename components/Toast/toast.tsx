@@ -1,14 +1,17 @@
 "use client";
 import toast, { Toaster } from "react-hot-toast";
 export function AllertToast() {
+  const customIcon = "";
   return (
     <div>
       <Toaster
         position="bottom-right"
         reverseOrder={false}
+       
         gutter={8}
         toastOptions={{
           duration: 4000,
+          icon: customIcon,
           style: {
             padding: "16px",
             backgroundColor: "rgba(25, 25, 25, 0.7)",

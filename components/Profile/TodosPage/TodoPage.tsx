@@ -42,7 +42,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   }, [id]);
 
   return (
-    <main className="flex flex-wrap overflow-auto">
+    <main className="flex w-full flex-wrap scrollbar-container">
       {blocks.map((block, index) => (
         <article key={index}>
           <div className="w-72 min-w-blockContent72rem m-5 h-auto flex flex-col justify-between bg-bg-myyellow overflow-hidden rounded-3xl">

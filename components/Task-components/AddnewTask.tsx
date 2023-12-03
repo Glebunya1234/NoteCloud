@@ -1,6 +1,7 @@
 import { AddNewTaskInBlock } from "@/services/Firebase-Methods/ReadDataForUser";
 import { useState } from "react";
 import { HiOutlinePlusSm } from "react-icons/hi";
+import { showMessangeToast } from "@/components/Toast/toast";
 
 const AddNewTaskComnponent: React.FC<{ id: string , nameBlock: string, onTaskAdded: () => void  }> = ({ id, nameBlock, onTaskAdded }) => {
   const [taskname, setTaskname] = useState("");
@@ -12,6 +13,7 @@ const AddNewTaskComnponent: React.FC<{ id: string , nameBlock: string, onTaskAdd
     console.log(nameBlock);
     AddNewTaskInBlock(id, nameBlock, taskname).then(()=>{
         onTaskAdded();
+        showMessangeToast("The task has been created!",800)
     })
   };
 

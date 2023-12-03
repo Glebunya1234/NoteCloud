@@ -21,7 +21,23 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+.scrollbar-container {
+  overflow-y: auto;
+}
 
+.scrollbar-container::-webkit-scrollbar {
+  width: 5px;
+  
+}
+
+.scrollbar-container::-webkit-scrollbar-thumb {
+  background-color: #5f5f5f;
+  border-radius: 5em;
+}
+
+.scrollbar-container::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 /* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
