@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import Logo2 from "@/public/logoNC.svg";
 
 import { useEffect, useState } from "react";
-import { AllertToast, showSuccessToast } from "@/components/Toast/toast";
+import { AllertToast } from "@/components/Toast/toast";
 import { userService } from "@/services/User-Service/UserServ";
 import { MyUser } from "@/services/User-Service/UserServ";
 import { HiOutlinePlus } from "react-icons/hi";
