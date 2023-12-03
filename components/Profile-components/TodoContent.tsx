@@ -1,10 +1,8 @@
-import { IdataTodos } from "@/firebase/Interfaсe/collection-user-datatype";
+import { IdataTodos } from "@/types/Сollection-Todoes-interfaces/types";
 import { readDocTodo } from "@/firebase/Methods/ReadDataForUser";
 import { useEffect, useState } from "react";
-import { CgClose, CgHomeAlt, CgLaptop } from "react-icons/cg";
-
-import { FiBook } from "react-icons/fi";
-import { HiOutlinePlus, HiOutlinePlusSm, HiPencil } from "react-icons/hi";
+import { CgClose,} from "react-icons/cg";
+import { HiPencil } from "react-icons/hi";
 import AddNewTaskComnponent from "../Task-components/AddnewTask";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {

@@ -1,10 +1,8 @@
 //list doc
-import { DocumentData, QueryDocumentSnapshot, collection, doc, getDocs, getFirestore, onSnapshot, query, setDoc, where } from "firebase/firestore";
-import { mydatabase } from "../Config/firebaseConfig";
+import {collection, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
+import {mydatabase } from "@/services/Firebase/firebaseConfig";
+import {IdataTodos} from "@/types/Сollection-Todoes-interfaces/types";
 
-import { notFound } from "next/navigation";
-import { IdataTodos, Iuser_collect_datatype } from "../Interfaсe/collection-user-datatype";
-import { getDoc } from "firebase/firestore/lite";
 
 // поиск юзера по айди 
 export function readDoc(userID: string) {

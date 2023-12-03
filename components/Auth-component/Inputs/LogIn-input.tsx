@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ButtonSignIn } from "../Buttons-auth/ButtonLogInEmailPassw";
-import styles from "@/components/StyleAuthComponents/style-inputs.module.css";
+import { ButtonSignIn } from "../Buttons/ButtonLogInEmailPassw";
+import styles from "@/components/Auth-component/Inputs-auth/style-inputs.module.css";
 export function LogInInputs() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

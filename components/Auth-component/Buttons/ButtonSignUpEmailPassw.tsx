@@ -2,7 +2,7 @@ import AddNewUser from "@/firebase/Methods/AddNewUser";
 import {
   IemailAndPassw,
   IemailAndPasswAndConfPassw,
-} from "@/firebase/Interfaсe/collection-user-datatype";
+} from "@/types/Сollection-User-interfaces/types";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import toast from "react-hot-toast";
 import {

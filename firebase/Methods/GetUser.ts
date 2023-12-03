@@ -1,5 +1,5 @@
-import { Iuser_collect_datatype } from "../Interfaсe/collection-user-datatype";
-import { MyUser, userService } from "./UserServ";
+import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import { MyUser, userService } from "@/services/User-Service/UserServ";
 
 export const getUser = async (id: string): Promise<MyUser> => {
     

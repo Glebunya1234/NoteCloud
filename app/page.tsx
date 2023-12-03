@@ -3,8 +3,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Logo from "@/assets/logoNC.png";
 import Logo2 from "@/public/logoNC.svg";
-import ButtonGoogle from "../components/Auth-component/Buttons-auth/ButtonSignInGoogle";
-import { ActiveTabs } from "../components/Auth-component/Active-tab";
+import ButtonGoogle from "../components/Auth-component/Buttons/ButtonSignInGoogle";
+import { ActiveTabs } from "../components/Auth-component/Tabs-auth/Active-tab";
 import { AllertToast } from "../components/Toast/toast";
 
 export default function Home() {

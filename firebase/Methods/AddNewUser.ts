@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
-import { mydatabase } from "../Config/firebaseConfig";
-import { IemailAndPassw, Iuser_collect_datatype } from "@/firebase/Interfaсe/collection-user-datatype"
+import { mydatabase } from "@/services/Firebase/firebaseConfig";
+import {Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types"
 export default function AddNewUser({
     userID,
     displayName = "",
