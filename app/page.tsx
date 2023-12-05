@@ -2,9 +2,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Logo2 from "@/public/logoNC.svg";
-import ButtonGoogle from "../components/Buttons/ButtonSignInGoogle";
-import { ActiveTabs } from "../components/Tabs/Active-tab";
-import { AllertToast } from "../components/Toast/toast";
+import { AllertToast, ActiveTabs, ButtonGoogle } from "@exports/exports-components"
 
 export default function AuthPage() {
   return (

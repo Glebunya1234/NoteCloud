@@ -1,24 +1,20 @@
 "use client";
 
-import { signOut } from "firebase/auth";
-import { FiCheck } from "react-icons/fi";
-
 import Image from "next/image";
-import { CgSearch } from "react-icons/cg";
-import { CgClose } from "react-icons/cg";
-import { authh} from "@/services/Firebase-Config/firebaseConfig";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import { FiCheck } from "react-icons/fi";
+import { HiOutlinePlus } from "react-icons/hi";
+import { CgSearch,CgClose } from "react-icons/cg";
+
+import {authh} from "@services/Firebase-Config/firebaseConfig";
+
+import { userService,MyUser } from "@services/User-Service/UserServ";
+import { signOut } from "firebase/auth";
 
 import Logo2 from "@/public/logoNC.svg";
-
-import { useEffect, useState } from "react";
-import { AllertToast } from "@/components/Toast/toast";
-import { userService } from "@/services/User-Service/UserServ";
-import { MyUser } from "@/services/User-Service/UserServ";
-import { HiOutlinePlus } from "react-icons/hi";
-import ButtonMenuNavigations from "@/components/Navigations/Button-MenuNav";
-import HomeContent from "@/components/Profile/HomePage/HomePage";
-import TodosContent from "@/components/Profile/TodosPage/TodoPage";
+import {TodosContent, HomeContent, ButtonMenuNavigations, AllertToast} from "@exports/exports-components"
 
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -53,7 +49,6 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           setSetSrc(googleUser.photoURL);
         } else {
           setSetSrc(
-            // "https://media.istockphoto.com/id/1300845620/ru/%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F/%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8C-icon-flat-%D0%B8%D0%B7%D0%BE%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD-%D0%BD%D0%B0-%D0%B1%D0%B5%D0%BB%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81%D0%B8%D0%BC%D0%B2%D0%BE%D0%BB-%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F-%D0%B8%D0%BB%D0%BB%D1%8E%D1%81%D1%82%D1%80%D0%B0%D1%86%D0%B8%D1%8F-%D0%B2%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%B0.jpg?s=612x612&w=0&k=20&c=Po5TTi0yw6lM7qz6yay5vUbUBy3kAEWrpQmDaUMWnek="
             "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg"
           );
         }

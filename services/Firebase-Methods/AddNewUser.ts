@@ -1,5 +1,5 @@
 import { doc, setDoc } from "firebase/firestore";
-import { mydatabase } from "@/services/Firebase-Config/firebaseConfig";
+import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import {Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types"
 export default function AddNewUser({
     userID,

@@ -1,6 +1,3 @@
-
-
-
 export interface Iuser_collect_datatype {
     userID: string;
     displayName: string;

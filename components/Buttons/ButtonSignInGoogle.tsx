@@ -1,15 +1,20 @@
 "use client";
 
-import { User, signInWithRedirect } from "firebase/auth";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { authh } from "@/services/Firebase-Config/firebaseConfig";
-import { onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
-import { showSuccessToast } from "@/components/Toast/toast";
-import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
-import { getOrCreateUser } from "@/services/Firebase-Methods/GetUser";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+import { showSuccessToast } from "@exports/exports-components"
+
+import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+
 import googleSvg from "@/public/google.svg"
+
+import { authh } from "@services/Firebase-Config/firebaseConfig";
+import { getOrCreateUser } from "@services/Firebase-Methods/GetUser";
+import { onAuthStateChanged, GoogleAuthProvider, User, signInWithRedirect } from "firebase/auth";
+
+
 export default function ButtonGoogle() {
   const router = useRouter();
   const [userss, setUser] = useState<User | null | undefined>(null);
