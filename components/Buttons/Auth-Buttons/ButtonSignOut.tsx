@@ -15,7 +15,7 @@ const BottonSignOut = () => {
 
   return (
     <button
-      className="btn btn-ghost bg-bg-myyellow  rounded-2xl text-black ml-auto"
+      className="btn btn-ghost btn-md  bg-bg-myyellow  rounded-2xl text-black ml-auto "
       onClick={handleSignUp}
     >
       SignOut

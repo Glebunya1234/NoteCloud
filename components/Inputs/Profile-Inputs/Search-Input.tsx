@@ -2,7 +2,7 @@ import { CgSearch } from "react-icons/cg";
 
 const SearchInput = () => {
   return (
-    <div className="relative w-full mr-5">
+    <div className="relative w-full mx-5">
       <input
         type="text"
         placeholder="Type here"

@@ -45,10 +45,10 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   }, [id]);
 
   return (
-    <main className="flex w-full flex-wrap scrollbar-container">
+    <main className=" flex w-full flex-wrap scrollbar-container justify-center sm:justify-center md:justify-center lg:justify-start">
       {blocks.map((block, index) => (
-        <article key={index}>
-          <div className="w-72 min-w-blockContent72rem m-5 h-auto flex flex-col justify-between bg-bg-myyellow overflow-hidden rounded-3xl">
+        <article key={index} className="">
+          <div className="min-w-[288px] lg:w-72 sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow overflow-hidden rounded-3xl">
            
             {/* Name of block */}
 

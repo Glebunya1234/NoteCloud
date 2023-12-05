@@ -1,9 +1,16 @@
 "use client"
+import {
+  AllertToast,
+  showMessangeToast,
+  showErrorToast,
+  showSuccessToast,
+} from "@components/Toast/toast";
 import { ButtonSignIn } from "@/components/Buttons/Auth-Buttons/ButtonLogInEmailPassw";
 import ButtonGoogle from "@/components/Buttons/Auth-Buttons/ButtonSignInGoogle";
 import { RegisterButton } from "@/components/Buttons/Auth-Buttons/ButtonSignUpEmailPassw";
 import BottonSignOut from "@/components/Buttons/Auth-Buttons/ButtonSignOut";
 import BottonCloseTest from "@/components/Buttons/Profile-Buttons/ButtonCloseInProf";
+import ButtonAddBlock from "@/components/Buttons/Profile-Buttons/ButtonAddBlock";
 import { RegisterInputs } from "@/components/Inputs/Auth-Inputs/Register-input";
 import { LogInInputs } from "@/components/Inputs/Auth-Inputs/LogIn-input";
 import SearchInput  from "@/components/Inputs/Profile-Inputs/Search-Input";
@@ -14,13 +21,9 @@ import { ActiveTabs } from "@components/Tabs/Active-tab";
 import AddNewTaskComnponent from "@components/Task-components/AddnewTask";
 import ModalEditProf from "@components/UI/Dialog/Modal-Window-EditProf";
 import ButtonEditProfModal from "@/components/Buttons/Profile-Buttons/BottonOpenEditModal";
-
-import {
-  AllertToast,
-  showMessangeToast,
-  showErrorToast,
-  showSuccessToast,
-} from "@components/Toast/toast";
+import DrawerSide from "./UI/Drawer/Drawer-Side";
+import ButtonDrawer from "./Buttons/Profile-Buttons/ButtonDrawer";
+import ButtonCloseDrawer from "./Buttons/Profile-Buttons/ButtonCloseDrawer";
 
 export {
   ButtonSignIn,
@@ -42,4 +45,8 @@ export {
   BottonCloseTest,
   SearchInput,
   ButtonEditProfModal,
+  ButtonAddBlock,
+  DrawerSide,
+  ButtonDrawer,
+  ButtonCloseDrawer,
 };
