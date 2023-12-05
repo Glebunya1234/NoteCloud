@@ -7,7 +7,7 @@ import {
   showErrorToast,
   showMessangeToast,
   showSuccessToast,
-} from "@exports/exports-components"
+} from "@/components"
 
 export function RegisterButton({
   email,

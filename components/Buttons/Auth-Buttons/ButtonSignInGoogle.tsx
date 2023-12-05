@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-import { showSuccessToast } from "@exports/exports-components"
+import { showSuccessToast } from "@/components"
 
 import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 

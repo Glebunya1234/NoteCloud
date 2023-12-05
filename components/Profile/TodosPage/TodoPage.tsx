@@ -6,7 +6,7 @@ import { readDocTodo } from "@services/Firebase-Methods/ReadDataForUser";
 import { CgClose} from "react-icons/cg";
 import { HiPencil } from "react-icons/hi";
 
-import {AddNewTaskComnponent} from "@exports/exports-components"
+import {AddNewTaskComnponent} from "@/components"
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<IdataTodos[][]>([]);

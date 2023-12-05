@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "@components/Inputs/style-inputs.module.css";
-import { RegisterButton } from "@exports/exports-components"
+import { RegisterButton } from "@/components"
 
 
 export function RegisterInputs() {

@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { ButtonSignIn } from "@exports/exports-components"
+import { ButtonSignIn } from "@/components"
 import styles from "@components/Inputs/style-inputs.module.css";
 export function LogInInputs() {
   const [email, setEmail] = useState("");
