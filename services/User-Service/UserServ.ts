@@ -2,7 +2,7 @@
 import { DocumentData, QueryDocumentSnapshot, SnapshotOptions, doc, getDoc, setDoc } from "firebase/firestore";
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import { notFound, useRouter } from "next/navigation";
-import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 
 export class MyUser {
     readonly userID: string;
@@ -65,12 +65,12 @@ class UserService {
     //     }
     // }
 
-    async getOrCreateUser(userID: string, userData: Partial<Iuser_collect_datatype>): Promise<MyUser | null> {
+    async getOrCreateUser(userID: string, userData: Partial<User_collect_datatype>): Promise<MyUser | null> {
         try {
             return await this.getById(userID);
         } catch (error) {
             const newdoc = doc(mydatabase, `collection-users/${userID}`);
-            const docData: Iuser_collect_datatype = {
+            const docData: User_collect_datatype = {
                 userID: `${userID}`,
                 displayName: `${userData.displayName}`,
                 email: `${userData.email}`,

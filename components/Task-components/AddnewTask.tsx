@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { AddNewTaskInBlock } from "@services/Firebase-Methods/ReadDataForUser";
+import { AddNewTaskInBlock } from "@services/Firebase-Methods/Task-Management-methods";
 
 import { HiOutlinePlusSm } from "react-icons/hi";
 
@@ -11,6 +11,8 @@ const AddNewTaskComnponent: React.FC<{
   nameBlock: string;
   onTaskAdded: () => void;
 }> = ({ id, nameBlock, onTaskAdded }) => {
+
+  
   const [taskname, setTaskname] = useState("");
 
   const handleClickAddButton = () => {

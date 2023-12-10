@@ -1,6 +1,6 @@
 import AddNewUser from "@services/Firebase-Methods/AddNewUser";
 import {
-  IemailAndPasswAndConfPassw,
+  EmailAndPasswAndConfPassw,
 } from "@/types/Сollection-User-interfaces/types";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {
@@ -13,7 +13,7 @@ export function RegisterButton({
   email,
   password,
   confirm_password,
-}: IemailAndPasswAndConfPassw) {
+}: EmailAndPasswAndConfPassw) {
   const auth = getAuth();
 
   const handleSignUp = () => {

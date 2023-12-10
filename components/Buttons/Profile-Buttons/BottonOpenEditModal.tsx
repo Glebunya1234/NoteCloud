@@ -1,10 +1,10 @@
-import { openModal } from "@/components/UI/Dialog/Modal-Window-EditProf-MethodOpen";
+import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 
 const ButtonEditProfModal = () => {
   return (
     <button
       className="btn btn-outline btn-xs w-13 rounded-2xl"
-      onClick={openModal}
+      onClick={()=> openAModalWindowbyID("ModalEditProf")}
     >
       <p className="mx-1">Edit</p>
     </button>

@@ -1,7 +1,7 @@
 //list doc
 import {collection, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import {mydatabase } from "@services/Firebase-Config/firebaseConfig";
-import {IdataTodos} from "@/types/Сollection-Todoes-interfaces/types";
+import {TodosData} from "@/types/Сollection-Todoes-interfaces/types";
 
 
 // поиск юзера по айди 
@@ -20,32 +20,32 @@ export function readDoc(userID: string) {
 
 }
 
-// поиск задач по айди юзера
-export async function readDocTodo(userID: string): Promise<IdataTodos[]> {
-    const dataref = collection(mydatabase, "collection-todos");
+// // поиск задач по айди юзера
+// export async function readDocTodo(userID: string): Promise<IdataTodos[]> {
+//     const dataref = collection(mydatabase, "collection-todos");
 
-    // Create a query against the collection.
-    const q = query(dataref, where("userId", "==", userID));
+//     // Create a query against the collection.
+//     const q = query(dataref, where("userId", "==", userID));
 
 
-    const querySnapshot = await getDocs(q);
-    const todos: IdataTodos[] = [];
-    // Преобразовать QueryDocumentSnapshot в обычные объекты данных
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        const todoData = doc.data() as IdataTodos; // Приводим тип данных к интерфейсу Todo
-        todos.push(todoData);
-    });
+//     const querySnapshot = await getDocs(q);
+//     const todos: IdataTodos[] = [];
+//     // Преобразовать QueryDocumentSnapshot в обычные объекты данных
+//     querySnapshot.forEach((doc) => {
+//         // doc.data() is never undefined for query doc snapshots
+//         const todoData = doc.data() as IdataTodos; // Приводим тип данных к интерфейсу Todo
+//         todos.push(todoData);
+//     });
 
-    return todos;
+//     return todos;
 
-}
+// }
 
-export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
-    const dataref = collection(mydatabase, "collection-todos");
+// export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
+//     const dataref = collection(mydatabase, "collection-todos");
 
-    await setDoc(doc(dataref), {
-        nameBlock: nameBlock , teg: "low priority",
-        titleTodos: titleTodos, userId:userID
-    });
-}
+//     await setDoc(doc(dataref), {
+//         nameBlock: nameBlock , teg: "low priority",
+//         titleTodos: titleTodos, userId:userID
+//     });
+// }

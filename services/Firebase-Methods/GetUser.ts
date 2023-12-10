@@ -1,4 +1,4 @@
-import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 import { MyUser, userService } from "@services/User-Service/UserServ";
 
 export const getUser = async (id: string): Promise<MyUser> => {
@@ -12,7 +12,7 @@ export const getUser = async (id: string): Promise<MyUser> => {
     return uuuu
 }
 
-export const getOrCreateUser = async (id: string, userData:Iuser_collect_datatype): Promise<MyUser> => {
+export const getOrCreateUser = async (id: string, userData:User_collect_datatype): Promise<MyUser> => {
     
     const uuuu = await userService.getOrCreateUser(id, userData);
     console.log("getOrCreateUser = ",uuuu)

@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 
-import { IdataTodos } from "@/types/Сollection-Todoes-interfaces/types";
-import { readDocTodo } from "@services/Firebase-Methods/ReadDataForUser";
+import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
+import { readDocTodo } from "@services/Firebase-Methods/Task-Management-methods";
 
 import { CgClose} from "react-icons/cg";
 import { HiPencil } from "react-icons/hi";
 
-import {AddNewTaskComnponent} from "@/components"
+import {AddNewTaskComnponent, ModalAddBlock} from "@/components"
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
-  const [blocks, setBlocks] = useState<IdataTodos[][]>([]);
+  const [blocks, setBlocks] = useState<TodosData[][]>([]);
 
   const fetchData = async () => {
     try {
       const data = await readDocTodo(id);
 
       // Создаем объект для группировки по блокам
-      const blocksMap: Record<string, IdataTodos[]> = {};
+      const blocksMap: Record<string, TodosData[]> = {};
 
       data.forEach((todo) => {
         if (!blocksMap[todo.nameBlock]) {
@@ -128,6 +128,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
           </div>
         </article>
       ))}
+      <ModalAddBlock id={id} onTaskAdded={fetchData}/>
     </main>
   );
 };

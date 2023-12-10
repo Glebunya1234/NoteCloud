@@ -19,11 +19,12 @@ import HomeContent from "@components/Profile/HomePage/HomePage";
 import TodosContent from "@components/Profile/TodosPage/TodoPage";
 import { ActiveTabs } from "@components/Tabs/Active-tab";
 import AddNewTaskComnponent from "@components/Task-components/AddnewTask";
-import ModalEditProf from "@components/UI/Dialog/Modal-Window-EditProf";
+import ModalEditProf from "@/components/UI/Dialog/EditProfDialog/Modal-Window-EditProf";
 import ButtonEditProfModal from "@/components/Buttons/Profile-Buttons/BottonOpenEditModal";
 import DrawerSide from "./UI/Drawer/Drawer-Side";
 import ButtonDrawer from "./Buttons/Profile-Buttons/ButtonDrawer";
 import ButtonCloseDrawer from "./Buttons/Profile-Buttons/ButtonCloseDrawer";
+import ModalAddBlock from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 
 export {
   ButtonSignIn,
@@ -49,4 +50,5 @@ export {
   DrawerSide,
   ButtonDrawer,
   ButtonCloseDrawer,
+  ModalAddBlock,
 };

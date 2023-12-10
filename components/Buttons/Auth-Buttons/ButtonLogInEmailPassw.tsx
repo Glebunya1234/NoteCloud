@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { IemailAndPassw } from "@/types/Сollection-User-interfaces/types";
+import { EmailAndPassw } from "@/types/Сollection-User-interfaces/types";
 import { showErrorToast, showMessangeToast, showSuccessToast } from "@/components"
 
 
 
-export function ButtonSignIn({ email, password }: IemailAndPassw) {
+export function ButtonSignIn({ email, password }: EmailAndPassw) {
     const auth = getAuth();
   
 

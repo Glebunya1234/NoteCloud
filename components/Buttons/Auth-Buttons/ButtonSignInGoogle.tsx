@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { showSuccessToast } from "@/components"
 
-import { Iuser_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 
 import googleSvg from "@/public/google.svg"
 
@@ -35,7 +35,7 @@ export default function ButtonGoogle() {
         setUser(currentUser);
 
         if (userss !== null) {
-          const userData: Iuser_collect_datatype = {
+          const userData: User_collect_datatype = {
             displayName: `${userss?.displayName}`,
             email: `${userss?.email}`,
             photoURL: `${userss?.photoURL}`,
