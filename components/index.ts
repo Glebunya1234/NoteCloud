@@ -25,6 +25,7 @@ import DrawerSide from "./UI/Drawer/Drawer-Side";
 import ButtonDrawer from "./Buttons/Profile-Buttons/ButtonDrawer";
 import ButtonCloseDrawer from "./Buttons/Profile-Buttons/ButtonCloseDrawer";
 import ModalAddBlock from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
+import DropdownEditBlock from "./Buttons/Profile-Buttons/EditDropDownBlockComponent";
 
 export {
   ButtonSignIn,
@@ -51,4 +52,5 @@ export {
   ButtonDrawer,
   ButtonCloseDrawer,
   ModalAddBlock,
+  DropdownEditBlock,
 };

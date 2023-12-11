@@ -21,7 +21,15 @@ import {
   DrawerSide,
   ButtonDrawer,
   ModalAddBlock,
+  DropdownEditBlock,
 } from "@/components";
+import {
+  HiDotsVertical,
+  HiOutlinePlus,
+  HiOutlineTrash,
+  HiOutlineViewGrid,
+  HiPencil,
+} from "react-icons/hi";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -110,28 +118,28 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                 <header className="sm:hidden w-full h-24 flex items-center p-5">
                   <ButtonDrawer />
                   <SearchInput />
-
-                  {/* <label
-                      htmlFor="my-drawer"
-                      className="btn btn-primary drawer-button"
-                    >
-                      Open drawer
-                    </label> */}
                 </header>
               </header>
-              <main
-                className={`w-full h-full flex  scroll-smooth overflow-auto ${
-                  activeMain === "Todos" ? "main1" : ""
-                }`}
-              >
-                {activeMain === "Home" && <HomeContent />}
-                {activeMain === "Todos" && (
-                  <div className=" relative overflow-auto ">
-                    <TodosContent id={params.id} />
-                  </div>
-                )}
-              </main>
-              <footer className="w-full h-12  "></footer>
+              <aside className="flex flex-row w-full h-full overflow-hidden">
+                <main
+                  className={`w-full h-full flex  scroll-smooth overflow-auto ${
+                    activeMain === "Todos" ? "main1" : ""
+                  }`}
+                >
+                  {activeMain === "Home" && <HomeContent />}
+                  {activeMain === "Todos" && (
+                    <>
+                      <div className=" relative overflow-auto">
+                        <TodosContent id={params.id} />
+                      </div>
+                      <aside className="relative">
+                        <DropdownEditBlock />
+                      </aside>
+                    </>
+                  )}
+                </main>
+              </aside>
+              <footer className="w-full h-12 "></footer>
             </section>
           </div>
           <AllertToast />

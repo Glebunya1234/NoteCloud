@@ -46,7 +46,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   return (
  
    
-      <main className="flex w-full pb-9 h-min ">
+      <main className="flex w-full pr-9 pb-9 h-min ">
   
             {blocks.map((block, index) => (
               <article key={index} className="">
