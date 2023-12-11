@@ -11,10 +11,10 @@ const ButtonAddBlock =() => {
 
   return (
     <button
-      className={`btn btn-circle btn-ghost btn-lg text-black mx-5 z-50 bg-bg-myyellow `}
+      className="btn-md flex justify-center btn-circle btn-outline btn-success"
       onClick={() => openAModalWindowbyID("ModalAddBlock")}
     >
-      <HiOutlinePlus />
+      <HiOutlinePlus style={{ fontSize: "20px" }} />
     </button>
   );
 };

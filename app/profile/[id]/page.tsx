@@ -17,19 +17,12 @@ import {
   BottonCloseTest,
   SearchInput,
   ButtonEditProfModal,
-  ButtonAddBlock,
   DrawerSide,
   ButtonDrawer,
-  ModalAddBlock,
+
   DropdownEditBlock,
 } from "@/components";
-import {
-  HiDotsVertical,
-  HiOutlinePlus,
-  HiOutlineTrash,
-  HiOutlineViewGrid,
-  HiPencil,
-} from "react-icons/hi";
+
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -129,7 +122,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   {activeMain === "Home" && <HomeContent />}
                   {activeMain === "Todos" && (
                     <>
-                      <div className=" relative overflow-auto">
+                      <div className=" relative overflow-auto min-w-full ">
                         <TodosContent id={params.id} />
                       </div>
                       <aside className="relative">
