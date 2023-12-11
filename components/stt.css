@@ -1,0 +1,51 @@
+/* .main1 {
+  position: relative;
+  overflow-x: auto;
+  flex: 1;
+} */
+
+/* Стили для градиента */
+/* .main1::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, #242426);
+  pointer-events: none; 
+} */
+/* 
+
+.main2 {
+    display: grid;
+    grid-gap: 10px;
+    max-width: 100%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-auto-flow: row;
+  } */
+  
+    /* Минимальное расстояние 16px или 5%, максимальное - 20px или 7%, в зависимости от того, что больше */ /* Центрирование сетки *//* Измените на нужное вам значение */
+  
+  
+  /* @media (min-width: 640px) {
+   .main2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .main2 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .main2 {
+      
+        grid-template-columns: repeat(3, 1fr);/* Пример значений для колонок */
+        /* grid-template-rows: 240px;  */
+      /* grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); */
+      
+  
