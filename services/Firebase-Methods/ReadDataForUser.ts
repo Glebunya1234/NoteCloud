@@ -1,7 +1,7 @@
 //list doc
 import {collection, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
 import {mydatabase } from "@services/Firebase-Config/firebaseConfig";
-import {TodosData} from "@/types/Сollection-Todoes-interfaces/types";
+import type {TodosData} from "@/types/Сollection-Todoes-interfaces/types";
 
 
 // поиск юзера по айди 

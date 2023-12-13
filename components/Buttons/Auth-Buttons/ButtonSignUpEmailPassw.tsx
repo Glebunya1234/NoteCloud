@@ -1,5 +1,5 @@
 import AddNewUser from "@services/Firebase-Methods/AddNewUser";
-import {
+import type {
   EmailAndPasswAndConfPassw,
 } from "@/types/Сollection-User-interfaces/types";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";

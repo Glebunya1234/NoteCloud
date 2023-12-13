@@ -1,4 +1,4 @@
-import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import type{ User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 import { MyUser, userService } from "@services/User-Service/UserServ";
 
 export const getUser = async (id: string): Promise<MyUser> => {

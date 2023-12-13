@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { EmailAndPassw } from "@/types/Сollection-User-interfaces/types";
+import type { EmailAndPassw } from "@/types/Сollection-User-interfaces/types";
 import { showErrorToast, showMessangeToast, showSuccessToast } from "@/components"
 
 

@@ -2,7 +2,7 @@
 import { DocumentData, QueryDocumentSnapshot, SnapshotOptions, doc, getDoc, setDoc } from "firebase/firestore";
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import { notFound, useRouter } from "next/navigation";
-import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import type { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 
 export class MyUser {
     readonly userID: string;

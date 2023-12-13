@@ -1,15 +1,23 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
-import { readDocTodo } from "@services/Firebase-Methods/Task-Management-methods";
+import {
+  deleteTaskInBlick,
+  readDocTodo,
+} from "@services/Firebase-Methods/Task-Management-methods";
 
 import { CgClose } from "react-icons/cg";
 import { HiOutlineTrash, HiPencil } from "react-icons/hi";
-import { AddNewTaskComnponent, ModalAddBlock } from "@/components";
+import {
+  AddNewTaskComnponent,
+  DeleteTaskButton,
+  ModalAddBlock,
+} from "@/components";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
+
   const handleMouseDown = () => {
     setIsChecked(!isChecked);
   };
@@ -50,9 +58,9 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     fetchData();
   }, [id]);
 
-
-
- 
+  // const handleClickDelete = (Blockname: string, Todostitle: string) => {
+  //   deleteTaskInBlick(id, Blockname, Todostitle);
+  // };
 
   return (
     <main className="flex w-full pr-9 pb-9 h-min ">
@@ -126,9 +134,12 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                           <button className="btn btn-circle btn-xs mx-1 ">
                             <HiPencil />
                           </button>
-                          <button className="btn btn-circle btn-xs mx-1">
-                          <HiOutlineTrash/>
-                          </button>
+                          <DeleteTaskButton
+                            id={id}
+                            nameBlock={block[0].nameBlock}
+                            titleTodo={todo.titleTodos}
+                            onTaskAdded={fetchData}
+                          />
                         </section>
                       </nav>
                     </div>

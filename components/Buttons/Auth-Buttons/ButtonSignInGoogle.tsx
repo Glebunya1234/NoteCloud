@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { showSuccessToast } from "@/components"
 
-import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import type { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 
 import googleSvg from "@/public/google.svg"
 
