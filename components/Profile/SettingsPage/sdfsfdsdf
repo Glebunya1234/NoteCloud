@@ -1,0 +1,54 @@
+<div className="collapse my-1 collapse-arrow overflow-visible text-black transition-all hover:scale-105">
+    <input type="radio" name="my-accordion-1" />
+
+    <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
+        {todo.titleTodos}
+        <div className="flex justify-end w-full">
+          <span className="badge bg-transparent text-black hover:bg-zinc-800">
+            {todo.teg}
+          </span>
+        </div>
+    </div>
+
+    <div className="collapse-content">
+        <nav className="flex justify-between  px-1">
+            {/* Set priority */}
+            <section className="flex ">
+                <div className="dropdown  dropdown-top">
+                    <div tabIndex={0} role="button" className="btn btn-xs">
+                        {todo.teg}
+                    </div>
+
+
+
+                    <ul className="dropdown-content menu z-50 shadow bg-base-100 rounded-box w-32">
+                        <li className="mb-2">
+                            <button className="flex badge badge-xs w-full">
+                                high priority
+                            </button>
+                        </li>
+                        <li className="mb-2">
+                            <button className="flex badge badge-xs w-full">
+                                medium priority
+                            </button>
+                        </li>
+                        <li>
+                            <button className="flex badge badge-xs w-full">
+                                low priority
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section className="flex items-center">
+                <button className="btn btn-circle btn-xs mx-1">
+                    <HiPencil />
+                </button>
+                <button className="btn btn-circle btn-xs mx-1">
+                    <CgClose />
+                </button>
+            </section>
+        </nav>
+    </div>
+</div>
