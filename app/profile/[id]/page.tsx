@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-// import "@components/stt.css";
 import { userService, MyUser } from "@services/User-Service/UserServ";
 
 import Logo2 from "@/public/logoNC.svg";

@@ -5,7 +5,6 @@ import { readDocTodo } from "@services/Firebase-Methods/Task-Management-methods"
 
 import { CgClose } from "react-icons/cg";
 import { HiPencil } from "react-icons/hi";
-import "@components/stt.css";
 import { AddNewTaskComnponent, ModalAddBlock } from "@/components";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {

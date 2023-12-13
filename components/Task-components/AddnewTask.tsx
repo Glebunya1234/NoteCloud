@@ -4,15 +4,13 @@ import { AddNewTaskInBlock } from "@services/Firebase-Methods/Task-Management-me
 
 import { HiOutlinePlusSm } from "react-icons/hi";
 
-import { showMessangeToast } from "@/components";
+import { showErrorToast, showMessangeToast, showSuccessToast } from "@/components";
 
 const AddNewTaskComnponent: React.FC<{
   id: string;
   nameBlock: string;
   onTaskAdded: () => void;
 }> = ({ id, nameBlock, onTaskAdded }) => {
-
-  
   const [taskname, setTaskname] = useState("");
 
   const handleClickAddButton = () => {
@@ -20,10 +18,14 @@ const AddNewTaskComnponent: React.FC<{
     setTaskname("");
     console.log(id);
     console.log(nameBlock);
-    AddNewTaskInBlock(id, nameBlock, taskname).then(() => {
-      onTaskAdded();
-      showMessangeToast("The task has been created!", 800);
-    });
+    if (taskname.trim() !== "" && nameBlock.trim() !== "") {
+      AddNewTaskInBlock(id, nameBlock, taskname).then(() => {
+        onTaskAdded();
+        showSuccessToast("The task has been created!");
+      });
+    } else {
+      showErrorToast("The task was not created!");
+    }
   };
 
   return (
