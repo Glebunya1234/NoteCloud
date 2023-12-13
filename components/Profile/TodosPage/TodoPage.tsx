@@ -5,7 +5,7 @@ import {
   deleteTaskInBlick,
   readDocTodo,
 } from "@services/Firebase-Methods/Task-Management-methods";
-
+import { motion, Variants } from "framer-motion";
 import { CgClose } from "react-icons/cg";
 import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 import {
@@ -58,6 +58,14 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     fetchData();
   }, [id]);
 
+  const itemVariants: Variants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { type: "spring", stiffness: 300, damping: 24 },
+    },
+    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+  };
   // const handleClickDelete = (Blockname: string, Todostitle: string) => {
   //   deleteTaskInBlick(id, Blockname, Todostitle);
   // };
@@ -65,7 +73,13 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   return (
     <main className="flex w-full pr-9 pb-9 h-min ">
       {blocks.map((block, index) => (
-        <article key={index} className="">
+        <motion.article
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          key={index}
+          className=""
+        >
           <div className="min-w-[250px] lg:w-[250px] sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ">
             {/* Name of block */}
 
@@ -75,10 +89,16 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
               </h2>
             </section>
 
-            <ul>
+            <motion.ul>
               {block.map((todo, todoIndex) => (
                 <li key={todoIndex}>
-                  <div className="collapse my-1 collapse-arrow overflow-visible text-black transition-all hover:scale-105">
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    className="collapse my-1 collapse-arrow overflow-visible text-black "
+                  >
                     <input
                       type="radio"
                       onMouseUp={handleMouseDown}
@@ -143,10 +163,10 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                         </section>
                       </nav>
                     </div>
-                  </div>
+                  </motion.div>
                 </li>
               ))}
-            </ul>
+            </motion.ul>
 
             {/* Bottom of block */}
             <section className="m-5 mt-3 flex">
@@ -157,7 +177,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
               />
             </section>
           </div>
-        </article>
+        </motion.article>
       ))}
       <ModalAddBlock id={id} onTaskAdded={fetchData} />
     </main>

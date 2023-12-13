@@ -1,11 +1,11 @@
-import ButtonAddBlock  from "@/components/Buttons/Profile-Buttons/Buttons-DropDown/ButtonAddBlock";
+import ButtonAddBlock  from "@/components/Buttons/DropDown-Buttons/ButtonAddBlock";
 import {
   HiDotsVertical,
   HiOutlinePlus,
   HiOutlineTrash,
   HiPencil,
 } from "react-icons/hi";
-
+import { motion } from "framer-motion";
 const DropdownEditBlock = () => {
   return (
     <main className="absolute bottom-0 right-0 h-auto m-5 z-50 ">
@@ -14,7 +14,7 @@ const DropdownEditBlock = () => {
           <HiDotsVertical style={{ fontSize: "20px" }} />
         </div>
 
-        <ul className="dropdown-content p-0 my-1 w-full menu z-50 shadow backdrop-blur-md bg-opacity-60 bg-black rounded-3xl ">
+        <motion.ul  className="dropdown-content p-0 my-1 w-full menu z-50 shadow backdrop-blur-md bg-opacity-60 bg-black rounded-3xl ">
           <li className="mb-2">
             <ButtonAddBlock />
           </li>
@@ -28,7 +28,7 @@ const DropdownEditBlock = () => {
               <HiOutlineTrash style={{ fontSize: "20px" }} />
             </button>
           </li>
-        </ul>
+        </motion.ul>
       </div>
     </main>
   );

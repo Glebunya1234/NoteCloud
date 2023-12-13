@@ -1,5 +1,5 @@
-import {collection, deleteDoc, deleteField, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
-import {mydatabase } from "@services/Firebase-Config/firebaseConfig";
+import { collection, deleteDoc, deleteField, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import type { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 
 // поиск задач по айди юзера
@@ -27,8 +27,8 @@ export async function AddNewTaskInBlock(userID: string, nameBlock: string, title
     const dataref = collection(mydatabase, "collection-todos");
 
     await setDoc(doc(dataref), {
-        nameBlock: nameBlock , teg: "low priority",
-        titleTodos: titleTodos, userId:userID
+        nameBlock: nameBlock, teg: "low priority",
+        titleTodos: titleTodos, userId: userID
     });
 }
 export async function deleteTaskInBlick(userID: string, nameBlock: string, titleTodos: string) {
@@ -36,12 +36,12 @@ export async function deleteTaskInBlick(userID: string, nameBlock: string, title
     const q = query(dataRef, where('userId', '==', userID), where('titleTodos', '==', titleTodos), where('nameBlock', '==', nameBlock));
     // Get the documents that match the query
     const querySnapshot = await getDocs(q);
-  console.log("querySnapshot=",querySnapshot)
+    console.log("querySnapshot=", querySnapshot)
     // Iterate through the documents and delete each one
     querySnapshot.forEach(async (documentSnapshot) => {
 
-      // Use the document reference to delete the document
-      await deleteDoc(doc(mydatabase, 'collection-todos', documentSnapshot.id));
+        // Use the document reference to delete the document
+        await deleteDoc(doc(mydatabase, 'collection-todos', documentSnapshot.id));
     });
 }
 
