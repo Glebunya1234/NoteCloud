@@ -27,6 +27,8 @@ import ModalAddBlock from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 import DropdownEditBlock from "./UI/DropDown/EditDropDownBlockComponent";
 import DeleteTaskButton from "./Buttons/Task-Buttons/DeleteTaskButton";
 import SettingsContent from "./Profile/SettingsPage/SettingsPage";
+import ButtonDellBlock from "./Buttons/DropDown-Buttons/ButtomDeleteBlock";
+import ButtonEditBlock from "./Buttons/DropDown-Buttons/ButtonEditBlock";
 
 export {
   ButtonSignIn,
@@ -57,4 +59,6 @@ export {
   ModalAddBlock,
   DropdownEditBlock,
   DeleteTaskButton,
+  ButtonEditBlock,
+  ButtonDellBlock,
 };

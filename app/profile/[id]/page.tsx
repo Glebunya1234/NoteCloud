@@ -18,12 +18,11 @@ import {
   ButtonEditProfModal,
   DrawerSide,
   ButtonDrawer,
-
   DropdownEditBlock,
   SettingsContent,
 } from "@/components";
 
-
+import ThemeContext, { HoverContextType } from "@/components/Context";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -37,6 +36,11 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const [activeMain, setActiveMain] = useState("Home");
   const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
   const [userDisplayName, setuserDisplayName] = useState<string | null>("");
+  const [theme, setTheme] = useState<HoverContextType["theme"]>("");
+  const value = {
+    theme,
+    setTheme,
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -124,15 +128,16 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   {activeMain === "Settings" && <SettingsContent />}
                   {activeMain === "Todos" && (
                     <>
-                      <div className=" relative overflow-auto min-w-full ">
-                        <TodosContent id={params.id} />
-                      </div>
-                      <aside className="relative">
-                        <DropdownEditBlock />
-                      </aside>
+                      <ThemeContext.Provider value={value}>
+                        <div className=" relative overflow-auto min-w-full ">
+                          <TodosContent id={params.id} />
+                        </div>
+                        <aside className="relative">
+                          <DropdownEditBlock />
+                        </aside>
+                      </ThemeContext.Provider>
                     </>
                   )}
-                  
                 </main>
               </aside>
               <footer className="w-full h-12 "></footer>

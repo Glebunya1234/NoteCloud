@@ -17,11 +17,13 @@ const DeleteTaskButton: React.FC<{
   nameBlock: string;
   titleTodo: string;
   onTaskAdded: () => void;
-}> = ({ id, nameBlock, titleTodo, onTaskAdded }) => {
+  onCheckedFunc:()=> void;
+}> = ({ id, nameBlock, titleTodo, onTaskAdded, onCheckedFunc }) => {
   const handleClickDelete = (Blockname: string, Todostitle: string) => {
     try {
       deleteTaskInBlick(id, Blockname, Todostitle).then(() => {
         onTaskAdded();
+        onCheckedFunc();
         showSuccessToast("The task has been deleted!");
       });
     } catch (error) {

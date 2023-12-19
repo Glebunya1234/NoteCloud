@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 import {
@@ -13,6 +13,7 @@ import {
   DeleteTaskButton,
   ModalAddBlock,
 } from "@/components";
+import ThemeContext from "@/components/Context";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
@@ -69,7 +70,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   useEffect(() => {
     fetchData();
   }, [id]);
-
+  const theme = useContext(ThemeContext);
   // const itemVariants: Variants = {
   //   open: {
   //     opacity: 1,
@@ -83,7 +84,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   // };
 
   return (
-    <main className="flex w-full pr-9 pb-9 h-min ">
+    <main className={`flex w-full pr-9 pb-9 h-min `}>
       {blocks.map((block, index) => (
         <motion.article
           initial={{ opacity: 0, scale: 0.5 }}
@@ -92,7 +93,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
           key={index}
           className=""
         >
-          <div className="min-w-[250px] lg:w-[250px] sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ">
+          <div className={`min-w-[250px] lg:w-[250px] sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${theme?.theme}`}>
             {/* Name of block */}
 
             <section>
@@ -171,6 +172,9 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                             nameBlock={block[0].nameBlock}
                             titleTodo={todo.titleTodos}
                             onTaskAdded={fetchData}
+                            onCheckedFunc={() => {
+                              setIsChecked(!isChecked);
+                            }}
                           />
                         </section>
                       </nav>
