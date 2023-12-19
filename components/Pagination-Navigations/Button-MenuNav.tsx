@@ -1,43 +1,51 @@
 "use client";
-import { CgHomeAlt, CgLaptop } from "react-icons/cg";
-import { FiBook } from "react-icons/fi";
-import { HiOutlineCog } from "react-icons/hi";
 
+import { FaHome, FaTasks, FaWhmcs } from "react-icons/fa";
+
+import styles from "@components/Pagination-Navigations/Button-MenuNav.module.css";
 const ButtonMenuNavigations: React.FC<{
   onButtonClick: (buttonName: string) => void;
 }> = ({ onButtonClick }) => {
   return (
-    <>
-      <button
-        className="btn btn-ghost my-1 w-full rounded-2xl"
-        onClick={() => onButtonClick("Home")}
-      >
-        <div className="flex text-center justify-center">
-          <CgHomeAlt />
-          <p className="mx-1">Home</p>
-        </div>
-      </button>
+    <ul className="w-full">
+      <li>
+        <button
+          className={styles.ButtonsNav}
+          onClick={() => onButtonClick("Home")}
+        >
+          <div className={styles.DivIcoAndSpan}>
+            {/* <CgHomeAlt /> */}
+            <FaHome style={{ fontSize: "18px" }} />
+            <span className={styles.Span}>Home</span>
+          </div>
+        </button>
+      </li>
 
-      <button
-        className="btn btn-ghost my-1 w-full rounded-2xl"
-        onClick={() => onButtonClick("Todos")}
-      >
-        <div className="flex text-center justify-center">
-          <FiBook />
-          <p className="mx-1">Todos</p>
-        </div>
-      </button>
+      <li>
+        <button
+          className={styles.ButtonsNav}
+          onClick={() => onButtonClick("Todos")}
+        >
+          <div className={styles.DivIcoAndSpan}>
+            <FaTasks style={{ fontSize: "18px" }} />
 
-      <button
-        className="btn btn-ghost my-1 w-full rounded-2xl"
-        onClick={() => onButtonClick("Settings")}
-      >
-        <div className="flex text-center justify-center">
-          <HiOutlineCog />
-          <p className="mx-1">Settings</p>
-        </div>
-      </button>
-    </>
+            <span className={styles.Span}>Todos</span>
+          </div>
+        </button>
+      </li>
+      <li>
+        <button
+          className={styles.ButtonsNav}
+          onClick={() => onButtonClick("Settings")}
+        >
+          <div className={styles.DivIcoAndSpan}>
+            <FaWhmcs style={{ fontSize: "18px" }} />
+
+            <span className={styles.Span}>Settings</span>
+          </div>
+        </button>
+      </li>
+    </ul>
   );
 };
 export default ButtonMenuNavigations;

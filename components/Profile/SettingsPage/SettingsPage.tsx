@@ -1,7 +1,7 @@
 export default function SettingsContent() {
     return (
       <main className="w-full h-full px-5 flex flex-col justify-center items-center ">
-        <h1 className="font-Orbitron text-3xl ">Welcome to NoteCloud</h1>
+        <h1 className="font-Orbitron text-3xl ">Welcome to Settings</h1>
         <p className="text-2xl font-normal my-3 text-center">
           To start creating tasks, go to the TODOES tab and create a few examples.
         </p>
