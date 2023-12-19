@@ -47,7 +47,8 @@ export function RegisterButton({
         });
     } else {
       showErrorToast("Registration error!");
-      showMessangeToast("Password mismatch! \n\nPlease try again", 2000);
+      showMessangeToast("Password mismatch!", 2000);
+      showMessangeToast("Please try again", 2000);
       console.log("pass",password, "\ncomfPassw", confirm_password)
     }
   };

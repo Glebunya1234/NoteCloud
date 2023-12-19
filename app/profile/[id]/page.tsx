@@ -20,6 +20,7 @@ import {
   ButtonDrawer,
 
   DropdownEditBlock,
+  SettingsContent,
 } from "@/components";
 
 
@@ -120,6 +121,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   }`}
                 >
                   {activeMain === "Home" && <HomeContent />}
+                  {activeMain === "Settings" && <SettingsContent />}
                   {activeMain === "Todos" && (
                     <>
                       <div className=" relative overflow-auto min-w-full ">
@@ -130,6 +132,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                       </aside>
                     </>
                   )}
+                  
                 </main>
               </aside>
               <footer className="w-full h-12 "></footer>

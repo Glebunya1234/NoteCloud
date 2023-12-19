@@ -26,6 +26,18 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     setIsChecked(isChecked);
   };
 
+  const animationVariants = {
+    hover: {
+      scale: 1.05,
+    },
+  };
+
+  const animationTransition = {
+    type: "spring",
+    stiffness: 400,
+    damping: 20,
+  };
+
   const fetchData = async () => {
     try {
       const data = await readDocTodo(id);
@@ -58,14 +70,14 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     fetchData();
   }, [id]);
 
-  const itemVariants: Variants = {
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring", stiffness: 300, damping: 24 },
-    },
-    closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
-  };
+  // const itemVariants: Variants = {
+  //   open: {
+  //     opacity: 1,
+  //     y: 0,
+  //     transition: { type: "spring", stiffness: 300, damping: 24 },
+  //   },
+  //   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+  // };
   // const handleClickDelete = (Blockname: string, Todostitle: string) => {
   //   deleteTaskInBlick(id, Blockname, Todostitle);
   // };
@@ -76,7 +88,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
         <motion.article
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          transition={animationTransition}
           key={index}
           className=""
         >
@@ -95,8 +107,8 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                   <motion.div
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 20 }}
+                    whileHover={animationVariants.hover}
+                    transition={animationTransition}
                     className="collapse my-1 collapse-arrow overflow-visible text-black "
                   >
                     <input

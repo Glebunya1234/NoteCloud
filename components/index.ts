@@ -12,7 +12,7 @@ import BottonSignOut from "@/components/Buttons/Auth-Buttons/ButtonSignOut";
 import BottonCloseTest from "@/components/Buttons/Profile-Buttons/ButtonCloseInProf";
 import { RegisterInputs } from "@/components/Inputs/Auth-Inputs/Register-input";
 import { LogInInputs } from "@/components/Inputs/Auth-Inputs/LogIn-input";
-import SearchInput  from "@/components/Inputs/Profile-Inputs/Search-Input";
+import SearchInput from "@/components/Inputs/Profile-Inputs/Search-Input";
 import ButtonMenuNavigations from "@/components/Pagination-Navigations/Button-MenuNav";
 import HomeContent from "@components/Profile/HomePage/HomePage";
 import TodosContent from "@components/Profile/TodosPage/TodoPage";
@@ -26,6 +26,7 @@ import ButtonCloseDrawer from "./Buttons/Profile-Buttons/ButtonCloseDrawer";
 import ModalAddBlock from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 import DropdownEditBlock from "./UI/DropDown/EditDropDownBlockComponent";
 import DeleteTaskButton from "./Buttons/Task-Buttons/DeleteTaskButton";
+import SettingsContent from "./Profile/SettingsPage/SettingsPage";
 
 export {
   ButtonSignIn,
@@ -34,8 +35,11 @@ export {
   RegisterInputs,
   LogInInputs,
   ButtonMenuNavigations,
+
   HomeContent,
+  SettingsContent,
   TodosContent,
+
   ActiveTabs,
   AddNewTaskComnponent,
   AllertToast,

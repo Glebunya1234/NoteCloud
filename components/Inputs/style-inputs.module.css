@@ -2,4 +2,7 @@
   .authinputs {
     @apply input input-bordered w-w90%  bg-transparent max-w-xs m-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20;
   }
+  .passwinputs {
+    @apply input input-bordered w-full bg-transparent max-w-xs mt-1 transition-all ease-linear hover:bg-black hover:bg-opacity-20;
+  }
 
