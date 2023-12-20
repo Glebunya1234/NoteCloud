@@ -11,9 +11,11 @@ import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 import {
   AddNewTaskComnponent,
   DeleteTaskButton,
+  EditBlockModal,
   ModalAddBlock,
 } from "@/components";
 import ThemeContext from "@/components/Context";
+import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
@@ -70,18 +72,17 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   useEffect(() => {
     fetchData();
   }, [id]);
+ 
+  const [name, setName] = useState<string>("");
   const theme = useContext(ThemeContext);
-  // const itemVariants: Variants = {
-  //   open: {
-  //     opacity: 1,
-  //     y: 0,
-  //     transition: { type: "spring", stiffness: 300, damping: 24 },
-  //   },
-  //   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
-  // };
-  // const handleClickDelete = (Blockname: string, Todostitle: string) => {
-  //   deleteTaskInBlick(id, Blockname, Todostitle);
-  // };
+  const handleClickOnArticle = (names: string) => {
+    if (theme?.ModeEditOrRemove === "edit") {
+      setName(names)
+      openAModalWindowbyID("EditBlockModal");
+    }
+
+    // console.log(blocks.map((block, index) => (block.map((todo, todoIndex) => (todo)))))
+  };
 
   return (
     <main className={`flex w-full pr-9 pb-9 h-min `}>
@@ -101,7 +102,9 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                 ? "hover:shadow-bg-myOrange/50"
                 : ""
             }`}
+            onClick={() => handleClickOnArticle(block[0].nameBlock)}
           >
+            
             {/* Name of block */}
 
             <section>
@@ -110,7 +113,11 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
               </h2>
             </section>
 
-            <motion.ul>
+            <motion.ul
+              className={`${
+                theme?.ModeEditOrRemove !== "none" ? "pointer-events-none" : ""
+              }`}
+            >
               {block.map((todo, todoIndex) => (
                 <li key={todoIndex}>
                   <motion.div
@@ -118,7 +125,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                     animate={{ opacity: 1, scale: 1 }}
                     whileHover={animationVariants.hover}
                     transition={animationTransition}
-                    className="collapse my-1 collapse-arrow overflow-visible text-black "
+                    className="collapse my-1 collapse-arrow overflow-visible text-black"
                   >
                     <input
                       type="radio"
@@ -201,10 +208,22 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
               />
             </section>
           </div>
+          <EditBlockModal id={id} blockName={name} />
+          <ModalAddBlock id={id} onTaskAdded={fetchData} />
         </motion.article>
       ))}
-      <ModalAddBlock id={id} onTaskAdded={fetchData} />
     </main>
   );
 };
 export default TodosContent;
+// const itemVariants: Variants = {
+//   open: {
+//     opacity: 1,
+//     y: 0,
+//     transition: { type: "spring", stiffness: 300, damping: 24 },
+//   },
+//   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
+// };
+// const handleClickDelete = (Blockname: string, Todostitle: string) => {
+//   deleteTaskInBlick(id, Blockname, Todostitle);
+// };

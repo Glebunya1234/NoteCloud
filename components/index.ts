@@ -29,6 +29,7 @@ import DeleteTaskButton from "./Buttons/Task-Buttons/DeleteTaskButton";
 import SettingsContent from "./Profile/SettingsPage/SettingsPage";
 import ButtonDellBlock from "./Buttons/DropDown-Buttons/ButtomDeleteBlock";
 import ButtonEditBlock from "./Buttons/DropDown-Buttons/ButtonEditBlock";
+import EditBlockModal from "./UI/Dialog/EditBlockDialog/ModalEditBlock";
 
 
 export {
@@ -49,7 +50,11 @@ export {
   showMessangeToast,
   showErrorToast,
   showSuccessToast,
+  
   ModalEditProf,
+  ModalAddBlock,
+  EditBlockModal,
+
   BottonSignOut,
   BottonCloseTest,
   SearchInput,
@@ -57,7 +62,6 @@ export {
   DrawerSide,
   ButtonDrawer,
   ButtonCloseDrawer,
-  ModalAddBlock,
   DropdownEditBlock,
   DeleteTaskButton,
   ButtonEditBlock,

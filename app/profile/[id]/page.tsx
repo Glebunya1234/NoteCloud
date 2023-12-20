@@ -148,7 +148,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   )}
                 </main>
               </aside>
-              <footer className="w-full h-16 ">
+              <footer className="w-full h-16 mt-5 ">
                 {activeMain === "Todos" && (
                   <ThemeContext.Provider value={value}>
                     <AllertCall />
@@ -159,6 +159,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           </div>
           <AllertToast />
           <ModalEditProf />
+          {/* <EditBlockModal /> */}
         </div>
       </div>
       <DrawerSide />
