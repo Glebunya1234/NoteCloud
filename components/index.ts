@@ -30,6 +30,7 @@ import SettingsContent from "./Profile/SettingsPage/SettingsPage";
 import ButtonDellBlock from "./Buttons/DropDown-Buttons/ButtomDeleteBlock";
 import ButtonEditBlock from "./Buttons/DropDown-Buttons/ButtonEditBlock";
 import EditBlockModal from "./UI/Dialog/EditBlockDialog/ModalEditBlock";
+import ModalRemoveBlock from "./UI/Dialog/RemoveBlockDialog/ModalRemoveBlock";
 
 
 export {
@@ -54,6 +55,7 @@ export {
   ModalEditProf,
   ModalAddBlock,
   EditBlockModal,
+  ModalRemoveBlock,
 
   BottonSignOut,
   BottonCloseTest,

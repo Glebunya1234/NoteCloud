@@ -13,6 +13,7 @@ import {
   DeleteTaskButton,
   EditBlockModal,
   ModalAddBlock,
+  ModalRemoveBlock,
 } from "@/components";
 import ThemeContext from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
@@ -72,13 +73,19 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   useEffect(() => {
     fetchData();
   }, [id]);
- 
+
   const [name, setName] = useState<string>("");
   const theme = useContext(ThemeContext);
   const handleClickOnArticle = (names: string) => {
     if (theme?.ModeEditOrRemove === "edit") {
-      setName(names)
+      setName(names);
       openAModalWindowbyID("EditBlockModal");
+      setIsChecked(false);
+    }
+    if (theme?.ModeEditOrRemove === "remove") {
+      setName(names);
+      openAModalWindowbyID("ModalRemoveBlock");
+      setIsChecked(false);
     }
 
     // console.log(blocks.map((block, index) => (block.map((todo, todoIndex) => (todo)))))
@@ -104,7 +111,6 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
             }`}
             onClick={() => handleClickOnArticle(block[0].nameBlock)}
           >
-            
             {/* Name of block */}
 
             <section>
@@ -200,7 +206,11 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
             </motion.ul>
 
             {/* Bottom of block */}
-            <section className="m-5 mt-3 flex">
+            <section
+              className={`m-5 mt-3 flex ${
+                theme?.ModeEditOrRemove !== "none" ? "pointer-events-none" : ""
+              }`}
+            >
               <AddNewTaskComnponent
                 id={id}
                 nameBlock={block[0].nameBlock}
@@ -208,7 +218,8 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
               />
             </section>
           </div>
-          <EditBlockModal id={id} blockName={name} />
+          <EditBlockModal id={id} blockName={name} onTaskAdded={fetchData} />
+          <ModalRemoveBlock id={id} blockName={name} onTaskAdded={fetchData} />
           <ModalAddBlock id={id} onTaskAdded={fetchData} />
         </motion.article>
       ))}

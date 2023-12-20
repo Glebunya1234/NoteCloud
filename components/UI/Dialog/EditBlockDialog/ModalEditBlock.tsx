@@ -3,8 +3,9 @@ import { FiCheck } from "react-icons/fi";
 const EditBlockModal: React.FC<{
   id: string;
   blockName: string;
-}> = ({ id, blockName }) => {
-  
+  onTaskAdded: () => void;
+}> = ({ id, blockName, onTaskAdded }) => {
+
   console.log("ввввв",blockName)
   return (
     <dialog id="EditBlockModal" className="modal">

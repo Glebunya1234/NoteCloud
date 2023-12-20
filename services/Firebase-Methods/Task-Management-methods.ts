@@ -45,6 +45,20 @@ export async function deleteTaskInBlick(userID: string, nameBlock: string, title
     });
 }
 
+//Удаление блока по имени
+export async function deleteBlockInName(userID: string, nameBlock: string) {
+    const dataRef = collection(mydatabase, 'collection-todos');
+    const q = query(dataRef, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
+    // Get the documents that match the query
+    const querySnapshot = await getDocs(q);
+    console.log("querySnapshot=", querySnapshot)
+    // Iterate through the documents and delete each one
+    querySnapshot.forEach(async (documentSnapshot) => {
+
+        // Use the document reference to delete the document
+        await deleteDoc(doc(mydatabase, 'collection-todos', documentSnapshot.id));
+    });
+}
 //Добавление Блока для задач
 // export async function AddNewBlock(userID: string, nameBlock: string, titleTodos: string) {
 //     const dataref = collection(mydatabase, "collection-todos");

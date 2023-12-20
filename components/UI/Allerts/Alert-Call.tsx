@@ -15,11 +15,11 @@ import ThemeContext from "@/components/Context";
 const AllertCall = () => {
   const Mode = useContext(ThemeContext);
   return (
-    <>
+    <div>
       {Mode?.ModeEditOrRemove === "edit" && <AllertEdit />}
       {Mode?.ModeEditOrRemove === "remove" && <RemoveAllert />}
       {Mode?.ModeEditOrRemove === "none" && <></>}
-    </>
+    </div>
   );
 };
 export default AllertCall;

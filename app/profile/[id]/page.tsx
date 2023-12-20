@@ -148,7 +148,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   )}
                 </main>
               </aside>
-              <footer className="w-full h-16 mt-5 ">
+              <footer className="w-full h-24 mt-5 items-center  flex">
                 {activeMain === "Todos" && (
                   <ThemeContext.Provider value={value}>
                     <AllertCall />

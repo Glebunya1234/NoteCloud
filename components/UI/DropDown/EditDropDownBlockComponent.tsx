@@ -10,7 +10,7 @@ import { ButtonDellBlock, ButtonEditBlock } from "@/components";
 
 const DropdownEditBlock = () => {
   return (
-    <main className="absolute bottom-0 right-0 h-auto m-5 z-50 ">
+    <main className="absolute bottom-0 right-0 h-auto m-5 mb-0 z-50 ">
       <div className="dropdown dropdown-top ">
         <div
           tabIndex={0}
