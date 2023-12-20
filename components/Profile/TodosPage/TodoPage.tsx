@@ -93,7 +93,15 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
           key={index}
           className=""
         >
-          <div className={`min-w-[250px] lg:w-[250px] sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${theme?.theme}`}>
+          <div
+            className={`min-w-[250px] lg:w-[250px] sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${
+              theme?.ModeEditOrRemove === "remove"
+                ? "hover:shadow-bg-RedPink/70"
+                : theme?.ModeEditOrRemove === "edit"
+                ? "hover:shadow-bg-myOrange/50"
+                : ""
+            }`}
+          >
             {/* Name of block */}
 
             <section>

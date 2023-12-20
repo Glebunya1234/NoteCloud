@@ -6,7 +6,8 @@ const ButtonDellBlock = () => {
     const theme = useContext(ThemeContext);
     const hendClickDellButton = () => {
         console.log(theme)
-        theme?.setTheme("hover:shadow-red-500/50")
+        // theme?.setTheme("hover:shadow-red-500/50")
+        theme?.setModeEditOrRemove("remove")
         console.log(theme)
     };
   return (

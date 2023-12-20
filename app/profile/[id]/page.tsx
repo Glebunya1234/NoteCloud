@@ -23,6 +23,7 @@ import {
 } from "@/components";
 
 import ThemeContext, { HoverContextType } from "@/components/Context";
+import AllertCall from "@/components/UI/Allerts/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -36,10 +37,17 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const [activeMain, setActiveMain] = useState("Home");
   const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
   const [userDisplayName, setuserDisplayName] = useState<string | null>("");
-  const [theme, setTheme] = useState<HoverContextType["theme"]>("");
+  // const [theme, setTheme] = useState<HoverContextType["theme"]>("");
+  const [Mode, setMode] = useState<HoverContextType["Mode"]>(false);
+  const [ModeEditOrRemove, setModeEditOrRemove] =
+    useState<HoverContextType["ModeEditOrRemove"]>("none");
   const value = {
-    theme,
-    setTheme,
+    // theme,
+    // setTheme,
+    Mode,
+    setMode,
+    ModeEditOrRemove,
+    setModeEditOrRemove,
   };
 
   useEffect(() => {
@@ -140,7 +148,13 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   )}
                 </main>
               </aside>
-              <footer className="w-full h-12 "></footer>
+              <footer className="w-full h-16 ">
+                {activeMain === "Todos" && (
+                  <ThemeContext.Provider value={value}>
+                    <AllertCall />
+                  </ThemeContext.Provider>
+                )}
+              </footer>
             </section>
           </div>
           <AllertToast />
