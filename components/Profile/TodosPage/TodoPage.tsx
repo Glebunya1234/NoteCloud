@@ -9,10 +9,10 @@ import { motion, Variants } from "framer-motion";
 import { CgClose } from "react-icons/cg";
 import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 import {
+  AddBlockModal,
   AddNewTaskComnponent,
   DeleteTaskButton,
   EditBlockModal,
-  ModalAddBlock,
   ModalRemoveBlock,
 } from "@/components";
 import ThemeContext from "@/components/Context";
@@ -21,13 +21,32 @@ import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
+  const [name, setName] = useState<string>("");
+  const theme = useContext(ThemeContext);
 
-  const handleMouseDown = () => {
-    setIsChecked(!isChecked);
-  };
+  // const handleMouseUp = () => {
+  //   console.log("handleMouseDown", isChecked);
+  //   setIsChecked(!isChecked);
+  //   console.log("handleMouseDown", isChecked);
+  // };
 
-  const handleClick = () => {
-    setIsChecked(isChecked);
+  // const handleChange= (ids:string) :void => {
+  //   console.log(ids)
+  //   console.log("handleClick", isChecked);
+  //   setIsChecked(isChecked);
+  //   console.log("handleClick", isChecked);
+  // };
+
+  const handleClickOnArticle = (names: string) => {
+    if (theme?.ModeEditOrRemove === "edit") {
+      setName(names);
+      openAModalWindowbyID("EditBlockModal");
+    } else if (theme?.ModeEditOrRemove === "remove") {
+      setName(names);
+      openAModalWindowbyID("ModalRemoveBlock");
+    } else {
+      setName(names);
+    }
   };
 
   const animationVariants = {
@@ -74,22 +93,6 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     fetchData();
   }, [id]);
 
-  const [name, setName] = useState<string>("");
-  const theme = useContext(ThemeContext);
-  const handleClickOnArticle = (names: string) => {
-    if (theme?.ModeEditOrRemove === "edit") {
-      setName(names);
-      openAModalWindowbyID("EditBlockModal");
-      setIsChecked(false);
-    }
-    if (theme?.ModeEditOrRemove === "remove") {
-      setName(names);
-      openAModalWindowbyID("ModalRemoveBlock");
-      setIsChecked(false);
-    }
-
-    // console.log(blocks.map((block, index) => (block.map((todo, todoIndex) => (todo)))))
-  };
 
   return (
     <main className={`flex w-full pr-9 pb-9 h-min `}>
@@ -102,7 +105,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
           className=""
         >
           <div
-            className={`min-w-[250px] lg:w-[250px] sm:w-72 md:w-96  m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${
+            className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${
               theme?.ModeEditOrRemove === "remove"
                 ? "hover:shadow-bg-RedPink/70"
                 : theme?.ModeEditOrRemove === "edit"
@@ -134,10 +137,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                     className="collapse my-1 collapse-arrow overflow-visible text-black"
                   >
                     <input
-                      type="radio"
-                      onMouseUp={handleMouseDown}
-                      onChange={handleClick}
-                      checked={isChecked}
+                      type="checkbox"
                       name="my-accordion-1"
                     />
                     {/* collapse-title */}
@@ -218,11 +218,11 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
               />
             </section>
           </div>
-          <EditBlockModal id={id} blockName={name} onTaskAdded={fetchData} />
-          <ModalRemoveBlock id={id} blockName={name} onTaskAdded={fetchData} />
-          <ModalAddBlock id={id} onTaskAdded={fetchData} />
         </motion.article>
       ))}
+      <AddBlockModal id={id} blockName={name} onTaskAdded={fetchData} />
+      <EditBlockModal id={id} blockName={name} onTaskAdded={fetchData} />
+      <ModalRemoveBlock id={id} blockName={name} onTaskAdded={fetchData} />
     </main>
   );
 };

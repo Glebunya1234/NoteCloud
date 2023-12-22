@@ -31,6 +31,8 @@ import ButtonDellBlock from "./Buttons/DropDown-Buttons/ButtomDeleteBlock";
 import ButtonEditBlock from "./Buttons/DropDown-Buttons/ButtonEditBlock";
 import EditBlockModal from "./UI/Dialog/EditBlockDialog/ModalEditBlock";
 import ModalRemoveBlock from "./UI/Dialog/RemoveBlockDialog/ModalRemoveBlock";
+import AllertCall from "./UI/Allerts/Allert-EditOrRemove/Alert-Call";
+import AddBlockModal from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 
 
 export {
@@ -47,13 +49,15 @@ export {
 
   ActiveTabs,
   AddNewTaskComnponent,
+  
+  AllertCall,
   AllertToast,
   showMessangeToast,
   showErrorToast,
   showSuccessToast,
   
   ModalEditProf,
-  ModalAddBlock,
+  AddBlockModal,
   EditBlockModal,
   ModalRemoveBlock,
 

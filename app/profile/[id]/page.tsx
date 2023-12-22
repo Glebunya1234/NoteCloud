@@ -20,10 +20,11 @@ import {
   ButtonDrawer,
   DropdownEditBlock,
   SettingsContent,
+  AllertCall,
 } from "@/components";
 
 import ThemeContext, { HoverContextType } from "@/components/Context";
-import AllertCall from "@/components/UI/Allerts/Alert-Call";
+// import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -84,7 +85,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
         <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
-          <div className="sm:w-11/12 h-full sm:h-h90%  max-w-1/2 flex  shadow-2xl  bg-bg-mygrey  sm:rounded-3xl  w-full">
+          <div className="md:w-11/12 h-full md:h-h90%  max-w-1/2 flex  shadow-2xl  bg-bg-mygrey  md:rounded-3xl  w-full">
             <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full  items-center  flex-col ">
               <aside className="w-full h-24 flex items-center justify-center ">
                 <Image src={Logo2} width={30} height={30} alt="__" />
@@ -112,7 +113,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
             <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
               <header className="w-full border-b-[1px] border-bg-mydurkgrey">
-                <header className="hidden w-full h-24 sm:flex items-center p-5">
+                <header className="hidden w-full h-24 md:flex items-center p-5">
                   <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
                     Your&nbsp;Tasks
                   </h1>
@@ -121,7 +122,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   <BottonSignOut />
                   <BottonCloseTest />
                 </header>
-                <header className="sm:hidden w-full h-24 flex items-center p-5">
+                <header className="md:hidden w-full h-24 flex items-center p-5">
                   <ButtonDrawer />
                   <SearchInput />
                 </header>

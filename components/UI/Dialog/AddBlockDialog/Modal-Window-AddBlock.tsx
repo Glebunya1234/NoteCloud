@@ -3,10 +3,11 @@ import { AddNewTaskInBlock } from "@/services/Firebase-Methods/Task-Management-m
 import { useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
-const ModalAddBlock: React.FC<{
+const AddBlockModal: React.FC<{
   id: string;
+  blockName: string;
   onTaskAdded: () => void;
-}> = ({ id, onTaskAdded }) => {
+}> = ({ id, blockName, onTaskAdded }) => {
   const [blockname, setBlockname] = useState<string>("");
   const [taskname, setTaskname] = useState<string>("");
 
@@ -28,7 +29,7 @@ const ModalAddBlock: React.FC<{
   };
 
   return (
-    <dialog id="ModalAddBlock" className="modal">
+    <dialog id="ModalAddBlock1" className="modal">
       <div className="modal-box bg-bg-mygrey ">
         <h3 className="font-bold text-lg mb-2 ">Add a new block for tasks</h3>
 
@@ -83,7 +84,7 @@ const ModalAddBlock: React.FC<{
     </dialog>
   );
 };
-export default ModalAddBlock;
+export default AddBlockModal;
 {
   /* Первая пара инпута и кнопки */
 }
