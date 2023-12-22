@@ -14,6 +14,7 @@ import {
   DeleteTaskButton,
   EditBlockModal,
   ModalRemoveBlock,
+  PriorityDropdown,
 } from "@/components";
 import ThemeContext from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
@@ -93,7 +94,6 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     fetchData();
   }, [id]);
 
-
   return (
     <main className={`flex w-full pr-9 pb-9 h-min `}>
       {blocks.map((block, index) => (
@@ -136,10 +136,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                     transition={animationTransition}
                     className="collapse my-1 collapse-arrow overflow-visible text-black"
                   >
-                    <input
-                      type="checkbox"
-                      name="my-accordion-1"
-                    />
+                    <input type="checkbox" name="my-accordion-1" />
                     {/* collapse-title */}
                     <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
                       {todo.titleTodos}
@@ -164,23 +161,8 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                               {todo.teg}
                             </div>
 
-                            <ul className="dropdown-content menu z-50 shadow bg-base-100 rounded-box w-32">
-                              <li className="mb-2">
-                                <button className="flex badge badge-xs w-full">
-                                  high priority
-                                </button>
-                              </li>
-                              <li className="mb-2">
-                                <button className="flex badge badge-xs w-full">
-                                  medium priority
-                                </button>
-                              </li>
-                              <li>
-                                <button className="flex badge badge-xs w-full">
-                                  low priority
-                                </button>
-                              </li>
-                            </ul>
+                            <PriorityDropdown id={id} blockName={block[0].nameBlock} titleTodos={todo.titleTodos} onTaskAdded={fetchData} />
+
                           </div>
                         </section>
 

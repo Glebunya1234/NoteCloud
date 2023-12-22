@@ -85,7 +85,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
         <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
-          <div className="md:w-11/12 h-full md:h-h90%  max-w-1/2 flex  shadow-2xl  bg-bg-mygrey  md:rounded-3xl  w-full">
+          <div className="md:w-11/12 h-full md:h-h90%  max-w-1/2 flex  shadow-2xl overflow-hidden bg-bg-mygrey  md:rounded-3xl  w-full">
             <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full  items-center  flex-col ">
               <aside className="w-full h-24 flex items-center justify-center ">
                 <Image src={Logo2} width={30} height={30} alt="__" />

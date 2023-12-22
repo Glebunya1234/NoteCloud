@@ -1,4 +1,4 @@
-import ButtonAddBlock from "@/components/Buttons/DropDown-Buttons/ButtonAddBlock";
+import ButtonAddBlock from "@/components/Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonAddBlock";
 import {
   HiDotsVertical,
   HiOutlinePlus,

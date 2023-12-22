@@ -27,12 +27,13 @@ import ModalAddBlock from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 import DropdownEditBlock from "./UI/DropDown/EditDropDownBlockComponent";
 import DeleteTaskButton from "./Buttons/Task-Buttons/DeleteTaskButton";
 import SettingsContent from "./Profile/SettingsPage/SettingsPage";
-import ButtonDellBlock from "./Buttons/DropDown-Buttons/ButtomDeleteBlock";
-import ButtonEditBlock from "./Buttons/DropDown-Buttons/ButtonEditBlock";
+import ButtonDellBlock from "./Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtomDeleteBlock";
+import ButtonEditBlock from "./Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonEditBlock";
 import EditBlockModal from "./UI/Dialog/EditBlockDialog/ModalEditBlock";
 import ModalRemoveBlock from "./UI/Dialog/RemoveBlockDialog/ModalRemoveBlock";
 import AllertCall from "./UI/Allerts/Allert-EditOrRemove/Alert-Call";
 import AddBlockModal from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
+import PriorityDropdown from "./UI/DropDown/PriorityDropDown";
 
 
 export {
@@ -68,7 +69,10 @@ export {
   DrawerSide,
   ButtonDrawer,
   ButtonCloseDrawer,
+  
   DropdownEditBlock,
+  PriorityDropdown,
+
   DeleteTaskButton,
   ButtonEditBlock,
   ButtonDellBlock,

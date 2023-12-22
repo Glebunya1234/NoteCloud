@@ -67,10 +67,21 @@ export async function deleteBlockInName(userID: string, nameBlock: string) {
 export async function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
     const querySnapshot = await getDocs(q);
-  
-    querySnapshot.forEach(async (documentSnapshot) => {
-      const docRef = doc(dataRefTodos, documentSnapshot.id);
-      await updateDoc(docRef, { nameBlock: newNameBlock });
-    });
-  }
 
+    querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(dataRefTodos, documentSnapshot.id);
+        await updateDoc(docRef, { nameBlock: newNameBlock });
+    });
+}
+
+// Изменение приоритета задачи
+
+export async function UpdatePriority(userID: string, nameBlock: string, titleTodos: string, titlePriority: string) {
+    const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(dataRefTodos, documentSnapshot.id);
+        await updateDoc(docRef, { teg: titlePriority });
+    });
+}
