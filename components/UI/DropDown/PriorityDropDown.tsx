@@ -8,20 +8,18 @@ const PriorityDropdown: React.FC<{
   id: string;
   blockName: string;
   titleTodos: string;
-  
-  onTaskAdded: () => void;
-}> = ({ id, blockName, titleTodos, onTaskAdded }) => {
+}> = ({ id, blockName, titleTodos }) => {
 
   return (
     <ul className="dropdown-content menu z-50 shadow bg-base-100 rounded-box w-32">
       <li className="mb-2">
-        <PriorityButton priorityButtonName="High priority" id={id} blockName={blockName} titleTodos={titleTodos}  onTaskAdded={onTaskAdded}/>
+        <PriorityButton priorityButtonName="High priority" id={id} blockName={blockName} titleTodos={titleTodos} />
       </li>
       <li className="mb-2">
-        <PriorityButton priorityButtonName="medium priority" id={id} blockName={blockName} titleTodos={titleTodos} onTaskAdded={onTaskAdded}/>
+        <PriorityButton priorityButtonName="Medium priority" id={id} blockName={blockName} titleTodos={titleTodos} />
       </li>
       <li>
-        <PriorityButton priorityButtonName="low priority" id={id} blockName={blockName} titleTodos={titleTodos} onTaskAdded={onTaskAdded}/>
+        <PriorityButton priorityButtonName="Low priority" id={id} blockName={blockName} titleTodos={titleTodos} />
       </li>
     </ul>
   );

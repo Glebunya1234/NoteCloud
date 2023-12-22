@@ -1,16 +1,18 @@
 import { showErrorToast, showSuccessToast } from "@/components";
+import { UpdateArray } from "@/components/Context";
 import { deleteBlockInName } from "@/services/Firebase-Methods/Task-Management-methods";
+import { useContext } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const ModalRemoveBlock: React.FC<{
   id: string;
   blockName: string;
-  onTaskAdded: () => void;
-}> = ({ id, blockName, onTaskAdded }) => {
+}> = ({ id, blockName }) => {
   const handleClickDell = () => {
+    const updateContext = useContext(UpdateArray);
     try {
       deleteBlockInName(id, blockName);
-      onTaskAdded();
+      updateContext?.onTaskAdded();
       showSuccessToast("The Block has been deleted!");
     } catch (error) {
       showErrorToast("The Block was not deleted!");

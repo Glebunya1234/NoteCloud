@@ -1,14 +1,15 @@
 import { showErrorToast, showSuccessToast } from "@/components";
+import { UpdateArray } from "@/components/Context";
 import { UpdateBlockName } from "@/services/Firebase-Methods/Task-Management-methods";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const EditBlockModal: React.FC<{
   id: string;
   blockName: string;
-  onTaskAdded: () => void;
-}> = ({ id, blockName, onTaskAdded }) => {
+}> = ({ id, blockName }) => {
   const [newblockname, setNewblockname] = useState<string>("");
+  const updateContext = useContext(UpdateArray);
 
   useEffect(() => {
     setNewblockname(blockName);
@@ -18,7 +19,7 @@ const EditBlockModal: React.FC<{
     setNewblockname(blockName);
     if (newblockname.trim() !== "" && blockName.trim() !== "") {
       UpdateBlockName(id, blockName, newblockname).then(() => {
-        onTaskAdded();
+        updateContext?.onTaskAdded();
         showSuccessToast("The block has been updated!");
       });
     } else {

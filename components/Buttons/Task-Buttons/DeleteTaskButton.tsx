@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import {
   AddNewTaskInBlock,
@@ -7,22 +7,21 @@ import {
 
 import { HiOutlineTrash } from "react-icons/hi";
 
-import {
-  showErrorToast,
-  showSuccessToast,
-} from "@/components";
+import { showErrorToast, showSuccessToast } from "@/components";
+import { UpdateArray } from "@/components/Context";
 
 const DeleteTaskButton: React.FC<{
   id: string;
   nameBlock: string;
   titleTodo: string;
-  onTaskAdded: () => void;
-  onCheckedFunc:()=> void;
-}> = ({ id, nameBlock, titleTodo, onTaskAdded, onCheckedFunc }) => {
+  onCheckedFunc: () => void;
+}> = ({ id, nameBlock, titleTodo, onCheckedFunc }) => {
+  const updateContext = useContext(UpdateArray);
+
   const handleClickDelete = (Blockname: string, Todostitle: string) => {
     try {
       deleteTaskInBlick(id, Blockname, Todostitle).then(() => {
-        onTaskAdded();
+        updateContext?.onTaskAdded();
         onCheckedFunc();
         showSuccessToast("The task has been deleted!");
       });

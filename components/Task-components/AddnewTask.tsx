@@ -1,26 +1,24 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { AddNewTaskInBlock } from "@services/Firebase-Methods/Task-Management-methods";
 
 import { HiOutlinePlusSm } from "react-icons/hi";
 
-import { showErrorToast, showMessangeToast, showSuccessToast } from "@/components";
+import { showErrorToast, showSuccessToast } from "@/components";
+import { UpdateArray } from "../Context";
 
 const AddNewTaskComnponent: React.FC<{
   id: string;
   nameBlock: string;
-  onTaskAdded: () => void;
-}> = ({ id, nameBlock, onTaskAdded }) => {
+}> = ({ id, nameBlock }) => {
   const [taskname, setTaskname] = useState("");
+  const updateContext = useContext(UpdateArray);
 
   const handleClickAddButton = () => {
-    console.log(taskname);
     setTaskname("");
-    console.log(id);
-    console.log(nameBlock);
     if (taskname.trim() !== "" && nameBlock.trim() !== "") {
       AddNewTaskInBlock(id, nameBlock, taskname).then(() => {
-        onTaskAdded();
+        updateContext?.onTaskAdded();
         showSuccessToast("The task has been created!");
       });
     } else {

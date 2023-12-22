@@ -1,4 +1,4 @@
-import ThemeContext from "@/components/Context";
+import {ThemeContext} from "@/components/Context";
 import { useContext } from "react";
 
 const AllertButton = () => {

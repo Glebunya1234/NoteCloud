@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import ThemeContext from "@/components/Context";
+import {ThemeContext} from "@/components/Context";
 import AllertEditOrRemove from "./AlertEditOrRemove";
 
 

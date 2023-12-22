@@ -1,14 +1,6 @@
-import ButtonAddBlock from "@/components/Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonAddBlock";
-import {
-  HiDotsVertical,
-  HiOutlinePlus,
-  HiOutlineTrash,
-  HiPencil,
-} from "react-icons/hi";
+import { HiPencil } from "react-icons/hi";
 import { motion } from "framer-motion";
-import { ButtonDellBlock, ButtonEditBlock } from "@/components";
-import { useContext } from "react";
-import ThemeContext from "@/components/Context";
+
 import AllertButton from "@/components/Buttons/Allert-Buttons/AllertButton";
 type alertType = {
   Mode: "edit" | "remove";

@@ -1,4 +1,4 @@
-import ThemeContext from "@/components/Context";
+import {ThemeContext} from "@/components/Context";
 import { useContext } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 

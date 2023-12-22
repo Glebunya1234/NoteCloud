@@ -23,7 +23,7 @@ import {
   AllertCall,
 } from "@/components";
 
-import ThemeContext, { HoverContextType } from "@/components/Context";
+import {ThemeContext, HoverContextType } from "@/components/Context";
 // import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -39,14 +39,12 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
   const [userDisplayName, setuserDisplayName] = useState<string | null>("");
   // const [theme, setTheme] = useState<HoverContextType["theme"]>("");
-  const [Mode, setMode] = useState<HoverContextType["Mode"]>(false);
+  // const [Mode, setMode] = useState<HoverContextType["Mode"]>(false);
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
   const value = {
-    // theme,
-    // setTheme,
-    Mode,
-    setMode,
+    // Mode,
+    // setMode,
     ModeEditOrRemove,
     setModeEditOrRemove,
   };

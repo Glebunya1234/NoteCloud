@@ -1,30 +1,35 @@
-import { showMessangeToast,showSuccessToast , showErrorToast } from "@/components";
+import {
+  showMessangeToast,
+  showSuccessToast,
+  showErrorToast,
+} from "@/components";
+import { UpdateArray } from "@/components/Context";
 import { AddNewTaskInBlock } from "@/services/Firebase-Methods/Task-Management-methods";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const AddBlockModal: React.FC<{
   id: string;
-  blockName: string;
-  onTaskAdded: () => void;
-}> = ({ id, blockName, onTaskAdded }) => {
+}> = ({ id }) => {
   const [blockname, setBlockname] = useState<string>("");
   const [taskname, setTaskname] = useState<string>("");
+
+  const updateContext = useContext(UpdateArray);
 
   const AddNewBlockButton = () => {
     console.log(blockname);
     setBlockname("");
     setTaskname("");
+
     console.log(id);
     console.log(blockname);
     if (taskname.trim() !== "" && blockname.trim() !== "") {
       AddNewTaskInBlock(id, blockname, taskname).then(() => {
-        onTaskAdded();
+        updateContext?.onTaskAdded();
         showSuccessToast("The Block has been created!");
       });
-    }
-    else {
-      showErrorToast("The block was not created!")
+    } else {
+      showErrorToast("The block was not created!");
     }
   };
 

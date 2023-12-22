@@ -29,7 +29,7 @@ export async function AddNewTaskInBlock(userID: string, nameBlock: string, title
 
 
     await setDoc(doc(dataRefTodos), {
-        nameBlock: nameBlock, teg: "low priority",
+        nameBlock: nameBlock, teg: "Low priority",
         titleTodos: titleTodos, userId: userID
     });
 }
