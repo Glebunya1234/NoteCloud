@@ -8,7 +8,7 @@ const AllertButton = () => {
   };
   return (
     <div>
-      <button className="btn btn-sm" onClick={hendClickButton}>
+      <button className="btn btn-sm whitespace-nowrap overflow-hidden" onClick={hendClickButton}>
         Turn off
       </button>
     </div>

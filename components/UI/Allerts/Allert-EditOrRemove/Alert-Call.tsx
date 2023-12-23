@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import {ThemeContext} from "@/components/Context";
 import AllertEditOrRemove from "./AlertEditOrRemove";
+import { AnimatePresence, motion } from "framer-motion";
 
 
 const AllertCall = () => {

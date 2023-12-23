@@ -1,5 +1,5 @@
 import { HiPencil } from "react-icons/hi";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import AllertButton from "@/components/Buttons/Allert-Buttons/AllertButton";
 type alertType = {
@@ -17,7 +17,7 @@ const AllertEditOrRemove: React.FC<alertType> = ({ Mode }) => {
         }`}
       >
         <HiPencil style={{ fontSize: "20px" }} />
-        <span className="font-medium flex items-center h-full md:whitespace-nowrap md:overflow-hidden">
+        <span className="text-xs md:text-base font-medium flex items-center h-full md:whitespace-nowrap md:overflow-hidden">
           {Mode === "edit"
             ? "The EDITING mode is activated"
             : "The REMOVE mode is activated"}

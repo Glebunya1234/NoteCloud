@@ -23,7 +23,8 @@ import {
   AllertCall,
 } from "@/components";
 
-import {ThemeContext, HoverContextType } from "@/components/Context";
+import { ThemeContext, HoverContextType } from "@/components/Context";
+import { AnimatePresence, motion } from "framer-motion";
 // import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {

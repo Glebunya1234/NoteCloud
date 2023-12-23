@@ -4,8 +4,13 @@ import {
   showSuccessToast,
 } from "@/components";
 import { ChangeTeg, ChangeTegButton, UpdateArray } from "@/components/Context";
-import { UpdateBlockName, UpdateTask } from "@/services/Firebase-Methods/Task-Management-methods";
+import {
+  UpdateTask,
+} from "@/services/Firebase-Methods/Task-Management-methods";
+
 import { useContext, useEffect, useState } from "react";
+import { CgArrowRight } from "react-icons/cg";
+
 import { FiCheck } from "react-icons/fi";
 
 const EditTaskDialog: React.FC<{
@@ -14,7 +19,6 @@ const EditTaskDialog: React.FC<{
   blockName: string;
   priorityTitle: string;
 }> = ({ id, oldtaskName, blockName, priorityTitle }) => {
-
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");
   const updateContext = useContext(UpdateArray);
@@ -33,23 +37,23 @@ const EditTaskDialog: React.FC<{
   }, [oldtaskName]);
 
   const handleClickSaveBut = () => {
-
     if (newTaskname.trim() !== "") {
-        UpdateTask(id, blockName, oldtaskName, newTaskname, tegButName).then(() => {
-        updateContext?.onTaskAdded();
-        showSuccessToast("The task has been updated!");
-      });
+      UpdateTask(id, blockName, oldtaskName, newTaskname, tegButName).then(
+        () => {
+          updateContext?.onTaskAdded();
+          showSuccessToast("The task has been updated!");
+        }
+      );
     } else {
       showErrorToast("The task was not updated!");
     }
   };
 
-
   return (
     <dialog id="EditTaskDialog" className="modal">
       <div className="modal-box bg-bg-mygrey">
         <h3 className="font-bold text-lg mb-2 ">
-          Editing a task "{oldtaskName}" in block "{blockNamess}"
+          Editing the task "{oldtaskName}" in the "{blockNamess}" block
         </h3>
 
         <span className="label-text">Change task name</span>
@@ -70,18 +74,16 @@ const EditTaskDialog: React.FC<{
         <section>
           <div className="dropdown  dropdown-right mt-2">
             <ChangeTeg.Provider value={value}>
-              <div className=" items-center">
-                <div tabIndex={0} role="button" className="btn btn-xs">
-                  {tegButName}
+              <div className=" flex items-center">
+                <div className="text-xs flex items-center bg-transparent border-none whitespace-nowrap overflow-hidden">
+                  {tegButName} <CgArrowRight style={{ marginLeft: '5px'}}/> 
                 </div>
 
-                
-                  <PriorityDropdown
-                    id={id}
-                    blockName={blockName}
-                    titleTodos={oldtaskName}
-                  />
-              
+                <PriorityDropdown
+                  id={id}
+                  blockName={blockName}
+                  titleTodos={oldtaskName}
+                />
               </div>
             </ChangeTeg.Provider>
           </div>
@@ -92,6 +94,7 @@ const EditTaskDialog: React.FC<{
             className="btn w-full bg-transparent border-[#3a393c] hover:bg-bg-mydurkgrey"
             onClick={handleClickSaveBut}
           >
+            Save change
             <FiCheck style={{ fontSize: "20px" }} />
           </button>
         </form>

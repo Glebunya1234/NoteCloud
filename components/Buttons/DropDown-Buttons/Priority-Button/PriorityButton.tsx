@@ -20,26 +20,23 @@ type priorityType ={
 
 const PriorityButton: React.FC<priorityType> = (priorityType) => {
   const contextTeg = useContext(ChangeTeg) 
-  const updateContext = useContext(UpdateArray);
+
   const handlClickPriority = () => {
-    // UpdatePriority(priorityType.id, priorityType.blockName, priorityType.titleTodos, priorityType.Priority + " priority").then(() => {
-    //   updateContext?.onTaskAdded();
-    //   showSuccessToast("The Block has been created!");
-      
-    // });
     contextTeg?.setTegButName(priorityType.Priority + " priority")
   };
 
   return (
-    <button className="flex badge h-full w-fit text-xs " onClick={handlClickPriority}>
-      <span className="">
-        {priorityType.Priority==="Highest" && <FaAngleDoubleUp />}
-        {priorityType.Priority==="High" && <FaAngleUp />}
-        {priorityType.Priority==="Medium" && <FaEquals />}
-        {priorityType.Priority==="Low" && <FaAngleDown />}
-        {priorityType.Priority==="Lowest" && <FaAngleDoubleDown />}
-      </span >
-    </button>
+    <div className="lg:tooltip  flex items-center h-full" data-tip={priorityType.Priority}>
+      <button className="flex badge h-full w-fit text-xs border-transparent bg-transparent  hover:border-bg-myyellow   " onClick={handlClickPriority}>
+        <span className="">
+          {priorityType.Priority==="Highest" && <FaAngleDoubleUp />}
+          {priorityType.Priority==="High" && <FaAngleUp />}
+          {priorityType.Priority==="Medium" && <FaEquals />}
+          {priorityType.Priority==="Low" && <FaAngleDown />}
+          {priorityType.Priority==="Lowest" && <FaAngleDoubleDown />}
+        </span >
+      </button>
+    </div>
   );
 };
 export default PriorityButton;

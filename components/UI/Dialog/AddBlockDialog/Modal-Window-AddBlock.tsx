@@ -72,7 +72,7 @@ const AddBlockModal: React.FC<{
             className="btn btn-square bg-transparent border-[#3a393c] w-full text-center hover:bg-bg-mydurkgrey"
             onClick={AddNewBlockButton}
           >
-            Add
+             Add new block
             <FiCheck style={{ fontSize: "20px" }} />
           </button>
         </form>

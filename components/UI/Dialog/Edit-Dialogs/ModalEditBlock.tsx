@@ -36,7 +36,7 @@ const EditBlockModal: React.FC<{
 
         {/* Первая пара инпута и кнопки */}
         <span className="label-text">Change block name</span>
-        <div className="flex items-center mb-4">
+        <div className="flex flex-col items-center mb-4">
           <input
             type="text"
             placeholder="New Name"
@@ -46,12 +46,12 @@ const EditBlockModal: React.FC<{
             }}
             value={newblockname}
           />
-          <form method="dialog" className="">
+          <form method="dialog" className="mt-2 w-full">
             <button
-              className="btn btn-square bg-transparent border-[#3a393c] ml-2 hover:bg-bg-mydurkgrey"
+              className="btn btn-square bg-transparent border-[#3a393c] w-full hover:bg-bg-mydurkgrey"
               onClick={UpdateBlockNameFunc}
             >
-              <FiCheck style={{ fontSize: "20px" }} />
+               Save change<FiCheck style={{ fontSize: "20px" }} />
             </button>
           </form>
         </div>
