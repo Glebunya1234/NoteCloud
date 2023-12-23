@@ -10,16 +10,21 @@ import {
   AddNewTaskComnponent,
   DeleteTaskButton,
   EditBlockModal,
+  EditTaskButton,
+  EditTaskDialog,
   ModalRemoveBlock,
   PriorityDropdown,
 } from "@/components";
 import { ThemeContext, UpdateArray } from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
+import { todo } from "node:test";
 
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
   const [name, setName] = useState<string>("");
+  const [nametitle, setNametitle] = useState<string>("");
+  const [priorityTitle, setPriorityTitle] = useState<string>("");
   const theme = useContext(ThemeContext);
 
   // const handleMouseUp = () => {
@@ -139,11 +144,6 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                       {/* collapse-title */}
                       <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
                         {todo.titleTodos}
-                        <div className="flex justify-end w-full">
-                          <span className="badge bg-transparent text-black hover:bg-zinc-800">
-                            {todo.teg}
-                          </span>
-                        </div>
                       </div>
 
                       {/* collapse-content */}
@@ -151,7 +151,13 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                         <nav className="flex justify-between  px-1">
                           {/* Set priority */}
                           <section className="flex ">
-                            <div className="dropdown  dropdown-top">
+                            <div className="flex items-center w-full">
+                              <span className="badge bg-transparent py-3 text-black">
+                                {todo.teg}
+                              </span>
+                            </div>
+
+                            {/* <div className="dropdown  dropdown-right">
                               <div
                                 tabIndex={0}
                                 role="button"
@@ -165,13 +171,28 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                                 blockName={block[0].nameBlock}
                                 titleTodos={todo.titleTodos}
                               />
-                            </div>
+                            </div> */}
                           </section>
 
                           <section className="flex items-center ">
-                            <button className="btn btn-circle btn-xs mx-1 ">
+                            <button
+                              className="btn btn-circle btn-xs mx-1 "
+                              onClick={() => {
+                                setNametitle(todo.titleTodos),
+                                  setPriorityTitle(todo.teg),
+                                  openAModalWindowbyID("EditTaskDialog");
+                              }}
+                            >
                               <HiPencil />
                             </button>
+                            {/* <EditTaskButton
+                              id={id}
+                              nameBlock={block[0].nameBlock}
+                              titleTodo={todo.titleTodos}
+                              onCheckedFunc={() => {
+                                setIsChecked(!isChecked);
+                              }}
+                            /> */}
                             <DeleteTaskButton
                               id={id}
                               nameBlock={block[0].nameBlock}
@@ -184,6 +205,13 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                         </nav>
                       </div>
                     </motion.div>
+
+                    <EditTaskDialog
+                      id={id}
+                      blockName={block[0].nameBlock}
+                      oldtaskName={nametitle}
+                      priorityTitle={priorityTitle}
+                    />
                   </li>
                 ))}
               </motion.ul>
@@ -196,10 +224,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                     : ""
                 }`}
               >
-                <AddNewTaskComnponent
-                  id={id}
-                  nameBlock={block[0].nameBlock}
-                />
+                <AddNewTaskComnponent id={id} nameBlock={block[0].nameBlock} />
               </section>
             </div>
           </motion.article>

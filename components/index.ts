@@ -18,7 +18,7 @@ import HomeContent from "@components/Profile/HomePage/HomePage";
 import TodosContent from "@components/Profile/TodosPage/TodoPage";
 import { ActiveTabs } from "@components/Tabs/Active-tab";
 import AddNewTaskComnponent from "@components/Task-components/AddnewTask";
-import ModalEditProf from "@/components/UI/Dialog/EditProfDialog/Modal-Window-EditProf";
+import ModalEditProf from "@/components/UI/Dialog/Edit-Dialogs/Modal-Window-EditProf";
 import ButtonEditProfModal from "@/components/Buttons/Profile-Buttons/BottonOpenEditModal";
 import DrawerSide from "./UI/Drawer/Drawer-Side";
 import ButtonDrawer from "./Buttons/Profile-Buttons/ButtonDrawer";
@@ -29,24 +29,29 @@ import DeleteTaskButton from "./Buttons/Task-Buttons/DeleteTaskButton";
 import SettingsContent from "./Profile/SettingsPage/SettingsPage";
 import ButtonDellBlock from "./Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtomDeleteBlock";
 import ButtonEditBlock from "./Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonEditBlock";
-import EditBlockModal from "./UI/Dialog/EditBlockDialog/ModalEditBlock";
+import EditBlockModal from "./UI/Dialog/Edit-Dialogs/ModalEditBlock";
 import ModalRemoveBlock from "./UI/Dialog/RemoveBlockDialog/ModalRemoveBlock";
 import AllertCall from "./UI/Allerts/Allert-EditOrRemove/Alert-Call";
 import AddBlockModal from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 import PriorityDropdown from "./UI/DropDown/PriorityDropDown";
+import EditTaskDialog from "./UI/Dialog/Edit-Dialogs/Modal-Edit-Task";
+import EditTaskButton from "./Buttons/Task-Buttons/EditTaskButton";
 
 
 export {
   ButtonSignIn,
   ButtonGoogle,
   RegisterButton,
+  
   RegisterInputs,
   LogInInputs,
-  ButtonMenuNavigations,
 
+  
   HomeContent,
   SettingsContent,
   TodosContent,
+  
+  ButtonMenuNavigations,
 
   ActiveTabs,
   AddNewTaskComnponent,
@@ -61,6 +66,7 @@ export {
   AddBlockModal,
   EditBlockModal,
   ModalRemoveBlock,
+  EditTaskDialog,
 
   BottonSignOut,
   BottonCloseTest,
@@ -74,6 +80,8 @@ export {
   PriorityDropdown,
 
   DeleteTaskButton,
+  EditTaskButton,
+
   ButtonEditBlock,
   ButtonDellBlock,
 };

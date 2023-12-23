@@ -6,27 +6,39 @@ import {
   ButtonEditBlock,
   showSuccessToast,
 } from "@/components";
-import { UpdatePriority } from "@/services/Firebase-Methods/Task-Management-methods";
-import { useContext } from "react";
-import { UpdateArray } from "@/components/Context";
+import { use, useContext } from "react";
+import { ChangeTeg, UpdateArray } from "@/components/Context";
+import { FiChevronDown, FiChevronUp, FiChevronsDown, FiChevronsUp } from "react-icons/fi";
+import { FaAngleDoubleDown, FaAngleDoubleUp, FaAngleDown, FaAngleUp, FaEquals } from "react-icons/fa";
 
-const PriorityButton: React.FC<{
-  priorityButtonName: string;
+type priorityType ={
+  Priority: "Highest" | "High" | "Medium" | "Low"  | "Lowest"
   id: string;
   blockName: string;
   titleTodos: string;
-}> = ({ priorityButtonName, id, blockName, titleTodos }) => {
+}
+
+const PriorityButton: React.FC<priorityType> = (priorityType) => {
+  const contextTeg = useContext(ChangeTeg) 
   const updateContext = useContext(UpdateArray);
   const handlClickPriority = () => {
-    UpdatePriority(id, blockName, titleTodos, priorityButtonName).then(() => {
-      updateContext?.onTaskAdded();
-      showSuccessToast("The Block has been created!");
-    });
+    // UpdatePriority(priorityType.id, priorityType.blockName, priorityType.titleTodos, priorityType.Priority + " priority").then(() => {
+    //   updateContext?.onTaskAdded();
+    //   showSuccessToast("The Block has been created!");
+      
+    // });
+    contextTeg?.setTegButName(priorityType.Priority + " priority")
   };
 
   return (
-    <button className="flex badge badge-xs w-full" onClick={handlClickPriority}>
-      {priorityButtonName}
+    <button className="flex badge h-full w-fit text-xs " onClick={handlClickPriority}>
+      <span className="">
+        {priorityType.Priority==="Highest" && <FaAngleDoubleUp />}
+        {priorityType.Priority==="High" && <FaAngleUp />}
+        {priorityType.Priority==="Medium" && <FaEquals />}
+        {priorityType.Priority==="Low" && <FaAngleDown />}
+        {priorityType.Priority==="Lowest" && <FaAngleDoubleDown />}
+      </span >
     </button>
   );
 };

@@ -1,0 +1,109 @@
+import {
+  PriorityDropdown,
+  showErrorToast,
+  showSuccessToast,
+} from "@/components";
+import { ChangeTeg, ChangeTegButton, UpdateArray } from "@/components/Context";
+import { UpdateBlockName, UpdateTask } from "@/services/Firebase-Methods/Task-Management-methods";
+import { useContext, useEffect, useState } from "react";
+import { FiCheck } from "react-icons/fi";
+
+const EditTaskDialog: React.FC<{
+  id: string;
+  oldtaskName: string;
+  blockName: string;
+  priorityTitle: string;
+}> = ({ id, oldtaskName, blockName, priorityTitle }) => {
+    
+  const [newTaskname, setNewtaskName] = useState<string>("");
+  const updateContext = useContext(UpdateArray);
+  const [tegButName, setTegButName] =
+    useState<ChangeTegButton["tegButName"]>("");
+
+  const value = {
+    tegButName,
+    setTegButName,
+  };
+
+  useEffect(() => {
+    setNewtaskName(oldtaskName);
+    setTegButName(priorityTitle)
+  }, [oldtaskName]);
+
+  const handleClickSaveBut = () => {
+
+    if (newTaskname.trim() !== "") {
+        UpdateTask(id, blockName, oldtaskName, newTaskname, tegButName).then(() => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The task has been updated!");
+      });
+    } else {
+      showErrorToast("The task was not updated!");
+    }
+  };
+
+
+  return (
+    <dialog id="EditTaskDialog" className="modal">
+      <div className="modal-box bg-bg-mygrey">
+        <h3 className="font-bold text-lg mb-2 ">
+          Editing a task "{oldtaskName}" in block "{blockName}"
+        </h3>
+
+        <span className="label-text">Change task name</span>
+        <div className="flex items-center mb-4">
+          <input
+            type="text"
+            placeholder="New Name"
+            className="input input-ghost w-full bg-transparent max-w-4xl  ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey"
+            onChange={(e) => {
+              setNewtaskName(e.target.value);
+            }}
+            value={newTaskname}
+          />
+        </div>
+
+        <span className="label-text">Change priority</span>
+
+        <section>
+          <div className="dropdown  dropdown-right mt-2">
+            <ChangeTeg.Provider value={value}>
+              <div className=" items-center">
+                <div tabIndex={0} role="button" className="btn btn-xs">
+                  {tegButName}
+                </div>
+
+                
+                  <PriorityDropdown
+                    id={id}
+                    blockName={blockName}
+                    titleTodos={oldtaskName}
+                  />
+              
+              </div>
+            </ChangeTeg.Provider>
+          </div>
+        </section>
+
+        <form method="dialog" className="w-full mt-5">
+          <button
+            className="btn w-full bg-transparent border-[#3a393c] hover:bg-bg-mydurkgrey"
+            onClick={handleClickSaveBut}
+          >
+            <FiCheck style={{ fontSize: "20px" }} />
+          </button>
+        </form>
+
+        {/* Текст ниже */}
+        <p className="mt-5 text-xs text-right">
+          Press ESC key or click outside to close
+        </p>
+      </div>
+
+      <form method="dialog" className="modal-backdrop">
+        <button>close</button>
+      </form>
+    </dialog>
+  );
+};
+export default EditTaskDialog;

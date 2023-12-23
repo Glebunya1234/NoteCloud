@@ -11,15 +11,21 @@ const PriorityDropdown: React.FC<{
 }> = ({ id, blockName, titleTodos }) => {
 
   return (
-    <ul className="dropdown-content menu z-50 shadow bg-base-100 rounded-box w-32">
-      <li className="mb-2">
-        <PriorityButton priorityButtonName="High priority" id={id} blockName={blockName} titleTodos={titleTodos} />
+    <ul className="dropdown-content z-50 flex flex-row h-6 mx-2 bg-transparent rounded-box">
+      <li className="">
+        <PriorityButton Priority="Highest" id={id} blockName={blockName} titleTodos={titleTodos} />
       </li>
-      <li className="mb-2">
-        <PriorityButton priorityButtonName="Medium priority" id={id} blockName={blockName} titleTodos={titleTodos} />
+      <li className="ml-1">
+        <PriorityButton Priority="High" id={id} blockName={blockName} titleTodos={titleTodos} />
       </li>
-      <li>
-        <PriorityButton priorityButtonName="Low priority" id={id} blockName={blockName} titleTodos={titleTodos} />
+      <li className="ml-1">
+        <PriorityButton Priority="Medium" id={id} blockName={blockName} titleTodos={titleTodos} />
+      </li>
+      <li className="ml-1">
+        <PriorityButton Priority="Low" id={id} blockName={blockName} titleTodos={titleTodos} />
+      </li>
+      <li className="ml-1">
+        <PriorityButton Priority="Lowest" id={id} blockName={blockName} titleTodos={titleTodos} />
       </li>
     </ul>
   );

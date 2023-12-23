@@ -8,8 +8,8 @@ const ModalRemoveBlock: React.FC<{
   id: string;
   blockName: string;
 }> = ({ id, blockName }) => {
+  const updateContext = useContext(UpdateArray);
   const handleClickDell = () => {
-    const updateContext = useContext(UpdateArray);
     try {
       deleteBlockInName(id, blockName);
       updateContext?.onTaskAdded();

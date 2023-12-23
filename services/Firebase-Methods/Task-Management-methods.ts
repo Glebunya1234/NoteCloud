@@ -29,7 +29,7 @@ export async function AddNewTaskInBlock(userID: string, nameBlock: string, title
 
 
     await setDoc(doc(dataRefTodos), {
-        nameBlock: nameBlock, teg: "Low priority",
+        nameBlock: nameBlock, teg: "Medium priority",
         titleTodos: titleTodos, userId: userID
     });
 }
@@ -76,12 +76,13 @@ export async function UpdateBlockName(userID: string, nameBlock: string, newName
 
 // Изменение приоритета задачи
 
-export async function UpdatePriority(userID: string, nameBlock: string, titleTodos: string, titlePriority: string) {
+export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
     const querySnapshot = await getDocs(q);
 
+
     querySnapshot.forEach(async (documentSnapshot) => {
         const docRef = doc(dataRefTodos, documentSnapshot.id);
-        await updateDoc(docRef, { teg: titlePriority });
+        await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
     });
 }
