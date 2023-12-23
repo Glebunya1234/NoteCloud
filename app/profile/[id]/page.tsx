@@ -25,6 +25,7 @@ import {
 
 import { ThemeContext, HoverContextType } from "@/components/Context";
 import { AnimatePresence, motion } from "framer-motion";
+import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
 // import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -137,12 +138,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   {activeMain === "Todos" && (
                     <>
                       <ThemeContext.Provider value={value}>
-                        <div className=" relative overflow-auto min-w-full ">
+                        <div className="relative overflow-auto min-w-full ">
                           <TodosContent id={params.id} />
                         </div>
-                        <aside className="relative">
-                          <DropdownEditBlock />
-                        </aside>
                       </ThemeContext.Provider>
                     </>
                   )}
@@ -151,7 +149,10 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               <footer className="w-full h-24 mt-5 items-center  flex">
                 {activeMain === "Todos" && (
                   <ThemeContext.Provider value={value}>
-                    <AllertCall />
+                    <div className="flex justify-between items-center w-full">
+                      <AllertCall />
+                      <DropdownEditBlockCopy/>
+                    </div>
                   </ThemeContext.Provider>
                 )}
               </footer>
