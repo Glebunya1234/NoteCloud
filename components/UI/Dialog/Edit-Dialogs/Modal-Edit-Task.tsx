@@ -14,8 +14,9 @@ const EditTaskDialog: React.FC<{
   blockName: string;
   priorityTitle: string;
 }> = ({ id, oldtaskName, blockName, priorityTitle }) => {
-    
+
   const [newTaskname, setNewtaskName] = useState<string>("");
+  const [blockNamess, setBlockNamess] = useState<string>("");
   const updateContext = useContext(UpdateArray);
   const [tegButName, setTegButName] =
     useState<ChangeTegButton["tegButName"]>("");
@@ -27,7 +28,8 @@ const EditTaskDialog: React.FC<{
 
   useEffect(() => {
     setNewtaskName(oldtaskName);
-    setTegButName(priorityTitle)
+    setTegButName(priorityTitle);
+    setBlockNamess(blockName);
   }, [oldtaskName]);
 
   const handleClickSaveBut = () => {
@@ -47,7 +49,7 @@ const EditTaskDialog: React.FC<{
     <dialog id="EditTaskDialog" className="modal">
       <div className="modal-box bg-bg-mygrey">
         <h3 className="font-bold text-lg mb-2 ">
-          Editing a task "{oldtaskName}" in block "{blockName}"
+          Editing a task "{oldtaskName}" in block "{blockNamess}"
         </h3>
 
         <span className="label-text">Change task name</span>

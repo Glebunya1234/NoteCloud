@@ -22,34 +22,27 @@ import { todo } from "node:test";
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
-  const [name, setName] = useState<string>("");
+  const [nameBlock, setNameBlock] = useState<string>("");
   const [nametitle, setNametitle] = useState<string>("");
   const [priorityTitle, setPriorityTitle] = useState<string>("");
   const theme = useContext(ThemeContext);
 
-  // const handleMouseUp = () => {
-  //   console.log("handleMouseDown", isChecked);
-  //   setIsChecked(!isChecked);
-  //   console.log("handleMouseDown", isChecked);
-  // };
-
-  // const handleChange= (ids:string) :void => {
-  //   console.log(ids)
-  //   console.log("handleClick", isChecked);
-  //   setIsChecked(isChecked);
-  //   console.log("handleClick", isChecked);
-  // };
-
   const handleClickOnArticle = (names: string) => {
     if (theme?.ModeEditOrRemove === "edit") {
-      setName(names);
+      setNameBlock(names);
       openAModalWindowbyID("EditBlockModal");
     } else if (theme?.ModeEditOrRemove === "remove") {
-      setName(names);
+      setNameBlock(names);
       openAModalWindowbyID("ModalRemoveBlock");
     } else {
-      setName(names);
+      setNameBlock(names);
     }
+  };
+  const handleClickChangeTask = (namesBlock: string, titleTodo:string, teg:string) => {
+    setNameBlock(namesBlock);
+    setNametitle(titleTodo),
+      setPriorityTitle(teg),
+      openAModalWindowbyID("EditTaskDialog");
   };
 
   const animationVariants = {
@@ -156,43 +149,15 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                                 {todo.teg}
                               </span>
                             </div>
-
-                            {/* <div className="dropdown  dropdown-right">
-                              <div
-                                tabIndex={0}
-                                role="button"
-                                className="btn btn-xs"
-                              >
-                                {todo.teg}
-                              </div>
-
-                              <PriorityDropdown
-                                id={id}
-                                blockName={block[0].nameBlock}
-                                titleTodos={todo.titleTodos}
-                              />
-                            </div> */}
                           </section>
 
                           <section className="flex items-center ">
                             <button
                               className="btn btn-circle btn-xs mx-1 "
-                              onClick={() => {
-                                setNametitle(todo.titleTodos),
-                                  setPriorityTitle(todo.teg),
-                                  openAModalWindowbyID("EditTaskDialog");
-                              }}
+                              onClick={() => {handleClickChangeTask(block[0].nameBlock, todo.titleTodos, todo.teg)}}
                             >
                               <HiPencil />
                             </button>
-                            {/* <EditTaskButton
-                              id={id}
-                              nameBlock={block[0].nameBlock}
-                              titleTodo={todo.titleTodos}
-                              onCheckedFunc={() => {
-                                setIsChecked(!isChecked);
-                              }}
-                            /> */}
                             <DeleteTaskButton
                               id={id}
                               nameBlock={block[0].nameBlock}
@@ -208,7 +173,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
 
                     <EditTaskDialog
                       id={id}
-                      blockName={block[0].nameBlock}
+                      blockName={nameBlock}
                       oldtaskName={nametitle}
                       priorityTitle={priorityTitle}
                     />
@@ -230,8 +195,8 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
           </motion.article>
         ))}
         <AddBlockModal id={id} />
-        <EditBlockModal id={id} blockName={name} />
-        <ModalRemoveBlock id={id} blockName={name} />
+        <EditBlockModal id={id} blockName={nameBlock} />
+        <ModalRemoveBlock id={id} blockName={nameBlock} />
       </main>
     </UpdateArray.Provider>
   );
