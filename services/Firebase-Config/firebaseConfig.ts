@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
+import { getStorage, ref } from "firebase/storage";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -23,6 +24,8 @@ const app = initializeApp(firebaseConfig);
 
 export const authh = getAuth(app)
 export const mydatabase = getFirestore(app)
+export const mystorage = getStorage(app);
+export const storageRef = ref(mystorage, 'images');
 
 
 //add doc

@@ -1,5 +1,5 @@
 //list doc
-import {collection, doc, getDocs, onSnapshot, query, setDoc, where } from "firebase/firestore";
+import {collection, doc, getDocs, onSnapshot, query, setDoc, updateDoc, where } from "firebase/firestore";
 import {mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import type {TodosData} from "@/types/Сollection-Todoes-interfaces/types";
 
@@ -20,6 +20,27 @@ export function readDoc(userID: string) {
 
 }
 
+
+
+// смена аватара по юзера айди 
+export const addImageData = async (data:string, userID: string): Promise<void> => {
+    const newdoc = collection(mydatabase, `collection-users`);
+    const q = query(newdoc, where('userID', '==', userID));
+    try {
+      // Изменение данных в коллекции
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(newdoc, documentSnapshot.id);
+        await updateDoc(docRef, { photoURL:data});
+    });
+      console.log('Данные успешно добавлены в коллекцию');
+    } catch (error) {
+      console.error('Ошибка при добавлении данных в коллекцию', error);
+      throw error;
+    }
+  };
+
+ 
 // // поиск задач по айди юзера
 // export async function readDocTodo(userID: string): Promise<IdataTodos[]> {
 //     const dataref = collection(mydatabase, "collection-todos");

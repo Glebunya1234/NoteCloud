@@ -98,10 +98,16 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                 <img
                   className="mask mask-circle"
                   src={setSrc}
+                  style={{ minWidth: '100px', minHeight: '100px', width: '100px',height: '100px',  objectFit:'cover'}}
+                  alt="Avatar"
+                />
+                {/* <img
+                  className="mask mask-circle"
+                  src={setSrc}
                   width={100}
                   height={100}
                   alt="Avatar"
-                />
+                /> */}
                 <h3 className="py-2 font-bold">{userDisplayName}</h3>
                 <ButtonEditProfModal />
               </aside>
@@ -159,7 +165,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             </section>
           </div>
           <AllertToast />
-          <ModalEditProf />
+          <ModalEditProf id={params.id}/>
           {/* <EditBlockModal /> */}
         </div>
       </div>
