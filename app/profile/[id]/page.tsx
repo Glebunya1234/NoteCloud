@@ -26,6 +26,7 @@ import {
 import { ThemeContext, HoverContextType } from "@/components/Context";
 import { AnimatePresence, motion } from "framer-motion";
 import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
+import { ReadImageData } from "@/services/Firebase-Methods/ReadDataForUser";
 // import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -38,7 +39,8 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
   const router = useRouter();
   const [activeMain, setActiveMain] = useState("Home");
-  const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
+  // const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
+  const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
   const [userDisplayName, setuserDisplayName] = useState<string | null>("");
   // const [theme, setTheme] = useState<HoverContextType["theme"]>("");
   // const [Mode, setMode] = useState<HoverContextType["Mode"]>(false);
@@ -56,13 +58,22 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       const googleUser = await getUser(params.id);
       console.log(googleUser);
       if (googleUser !== null) {
-        //Проверка на аватар
-        if (googleUser.photoURL !== "") {
-          setSetSrc(googleUser.photoURL);
+        let imgref = await ReadImageData(params.id);
+
+        //Проверка на аватар гугл авториз
+        // if (googleUser.photoURL !== "") {
+        //   setSetSrc(googleUser.photoURL);
+        // } else {
+        //   setSetSrc(linkDefaultPhoto);
+        // }
+
+        // Проверка на аватар через обращение в бд в коллекцию
+        if (imgref !== undefined) {
+          setSetSrc(imgref);
         } else {
           setSetSrc(linkDefaultPhoto);
         }
-        console.log(googleUser.displayName);
+        // console.log(googleUser.displayName);
         //Проверка на ник нейм
         if (googleUser.displayName !== "") {
           setuserDisplayName(googleUser.displayName);
@@ -98,16 +109,15 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                 <img
                   className="mask mask-circle"
                   src={setSrc}
-                  style={{ minWidth: '100px', minHeight: '100px', width: '100px',height: '100px',  objectFit:'cover'}}
+                  style={{
+                    minWidth: "100px",
+                    minHeight: "100px",
+                    width: "100px",
+                    height: "100px",
+                    objectFit: "cover",
+                  }}
                   alt="Avatar"
                 />
-                {/* <img
-                  className="mask mask-circle"
-                  src={setSrc}
-                  width={100}
-                  height={100}
-                  alt="Avatar"
-                /> */}
                 <h3 className="py-2 font-bold">{userDisplayName}</h3>
                 <ButtonEditProfModal />
               </aside>
@@ -157,7 +167,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   <ThemeContext.Provider value={value}>
                     <div className="flex justify-between items-center w-full">
                       <AllertCall />
-                      <DropdownEditBlockCopy/>
+                      <DropdownEditBlockCopy />
                     </div>
                   </ThemeContext.Provider>
                 )}
@@ -165,7 +175,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             </section>
           </div>
           <AllertToast />
-          <ModalEditProf id={params.id}/>
+          <ModalEditProf id={params.id} />
           {/* <EditBlockModal /> */}
         </div>
       </div>
