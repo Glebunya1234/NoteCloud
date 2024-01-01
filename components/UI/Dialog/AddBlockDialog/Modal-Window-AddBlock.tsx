@@ -39,7 +39,7 @@ const AddBlockModal: React.FC<{
         <h3 className="font-bold text-lg mb-2 ">Add a new block for tasks</h3>
 
         {/* Первая пара инпута и кнопки */}
-        <div className="my-4">
+        <div className="my-3">
           <span className="label-text">Enter block Name</span>
 
           <input
@@ -53,7 +53,7 @@ const AddBlockModal: React.FC<{
           />
         </div>
 
-        <div className="my-4">
+        <div className="my-3">
           <span className="label-text">Enter the name of the first task</span>
           {/* Вторая пара инпута и кнопки */}
 
@@ -78,7 +78,7 @@ const AddBlockModal: React.FC<{
         </form>
 
         {/* Текст ниже */}
-        <p className="mt-5 text-xs text-right">
+        <p className="mt-4 text-xs text-right">
           Press ESC key or click outside to close
         </p>
       </div>

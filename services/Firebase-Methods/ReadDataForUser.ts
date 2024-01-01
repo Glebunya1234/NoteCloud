@@ -28,6 +28,10 @@ interface UserData {
     photoURL?: string;
     // Другие поля, если есть
 }
+interface UserNameData {
+    displayName?: string;
+    // Другие поля, если есть
+}
 
 export const ReadImageData = async (userID: string): Promise<string | undefined> => {
     const q = query(usersCollection, where('userID', '==', userID));
@@ -39,6 +43,25 @@ export const ReadImageData = async (userID: string): Promise<string | undefined>
             const documentSnapshot = querySnapshot.docs[0];
             const userData = documentSnapshot.data() as UserData;
             return userData.photoURL;
+        } else {
+            return undefined;
+        }
+    } catch (error) {
+        console.error('Ошибка при чтении данных из коллекции', error);
+        throw error;
+    }
+};
+
+export const ReadNameData = async (userID: string): Promise<string | undefined> => {
+    const q = query(usersCollection, where('userID', '==', userID));
+
+    try {
+        const querySnapshot = await getDocs(q);
+
+        if (!querySnapshot.empty) {
+            const documentSnapshot = querySnapshot.docs[0];
+            const userData = documentSnapshot.data() as UserNameData;
+            return userData.displayName;
         } else {
             return undefined;
         }
@@ -61,6 +84,37 @@ export const addImageData = async (data: string, userID: string): Promise<void> 
             await updateDoc(docRef, { photoURL: data });
         });
         console.log('Данные успешно добавлены в коллекцию');
+    } catch (error) {
+        console.error('Ошибка при добавлении данных в коллекцию', error);
+        throw error;
+    }
+};
+
+// смена ника по юзера айди 
+export const ChangeNameUser = async (newNickName: string, userID: string): Promise<string | undefined> => {
+
+    const q = query(usersCollection, where('userID', '==', userID));
+    try {
+        // Изменение данных в коллекции
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach(async (documentSnapshot) => {
+            const docRef = doc(usersCollection, documentSnapshot.id);
+            await updateDoc(docRef, { displayName: newNickName });
+        });
+
+        // чтение данных в коллекции
+        const querySnapshotAfterChange = await getDocs(q);
+        if (!querySnapshotAfterChange.empty) {
+            const documentSnapshot = querySnapshotAfterChange.docs[0];
+            const userData = documentSnapshot.data() as UserNameData;
+
+            console.log('Данные успешно добавлены в коллекцию');
+            return userData.displayName;
+        } else {
+            return undefined;
+        }
+
+
     } catch (error) {
         console.error('Ошибка при добавлении данных в коллекцию', error);
         throw error;

@@ -46,7 +46,7 @@ const EditBlockModal: React.FC<{
             }}
             value={newblockname}
           />
-          <form method="dialog" className="mt-2 w-full">
+          <form method="dialog" className="mt-4 w-full">
             <button
               className="btn btn-square bg-transparent border-[#3a393c] w-full hover:bg-bg-mydurkgrey"
               onClick={UpdateBlockNameFunc}
