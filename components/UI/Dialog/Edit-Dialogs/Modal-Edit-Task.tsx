@@ -18,7 +18,7 @@ const EditTaskDialog: React.FC<{
   oldtaskName: string;
   blockName: string;
   priorityTitle: string;
-  
+
 }> = ({ id, oldtaskName, blockName, priorityTitle }) => {
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");

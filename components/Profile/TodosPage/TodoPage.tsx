@@ -22,7 +22,7 @@ import { todo } from "node:test";
 const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
-  const [nameBlock, setNameBlock] = useState<string>("");
+  const [BlockName, setNameBlock] = useState("");
   const [nametitle, setNametitle] = useState<string>("");
   const [priorityTitle, setPriorityTitle] = useState<string>("");
   const theme = useContext(ThemeContext);
@@ -39,10 +39,15 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
     }
   };
   const handleClickChangeTask = (namesBlock: string, titleTodo:string, teg:string) => {
-    setNameBlock(namesBlock);
+    // console.log("Кнопка изменить задачу",namesBlock)
+    // console.log("Кнопка изменить задачу",nameBlock)
+    // console.log("Кнопка изменить задачу",namesBlock)
+    const f = namesBlock 
+    setNameBlock(f);
+    setNameBlock(f);
     setNametitle(titleTodo),
-      setPriorityTitle(teg),
-      openAModalWindowbyID("EditTaskDialog");
+    setPriorityTitle(teg),
+    openAModalWindowbyID("EditTaskDialog");
   };
 
   const animationVariants = {
@@ -100,14 +105,15 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
             key={index}
           >
             <div
-              className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${
+              className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between transition-all bg-bg-myyellow shadow-xl -z-20 rounded-3xl ${
                 theme?.ModeEditOrRemove === "remove"
                   ? "hover:shadow-bg-RedPink/70"
                   : theme?.ModeEditOrRemove === "edit"
                   ? "hover:shadow-bg-myOrange/50"
                   : ""
               }`}
-              onClick={() => handleClickOnArticle(block[0].nameBlock)}
+
+              onClick={() => theme?.ModeEditOrRemove === "none"? console.log("im none") : handleClickOnArticle(block[0].nameBlock)}
             >
               {/* Name of block */}
 
@@ -170,13 +176,13 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
                         </nav>
                       </div>
                     </motion.div>
-
                     <EditTaskDialog
                       id={id}
-                      blockName={nameBlock}
+                      blockName={BlockName}
                       oldtaskName={nametitle}
                       priorityTitle={priorityTitle}
                     />
+
                   </li>
                 ))}
               </motion.ul>
@@ -195,8 +201,8 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
           </motion.article>
         ))}
         <AddBlockModal id={id} />
-        <EditBlockModal id={id} blockName={nameBlock} />
-        <ModalRemoveBlock id={id} blockName={nameBlock} />
+        <EditBlockModal id={id} blockName={BlockName} />
+        <ModalRemoveBlock id={id} blockName={BlockName} />
       </main>
     </UpdateArray.Provider>
   );

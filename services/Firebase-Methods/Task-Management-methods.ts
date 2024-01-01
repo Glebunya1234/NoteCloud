@@ -80,7 +80,6 @@ export async function UpdateTask(userID: string, nameBlock: string, titleTodos: 
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
     const querySnapshot = await getDocs(q);
 
-
     querySnapshot.forEach(async (documentSnapshot) => {
         const docRef = doc(dataRefTodos, documentSnapshot.id);
         await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
