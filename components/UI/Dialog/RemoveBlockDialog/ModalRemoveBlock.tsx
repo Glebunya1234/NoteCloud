@@ -13,9 +13,9 @@ const ModalRemoveBlock: React.FC<{
     try {
       deleteBlockInName(id, blockName);
       updateContext?.onTaskAdded();
-      showSuccessToast("The Block has been deleted!");
+      showSuccessToast("The block has been deleted!");
     } catch (error) {
-      showErrorToast("The Block was not deleted!");
+      showErrorToast("The block was not deleted!");
     }
   };
 

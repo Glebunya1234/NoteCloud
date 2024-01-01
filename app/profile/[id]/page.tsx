@@ -23,10 +23,18 @@ import {
   AllertCall,
 } from "@/components";
 
-import { ThemeContext, HoverContextType } from "@/components/Context";
+import {
+  ThemeContext,
+  HoverContextType,
+  ChangeNickNameAndPhotoUrl,
+  ChandeNameAndPhoto,
+} from "@/components/Context";
 import { AnimatePresence, motion } from "framer-motion";
 import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
-import { ReadImageData, ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
+import {
+  ReadImageData,
+  ReadNameData,
+} from "@/services/Firebase-Methods/ReadDataForUser";
 // import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
@@ -41,7 +49,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const [activeMain, setActiveMain] = useState("Home");
   // const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
   const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
-  const [userDisplayName, setuserDisplayName] = useState<string | null |undefined >("");
+  const [userDisplayName, setuserDisplayName] = useState<
+    string | null | undefined
+  >("");
   // const [theme, setTheme] = useState<HoverContextType["theme"]>("");
   // const [Mode, setMode] = useState<HoverContextType["Mode"]>(false);
   const [ModeEditOrRemove, setModeEditOrRemove] =
@@ -52,6 +62,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     ModeEditOrRemove,
     setModeEditOrRemove,
   };
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,9 +103,8 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     } else {
       setuserDisplayName("");
     }
-    
   };
-  
+
   useEffect(() => {
     fetchDataIMG();
   }, []);
@@ -187,7 +197,13 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             </section>
           </div>
           <AllertToast />
-          <ModalEditProf id={params.id} oldUserName={`${userDisplayName}`} onPhotoChange={fetchDataIMG}/>
+
+            <ModalEditProf
+              id={params.id}
+              oldUserName={`${userDisplayName}`}
+              onPhotoChange={fetchDataIMG}
+            />
+
           {/* <EditBlockModal /> */}
         </div>
       </div>

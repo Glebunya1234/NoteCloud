@@ -9,8 +9,9 @@ export type HoverContextType = {
     setModeEditOrRemove: React.Dispatch<React.SetStateAction< "edit" | "remove" | "none" >>;
 };
 
-
 export const ThemeContext = createContext<HoverContextType | undefined>(undefined);
+
+
 
 export type ChangeTegButton = {
     // theme: "hover:shadow-red-500/50" | "hover:shadow-white/50" | "";
@@ -32,3 +33,9 @@ export type UpdateArray = {
 export const UpdateArray = createContext<UpdateArray | undefined>(undefined);
 
  
+export type ChangeNickNameAndPhotoUrl = {
+    
+    nicknameAndphoto: string|undefined|void ;
+    setNicknameAndphoto: React.Dispatch<React.SetStateAction<string|undefined|void>>;
+};
+export const ChandeNameAndPhoto = createContext<ChangeNickNameAndPhotoUrl | undefined>(undefined);

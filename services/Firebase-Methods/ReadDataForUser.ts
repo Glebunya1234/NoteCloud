@@ -21,18 +21,16 @@ export function readDoc(userID: string) {
 }
 
 
-// вывод аватара по юзера айди 
 const usersCollection = collection(mydatabase, 'collection-users');
 
 interface UserData {
     photoURL?: string;
-    // Другие поля, если есть
 }
 interface UserNameData {
     displayName?: string;
-    // Другие поля, если есть
 }
 
+// вывод аватара по юзера айди 
 export const ReadImageData = async (userID: string): Promise<string | undefined> => {
     const q = query(usersCollection, where('userID', '==', userID));
 
@@ -52,6 +50,7 @@ export const ReadImageData = async (userID: string): Promise<string | undefined>
     }
 };
 
+// чтение ника по юзера айди 
 export const ReadNameData = async (userID: string): Promise<string | undefined> => {
     const q = query(usersCollection, where('userID', '==', userID));
 
@@ -68,6 +67,7 @@ export const ReadNameData = async (userID: string): Promise<string | undefined> 
     } catch (error) {
         console.error('Ошибка при чтении данных из коллекции', error);
         throw error;
+
     }
 };
 
@@ -91,7 +91,7 @@ export const addImageData = async (data: string, userID: string): Promise<void> 
 };
 
 // смена ника по юзера айди 
-export const ChangeNameUser = async (newNickName: string, userID: string): Promise<string | undefined> => {
+export const ChangeNameUser = async (newNickName: string, userID: string): Promise<void> => {
 
     const q = query(usersCollection, where('userID', '==', userID));
     try {
@@ -101,18 +101,7 @@ export const ChangeNameUser = async (newNickName: string, userID: string): Promi
             const docRef = doc(usersCollection, documentSnapshot.id);
             await updateDoc(docRef, { displayName: newNickName });
         });
-
-        // чтение данных в коллекции
-        const querySnapshotAfterChange = await getDocs(q);
-        if (!querySnapshotAfterChange.empty) {
-            const documentSnapshot = querySnapshotAfterChange.docs[0];
-            const userData = documentSnapshot.data() as UserNameData;
-
-            console.log('Данные успешно добавлены в коллекцию');
-            return userData.displayName;
-        } else {
-            return undefined;
-        }
+        console.log('Данные успешно добавлены в коллекцию');
 
 
     } catch (error) {

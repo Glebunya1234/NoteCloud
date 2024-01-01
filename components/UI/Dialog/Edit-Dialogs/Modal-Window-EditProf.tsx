@@ -1,15 +1,19 @@
+import { ChandeNameAndPhoto, ThemeContext } from "@/components/Context";
 import { showErrorToast, showSuccessToast } from "@/components/Toast/toast";
 import {
   mydatabase,
   mystorage,
   storageRef,
 } from "@/services/Firebase-Config/firebaseConfig";
-import { ChangeNameUser, addImageData } from "@/services/Firebase-Methods/ReadDataForUser";
+import {
+  ChangeNameUser,
+  addImageData,
+} from "@/services/Firebase-Methods/ReadDataForUser";
 import { child } from "firebase/database";
 import { addDoc, collection } from "firebase/firestore";
 
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const ModalEditProf: React.FC<{
@@ -19,9 +23,11 @@ const ModalEditProf: React.FC<{
 }> = ({ id, oldUserName, onPhotoChange }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const [userName, setUserName ] = useState("");
+  const [userName, setUserName] = useState("");
 
-  const handleFileChangeAndName = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChangeAndName = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
       setSelectedFile(file);
@@ -38,8 +44,10 @@ const ModalEditProf: React.FC<{
         // Получение URL загруженного файла
         const downloadURL = await getDownloadURL(fileRef);
 
-        await addImageData(downloadURL, id);
-        onPhotoChange();
+        await addImageData(downloadURL, id).then(() => {
+          onPhotoChange();
+          showSuccessToast("The photo changed succesfully!");
+        });
         console.log(
           "Ссылка на изображение сохранена в Firestore с идентификатором:"
         );
@@ -49,12 +57,12 @@ const ModalEditProf: React.FC<{
     }
 
     if (userName.trim() !== "") {
-      ChangeNameUser(userName, id).then(() => {
+      await ChangeNameUser(userName, id).then(() => {
         onPhotoChange();
-        showSuccessToast("The block has been updated!");
+        showSuccessToast("The name changed succesfully!");
       });
     } else {
-      showErrorToast("The block was not updated!");
+      showErrorToast("The name was not changed!");
     }
   };
 
@@ -75,7 +83,9 @@ const ModalEditProf: React.FC<{
           placeholder="New Name"
           className="input input-ghost w-full bg-transparent max-w-4xl  mb-3  transition-all ease-linear hover:bg-bg-mydurkgrey"
           value={userName}
-          onChange={(e)=> {setUserName(e.target.value)}}
+          onChange={(e) => {
+            setUserName(e.target.value);
+          }}
         />
 
         <span className="label-text">Upload a photo...</span>

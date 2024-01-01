@@ -26,7 +26,7 @@ const AddBlockModal: React.FC<{
     if (taskname.trim() !== "" && blockname.trim() !== "") {
       AddNewTaskInBlock(id, blockname, taskname).then(() => {
         updateContext?.onTaskAdded();
-        showSuccessToast("The Block has been created!");
+        showSuccessToast("The block has been created!");
       });
     } else {
       showErrorToast("The block was not created!");
