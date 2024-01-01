@@ -58,8 +58,6 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       const googleUser = await getUser(params.id);
       console.log(googleUser);
       if (googleUser !== null) {
-        let imgref = await ReadImageData(params.id);
-
         //Проверка на аватар гугл авториз
         // if (googleUser.photoURL !== "") {
         //   setSetSrc(googleUser.photoURL);
@@ -67,12 +65,6 @@ const UserPage = ({ params }: { params: { id: string } }) => {
         //   setSetSrc(linkDefaultPhoto);
         // }
 
-        // Проверка на аватар через обращение в бд в коллекцию
-        if (imgref !== undefined) {
-          setSetSrc(imgref);
-        } else {
-          setSetSrc(linkDefaultPhoto);
-        }
         // console.log(googleUser.displayName);
         //Проверка на ник нейм
         if (googleUser.displayName !== "") {
@@ -85,7 +77,19 @@ const UserPage = ({ params }: { params: { id: string } }) => {
       }
     };
     fetchData();
-  }, []); // Пустой массив завершает эффект после монтирования
+  }, []);
+  // Пустой массив завершает эффект после монтирования
+  const fetchDataIMG = async () => {
+    let imgref = await ReadImageData(params.id); // Проверка на аватар через обращение в бд в коллекцию
+    if (imgref !== undefined) {
+      setSetSrc(imgref);
+    } else {
+      setSetSrc(linkDefaultPhoto);
+    }
+  };
+  useEffect(() => {
+    fetchDataIMG();
+  }, []);
 
   const handleButtonClick = (buttonName: string) => {
     setActiveMain(buttonName);
@@ -175,7 +179,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             </section>
           </div>
           <AllertToast />
-          <ModalEditProf id={params.id} />
+          <ModalEditProf id={params.id} onPhotoChange={fetchDataIMG}/>
           {/* <EditBlockModal /> */}
         </div>
       </div>
@@ -184,11 +188,3 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   );
 };
 export default UserPage;
-// {activeMain === "Todos" && (
-//   <>
-//     <TodosContent id={params.id} />
-//     {/* <div className="absolute bottom-5 w-full flex flex-row justify-end">
-//       <ButtonAddBlock />
-//     </div> */}
-//   </>
-// )}

@@ -13,7 +13,8 @@ import { FiCheck } from "react-icons/fi";
 
 const ModalEditProf: React.FC<{
   id: string;
-}> = ({ id }) => {
+  onPhotoChange: () => void;
+}> = ({ id, onPhotoChange }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,6 +36,7 @@ const ModalEditProf: React.FC<{
         const downloadURL = await getDownloadURL(fileRef);
 
         await addImageData(downloadURL, id);
+        onPhotoChange()
         console.log(
           "Ссылка на изображение сохранена в Firestore с идентификатором:"
         );
