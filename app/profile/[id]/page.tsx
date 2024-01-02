@@ -7,21 +7,20 @@ import { userService, MyUser } from "@services/User-Service/UserServ";
 
 import Logo2 from "@/public/logoNC.svg";
 import {
-  TodosContent,
-  HomeContent,
   ButtonMenuNavigations,
   AllertToast,
   ModalEditProf,
-  BottonSignOut,
   BottonCloseTest,
   SearchInput,
   ButtonEditProfModal,
   DrawerSide,
   ButtonDrawer,
   DropdownEditBlock,
-  SettingsContent,
   AllertCall,
   ButtonSetNaw,
+  HomeContent,
+  SettingsContent,
+  TodosContent,
 } from "@/components";
 
 import {
@@ -31,6 +30,8 @@ import {
   ChandeNameAndPhoto,
   NavButSetType,
   NavButSet,
+  NavButMenuType,
+  NavButMenu,
 } from "@/components/Context";
 import { AnimatePresence, motion } from "framer-motion";
 import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
@@ -48,11 +49,14 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
 
   const router = useRouter();
-  const [activeMain, setActiveMain] = useState("Home");
+  const [activeMain, setActiveMain] =
+    useState<NavButMenuType["activeMain"]>("Home");
+
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
 
   const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
+
   const [userDisplayName, setuserDisplayName] = useState<
     string | null | undefined
   >("");
@@ -67,6 +71,10 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const valueForNavBut = {
     activeSetName,
     setActiveSetName,
+  };
+  const valueForNavMenu = {
+    activeMain,
+    setActiveMain,
   };
 
   useEffect(() => {
@@ -114,9 +122,15 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     fetchDataIMG();
   }, []);
 
-  const handleButtonNavClick = (buttonName: string) => {
-    setActiveMain(buttonName);
-  };
+  // const handleButtonNavClick = (buttonName: string) => {
+  //   if (
+  //     buttonName == "Home" ||
+  //     buttonName == "Todos" ||
+  //     buttonName == "Settings"
+  //   )
+  //     setActiveMain(buttonName);
+  //   else console.log("Unknown button");
+  // };
   const handleButtonSetClick = (buttonName: string) => {
     setActiveSetName(buttonName);
   };
@@ -153,20 +167,29 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               </aside>
 
               <section className="w-full my-5 px-10 flex items-center flex-col justify-center ">
-                <ButtonMenuNavigations onButtonClick={handleButtonNavClick} />
+                <NavButMenu.Provider value={valueForNavMenu}>
+                  {" "}
+                  <ButtonMenuNavigations />
+                </NavButMenu.Provider>
               </section>
             </section>
 
             <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
               <header className="w-full border-b-[1px] border-bg-mydurkgrey">
                 <header className="hidden w-full h-24 md:flex items-center p-5">
-                  <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
-                    Your&nbsp;Tasks
-                  </h1>
+                  {activeMain === "Settings" && (
+                    <ButtonSetNaw onButtonClick={handleButtonSetClick} />
+                  )}
+                  {activeMain === "Todos" && (
+                    <>
+                      <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
+                        Your&nbsp;Tasks
+                      </h1>
 
-                  <SearchInput />
-                  <BottonSignOut />
-                  <BottonCloseTest />
+                      <SearchInput />
+                      <BottonCloseTest />
+                    </>
+                  )}
                 </header>
                 <header className="md:hidden w-full h-24 flex items-center p-5">
                   <ButtonDrawer />
@@ -197,20 +220,16 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   )}
                 </main>
               </aside>
-              <footer className="w-full h-24 mt-5 items-center  flex">
-                {activeMain === "Settings" && (
-                  <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                )}
-
-                {activeMain === "Todos" && (
+              {activeMain === "Todos" && (
+                <footer className="w-full h-24 mt-5 items-center  flex">
                   <RemoveOrEdit.Provider value={valueForAllert}>
                     <div className="flex justify-between items-center w-full">
                       <AllertCall />
                       <DropdownEditBlockCopy />
                     </div>
                   </RemoveOrEdit.Provider>
-                )}
-              </footer>
+                </footer>
+              )}
             </section>
           </div>
           <AllertToast />
@@ -224,7 +243,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           {/* <EditBlockModal /> */}
         </div>
       </div>
-      <DrawerSide />
+      <NavButSet.Provider value={valueForNavBut}>
+        <DrawerSide />
+      </NavButSet.Provider>
     </div>
   );
 };
