@@ -13,7 +13,7 @@ import BottonCloseTest from "@/components/Buttons/Profile-Buttons/ButtonCloseInP
 import { RegisterInputs } from "@/components/Inputs/Auth-Inputs/Register-input";
 import { LogInInputs } from "@/components/Inputs/Auth-Inputs/LogIn-input";
 import SearchInput from "@/components/Inputs/Profile-Inputs/Search-Input";
-import ButtonMenuNavigations from "@/components/Pagination-Navigations/Button-MenuNav";
+import ButtonMenuNavigations from "@/components/Pagination-Navigations/Buttons-MenuNav/Button-MenuNav";
 import HomeContent from "@components/Profile/HomePage/HomePage";
 import TodosContent from "@components/Profile/TodosPage/TodoPage";
 import { ActiveTabs } from "@components/Tabs/Active-tab";
@@ -36,6 +36,7 @@ import AddBlockModal from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
 import PriorityDropdown from "./UI/DropDown/PriorityDropDown";
 import EditTaskDialog from "./UI/Dialog/Edit-Dialogs/Modal-Edit-Task";
 import EditTaskButton from "./Buttons/Task-Buttons/EditTaskButton";
+import ButtonSetNaw from "./Pagination-Navigations/Buttons-SettingsNav/Button-SetNaw";
 
 
 export {
@@ -52,6 +53,7 @@ export {
   TodosContent,
   
   ButtonMenuNavigations,
+  ButtonSetNaw,
 
   ActiveTabs,
   AddNewTaskComnponent,

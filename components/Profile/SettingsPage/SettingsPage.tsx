@@ -1,10 +1,12 @@
+import { NavButSet } from "@/components/Context";
+import { useContext } from "react";
+
 export default function SettingsContent() {
+  const Mode = useContext(NavButSet);
     return (
       <main className="w-full h-full px-5 flex flex-col justify-center items-center ">
-        <h1 className="font-Orbitron text-3xl ">Welcome to Settings</h1>
-        <p className="text-2xl font-normal my-3 text-center">
-          To start creating tasks, go to the TODOES tab and create a few examples.
-        </p>
+       {Mode?.activeSetName === "Account" && <p>Account</p>}
+       {Mode?.activeSetName === "Appearance" && <p>Appearance</p>}
       </main>
     );
   }

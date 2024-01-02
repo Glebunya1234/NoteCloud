@@ -1,15 +1,19 @@
 import { createContext } from "react";
 
 export type HoverContextType = {
-    // theme: "hover:shadow-red-500/50" | "hover:shadow-white/50" | "";
-    // setTheme: React.Dispatch<React.SetStateAction<"hover:shadow-red-500/50" | "hover:shadow-white/50" | "">>;
-    // Mode: true| false ;
-    // setMode: React.Dispatch<React.SetStateAction< true|false>>;
+
     ModeEditOrRemove: "edit" | "remove" | "none" ;
     setModeEditOrRemove: React.Dispatch<React.SetStateAction< "edit" | "remove" | "none" >>;
 };
 
-export const ThemeContext = createContext<HoverContextType | undefined>(undefined);
+export const RemoveOrEdit = createContext<HoverContextType | undefined>(undefined);
+
+export type NavButSetType = {
+    activeSetName: string ;
+    setActiveSetName: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export const NavButSet = createContext<NavButSetType | undefined>(undefined);
 
 
 

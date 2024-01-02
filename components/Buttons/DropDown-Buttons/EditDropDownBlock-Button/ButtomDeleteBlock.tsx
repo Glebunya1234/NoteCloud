@@ -1,9 +1,9 @@
-import {ThemeContext} from "@/components/Context";
+import {RemoveOrEdit} from "@/components/Context";
 import { useContext } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 
 const ButtonDellBlock = () => {
-    const theme = useContext(ThemeContext);
+    const theme = useContext(RemoveOrEdit);
     const hendClickDellButton = () => {
         console.log(theme)
         // theme?.setTheme("hover:shadow-red-500/50")

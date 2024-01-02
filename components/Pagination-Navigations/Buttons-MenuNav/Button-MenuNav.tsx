@@ -2,7 +2,7 @@
 
 import { FaHome, FaTasks, FaWhmcs } from "react-icons/fa";
 
-import styles from "@components/Pagination-Navigations/Button-MenuNav.module.css";
+import styles from "@components/Pagination-Navigations/Button-Nav.module.css";
 const ButtonMenuNavigations: React.FC<{
   onButtonClick: (buttonName: string) => void;
 }> = ({ onButtonClick }) => {

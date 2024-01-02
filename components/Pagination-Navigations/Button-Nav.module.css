@@ -7,3 +7,6 @@
 .Span {
   @apply w-full pl-5;
 }
+.DivIcoAndSpanNoPadding{
+  @apply flex w-full pl-0 items-center text-left;
+}

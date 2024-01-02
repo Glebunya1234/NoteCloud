@@ -16,9 +16,6 @@
 }
 
 
-
-
-
 .card::before {
   opacity: 0;
   content: "";

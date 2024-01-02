@@ -15,7 +15,7 @@ import {
   ModalRemoveBlock,
   PriorityDropdown,
 } from "@/components";
-import { ThemeContext, UpdateArray } from "@/components/Context";
+import { RemoveOrEdit,  UpdateArray } from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 import { todo } from "node:test";
 
@@ -25,7 +25,7 @@ const TodosContent: React.FC<{ id: string }> = ({ id }) => {
   const [BlockName, setNameBlock] = useState("");
   const [nametitle, setNametitle] = useState<string>("");
   const [priorityTitle, setPriorityTitle] = useState<string>("");
-  const theme = useContext(ThemeContext);
+  const theme = useContext(RemoveOrEdit);
 
   const handleClickOnArticle = (names: string) => {
     if (theme?.ModeEditOrRemove === "edit") {

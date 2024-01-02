@@ -21,13 +21,16 @@ import {
   DropdownEditBlock,
   SettingsContent,
   AllertCall,
+  ButtonSetNaw,
 } from "@/components";
 
 import {
-  ThemeContext,
+  RemoveOrEdit,
   HoverContextType,
   ChangeNickNameAndPhotoUrl,
   ChandeNameAndPhoto,
+  NavButSetType,
+  NavButSet,
 } from "@/components/Context";
 import { AnimatePresence, motion } from "framer-motion";
 import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
@@ -35,7 +38,6 @@ import {
   ReadImageData,
   ReadNameData,
 } from "@/services/Firebase-Methods/ReadDataForUser";
-// import AllertCall from "@/components/UI/Allerts/Allert-EditOrRemove/Alert-Call";
 
 const getUser = async (id: string): Promise<MyUser | null> => {
   return await userService.getById(id);
@@ -47,22 +49,25 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
   const router = useRouter();
   const [activeMain, setActiveMain] = useState("Home");
-  // const [setSrc, setSetSrc] = useState(linkDefaultPhoto);
+  const [activeSetName, setActiveSetName] =
+    useState<NavButSetType["activeSetName"]>("Account");
+
   const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
   const [userDisplayName, setuserDisplayName] = useState<
     string | null | undefined
   >("");
-  // const [theme, setTheme] = useState<HoverContextType["theme"]>("");
-  // const [Mode, setMode] = useState<HoverContextType["Mode"]>(false);
+
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
-  const value = {
-    // Mode,
-    // setMode,
+
+  const valueForAllert = {
     ModeEditOrRemove,
     setModeEditOrRemove,
   };
-
+  const valueForNavBut = {
+    activeSetName,
+    setActiveSetName,
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -109,8 +114,11 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     fetchDataIMG();
   }, []);
 
-  const handleButtonClick = (buttonName: string) => {
+  const handleButtonNavClick = (buttonName: string) => {
     setActiveMain(buttonName);
+  };
+  const handleButtonSetClick = (buttonName: string) => {
+    setActiveSetName(buttonName);
   };
 
   return (
@@ -145,7 +153,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
               </aside>
 
               <section className="w-full my-5 px-10 flex items-center flex-col justify-center ">
-                <ButtonMenuNavigations onButtonClick={handleButtonClick} />
+                <ButtonMenuNavigations onButtonClick={handleButtonNavClick} />
               </section>
             </section>
 
@@ -172,37 +180,46 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   }`}
                 >
                   {activeMain === "Home" && <HomeContent />}
-                  {activeMain === "Settings" && <SettingsContent />}
+                  {activeMain === "Settings" && (
+                    <NavButSet.Provider value={valueForNavBut}>
+                      <SettingsContent />
+                    </NavButSet.Provider>
+                  )}
+
                   {activeMain === "Todos" && (
                     <>
-                      <ThemeContext.Provider value={value}>
+                      <RemoveOrEdit.Provider value={valueForAllert}>
                         <div className="relative overflow-auto min-w-full ">
                           <TodosContent id={params.id} />
                         </div>
-                      </ThemeContext.Provider>
+                      </RemoveOrEdit.Provider>
                     </>
                   )}
                 </main>
               </aside>
               <footer className="w-full h-24 mt-5 items-center  flex">
+                {activeMain === "Settings" && (
+                  <ButtonSetNaw onButtonClick={handleButtonSetClick} />
+                )}
+
                 {activeMain === "Todos" && (
-                  <ThemeContext.Provider value={value}>
+                  <RemoveOrEdit.Provider value={valueForAllert}>
                     <div className="flex justify-between items-center w-full">
                       <AllertCall />
                       <DropdownEditBlockCopy />
                     </div>
-                  </ThemeContext.Provider>
+                  </RemoveOrEdit.Provider>
                 )}
               </footer>
             </section>
           </div>
           <AllertToast />
 
-            <ModalEditProf
-              id={params.id}
-              oldUserName={`${userDisplayName}`}
-              onPhotoChange={fetchDataIMG}
-            />
+          <ModalEditProf
+            id={params.id}
+            oldUserName={`${userDisplayName}`}
+            onPhotoChange={fetchDataIMG}
+          />
 
           {/* <EditBlockModal /> */}
         </div>

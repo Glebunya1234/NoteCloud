@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import {ThemeContext} from "@/components/Context";
+import {RemoveOrEdit} from "@/components/Context";
 import AllertEditOrRemove from "./AlertEditOrRemove";
 import { AnimatePresence, motion } from "framer-motion";
 
 
 const AllertCall = () => {
-  const Mode = useContext(ThemeContext);
+  const Mode = useContext(RemoveOrEdit);
   return (
     <>
       {Mode?.ModeEditOrRemove === "edit" && <AllertEditOrRemove Mode="edit"/>}

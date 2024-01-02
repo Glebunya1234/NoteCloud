@@ -1,4 +1,4 @@
-import { ChandeNameAndPhoto, ThemeContext } from "@/components/Context";
+
 import { showErrorToast, showSuccessToast } from "@/components/Toast/toast";
 import {
   mydatabase,
@@ -59,7 +59,7 @@ const ModalEditProf: React.FC<{
     if (userName.trim() !== "") {
       await ChangeNameUser(userName, id).then(() => {
         onPhotoChange();
-        showSuccessToast("The name changed succesfully!");
+        showSuccessToast("Changes saved!");
       });
     } else {
       showErrorToast("The name was not changed!");

@@ -1,8 +1,8 @@
-import {ThemeContext} from "@/components/Context";
+import {RemoveOrEdit} from "@/components/Context";
 import { useContext } from "react";
 
 const AllertButton = () => {
-  const Mode = useContext(ThemeContext);
+  const Mode = useContext(RemoveOrEdit);
   const hendClickButton = () => {
     Mode?.setModeEditOrRemove("none");
   };
