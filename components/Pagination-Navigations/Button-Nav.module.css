@@ -1,11 +1,11 @@
 .ButtonsNav {
-  @apply btn btn-ghost my-1 w-full rounded-2xl justify-start normal-case;
+  @apply btn btn-ghost my-1 w-full rounded-lg md:rounded-2xl flex justify-start normal-case pt-[13px] md:pt-0;
 }
 .DivIcoAndSpan {
-  @apply flex w-full pl-5 items-center text-left;
+  @apply flex w-full pl-0 md:pl-5 items-center text-left;
 }
 .Span {
-  @apply w-full pl-5;
+  @apply w-full pl-5 flex items-center;
 }
 .DivIcoAndSpanNoPadding{
   @apply flex w-full pl-0 items-center text-left;

@@ -168,7 +168,6 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
               <section className="w-full my-5 px-10 flex items-center flex-col justify-center ">
                 <NavButMenu.Provider value={valueForNavMenu}>
-                  {" "}
                   <ButtonMenuNavigations />
                 </NavButMenu.Provider>
               </section>
@@ -243,9 +242,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           {/* <EditBlockModal /> */}
         </div>
       </div>
-      <NavButSet.Provider value={valueForNavBut}>
+      <NavButMenu.Provider value={valueForNavMenu}>
         <DrawerSide />
-      </NavButSet.Provider>
+      </NavButMenu.Provider>
     </div>
   );
 };

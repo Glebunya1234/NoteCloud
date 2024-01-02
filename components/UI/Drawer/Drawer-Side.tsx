@@ -3,10 +3,11 @@ import { NavButMenu, NavButMenuType } from "@/components/Context";
 import Logo2 from "@/public/logoNC.svg";
 import Image from "next/image";
 import { useContext, useState } from "react";
+import { FaHome, FaTasks, FaWhmcs } from "react-icons/fa";
 const DrawerSide = () => {
-  const PageName = useContext(NavButMenu) 
+  const PageName = useContext(NavButMenu);
   return (
-    <div className="drawer-side ">
+    <div className="drawer-side z-50 ">
       <label
         htmlFor="my-drawer"
         aria-label="close sidebar"
@@ -24,7 +25,12 @@ const DrawerSide = () => {
             <ButtonCloseDrawer />
           </header>
           {/* Содержимое боковой панели здесь */}
-          <ButtonMenuNavigations />
+
+          <section className="flex flex-row w-full justify-center items-start">
+            <nav className="flex flex-col w-90% justify-center">
+              <ButtonMenuNavigations />
+            </nav>
+          </section>
         </ul>
       </main>
     </div>
