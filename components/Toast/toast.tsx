@@ -8,7 +8,7 @@ export function AllertToast() {
         reverseOrder={false}
         gutter={8}
         toastOptions={{
-          duration: 4000,
+          duration: 1200,
 
           style: {
             padding: "16px",

@@ -1,0 +1,95 @@
+@property --rotate {
+  syntax: "<angle>";
+  initial-value: 132deg;
+  inherits: false;
+}
+
+.card {
+  position: relative;
+  height: auto;
+}
+
+
+.card:hover:before,
+.card:hover:after {
+  opacity: 1;
+}
+
+
+
+
+
+.card::before {
+  opacity: 0;
+  content: "";
+  width: 260px;
+  height: calc(100% - 28px);
+  border-radius: 1.7rem;
+  position: absolute;
+  z-index: 1;
+  top: 14px;
+  left: 15px;
+  animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+  opacity: 0;
+  position: absolute;
+  content: "";
+  top: calc(100px / 6);
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  transform: scale(0.8);
+  filter: blur(calc(500px / 6));
+  transition: opacity 0.5s;
+  animation: spin 2.5s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    --rotate: 0deg;
+  }
+  100% {
+    --rotate: 360deg;
+  }
+}
+
+.card.CardRemove::before {
+  background-image: linear-gradient(
+    var(--rotate),
+    #fd0000,
+    #14213d 43%,
+    #f87272
+  );
+}
+.card.CardRemove::after {
+  background-image: linear-gradient(
+    var(--rotate),
+    #fd0000,
+    #14213d 43%,
+    #f87272
+  );
+}
+
+.card.CardEdit::before {
+  background-image: linear-gradient(
+    var(--rotate),
+    #fbff00, 
+    #14213d 43%,
+    #f3af32 
+    
+  );
+}
+.card.CardEdit::after {
+  background-image: linear-gradient(
+    var(--rotate),
+    #fbff00, 
+    #14213d 43%, 
+    #f3af32 
+
+  );
+}
