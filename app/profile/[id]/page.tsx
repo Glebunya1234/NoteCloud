@@ -243,7 +243,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
         </div>
       </div>
       <NavButMenu.Provider value={valueForNavMenu}>
-        <DrawerSide />
+       <DrawerSide/>
       </NavButMenu.Provider>
     </div>
   );

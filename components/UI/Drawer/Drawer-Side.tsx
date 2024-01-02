@@ -5,9 +5,9 @@ import Image from "next/image";
 import { useContext, useState } from "react";
 import { FaHome, FaTasks, FaWhmcs } from "react-icons/fa";
 const DrawerSide = () => {
-  const PageName = useContext(NavButMenu);
+
   return (
-    <div className="drawer-side z-50 ">
+    <div className="drawer-side z-50 md:hidden">
       <label
         htmlFor="my-drawer"
         aria-label="close sidebar"
