@@ -7,7 +7,7 @@ const ButtonSetNaw: React.FC<{
   onButtonClick: (buttonName: string) => void;
 }> = ({ onButtonClick }) => {
   return (
-    <ul className="w-full flex flex-row justify-center">
+    <ul className="w-full flex flex-row ">
       <li className="mx-2">
         <button
           className={styles.ButtonsNav}

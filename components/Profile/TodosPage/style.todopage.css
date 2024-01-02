@@ -58,7 +58,7 @@
 .card.CardRemove::before {
   background-image: linear-gradient(
     var(--rotate),
-    #fd0000,
+    #f87272,
     #14213d 43%,
     #f87272
   );
@@ -66,7 +66,7 @@
 .card.CardRemove::after {
   background-image: linear-gradient(
     var(--rotate),
-    #fd0000,
+    #f87272,
     #14213d 43%,
     #f87272
   );
@@ -75,7 +75,7 @@
 .card.CardEdit::before {
   background-image: linear-gradient(
     var(--rotate),
-    #fbff00, 
+    #f3af32 , 
     #14213d 43%,
     #f3af32 
     
@@ -84,7 +84,7 @@
 .card.CardEdit::after {
   background-image: linear-gradient(
     var(--rotate),
-    #fbff00, 
+    #f3af32 , 
     #14213d 43%, 
     #f3af32 
 

@@ -57,7 +57,7 @@ export default function ButtonGoogle() {
 
   return (
     <button
-      className="btn btn-ghost w-w90% max-w-xs m-1"
+      className="btn btn-ghost w-90% max-w-xs m-1"
       onClick={handleSignInWithGoogle}
     >
       <Image src={googleSvg} alt="Google Logo"/>

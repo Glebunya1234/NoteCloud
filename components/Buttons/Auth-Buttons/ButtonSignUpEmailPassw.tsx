@@ -54,7 +54,7 @@ export function RegisterButton({
   };
 
   return (
-    <button className="btn glass w-w90% max-w-xs m-1 " onClick={handleSignUp}>
+    <button className="btn glass w-90% max-w-xs m-1 " onClick={handleSignUp}>
       Sign Up
     </button>
   );

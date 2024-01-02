@@ -3,15 +3,17 @@
 import { FaHome, FaTasks, FaWhmcs } from "react-icons/fa";
 
 import styles from "@components/Pagination-Navigations/Button-Nav.module.css";
-const ButtonMenuNavigations: React.FC<{
-  onButtonClick: (buttonName: string) => void;
-}> = ({ onButtonClick }) => {
+import { useContext } from "react";
+import { NavButMenu } from "@/components/Context";
+const ButtonMenuNavigations =()=> {
+
+  const PageName = useContext(NavButMenu) 
   return (
     <ul className="w-full">
       <li>
         <button
           className={styles.ButtonsNav}
-          onClick={() => onButtonClick("Home")}
+          onClick={() => {PageName?.setActiveMain("Home"), console.log("Home", PageName?.activeMain)}}
         >
           <div className={styles.DivIcoAndSpan}>
             {/* <CgHomeAlt /> */}
@@ -24,7 +26,7 @@ const ButtonMenuNavigations: React.FC<{
       <li>
         <button
           className={styles.ButtonsNav}
-          onClick={() => onButtonClick("Todos")}
+          onClick={() => PageName?.setActiveMain("Todos") }
         >
           <div className={styles.DivIcoAndSpan}>
             <FaTasks style={{ fontSize: "18px" }} />
@@ -36,7 +38,7 @@ const ButtonMenuNavigations: React.FC<{
       <li>
         <button
           className={styles.ButtonsNav}
-          onClick={() => onButtonClick("Settings")}
+          onClick={() => PageName?.setActiveMain("Settings")}
         >
           <div className={styles.DivIcoAndSpan}>
             <FaWhmcs style={{ fontSize: "18px" }} />

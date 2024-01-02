@@ -1,4 +1,3 @@
-
 import { showErrorToast, showSuccessToast } from "@/components/Toast/toast";
 import {
   mydatabase,
@@ -9,11 +8,9 @@ import {
   ChangeNameUser,
   addImageData,
 } from "@/services/Firebase-Methods/ReadDataForUser";
-import { child } from "firebase/database";
-import { addDoc, collection } from "firebase/firestore";
 
-import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
-import { useContext, useEffect, useState } from "react";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const ModalEditProf: React.FC<{
@@ -80,8 +77,7 @@ const ModalEditProf: React.FC<{
 
         <input
           type="text"
-          placeholder="New Name"
-          className="input input-ghost w-full bg-transparent max-w-4xl  mb-3  transition-all ease-linear hover:bg-bg-mydurkgrey"
+          className="input input-bordered w-full bg-transparent max-w-4xl  mb-3  transition-all ease-linear hover:bg-bg-mydurkgrey"
           value={userName}
           onChange={(e) => {
             setUserName(e.target.value);
@@ -102,6 +98,7 @@ const ModalEditProf: React.FC<{
             className="btn btn-square bg-transparent border-[#3a393c] w-full hover:bg-bg-mydurkgrey"
             onClick={handleFileUpload}
           >
+            Save change
             <FiCheck style={{ fontSize: "20px" }} />
           </button>
         </form>

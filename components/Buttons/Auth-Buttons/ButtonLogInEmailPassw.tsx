@@ -26,5 +26,5 @@ export function ButtonSignIn({ email, password }: EmailAndPassw) {
       });
     }
   
-    return <button className="btn glass w-w90% max-w-xs m-1 " onClick={handleLogIn}>Log In</button>;
+    return <button className="btn glass w-90% max-w-xs m-1 " onClick={handleLogIn}>Log In</button>;
   }
