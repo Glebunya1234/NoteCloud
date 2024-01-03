@@ -13,7 +13,6 @@ import { FaAngleDoubleDown, FaAngleDoubleUp, FaAngleDown, FaAngleUp, FaEquals } 
 
 type priorityType ={
   Priority: "Highest" | "High" | "Medium" | "Low"  | "Lowest"
-  id: string;
   blockName: string;
   titleTodos: string;
 }

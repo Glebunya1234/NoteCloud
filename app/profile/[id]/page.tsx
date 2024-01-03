@@ -49,6 +49,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
 
   const router = useRouter();
+
   const [activeMain, setActiveMain] =
     useState<NavButMenuType["activeMain"]>("Home");
 
@@ -64,33 +65,11 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
 
-  const valueForAllert = {
-    ModeEditOrRemove,
-    setModeEditOrRemove,
-  };
-  const valueForNavBut = {
-    activeSetName,
-    setActiveSetName,
-  };
-  const valueForNavMenu = {
-    activeMain,
-    setActiveMain,
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const googleUser = await getUser(params.id);
       console.log(googleUser);
       if (googleUser !== null) {
-        //Проверка на аватар гугл авториз
-        // if (googleUser.photoURL !== "") {
-        //   setSetSrc(googleUser.photoURL);
-        // } else {
-        //   setSetSrc(linkDefaultPhoto);
-        // }
-
-        // console.log(googleUser.displayName);
-        //Проверка на ник нейм
         if (googleUser.displayName !== "") {
           setuserDisplayName(googleUser.displayName);
         } else {
@@ -102,39 +81,51 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     };
     fetchData();
   }, []);
-  // Пустой массив завершает эффект после монтирования
+
+  //#region Functions
   const fetchDataIMG = async () => {
-    let imgref = await ReadImageData(params.id); // Проверка на аватар через обращение в бд в коллекцию
+    let imgref = await ReadImageData(params.id);
     if (imgref !== undefined) {
       setSetSrc(imgref);
     } else {
       setSetSrc(linkDefaultPhoto);
     }
-    let nameRef = await ReadNameData(params.id); // Проверка на аватар через обращение в бд в коллекцию
+  };
+  const fetchDataName = async () => {
+    let nameRef = await ReadNameData(params.id);
     if (nameRef !== undefined) {
       setuserDisplayName(nameRef);
     } else {
       setuserDisplayName("");
     }
   };
+  const handleButtonSetClick = (buttonName: string) => {
+    setActiveSetName(buttonName);
+  };
+  //#endregion
+
+  //#region Objects
+  const valueForAllert = {
+    id:params.id,
+    ModeEditOrRemove,
+    setModeEditOrRemove,
+  };
+  const valueForNavBut = {
+    id:params.id,
+    fetchDataName: fetchDataName,
+    fetchDataIMG: fetchDataIMG,
+    activeSetName,
+    setActiveSetName,
+  };
+  const valueForNavMenu = {
+    activeMain,
+    setActiveMain,
+  };
+  //#endregion
 
   useEffect(() => {
     fetchDataIMG();
   }, []);
-
-  // const handleButtonNavClick = (buttonName: string) => {
-  //   if (
-  //     buttonName == "Home" ||
-  //     buttonName == "Todos" ||
-  //     buttonName == "Settings"
-  //   )
-  //     setActiveMain(buttonName);
-  //   else console.log("Unknown button");
-  // };
-  const handleButtonSetClick = (buttonName: string) => {
-    setActiveSetName(buttonName);
-  };
-
   return (
     <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -143,7 +134,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           <div className="md:w-94% h-full md:h-90%  max-w-1/2 flex  shadow-2xl overflow-hidden bg-bg-mygrey  md:rounded-3xl  w-full">
             <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full  items-center  flex-col ">
               <aside className="w-full h-24 flex items-center justify-center ">
-                <Image src={Logo2} width={30} height={30} alt="  " /> 
+                <Image src={Logo2} width={30} height={30} alt="  " />
                 <h1 className="text-center text-lg mx-2 text-gray-300 font-Orbitron">
                   NoteCloud
                 </h1>
@@ -195,6 +186,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   <SearchInput />
                 </header>
               </header>
+              {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
               <aside className="flex flex-row w-full h-full overflow-hidden">
                 <main
                   className={`w-full h-full flex  scroll-smooth overflow-auto ${
@@ -202,6 +194,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                   }`}
                 >
                   {activeMain === "Home" && <HomeContent />}
+
                   {activeMain === "Settings" && (
                     <NavButSet.Provider value={valueForNavBut}>
                       <SettingsContent />
@@ -212,13 +205,14 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                     <>
                       <RemoveOrEdit.Provider value={valueForAllert}>
                         <div className="relative overflow-auto min-w-full ">
-                          <TodosContent id={params.id} />
+                          <TodosContent />
                         </div>
                       </RemoveOrEdit.Provider>
                     </>
                   )}
                 </main>
               </aside>
+              {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
               {activeMain === "Todos" && (
                 <footer className="w-full h-24 mt-5 items-center  flex">
                   <RemoveOrEdit.Provider value={valueForAllert}>
@@ -237,13 +231,14 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             id={params.id}
             oldUserName={`${userDisplayName}`}
             onPhotoChange={fetchDataIMG}
+            onNameChange={fetchDataName}
           />
 
           {/* <EditBlockModal /> */}
         </div>
       </div>
       <NavButMenu.Provider value={valueForNavMenu}>
-       <DrawerSide/>
+        <DrawerSide />
       </NavButMenu.Provider>
     </div>
   );

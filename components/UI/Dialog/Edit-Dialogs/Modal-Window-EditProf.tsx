@@ -17,7 +17,8 @@ const ModalEditProf: React.FC<{
   id: string;
   oldUserName: string;
   onPhotoChange: () => void;
-}> = ({ id, oldUserName, onPhotoChange }) => {
+  onNameChange: () => void;
+}> = ({ id, oldUserName, onPhotoChange,onNameChange }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   const [userName, setUserName] = useState("");
@@ -55,7 +56,7 @@ const ModalEditProf: React.FC<{
 
     if (userName.trim() !== "") {
       await ChangeNameUser(userName, id).then(() => {
-        onPhotoChange();
+        onNameChange();
         showSuccessToast("Changes saved!");
       });
     } else {

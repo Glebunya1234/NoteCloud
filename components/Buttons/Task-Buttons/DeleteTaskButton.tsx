@@ -8,19 +8,20 @@ import {
 import { HiOutlineTrash } from "react-icons/hi";
 
 import { showErrorToast, showSuccessToast } from "@/components";
-import { UpdateArray } from "@/components/Context";
+import { RemoveOrEdit, UpdateArray } from "@/components/Context";
 
 const DeleteTaskButton: React.FC<{
-  id: string;
+ 
   nameBlock: string;
   titleTodo: string;
   onCheckedFunc: () => void;
-}> = ({ id, nameBlock, titleTodo, onCheckedFunc }) => {
+}> = ({ nameBlock, titleTodo, onCheckedFunc }) => {
   const updateContext = useContext(UpdateArray);
+  const Refresh = useContext(RemoveOrEdit);
 
   const handleClickDelete = (Blockname: string, Todostitle: string) => {
     try {
-      deleteTaskInBlick(id, Blockname, Todostitle).then(() => {
+      deleteTaskInBlick(Refresh?.id, Blockname, Todostitle).then(() => {
         updateContext?.onTaskAdded();
         onCheckedFunc();
         showSuccessToast("The task has been deleted!");

@@ -3,7 +3,7 @@ import {
   showErrorToast,
   showSuccessToast,
 } from "@/components";
-import { ChangeTeg, ChangeTegButton, UpdateArray } from "@/components/Context";
+import { ChangeTeg, ChangeTegButton, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import {
   UpdateTask,
 } from "@/services/Firebase-Methods/Task-Management-methods";
@@ -14,18 +14,17 @@ import { CgArrowRight } from "react-icons/cg";
 import { FiCheck } from "react-icons/fi";
 
 const EditTaskDialog: React.FC<{
-  id: string;
   oldtaskName: string;
   blockName: string;
   priorityTitle: string;
 
-}> = ({ id, oldtaskName, blockName, priorityTitle }) => {
+}> = ({oldtaskName, blockName, priorityTitle }) => {
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");
   const updateContext = useContext(UpdateArray);
   const [tegButName, setTegButName] =
     useState<ChangeTegButton["tegButName"]>("");
-
+    const Refresh = useContext(RemoveOrEdit);
   const value = {
     tegButName,
     setTegButName,
@@ -39,7 +38,7 @@ const EditTaskDialog: React.FC<{
 
   const handleClickSaveBut = () => {
     if (newTaskname.trim() !== "") {
-      UpdateTask(id, blockName, oldtaskName, newTaskname, tegButName).then(
+      UpdateTask(Refresh?.id, blockName, oldtaskName, newTaskname, tegButName).then(
         () => {
           updateContext?.onTaskAdded();
           showSuccessToast("The task has been updated!");
@@ -81,7 +80,7 @@ const EditTaskDialog: React.FC<{
                 </div>
 
                 <PriorityDropdown
-                  id={id}
+                
                   blockName={blockName}
                   titleTodos={oldtaskName}
                 />

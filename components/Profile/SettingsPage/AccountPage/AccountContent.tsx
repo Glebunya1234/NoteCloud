@@ -1,5 +1,6 @@
 import { BottonSignOut } from "@/components";
 import { NavButSet } from "@/components/Context";
+import ChangeNameComponent from "@/components/Inputs/Profile-Inputs/ChangeNameComponent";
 import { useContext } from "react";
 
 export default function AccountContent() {
@@ -12,21 +13,7 @@ export default function AccountContent() {
 
         <li className="flex flex-col">
           <h3 className="font-bold text-sm ">Change username</h3>
-          <input
-            type="text"
-            className="input input-bordered bg-transparent max-w-xs my-2 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
-          />
-
-          <span className="text-xs">
-            Your name may appear on NoteCloud, you can change it at any time, it
-            is only visible to you
-          </span>
-          <button
-            className="btn btn-outline btn-sm w-[180px] mt-2"
-            
-          >
-            Update username
-          </button>
+          <ChangeNameComponent/>
         </li>
       </ul>
       <ul>

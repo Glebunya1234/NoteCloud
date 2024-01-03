@@ -1,12 +1,16 @@
 import { createContext } from "react";
 
 export type HoverContextType = {
-
+    id: string;
     ModeEditOrRemove: "edit" | "remove" | "none";
     setModeEditOrRemove: React.Dispatch<React.SetStateAction<"edit" | "remove" | "none">>;
 };
 
-export const RemoveOrEdit = createContext<HoverContextType | undefined>(undefined);
+export const RemoveOrEdit = createContext<HoverContextType>({
+    id: "",
+    ModeEditOrRemove: "none",
+    setModeEditOrRemove: () => { }
+});
 //-------------------------------------------------------------------------------------//
 
 export type NavButMenuType = {
@@ -20,11 +24,20 @@ export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 
 
 export type NavButSetType = {
+    id: string;
+    fetchDataIMG: () => void;
+    fetchDataName: () => void;
     activeSetName: string;
     setActiveSetName: React.Dispatch<React.SetStateAction<string>>;
 };
 
-export const NavButSet = createContext<NavButSetType | undefined>(undefined);
+export const NavButSet = createContext<NavButSetType>({
+    id: "", // Provide some default value for 'id'
+    fetchDataIMG: () => { },
+    fetchDataName: () => { },
+    activeSetName: "",
+    setActiveSetName: () => { },
+});
 //-------------------------------------------------------------------------------------//
 
 
