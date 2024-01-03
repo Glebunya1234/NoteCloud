@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { userService, MyUser } from "@services/User-Service/UserServ";
-
+import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
 import Logo2 from "@/public/logoNC.svg";
 import {
   ButtonMenuNavigations,
@@ -130,6 +130,15 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
+      <main className="relative overflow-hidden">
+        <Image
+          src={hat}
+          width={110}
+          height={120}
+          alt="NoteCloud"
+          className="absolute top-5 right-1  z-50 hidden md:block"
+          style={{ transform: 'scaleX(-1) rotate(-20deg)'}}
+        />
         <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
           <div className="md:w-94% h-full md:h-90%  max-w-1/2 flex  shadow-2xl overflow-hidden bg-bg-mygrey  md:rounded-3xl  w-full">
             <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full  items-center  flex-col ">
@@ -236,11 +245,13 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
           {/* <EditBlockModal /> */}
         </div>
+        </main>
       </div>
       <NavButMenu.Provider value={valueForNavMenu}>
         <DrawerSide />
       </NavButMenu.Provider>
     </div>
+
   );
 };
 export default UserPage;
