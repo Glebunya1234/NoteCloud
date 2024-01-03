@@ -9,8 +9,8 @@ const SearchInput = () => {
         className="input input-ghost w-full bg-transparent max-w-4xl mr-5 pl-10 pr-4 py-2 ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
       />
 
-      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <CgSearch />
+      <div className="absolute inset-y-0 left-0 pl-3 flex z-50 items-center cursor-pointer" >
+        <CgSearch/>
       </div>
     </div>
   );

@@ -22,7 +22,7 @@ export function LogInInputs() {
     stiffness: 400,
     damping: 20,
   };
-  
+
   return (
     <>
       <input
@@ -33,25 +33,23 @@ export function LogInInputs() {
         value={email}
       />
 
-      <input
-        type={showPassword ? "text" : "password"}
-        placeholder="Password"
-        className={styles.passwinputs}
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-      />
-      <motion.div
-        whileHover={animationVariants.hover}
-        transition={animationTransition}
-        className="my-2 justify-center hover:cursor-pointer"
-        onClick={togglePasswordVisibility}
-      >
-        <span className="label-text-alt flex flex-row items-center">
-          <p className="mx-1">View password</p>
+      <div className="relative w-full mb-1 flex justify-center">
+        <input
+          type={showPassword ? "text" : "password"}
+          placeholder="Password"
+          className={styles.passwinputs}
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+        />
+        <motion.div
+          whileHover={animationVariants.hover}
+          transition={animationTransition}
+          className="absolute inset-y-0 left-[83%] pt-1  flex z-50 items-center cursor-pointer"
+          onClick={togglePasswordVisibility}
+        >
           {showPassword ? <HiEye /> : <HiEyeOff />}
-        </span>
-      </motion.div>
-
+        </motion.div>
+      </div>
       <ButtonSignIn email={email} password={password} />
     </>
   );

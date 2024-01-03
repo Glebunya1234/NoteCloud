@@ -143,7 +143,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           <div className="md:w-94% h-full md:h-90%  max-w-1/2 flex  shadow-2xl overflow-hidden bg-bg-mygrey  md:rounded-3xl  w-full">
             <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full  items-center  flex-col ">
               <aside className="w-full h-24 flex items-center justify-center ">
-                <Image src={Logo2} width={30} height={30} alt="__" />
+                <Image src={Logo2} width={30} height={30} alt="  " /> 
                 <h1 className="text-center text-lg mx-2 text-gray-300 font-Orbitron">
                   NoteCloud
                 </h1>
@@ -160,7 +160,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
                     height: "100px",
                     objectFit: "cover",
                   }}
-                  alt="Avatar"
+                  alt="  "
                 />
                 <h3 className="py-2 font-bold">{userDisplayName}</h3>
                 <ButtonEditProfModal />
