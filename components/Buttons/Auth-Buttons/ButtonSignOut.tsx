@@ -7,7 +7,7 @@ const BottonSignOut = () => {
   const handleSignUp = () => {
     try {
       signOut(authh);
-      router.push("../");
+      router.push(`../profile/Authorization`);
     } catch (error) {
       console.log(error);
     }
