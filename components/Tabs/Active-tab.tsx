@@ -8,6 +8,7 @@ export function ActiveTabs() {
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
+  
   const getTabClassName = (tabName: string) => {
     return `tab tab-bordered transition-all ease-linear ${
       activeTab === tabName ? "tab-active" : ""

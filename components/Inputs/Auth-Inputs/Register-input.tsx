@@ -8,7 +8,6 @@ export function RegisterInputs() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confpassword, setConfPassword] = useState("");
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setConfirmShowPassword] = useState(false);
 
@@ -18,6 +17,7 @@ export function RegisterInputs() {
   const toggleConfirmPasswordVisibility = () => {
     setConfirmShowPassword(!showConfirmPassword);
   };
+
   const animationVariants = {
     hover: {
       scale: 1.05,
@@ -38,40 +38,44 @@ export function RegisterInputs() {
         className={styles.authinputs}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <div className="relative w-full flex justify-center">
-        <input
-          type={showPassword ? "text" : "password"}
-          placeholder="Password"
-          className={styles.authinputs}
-          onChange={(e) => setPassword(e.target.value)}
-          value={password}
-        />
+      <div className=" w-full flex justify-center">
+        <div className="relative max-w-sm w-full  flex justify-center">
+          <input
+            type={showPassword ? "text" : "password"}
+            placeholder="Password"
+            className={styles.authinputs}
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+          />
 
-        <motion.div
-          whileHover={animationVariants.hover}
-          transition={animationTransition}
-          className="absolute inset-y-0 left-[83%] flex z-50 items-center cursor-pointer"
-          onClick={togglePasswordVisibility}
-        >
-          {showPassword ? <HiEye /> : <HiEyeOff />}
-        </motion.div>
+          <motion.div
+            whileHover={animationVariants.hover}
+            transition={animationTransition}
+            className="absolute inset-y-0 left-[83%] flex z-50 items-center cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <HiEye /> : <HiEyeOff />}
+          </motion.div>
+        </div>
       </div>
-      <div className="relative w-full flex justify-center">
-        <input
-          type={showConfirmPassword ? "text" : "password"}
-          placeholder="Confirm the password"
-          className={styles.authinputs}
-          onChange={(e) => setConfPassword(e.target.value)}
-          value={confpassword}
-        />
-        <motion.div
-          whileHover={animationVariants.hover}
-          transition={animationTransition}
-          className="absolute inset-y-0 left-[83%] flex z-50 items-center cursor-pointer"
-          onClick={toggleConfirmPasswordVisibility}
-        >
-          {showConfirmPassword ? <HiEye /> : <HiEyeOff />}
-        </motion.div>
+      <div className=" w-full flex justify-center">
+        <div className="relative max-w-sm w-full flex justify-center">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Confirm the password"
+            className={styles.authinputs}
+            onChange={(e) => setConfPassword(e.target.value)}
+            value={confpassword}
+          />
+          <motion.div
+            whileHover={animationVariants.hover}
+            transition={animationTransition}
+            className="absolute inset-y-0 left-[83%] flex z-50 items-center cursor-pointer"
+            onClick={toggleConfirmPasswordVisibility}
+          >
+            {showConfirmPassword ? <HiEye /> : <HiEyeOff />}
+          </motion.div>
+        </div>
       </div>
       <RegisterButton
         email={email}

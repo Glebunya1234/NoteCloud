@@ -24,6 +24,7 @@ const TodosContent = () => {
   const [priorityTitle, setPriorityTitle] = useState<string>("");
   const theme = useContext(RemoveOrEdit);
 
+  //#region Functions
   const handleClickOnArticle = (names: string) => {
     if (theme?.ModeEditOrRemove === "edit") {
       setNameBlock(names);
@@ -35,6 +36,7 @@ const TodosContent = () => {
       setNameBlock(names);
     }
   };
+
   const handleClickChangeTask = (
     namesBlock: string,
     titleTodo: string,
@@ -46,18 +48,6 @@ const TodosContent = () => {
     setNametitle(titleTodo),
       setPriorityTitle(teg),
       openAModalWindowbyID("EditTaskDialog");
-  };
-
-  const animationVariants = {
-    hover: {
-      scale: 1.05,
-    },
-  };
-
-  const animationTransition = {
-    type: "spring",
-    stiffness: 400,
-    damping: 20,
   };
 
   const fetchData = async () => {
@@ -87,6 +77,22 @@ const TodosContent = () => {
       console.error(error);
     }
   };
+
+  //#endregion
+
+  //#region Object
+  const animationVariants = {
+    hover: {
+      scale: 1.05,
+    },
+  };
+
+  const animationTransition = {
+    type: "spring",
+    stiffness: 400,
+    damping: 20,
+  };
+  //#endregion
 
   useEffect(() => {
     fetchData();
@@ -175,7 +181,6 @@ const TodosContent = () => {
                                 <HiPencil />
                               </button>
                               <DeleteTaskButton
-                              
                                 nameBlock={block[0].nameBlock}
                                 titleTodo={todo.titleTodos}
                                 onCheckedFunc={() => {
@@ -187,7 +192,6 @@ const TodosContent = () => {
                         </div>
                       </motion.div>
                       <EditTaskDialog
-                       
                         blockName={BlockName}
                         oldtaskName={nametitle}
                         priorityTitle={priorityTitle}
@@ -204,31 +208,17 @@ const TodosContent = () => {
                       : ""
                   }`}
                 >
-                  <AddNewTaskComnponent
-                
-                    nameBlock={block[0].nameBlock}
-                  />
+                  <AddNewTaskComnponent nameBlock={block[0].nameBlock} />
                 </section>
               </div>
             </section>
           </motion.article>
         ))}
         <AddBlockModal />
-        <EditBlockModal  blockName={BlockName} />
+        <EditBlockModal blockName={BlockName} />
         <ModalRemoveBlock blockName={BlockName} />
       </main>
     </UpdateArray.Provider>
   );
 };
 export default TodosContent;
-// const itemVariants: Variants = {
-//   open: {
-//     opacity: 1,
-//     y: 0,
-//     transition: { type: "spring", stiffness: 300, damping: 24 },
-//   },
-//   closed: { opacity: 0, y: 20, transition: { duration: 0.2 } },
-// };
-// const handleClickDelete = (Blockname: string, Todostitle: string) => {
-//   deleteTaskInBlick(id, Blockname, Todostitle);
-// };

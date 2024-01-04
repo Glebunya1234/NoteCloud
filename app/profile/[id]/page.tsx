@@ -126,6 +126,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   useEffect(() => {
     fetchDataIMG();
   }, []);
+  
   return (
     <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -136,7 +137,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
           width={110}
           height={120}
           alt="NoteCloud"
-          className="absolute top-5 right-1  z-50 hidden md:block"
+          className="absolute top-5 right-[4px]  z-50 hidden lg:block"
           style={{ transform: 'scaleX(-1) rotate(-20deg)'}}
         />
         <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">

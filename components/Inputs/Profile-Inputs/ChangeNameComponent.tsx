@@ -6,6 +6,8 @@ import { useContext, useState } from "react";
 const ChangeNameComponent = () => {
   const [userName, setUserName] = useState("");
   const Refresh = useContext(NavButSet);
+
+  //#region Functions
   const handleFileUpload = async () => {
     if (userName.trim() !== "") {
       await ChangeNameUser(userName, Refresh?.id).then(() => {
@@ -17,6 +19,8 @@ const ChangeNameComponent = () => {
       showErrorToast("The name was not changed!");
     }
   };
+  //#endregion
+
   return (
     <>
       <input
@@ -31,7 +35,7 @@ const ChangeNameComponent = () => {
         Your name may appear on NoteCloud, you can change it at any time, it is
         only visible to you
       </span>
-      
+
       <button
         className="btn btn-outline btn-sm w-[180px] mt-2"
         onClick={handleFileUpload}
