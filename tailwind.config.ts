@@ -41,6 +41,7 @@ const config: Config = {
         'Ubuntu': ["Ubuntu"],
         'Raleway': ["Raleway"],
         'Poppins': ["Poppins"],
+        'Figtree': ["Figtree"],
       },
     },
   },
