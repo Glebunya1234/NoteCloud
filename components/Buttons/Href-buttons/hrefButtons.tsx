@@ -8,15 +8,16 @@ type ButtonType = {
 
 const HrefButtons: React.FC<ButtonType> = ({ typeButton }) => {
   const router = useRouter();
-  const handlClick = () => {
-    router.push(`/profile/Authorization`);
+  const handlClick = (typeAuth: ButtonType) => {
+    
+    router.push(`/profile/Authorization?typeAuth=${typeAuth.typeButton}`);
   };
   return (
     <>
       {typeButton === "Log In" && (
         <a
           className="btn btn-sm text-xs sm:text-base sm:btn-md sm:px-5 md:mx-5 p-2 btn-ghost"
-          onClick={handlClick}
+          onClick={()=>{handlClick({typeButton: "Log In"})}}
         >
           Log In
         </a>
@@ -24,7 +25,7 @@ const HrefButtons: React.FC<ButtonType> = ({ typeButton }) => {
       {typeButton === "Sign Up" && (
         <a
           className="btn btn-sm text-xs sm:text-base sm:btn-md sm:px-5 p-2 bg-bg-myyellow text-black hover:text-white hover:bg-bg-mydurkgrey border-0"
-          onClick={handlClick}
+          onClick={()=>{handlClick({typeButton: "Sign Up"})}}
         >
           Sign Up
         </a>

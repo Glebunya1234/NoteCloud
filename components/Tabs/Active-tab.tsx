@@ -1,10 +1,16 @@
 "use client";
 import { useState } from "react";
 import { LogInInputs,RegisterInputs } from "@/components";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export function ActiveTabs() {
-  const [activeTab, setActiveTab] = useState("Log In");
-
+  const router = useRouter(); 
+  const searchParams = useSearchParams()
+ 
+  const typeAuth = searchParams.get('typeAuth')
+  
+  // const {typeAuth} = router.query; 
+  const [activeTab, setActiveTab] = useState(typeAuth);
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
   };
