@@ -21,6 +21,7 @@ const AddBlockModal= () => {
 
     console.log(theme?.id);
     console.log(blockname);
+    
     if (taskname.trim() !== "" && blockname.trim() !== "") {
       AddNewTaskInBlock(theme?.id, blockname, taskname).then(() => {
         updateContext?.onTaskAdded();
