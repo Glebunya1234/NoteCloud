@@ -1,20 +1,39 @@
 import { showErrorToast, showSuccessToast } from "@/components";
 import { NavButSet } from "@/components/Context";
 import { ChangeNameUser } from "@/services/Firebase-Methods/ReadDataForUser";
+import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
 
 const ChangeNameComponent = () => {
   const [userName, setUserName] = useState("");
   const Refresh = useContext(NavButSet);
+  const auth = getAuth();
 
   //#region Functions
-  const handleFileUpload = async () => {
+  const handleClickUpload = async () => {
     if (userName.trim() !== "") {
-      await ChangeNameUser(userName, Refresh?.id).then(() => {
-        Refresh?.fetchDataName();
-        showSuccessToast("The username has been updated!");
-        setUserName("");
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          updateProfile(user, {
+            displayName: userName,
+          });
+          Refresh?.fetchDataName();
+
+          ChangeNameUser(userName, Refresh?.id);
+
+          showSuccessToast("The username has been updated!");
+          setUserName("");
+        } else {
+          showErrorToast("The name was not changed!");
+          setUserName("");
+        }
       });
+
+      // await ChangeNameUser(userName, Refresh?.id).then(() => {
+      //   Refresh?.fetchDataName();
+      //   showSuccessToast("The username has been updated!");
+      //   setUserName("");
+      // });
     } else {
       showErrorToast("The name was not changed!");
     }
@@ -38,7 +57,7 @@ const ChangeNameComponent = () => {
 
       <button
         className="btn btn-outline btn-sm w-[180px] mt-2"
-        onClick={handleFileUpload}
+        onClick={handleClickUpload}
       >
         Update username
       </button>

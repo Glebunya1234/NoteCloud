@@ -43,7 +43,8 @@ export default function ButtonGoogle() {
             password: " ",
           };
           //если пользователь есть то выведет его данные а если нет то создаст а потом выведет
-          router.push(`/profile/${userss?.uid}`);
+          router.push(`/profile?userUid=${userData.userID}`);
+          // router.push(`/profile/${userss?.uid}`);
           const googleUser = getOrCreateUser(userData.userID, userData);
           showSuccessToast("Successful login!");
           console.log("googleUser: ", googleUser);

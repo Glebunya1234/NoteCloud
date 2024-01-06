@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { userService, MyUser } from "@services/User-Service/UserServ";
 import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
@@ -39,17 +39,21 @@ import {
   ReadImageData,
   ReadNameData,
 } from "@/services/Firebase-Methods/ReadDataForUser";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const getUser = async (id: string): Promise<MyUser | null> => {
-  return await userService.getById(id);
-};
+// const getUser = async (id: string): Promise<MyUser | null> => {
+//   return await userService.getById(id);
+// };
 
-const UserPage = ({ params }: { params: { id: string } }) => {
+const UserPage = () => {
   const linkDefaultPhoto =
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
+  const userUid = searchParams.get("userUid");
+  
   const [activeMain, setActiveMain] =
     useState<NavButMenuType["activeMain"]>("Home");
 
@@ -66,39 +70,61 @@ const UserPage = ({ params }: { params: { id: string } }) => {
     useState<HoverContextType["ModeEditOrRemove"]>("none");
 
   useEffect(() => {
+    // const fetchData = async () => {
+    //   const googleUser = await getUser(params.id);
+    //   console.log(googleUser);
+    //   if (googleUser !== null) {
+    //     if (googleUser.displayName !== "") {
+    //       setuserDisplayName(googleUser.displayName);
+    //       fetchDataIMG();
+    //     } else {
+    //       setuserDisplayName("");
+    //     }
+    //   } else {
+    //     router.push("../404");
+    //   }
+    // };
+
     const fetchData = async () => {
-      const googleUser = await getUser(params.id);
-      console.log(googleUser);
-      if (googleUser !== null) {
-        if (googleUser.displayName !== "") {
-          setuserDisplayName(googleUser.displayName);
-          fetchDataIMG();
+      const auth = getAuth();
+
+      onAuthStateChanged(auth, (user) => {
+        if (user?.uid === userUid) {
+          if (user) {
+            setuserDisplayName(user.displayName);
+            fetchDataIMG();
+          } else {
+            router.push("../404");
+          }
         } else {
-          setuserDisplayName("");
+          router.push("../404");
         }
-      } else {
-        router.push("../404");
-      }
+      });
     };
+
     fetchData();
   }, []);
 
   //#region Functions
   const fetchDataIMG = async () => {
-    let imgref = await ReadImageData(params.id);
-    if (imgref?.trim() === undefined || imgref?.trim() === "") {
-      setSetSrc(linkDefaultPhoto);
-    } else {
-      setSetSrc(imgref);
+    if (userUid !== null) {
+      let imgref = await ReadImageData(userUid);
+      if (imgref?.trim() === undefined || imgref?.trim() === "") {
+        setSetSrc(linkDefaultPhoto);
+      } else {
+        setSetSrc(imgref);
+      }
     }
   };
 
   const fetchDataName = async () => {
-    let nameRef = await ReadNameData(params.id);
-    if (nameRef !== undefined) {
-      setuserDisplayName(nameRef);
-    } else {
-      setuserDisplayName("");
+    if (userUid !== null) {
+      let nameRef = await ReadNameData(userUid);
+      if (nameRef !== undefined) {
+        setuserDisplayName(nameRef);
+      } else {
+        setuserDisplayName("");
+      }
     }
   };
   const handleButtonSetClick = (buttonName: string) => {
@@ -108,12 +134,12 @@ const UserPage = ({ params }: { params: { id: string } }) => {
 
   //#region Objects
   const valueForAllert = {
-    id: params.id,
+    id: userUid || '',
     ModeEditOrRemove,
     setModeEditOrRemove,
   };
   const valueForNavBut = {
-    id: params.id,
+    id: userUid || '',
     fetchDataName: fetchDataName,
     fetchDataIMG: fetchDataIMG,
     activeSetName,
@@ -125,9 +151,9 @@ const UserPage = ({ params }: { params: { id: string } }) => {
   };
   //#endregion
 
-  useEffect(() => {
-    fetchDataIMG();
-  }, []);
+  // useEffect(() => {
+  //   fetchDataIMG();
+  // }, []);
 
   return (
     <div className="drawer ">
@@ -240,7 +266,7 @@ const UserPage = ({ params }: { params: { id: string } }) => {
             <AllertToast />
 
             <ModalEditProf
-              id={params.id}
+              id={userUid || ''}
               oldUserName={`${userDisplayName}`}
               onPhotoChange={fetchDataIMG}
               onNameChange={fetchDataName}

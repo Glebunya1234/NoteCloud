@@ -8,6 +8,7 @@ import {
   ChangeNameUser,
   addImageData,
 } from "@/services/Firebase-Methods/ReadDataForUser";
+import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useEffect, useState } from "react";
@@ -18,9 +19,10 @@ const ModalEditProf: React.FC<{
   oldUserName: string;
   onPhotoChange: () => void;
   onNameChange: () => void;
-}> = ({ id, oldUserName, onPhotoChange,onNameChange }) => {
+}> = ({ id, oldUserName, onPhotoChange, onNameChange }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
+  const auth = getAuth();
   const [userName, setUserName] = useState("");
 
   const handleFileChangeAndName = (
@@ -62,10 +64,31 @@ const ModalEditProf: React.FC<{
     } else {
       showErrorToast("The name was not changed!");
     }
+
+    if (userName.trim() !== "") {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          updateProfile(user, {
+            displayName: userName,
+          });
+          onNameChange();
+
+          ChangeNameUser(userName, id);
+
+          showSuccessToast("The username has been updated!");
+          setUserName("");
+        } else {
+          showErrorToast("The name was not changed!");
+          setUserName("");
+        }
+      });
+    } else {
+      showErrorToast("The name was not changed!");
+    }
   };
 
   useEffect(() => {
-    setUserName(oldUserName);
+    oldUserName === "null" ? setUserName("") : setUserName(oldUserName);
   }, [oldUserName]);
 
   return (
