@@ -1,6 +1,7 @@
 import { BottonSignOut } from "@/components";
 import { NavButSet } from "@/components/Context";
 import ChangeNameComponent from "@/components/Inputs/Profile-Inputs/ChangeNameComponent";
+import ResetPassword from "@/components/ResetPassword/ResetPassword";
 import { useContext } from "react";
 
 export default function AccountContent() {
@@ -22,32 +23,7 @@ export default function AccountContent() {
         </li>
 
         <li className="flex flex-col">
-          <h3 className="font-bold text-sm mb-2">Change passord</h3>
-          <span className="text-xs">Old password</span>
-          <input
-            type="text"
-            className="input input-bordered bg-transparent max-w-xs my-2 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
-          />
-          <span className="text-xs">New password</span>
-          <input
-            type="text"
-            className="input input-bordered bg-transparent max-w-xs my-2 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
-          />
-          <span className="text-xs">Confirm new password</span>
-          <input
-            type="text"
-            className="input input-bordered bg-transparent max-w-xs my-2 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
-          />
-          <span className="text-xs">
-            Make sure it is at least 6 characters AND you have confirmed the new
-            password correctly.
-          </span>
-          <button
-            className="btn btn-outline btn-sm w-[180px] mt-2"
-            
-          >
-            Update passord
-          </button>
+          <ResetPassword/>
         </li>
       </ul>
       <ul>

@@ -12,16 +12,17 @@ import googleSvg from "@/public/google.svg"
 
 import { authh } from "@services/Firebase-Config/firebaseConfig";
 import { getOrCreateUser } from "@services/Firebase-Methods/GetUser";
-import { onAuthStateChanged, GoogleAuthProvider, User, signInWithRedirect } from "firebase/auth";
+import { onAuthStateChanged, GoogleAuthProvider, User, signInWithRedirect, getAuth, signInWithPopup } from "firebase/auth";
+import { getOrCreateUser2 } from "@/services/Firebase-Methods/ReadDataForUser";
 
 
 export default function ButtonGoogle() {
   const router = useRouter();
   const [userss, setUser] = useState<User | null | undefined>(null);
-
+  const auth = getAuth();
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(authh, provider);
+    signInWithPopup(authh, provider);
   };
 
   const handleSignInWithGoogle = () => {
@@ -29,9 +30,7 @@ export default function ButtonGoogle() {
   };
 
   useEffect(() => {
-    const unsubcribe = onAuthStateChanged(
-      authh,
-      (currentUser: User | null) => {
+    const unsubcribe = onAuthStateChanged(authh, (currentUser: User | null) => {
         setUser(currentUser);
 
         if (userss !== null) {
@@ -40,20 +39,24 @@ export default function ButtonGoogle() {
             email: `${userss?.email}`,
             photoURL: `${userss?.photoURL}`,
             userID: `${userss?.uid}`,
-            password: " ",
+            password: "",
           };
+          console.log("userData.userID",userData.userID)
+          console.log("userss",userss)
           //если пользователь есть то выведет его данные а если нет то создаст а потом выведет
+          getOrCreateUser2(userData.userID, userData)
           router.push(`/profile?userUid=${userData.userID}`);
           // router.push(`/profile/${userss?.uid}`);
-          const googleUser = getOrCreateUser(userData.userID, userData);
+          // const googleUser = getOrCreateUser(userData.userID, userData);
           showSuccessToast("Successful login!");
-          console.log("googleUser: ", googleUser);
+          
 
         }
+        
       }
     );
 
-    return () => unsubcribe();
+    return ()=> unsubcribe();
   }, [userss]);
 
   return (

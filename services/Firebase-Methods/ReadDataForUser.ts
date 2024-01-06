@@ -1,7 +1,8 @@
 //list doc
-import { collection, doc, getDocs, onSnapshot, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import type { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
+import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
 
 
 // поиск юзера по айди 
@@ -19,6 +20,62 @@ export function readDoc(userID: string) {
     })
 
 }
+
+
+
+
+// export const getOrCreateUser2 = async (userID: string, userData:User_collect_datatype): Promise<void> => {
+
+//     const newdoc = doc(mydatabase, `collection-users/${userID}`);
+//     onSnapshot(newdoc, (docSnapsh) => {
+//         if (docSnapsh.exists()) {
+//             const docData = docSnapsh.data();
+//             console.log(`my data = ${JSON.stringify(docData)}`);
+//         }
+//         else {
+//             setDoc(doc(mydatabase, "collection-users/",`${userID}`), {
+//                 userID: `${userID}`,
+//                 displayName: `${userData.displayName}`,
+//                 email:`${userData.email}`,
+//                 photoURL:`${userData.photoURL}`,
+//                 password:`${userData.password}`
+//               });
+//         }
+//     })
+
+// }
+export const getOrCreateUser2 = async (userID: string, userData: User_collect_datatype): Promise<void> => {
+    const userDocRef = doc(mydatabase, `collection-users/${userID}`);
+  
+    try {
+      const docSnap = await getDoc(userDocRef);
+  
+      if (docSnap.exists()) {
+        const docData = docSnap.data();
+        console.log(`User data: ${JSON.stringify(docData)}`);
+      } else {
+        await setDoc(userDocRef, {
+          userID: userID,
+          displayName: userData.displayName,
+          email: userData.email,
+          photoURL: userData.photoURL,
+          password: userData.password,
+        });
+  
+        console.log('User created successfully');
+      }
+    } catch (error) {
+      console.error('Error in getOrCreateUser2:');
+      // Здесь можно добавить дополнительную обработку ошибок, если необходимо
+    }
+  };
+
+
+
+
+
+
+
 
 
 const usersCollection = collection(mydatabase, 'collection-users');

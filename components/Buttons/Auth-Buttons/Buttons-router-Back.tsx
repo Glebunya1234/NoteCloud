@@ -7,7 +7,7 @@ const BottonBack = () => {
   return (
     <button
       className="btn btn-circle btn-ghost btn-sm ml-3 "
-      onClick={()=>{router.back()}}
+      onClick={()=>{router.push("../")}}
     >
       <FiArrowLeft />
     </button>

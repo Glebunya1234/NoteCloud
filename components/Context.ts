@@ -1,3 +1,4 @@
+import { Auth } from "firebase/auth";
 import { createContext } from "react";
 
 export type HoverContextType = {
@@ -25,6 +26,7 @@ export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 
 export type NavButSetType = {
     id: string;
+    auth :Auth | string;
     fetchDataIMG: () => void;
     fetchDataName: () => void;
     activeSetName: string;
@@ -32,7 +34,8 @@ export type NavButSetType = {
 };
 
 export const NavButSet = createContext<NavButSetType>({
-    id: "", // Provide some default value for 'id'
+    id: "", 
+    auth: "", 
     fetchDataIMG: () => { },
     fetchDataName: () => { },
     activeSetName: "",

@@ -26,8 +26,6 @@ import {
 import {
   RemoveOrEdit,
   HoverContextType,
-  ChangeNickNameAndPhotoUrl,
-  ChandeNameAndPhoto,
   NavButSetType,
   NavButSet,
   NavButMenuType,
@@ -41,10 +39,6 @@ import {
 } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-// const getUser = async (id: string): Promise<MyUser | null> => {
-//   return await userService.getById(id);
-// };
-
 const UserPage = () => {
   const linkDefaultPhoto =
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
@@ -53,7 +47,7 @@ const UserPage = () => {
   const searchParams = useSearchParams();
 
   const userUid = searchParams.get("userUid");
-  
+
   const [activeMain, setActiveMain] =
     useState<NavButMenuType["activeMain"]>("Home");
 
@@ -68,34 +62,13 @@ const UserPage = () => {
 
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
-
+  const auth = getAuth();
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const googleUser = await getUser(params.id);
-    //   console.log(googleUser);
-    //   if (googleUser !== null) {
-    //     if (googleUser.displayName !== "") {
-    //       setuserDisplayName(googleUser.displayName);
-    //       fetchDataIMG();
-    //     } else {
-    //       setuserDisplayName("");
-    //     }
-    //   } else {
-    //     router.push("../404");
-    //   }
-    // };
-
     const fetchData = async () => {
-      const auth = getAuth();
-
       onAuthStateChanged(auth, (user) => {
         if (user?.uid === userUid) {
-          if (user) {
-            setuserDisplayName(user.displayName);
-            fetchDataIMG();
-          } else {
-            router.push("../404");
-          }
+          setuserDisplayName(user.displayName);
+          fetchDataIMG();
         } else {
           router.push("../404");
         }
@@ -134,12 +107,13 @@ const UserPage = () => {
 
   //#region Objects
   const valueForAllert = {
-    id: userUid || '',
+    id: userUid || "",
     ModeEditOrRemove,
     setModeEditOrRemove,
   };
   const valueForNavBut = {
-    id: userUid || '',
+    id: userUid || "",
+    auth: auth,
     fetchDataName: fetchDataName,
     fetchDataIMG: fetchDataIMG,
     activeSetName,
@@ -266,7 +240,7 @@ const UserPage = () => {
             <AllertToast />
 
             <ModalEditProf
-              id={userUid || ''}
+              id={userUid || ""}
               oldUserName={`${userDisplayName}`}
               onPhotoChange={fetchDataIMG}
               onNameChange={fetchDataName}

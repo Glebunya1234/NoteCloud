@@ -46,6 +46,7 @@ class UserService {
         const docSnapsh = await getDoc(
             doc(mydatabase, "collection-users", userID).withConverter(userConvertor),
         );
+        console.log(" getById, UserService ", docSnapsh)
         if (docSnapsh.exists()) {
             return docSnapsh.data()
         }
@@ -66,19 +67,32 @@ class UserService {
     // }
 
     async getOrCreateUser(userID: string, userData: Partial<User_collect_datatype>): Promise<MyUser | null> {
+        console.log(userID, "userID")
+        console.log(userData.email, "email")
+        console.log(userData, "userData")
+        console.log( "============================================================")
+       
         try {
             return await this.getById(userID);
         } catch (error) {
-            const newdoc = doc(mydatabase, `collection-users/${userID}`);
-            const docData: User_collect_datatype = {
+            setDoc(doc(mydatabase, "collection-users/",`${userID}`), {
                 userID: `${userID}`,
                 displayName: `${userData.displayName}`,
-                email: `${userData.email}`,
-                photoURL: `${userData.photoURL}`,
-                password: `${userData.password}`
-            };
-            setDoc(newdoc, docData);
+                email:`${userData.email}`,
+                photoURL:`${userData.photoURL}`,
+                password:`${userData.password}`
+              });
+            // const newdoc = doc(mydatabase, `collection-users/${userID}`);
+            // const docData: User_collect_datatype = {
+            //     userID: `${userID}`,
+            //     displayName: `${userData.displayName}`,
+            //     email: `${userData.email}`,
+            //     photoURL: `${userData.photoURL}`,
+            //     password: `${userData.password}`
+            // };
+            // setDoc(newdoc, docData);
 
+            console.log(userData, "userData")
             return await this.getById(userID);
 
         }
