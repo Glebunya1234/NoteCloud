@@ -26,7 +26,7 @@ const ResetPassword = () => {
       onAuthStateChanged(dataContext?.auth, (user) => {
         if (user) {
           if (newPassword === confNewpassword) {
-            updatePassword(user, newPassword)
+            updatePassword(user, PaswConf)
               .then(() => {
                 showSuccessToast("Password change");
               })

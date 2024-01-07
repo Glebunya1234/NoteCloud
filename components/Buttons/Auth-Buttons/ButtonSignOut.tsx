@@ -7,8 +7,13 @@ const BottonSignOut = () => {
   const router = useRouter();
   const handleSignOut = async () => {
     try {
-      await signOut(authh);
-      router.push("../Authorization"); // Используйте полный путь к странице авторизации
+      await signOut(authh)
+        .then(() => {
+          router.push("../Authorization");
+        })
+        .catch((error) => {
+          console.error("Error during sign out:");
+        });
     } catch (error) {
       console.error("Error during sign out:");
     }

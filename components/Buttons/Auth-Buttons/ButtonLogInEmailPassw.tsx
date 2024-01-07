@@ -15,8 +15,8 @@ export function ButtonSignIn({ email, password }: EmailAndPassw) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("userrrrrrrr", user);
-        console.log("authh", auth);
+        // console.log("userrrrrrrr", user);
+        // console.log("authh", auth);
         showSuccessToast("Successful login!");
         // ...
       })

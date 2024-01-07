@@ -63,11 +63,15 @@ const UserPage = () => {
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
   const auth = getAuth();
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       onAuthStateChanged(auth, (user) => {
         if (user?.uid === userUid) {
-          setuserDisplayName(user.displayName);
+          // setuserDisplayName(user.displayName);
+          fetchDataName()
           fetchDataIMG();
         } else {
           router.push("../404");
@@ -81,11 +85,11 @@ const UserPage = () => {
   //#region Functions
   const fetchDataIMG = async () => {
     if (userUid !== null) {
-      let imgref = await ReadImageData(userUid);
-      if (imgref?.trim() === undefined || imgref?.trim() === "") {
+      let imgref = await ReadNameData(userUid);
+      if (imgref?.photoURL?.trim() === undefined || imgref.photoURL?.trim() === "") {
         setSetSrc(linkDefaultPhoto);
       } else {
-        setSetSrc(imgref);
+        setSetSrc(imgref.photoURL);
       }
     }
   };
@@ -94,7 +98,7 @@ const UserPage = () => {
     if (userUid !== null) {
       let nameRef = await ReadNameData(userUid);
       if (nameRef !== undefined) {
-        setuserDisplayName(nameRef);
+        setuserDisplayName(nameRef.displayName);
       } else {
         setuserDisplayName("");
       }
@@ -144,15 +148,15 @@ const UserPage = () => {
           />
           <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
             <div className="md:w-94% h-full md:h-90%  max-w-1/2 flex  shadow-2xl overflow-hidden bg-bg-mygrey  md:rounded-3xl  w-full">
-              <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px] w-w-300 h-full  items-center  flex-col ">
-                <aside className="w-full h-24 flex items-center justify-center ">
+              <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px]  w-w-300 h-full  items-center  flex-col ">
+                <aside className="w-full h-24 mt-[1px] flex items-center border-b-[1px] border-bg-mydurkgrey justify-center ">
                   <Image src={Logo2} width={30} height={30} alt="  " />
                   <h1 className="text-center text-lg mx-2 text-gray-300 font-Orbitron">
                     NoteCloud
                   </h1>
                 </aside>
 
-                <aside className="w-full h-auto py-3 flex items-center justify-center flex-col">
+                <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
                   <img
                     className="mask mask-circle"
                     src={setSrc}
@@ -166,10 +170,10 @@ const UserPage = () => {
                     alt="  "
                   />
                   <h3 className="py-2 font-bold">{userDisplayName}</h3>
-                  <ButtonEditProfModal />
+                
                 </aside>
 
-                <section className="w-full my-5 px-10 flex items-center flex-col justify-center ">
+                <section className="w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-bg-mydurkgrey justify-center ">
                   <NavButMenu.Provider value={valueForNavMenu}>
                     <ButtonMenuNavigations />
                   </NavButMenu.Provider>

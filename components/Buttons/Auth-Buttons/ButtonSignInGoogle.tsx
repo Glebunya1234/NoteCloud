@@ -22,7 +22,7 @@ export default function ButtonGoogle() {
   const auth = getAuth();
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(authh, provider);
+    signInWithRedirect(authh, provider);
   };
 
   const handleSignInWithGoogle = () => {
@@ -41,8 +41,8 @@ export default function ButtonGoogle() {
             userID: `${userss?.uid}`,
             password: "",
           };
-          console.log("userData.userID",userData.userID)
-          console.log("userss",userss)
+          // console.log("userData.userID",userData.userID)
+          // console.log("userss",userss)
           //если пользователь есть то выведет его данные а если нет то создаст а потом выведет
           getOrCreateUser2(userData.userID, userData)
           router.push(`/profile?userUid=${userData.userID}`);

@@ -12,14 +12,15 @@ const ChangeNameComponent = () => {
   //#region Functions
   const handleClickUpload = async () => {
     if (userName.trim() !== "") {
-      onAuthStateChanged(auth, (user) => {
+      onAuthStateChanged(auth, async (user) => {
         if (user) {
           updateProfile(user, {
             displayName: userName,
           });
-          Refresh?.fetchDataName();
 
-          ChangeNameUser(userName, Refresh?.id);
+          await ChangeNameUser(userName, Refresh?.id).then(() => {
+            Refresh?.fetchDataName();
+          });
 
           showSuccessToast("The username has been updated!");
           setUserName("");

@@ -1,13 +1,15 @@
 import AddNewUser from "@services/Firebase-Methods/AddNewUser";
 import type {
   EmailAndPasswAndConfPassw,
+  User_collect_datatype,
 } from "@/types/Сollection-User-interfaces/types";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import {
   showErrorToast,
   showMessangeToast,
   showSuccessToast,
-} from "@/components"
+} from "@/components";
+import { CreateUser, getOrCreateUser2 } from "@/services/Firebase-Methods/ReadDataForUser";
 
 export function RegisterButton({
   email,
@@ -23,16 +25,33 @@ export function RegisterButton({
           // Успешная регистрация
           const user = userCredential.user;
           //Show Toasts
-          console.log("userrrrrrrr", user);
-          console.log("authh", auth);
+          // console.log("userrrrrrrr", user);
+          // console.log("authh", auth);
           showSuccessToast("Successfully registered!");
-          AddNewUser({
-            userID: `${user.uid}`,
+          // AddNewUser({
+          //   userID: `${user.uid}`,
+          //   displayName: " ",
+          //   email: email,
+          //   password: password,
+          //   photoURL: "",
+          // });
+          // const userData1: User_collect_datatype = {
+          //   displayName: `${user?.displayName}`,
+          //   email: `${email}`,
+          //   photoURL: `${user?.photoURL === null ? "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg" : user?.photoURL}`,
+          //   userID: `${user?.uid}`,
+          //   password: `${password}`,
+          // };
+
+          const userData: User_collect_datatype = {
             displayName: " ",
-            email: email,
+            email: `${email}`, 
+            photoURL: "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg",
+            userID: `${user.uid}`,
             password: password,
-            photoURL: "",
-          });
+          };
+          CreateUser(userData.userID, userData);
+          // getOrCreateUser2(userData.userID, userData)
         })
         .catch((error) => {
           //Show Toasts
@@ -49,7 +68,7 @@ export function RegisterButton({
       showErrorToast("Registration error!");
       showMessangeToast("Password mismatch!", 2000);
       showMessangeToast("Please try again", 2000);
-      console.log("pass",password, "\ncomfPassw", confirm_password)
+      console.log("pass", password, "\ncomfPassw", confirm_password);
     }
   };
 

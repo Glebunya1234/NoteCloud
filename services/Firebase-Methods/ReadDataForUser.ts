@@ -46,29 +46,44 @@ export function readDoc(userID: string) {
 // }
 export const getOrCreateUser2 = async (userID: string, userData: User_collect_datatype): Promise<void> => {
     const userDocRef = doc(mydatabase, `collection-users/${userID}`);
-  
+
     try {
-      const docSnap = await getDoc(userDocRef);
-  
-      if (docSnap.exists()) {
-        const docData = docSnap.data();
-        console.log(`User data: ${JSON.stringify(docData)}`);
-      } else {
-        await setDoc(userDocRef, {
-          userID: userID,
-          displayName: userData.displayName,
-          email: userData.email,
-          photoURL: userData.photoURL,
-          password: userData.password,
-        });
-  
-        console.log('User created successfully');
-      }
+        const docSnap = await getDoc(userDocRef);
+
+        if (docSnap.exists()) {
+            const docData = docSnap.data();
+            // console.log(`User data: ${JSON.stringify(docData)}`);
+        } else {
+            await setDoc(userDocRef, {
+                userID: userID,
+                displayName: userData.displayName,
+                email: userData.email,
+                photoURL: userData.photoURL,
+                password: userData.password,
+            });
+        }
     } catch (error) {
-      console.error('Error in getOrCreateUser2:');
-      // Здесь можно добавить дополнительную обработку ошибок, если необходимо
+        console.error('Error in getOrCreateUser2:');
+        // Здесь можно добавить дополнительную обработку ошибок, если необходимо
     }
-  };
+};
+export const CreateUser = async (userID: string, userData: User_collect_datatype): Promise<void> => {
+    const userDocRef = doc(mydatabase, `collection-users/${userID}`);
+
+    try {
+        await setDoc(userDocRef, {
+            userID: userID,
+            displayName: userData.displayName,
+            email: userData.email,
+            photoURL: userData.photoURL,
+            password: userData.password,
+        });
+
+    } catch (error) {
+        console.error('Error in getOrCreateUser2:');
+        // Здесь можно добавить дополнительную обработку ошибок, если необходимо
+    }
+};
 
 
 
@@ -85,6 +100,9 @@ interface UserData {
 }
 interface UserNameData {
     displayName?: string;
+    email: string;
+    password?: string;
+    photoURL?: string;
 }
 
 // вывод аватара по юзера айди 
@@ -108,7 +126,7 @@ export const ReadImageData = async (userID: string): Promise<string | undefined>
 };
 
 // чтение ника по юзера айди 
-export const ReadNameData = async (userID: string): Promise<string | undefined> => {
+export const ReadNameData = async (userID: string): Promise<UserNameData | undefined> => {
     const q = query(usersCollection, where('userID', '==', userID));
 
     try {
@@ -117,7 +135,7 @@ export const ReadNameData = async (userID: string): Promise<string | undefined> 
         if (!querySnapshot.empty) {
             const documentSnapshot = querySnapshot.docs[0];
             const userData = documentSnapshot.data() as UserNameData;
-            return userData.displayName;
+            return userData;
         } else {
             return undefined;
         }
