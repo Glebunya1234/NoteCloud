@@ -54,17 +54,20 @@ const UserPage = () => {
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
 
-  const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
+  // const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
 
   const [userDisplayName, setuserDisplayName] = useState<
     string | null | undefined
   >("");
 
+  const [setSrc, setSetSrc] =
+    useState<NavButSetType["setSrc"]>(linkDefaultPhoto);
+
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
+
+
   const auth = getAuth();
-
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -118,6 +121,8 @@ const UserPage = () => {
   const valueForNavBut = {
     id: userUid || "",
     auth: auth,
+    setSrc,
+    setSetSrc,
     fetchDataName: fetchDataName,
     fetchDataIMG: fetchDataIMG,
     activeSetName,
@@ -203,9 +208,9 @@ const UserPage = () => {
                   </header>
                 </header>
                 {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
-                <aside className="flex flex-row w-full h-full overflow-hidden">
+                <aside className="flex flex-row w-full h-full overflow-hidden ">
                   <main
-                    className={`w-full h-full flex  scroll-smooth overflow-auto ${
+                    className={`w-full h-full flex  scroll-smooth overflow-auto  ${
                       activeMain === "Todos" ? "main1" : ""
                     }`}
                   >
@@ -243,12 +248,12 @@ const UserPage = () => {
             </div>
             <AllertToast />
 
-            <ModalEditProf
+            {/* <ModalEditProf
               id={userUid || ""}
               oldUserName={`${userDisplayName}`}
               onPhotoChange={fetchDataIMG}
               onNameChange={fetchDataName}
-            />
+            /> */}
 
             {/* <EditBlockModal /> */}
           </div>

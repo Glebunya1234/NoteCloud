@@ -17,9 +17,10 @@ const ChangeNameComponent = () => {
           updateProfile(user, {
             displayName: userName,
           });
-
-          await ChangeNameUser(userName, Refresh?.id).then(() => {
+          
+          await ChangeNameUser(userName, Refresh?.id).then(()=>{
             Refresh?.fetchDataName();
+
           });
 
           showSuccessToast("The username has been updated!");

@@ -29,6 +29,8 @@ export type NavButSetType = {
     auth :Auth | string;
     fetchDataIMG: () => void;
     fetchDataName: () => void;
+    setSrc: string | undefined
+    setSetSrc: React.Dispatch<React.SetStateAction<string | undefined>>;
     activeSetName: string;
     setActiveSetName: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -38,6 +40,8 @@ export const NavButSet = createContext<NavButSetType>({
     auth: "", 
     fetchDataIMG: () => { },
     fetchDataName: () => { },
+    setSrc: "",
+    setSetSrc:() => { },
     activeSetName: "",
     setActiveSetName: () => { },
 });

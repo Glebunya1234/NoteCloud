@@ -1,8 +1,9 @@
-import { BottonSignOut } from "@/components";
-import { NavButSet } from "@/components/Context";
+import { BottonSignOut, ModalEditProf } from "@/components";
+
 import ChangeNameComponent from "@/components/Inputs/Profile-Inputs/ChangeNameComponent";
 import ResetPassword from "@/components/ResetPassword/ResetPassword";
-import { useContext } from "react";
+import EditPictureProfile from "@/components/UI/Edit-Picture-Profile/EditPictureProfile";
+
 
 export default function AccountContent() {
   return (
@@ -12,9 +13,15 @@ export default function AccountContent() {
           <h3 className="font-bold text-lg my-2">Account</h3>
         </li>
 
-        <li className="flex flex-col">
-          <h3 className="font-bold text-sm ">Change username</h3>
-          <ChangeNameComponent/>
+        <li className="flex flex-col-reverse lg:flex-row">
+          <div className="flex flex-col">
+            <h3 className="font-bold text-sm ">Change username</h3>
+            <ChangeNameComponent />
+          </div>
+          <div className="flex flex-col lg:mx-20">
+            <h3 className="font-bold text-sm ">Profile picture</h3>
+            <EditPictureProfile />
+          </div>
         </li>
       </ul>
       <ul>
@@ -23,7 +30,7 @@ export default function AccountContent() {
         </li>
 
         <li className="flex flex-col">
-          <ResetPassword/>
+          <ResetPassword />
         </li>
       </ul>
       <ul>
@@ -39,6 +46,7 @@ export default function AccountContent() {
           <BottonSignOut />
         </li>
       </ul>
+      <ModalEditProf />
     </main>
   );
 }

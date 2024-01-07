@@ -17,7 +17,7 @@ import ButtonMenuNavigations from "@/components/Pagination-Navigations/Buttons-M
 
 import { ActiveTabs } from "@components/Tabs/Active-tab";
 import AddNewTaskComnponent from "@components/Task-components/AddnewTask";
-import ModalEditProf from "@/components/UI/Dialog/Edit-Dialogs/Modal-Window-EditProf";
+import ModalEditProf from "@/components/UI/Dialog/Edit-Dialogs/Modal-Window-EditPhoto";
 import ButtonEditProfModal from "@/components/Buttons/Profile-Buttons/BottonOpenEditModal";
 import DrawerSide from "./UI/Drawer/Drawer-Side";
 import ButtonDrawer from "./Buttons/Profile-Buttons/ButtonDrawer";
