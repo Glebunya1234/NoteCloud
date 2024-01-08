@@ -174,7 +174,7 @@ const UserPage = () => {
                     }}
                     alt="  "
                   />
-                  <h3 className="py-2 font-bold">{userDisplayName}</h3>
+                  <h3 className="pt-2 font-bold">{userDisplayName}</h3>
                 
                 </aside>
 
