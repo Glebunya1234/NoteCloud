@@ -20,13 +20,12 @@ const ChangeNameComponent = () => {
           
           await ChangeNameUser(userName, Refresh?.id).then(()=>{
             Refresh?.fetchDataName();
+            showSuccessToast("The username has been updated!");
 
           });
 
-          showSuccessToast("The username has been updated!");
           setUserName("");
         } else {
-          showErrorToast("The name was not changed!");
           setUserName("");
         }
       });

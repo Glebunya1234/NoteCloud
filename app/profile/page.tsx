@@ -174,7 +174,7 @@ const UserPage = () => {
                     }}
                     alt="  "
                   />
-                  <h3 className="pt-2 font-bold">{userDisplayName}</h3>
+                  <h3 className="pt-2 px-10 w-[230px] font-bold text-center text-ellipsis overflow-hidden">{userDisplayName}</h3>
                 
                 </aside>
 
@@ -198,7 +198,7 @@ const UserPage = () => {
                         </h1>
 
                         <SearchInput />
-                        <BottonCloseTest />
+                        {/* <BottonCloseTest /> */}
                       </>
                     )}
                   </header>
