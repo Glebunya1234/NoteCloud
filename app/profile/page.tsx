@@ -56,16 +56,18 @@ const UserPage = () => {
 
   // const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
 
-  const [userDisplayName, setuserDisplayName] = useState<
-    string | null | undefined
-  >("");
+  // const [userDisplayName, setuserDisplayName] = useState<
+  //   string | null | undefined
+  // >("");
+
+  const [userDisplayName, setuserDisplayName] =
+    useState<NavButSetType["userDisplayName"]>("");
 
   const [setSrc, setSetSrc] =
     useState<NavButSetType["setSrc"]>(linkDefaultPhoto);
 
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
-
 
   const auth = getAuth();
 
@@ -74,7 +76,7 @@ const UserPage = () => {
       onAuthStateChanged(auth, (user) => {
         if (user?.uid === userUid) {
           // setuserDisplayName(user.displayName);
-          fetchDataName()
+          fetchDataName();
           fetchDataIMG();
         } else {
           router.push("../404");
@@ -89,7 +91,10 @@ const UserPage = () => {
   const fetchDataIMG = async () => {
     if (userUid !== null) {
       let imgref = await ReadNameData(userUid);
-      if (imgref?.photoURL?.trim() === undefined || imgref.photoURL?.trim() === "") {
+      if (
+        imgref?.photoURL?.trim() === undefined ||
+        imgref.photoURL?.trim() === ""
+      ) {
         setSetSrc(linkDefaultPhoto);
       } else {
         setSetSrc(imgref.photoURL);
@@ -125,6 +130,8 @@ const UserPage = () => {
     setSetSrc,
     fetchDataName: fetchDataName,
     fetchDataIMG: fetchDataIMG,
+    userDisplayName,
+    setuserDisplayName,
     activeSetName,
     setActiveSetName,
   };
@@ -174,8 +181,9 @@ const UserPage = () => {
                     }}
                     alt="  "
                   />
-                  <h3 className="pt-2 px-10 w-[230px] font-bold text-center text-ellipsis overflow-hidden">{userDisplayName}</h3>
-                
+                  <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
+                    {userDisplayName}
+                  </h3>
                 </aside>
 
                 <section className="w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-bg-mydurkgrey justify-center ">
@@ -198,13 +206,16 @@ const UserPage = () => {
                         </h1>
 
                         <SearchInput />
-                        {/* <BottonCloseTest /> */}
                       </>
                     )}
                   </header>
                   <header className="md:hidden w-full h-24 flex items-center p-5">
                     <ButtonDrawer />
-                    <SearchInput />
+                    {activeMain === "Todos" && (
+                      <>
+                        <SearchInput />
+                      </>
+                    )}
                   </header>
                 </header>
                 {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
@@ -260,7 +271,9 @@ const UserPage = () => {
         </main>
       </div>
       <NavButMenu.Provider value={valueForNavMenu}>
-        <DrawerSide />
+        <NavButSet.Provider value={valueForNavBut}>
+          <DrawerSide />
+        </NavButSet.Provider>
       </NavButMenu.Provider>
     </div>
   );

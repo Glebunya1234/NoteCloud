@@ -26,9 +26,13 @@ export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 
 export type NavButSetType = {
     id: string;
-    auth :Auth | string;
+    auth: Auth | string;
     fetchDataIMG: () => void;
     fetchDataName: () => void;
+
+    userDisplayName: string | null | undefined
+    setuserDisplayName: React.Dispatch<React.SetStateAction<string | null | undefined>>;
+
     setSrc: string | undefined
     setSetSrc: React.Dispatch<React.SetStateAction<string | undefined>>;
     activeSetName: string;
@@ -36,12 +40,14 @@ export type NavButSetType = {
 };
 
 export const NavButSet = createContext<NavButSetType>({
-    id: "", 
-    auth: "", 
+    id: "",
+    auth: "",
     fetchDataIMG: () => { },
     fetchDataName: () => { },
     setSrc: "",
-    setSetSrc:() => { },
+    setSetSrc: () => { },
+    userDisplayName: "",
+    setuserDisplayName: () => { },
     activeSetName: "",
     setActiveSetName: () => { },
 });
