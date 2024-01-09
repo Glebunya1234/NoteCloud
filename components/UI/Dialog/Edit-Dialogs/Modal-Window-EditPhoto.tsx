@@ -24,11 +24,8 @@ const ModalEditProf = () => {
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(null);
-  const ORIENTATION_TO_ANGLE = {
-    "3": 180,
-    "6": 90,
-    "8": -90,
-  };
+
+  const DataContext = useContext(NavButSet);
 
   const onCropComplete = (croppedArea: Area, croppedAreaPixels: Area) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -69,12 +66,12 @@ const ModalEditProf = () => {
 
         const blob = await fetch(croppedImage!).then((res) => res.blob());
 
-        await uploadBytes(fileRef, blob);
-        // Получение URL загруженного изображения
-        const downloadURL = await getDownloadURL(fileRef);
+        await uploadBytes(fileRef, blob).then(async () => {
+          const downloadURL = await getDownloadURL(fileRef);
 
-        // Теперь можно использовать downloadURL по мере необходимости (например, обновление профиля пользователя в Firestore)
-        console.log("Download URL:", downloadURL);
+          await addImageData(downloadURL, DataContext.id);
+          DataContext?.setSetSrc(`${downloadURL}`);
+        });
       }
     } catch (e) {
       console.error(e);

@@ -125,7 +125,7 @@ export const ReadImageData = async (userID: string): Promise<string | undefined>
     }
 };
 
-// чтение ника по юзера айди 
+// чтение data по юзера айди 
 export const ReadNameData = async (userID: string): Promise<UserNameData | undefined> => {
     const q = query(usersCollection, where('userID', '==', userID));
 
