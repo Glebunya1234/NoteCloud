@@ -11,17 +11,13 @@ import { showErrorToast, showSuccessToast } from "..";
 const ResetPassword = () => {
   const dataContext = useContext(NavButSet);
   const [email, setEmail] = useState("");
-  const [oldPassword, setOldPassword] = useState("");
+
   const [newPassword, setNewPassword] = useState("");
   const [confNewpassword, setConfNewPassword] = useState("");
-  const [errorInputNewPassStyle, SetErrorInputNewPassStyle] = useState(false);
-  const [errorInputConfPassStyle, SetErrorInputConfPassStyle] = useState(false);
+  const [errorInputNewPassStyle, SetErrorInputNewPassStyle] = useState(true);
+  const [errorInputConfPassStyle, SetErrorInputConfPassStyle] = useState(true);
 
-  const handleClickChangePassw = (
-    PaswOld: string,
-    PaswNew: string,
-    PaswConf: string
-  ) => {
+  const handleClickChangePassw = (PaswNew: string, PaswConf: string) => {
     if (typeof dataContext?.auth !== "string") {
       onAuthStateChanged(dataContext?.auth, (user) => {
         if (user) {
@@ -59,16 +55,8 @@ const ResetPassword = () => {
 
   return (
     <>
-      <h3 className="font-bold text-sm mb-2">Change passord</h3>
-      <span className="text-xs">Old password</span>
-      <input
-        type="text"
-        value={oldPassword}
-        onChange={(e) => {
-          setOldPassword(e.target.value);
-        }}
-        className="input input-bordered bg-transparent max-w-xs my-2 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
-      />
+      <h3 className="font-bold text-sm  my-2">Change passord</h3>
+
       <span className="text-xs">New password</span>
       <input
         type="password"
@@ -98,10 +86,8 @@ const ResetPassword = () => {
           errorInputConfPassStyle === true || errorInputNewPassStyle === true
             ? "btn-disabled"
             : ""
-        } btn btn-outline btn-sm w-[180px] mt-2`}
-        onClick={() =>
-          handleClickChangePassw(oldPassword, newPassword, confNewpassword)
-        }
+        } btn btn-outline  btn-sm w-[180px] mt-2`}
+        onClick={() => handleClickChangePassw(newPassword, confNewpassword)}
       >
         Update passord
       </button>

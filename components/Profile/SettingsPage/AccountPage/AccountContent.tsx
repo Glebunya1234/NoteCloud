@@ -1,9 +1,9 @@
 import { BottonSignOut, ModalEditProf } from "@/components";
+import ChangeEmail from "@/components/ChangeEmail/ChangeEmail";
 
 import ChangeNameComponent from "@/components/Inputs/Profile-Inputs/ChangeNameComponent";
 import ResetPassword from "@/components/ResetPassword/ResetPassword";
 import EditPictureProfile from "@/components/UI/Edit-Picture-Profile/EditPictureProfile";
-
 
 export default function AccountContent() {
   return (
@@ -26,9 +26,12 @@ export default function AccountContent() {
       </ul>
       <ul>
         <li className="border-b-[1px] border-bg-mydurkgrey mt-8 mb-5">
-          <h3 className="font-bold text-lg my-2">Email and password</h3>
+          <h3 className="font-bold text-lg my-2">Password</h3>
         </li>
 
+        {/* <li className="flex flex-col">
+          <ChangeEmail />
+        </li> */}
         <li className="flex flex-col">
           <ResetPassword />
         </li>

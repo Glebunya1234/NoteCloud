@@ -46,7 +46,7 @@ const DrawerSide = () => {
               </h1>
             </div>
             <nav className="flex flex-col w-full px-5 ">
-              <ButtonMenuNavigations />
+              <ButtonMenuNavigations/>
             </nav>
           </section>
             

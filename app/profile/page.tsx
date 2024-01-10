@@ -202,10 +202,10 @@ const UserPage = () => {
                     {activeMain === "Todos" && (
                       <>
                         <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
-                          Your&nbsp;Tasks
+                          Task&nbsp;bar 
                         </h1>
 
-                        <SearchInput />
+                        {/* <SearchInput /> */}
                       </>
                     )}
                   </header>
@@ -213,8 +213,11 @@ const UserPage = () => {
                     <ButtonDrawer />
                     {activeMain === "Todos" && (
                       <>
-                        <SearchInput />
+                        {/* <SearchInput /> */}
                       </>
+                    )}
+                    {activeMain === "Settings" && (
+                      <ButtonSetNaw onButtonClick={handleButtonSetClick} />
                     )}
                   </header>
                 </header>

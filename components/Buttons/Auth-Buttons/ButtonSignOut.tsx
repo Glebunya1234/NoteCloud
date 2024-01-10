@@ -9,7 +9,7 @@ const BottonSignOut = () => {
     try {
       await signOut(authh)
         .then(() => {
-          router.push("../Authorization");
+          router.push("../Authorization?typeAuth=Log In");
         })
         .catch((error) => {
           console.error("Error during sign out:");

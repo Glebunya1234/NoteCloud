@@ -12,7 +12,9 @@ const config: Config = {
         'bg-mygrey': '#242426',
         'bg-myyellow': '#fff67a',
         'bg-mydurkgrey': '#3e4043',
-        'bg-RedPink': '#f87272',
+        'bg-myLightGreen': '#a1ff9a',
+        'bg-myBlueSky': '#baffff',
+        'bg-myRedPink': '#f87272',
         'bg-myOrange': '#fbbd23',
       },
       width: {
