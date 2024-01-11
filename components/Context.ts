@@ -1,5 +1,7 @@
+import { themetype } from "@/types/ColorScheme/ColorScheme-types";
 import { Auth } from "firebase/auth";
 import { createContext } from "react";
+
 
 export type HoverContextType = {
     id: string;
@@ -23,6 +25,14 @@ export type NavButMenuType = {
 export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 //-------------------------------------------------------------------------------------//
 
+export type ThemeObject = {
+    backgroundColor: string;
+    textColor: string;
+    blur: string;
+    CardColor: string;
+};
+
+
 
 export type NavButSetType = {
     id: string;
@@ -35,6 +45,9 @@ export type NavButSetType = {
 
     setSrc: string | undefined
     setSetSrc: React.Dispatch<React.SetStateAction<string | undefined>>;
+    importTheme: ThemeObject;
+    setImportTheme: React.Dispatch<React.SetStateAction<ThemeObject>>;
+
     activeSetName: string;
     setActiveSetName: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -48,6 +61,13 @@ export const NavButSet = createContext<NavButSetType>({
     setSetSrc: () => { },
     userDisplayName: "",
     setuserDisplayName: () => { },
+    importTheme: {
+        backgroundColor: "",
+        textColor: "",
+        blur: "",
+        CardColor: "",
+    },
+    setImportTheme: () => { },
     activeSetName: "",
     setActiveSetName: () => { },
 });

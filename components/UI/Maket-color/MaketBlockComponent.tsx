@@ -1,17 +1,14 @@
+import { themetype } from "@/types/ColorScheme/ColorScheme-types";
 import { HiOutlinePlusSm, HiOutlineTrash, HiPencil } from "react-icons/hi";
-
-export type themetype = {
-  theme:
-    | "bg-bg-myyellow"
-    | "bg-bg-myRedPink"
-    | "bg-bg-myBlueSky"
-    | "bg-bg-myLightGreen"
-    | string;
-};
-const MaketBlockComponent: React.FC<themetype> = ({ theme }) => {
+interface MaketBlockComponentProps {
+  CardColor: string;
+}
+const MaketBlockComponent: React.FC<MaketBlockComponentProps> = ({
+  CardColor,
+}) => {
   return (
     <div
-      className={` min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${theme} shadow-xl rounded-3xl overflow-hidden`}
+      className={` min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${CardColor} shadow-xl rounded-3xl overflow-hidden`}
     >
       <section className="z-[2] ">
         <h2 className="text-black text-lg font-bold m-5 mb-2">Name block</h2>

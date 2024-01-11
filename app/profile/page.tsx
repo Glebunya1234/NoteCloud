@@ -38,6 +38,8 @@ import {
   ReadNameData,
 } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
+import { themetype } from "@/types/ColorScheme/ColorScheme-types";
 
 const UserPage = () => {
   const linkDefaultPhoto =
@@ -54,11 +56,16 @@ const UserPage = () => {
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
 
-  // const [setSrc, setSetSrc] = useState<string | undefined>(linkDefaultPhoto);
+  // const [importTheme, setImportTheme] = useState<string | null>(
+  //   "bg-bg-mygrey backdrop-blur-0"
+  // );
 
-  // const [userDisplayName, setuserDisplayName] = useState<
-  //   string | null | undefined
-  // >("");
+  const [importTheme, setImportTheme] = useState({
+    backgroundColor: "bg-bg-mygrey",
+    textColor: "text-base",
+    blur: "backdrop-blur-0",
+    CardColor: "bg-bg-myyellow",
+  });
 
   const [userDisplayName, setuserDisplayName] =
     useState<NavButSetType["userDisplayName"]>("");
@@ -112,6 +119,7 @@ const UserPage = () => {
       }
     }
   };
+
   const handleButtonSetClick = (buttonName: string) => {
     setActiveSetName(buttonName);
   };
@@ -123,7 +131,7 @@ const UserPage = () => {
     ModeEditOrRemove,
     setModeEditOrRemove,
   };
-  const valueForNavBut = {
+  const valueForNavBut: NavButSetType = {
     id: userUid || "",
     auth: auth,
     setSrc,
@@ -132,6 +140,8 @@ const UserPage = () => {
     fetchDataIMG: fetchDataIMG,
     userDisplayName,
     setuserDisplayName,
+    importTheme,
+    setImportTheme,
     activeSetName,
     setActiveSetName,
   };
@@ -144,12 +154,24 @@ const UserPage = () => {
   // useEffect(() => {
   //   fetchDataIMG();
   // }, []);
+  useEffect(() => {
+    const ReadShemeColorUseEffect = () => {
+      const theme = ReadShemeColor();
+      setImportTheme({
+        backgroundColor: theme.backgroundColor,
+        textColor: theme.textColor,
+        blur: theme.blur,
+        CardColor: theme.CardColor,
+      });
+    };
+    ReadShemeColorUseEffect();
+  }, []);
 
   return (
     <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
-        <main className="relative overflow-hidden">
+        <main className="relative overflow-hidden ">
           <Image
             src={hat}
             width={110}
@@ -159,7 +181,13 @@ const UserPage = () => {
             style={{ transform: "scaleX(-1) rotate(-20deg)" }}
           />
           <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
-            <div className="md:w-94% h-full md:h-90%  max-w-1/2 flex  shadow-2xl overflow-hidden bg-bg-mygrey  md:rounded-3xl  w-full">
+            <div
+              className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
+                importTheme === null
+                  ? "bg-bg-mygrey backdrop-blur-0"
+                  : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
+              }  md:rounded-3xl  w-full`}
+            >
               <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px]  w-w-300 h-full  items-center  flex-col ">
                 <aside className="w-full h-24 mt-[1px] flex items-center border-b-[1px] border-bg-mydurkgrey justify-center ">
                   <Image src={Logo2} width={30} height={30} alt="  " />
@@ -202,7 +230,7 @@ const UserPage = () => {
                     {activeMain === "Todos" && (
                       <>
                         <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
-                          Task&nbsp;bar 
+                          Task&nbsp;bar
                         </h1>
 
                         {/* <SearchInput /> */}
@@ -211,11 +239,7 @@ const UserPage = () => {
                   </header>
                   <header className="md:hidden w-full h-24 flex items-center p-5">
                     <ButtonDrawer />
-                    {activeMain === "Todos" && (
-                      <>
-                        {/* <SearchInput /> */}
-                      </>
-                    )}
+                    {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
                     {activeMain === "Settings" && (
                       <ButtonSetNaw onButtonClick={handleButtonSetClick} />
                     )}
@@ -223,29 +247,23 @@ const UserPage = () => {
                 </header>
                 {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
                 <aside className="flex flex-row w-full h-full overflow-hidden ">
-                  <main
-                    className={`w-full h-full flex  scroll-smooth overflow-auto  ${
-                      activeMain === "Todos" ? "main1" : ""
-                    }`}
-                  >
-                    {activeMain === "Home" && <HomeContent />}
+                  <NavButSet.Provider value={valueForNavBut}>
+                    <main className="w-full h-full flex  scroll-smooth overflow-auto  ">
+                      {activeMain === "Home" && <HomeContent />}
 
-                    {activeMain === "Settings" && (
-                      <NavButSet.Provider value={valueForNavBut}>
-                        <SettingsContent />
-                      </NavButSet.Provider>
-                    )}
+                      {activeMain === "Settings" && <SettingsContent />}
 
-                    {activeMain === "Todos" && (
-                      <>
-                        <RemoveOrEdit.Provider value={valueForAllert}>
-                          <div className="relative overflow-auto min-w-full ">
-                            <TodosContent />
-                          </div>
-                        </RemoveOrEdit.Provider>
-                      </>
-                    )}
-                  </main>
+                      {activeMain === "Todos" && (
+                        <>
+                          <RemoveOrEdit.Provider value={valueForAllert}>
+                            <div className="relative overflow-auto min-w-full ">
+                              <TodosContent />
+                            </div>
+                          </RemoveOrEdit.Provider>
+                        </>
+                      )}
+                    </main>
+                  </NavButSet.Provider>
                 </aside>
                 {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
                 {activeMain === "Todos" && (

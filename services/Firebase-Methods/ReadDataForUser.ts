@@ -3,6 +3,7 @@ import { collection, doc, getDoc, getDocs, onSnapshot, query, setDoc, updateDoc,
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import type { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 import { User_collect_datatype } from "@/types/Сollection-User-interfaces/types";
+import { AddColorDefault } from "../Local-Storage/AddtoStorage";
 
 
 // поиск юзера по айди 
@@ -60,6 +61,8 @@ export const getOrCreateUser2 = async (userID: string, userData: User_collect_da
                 email: userData.email,
                 photoURL: userData.photoURL,
                 password: userData.password,
+            }).then(() => {
+                AddColorDefault()
             });
         }
     } catch (error) {
@@ -77,7 +80,7 @@ export const CreateUser = async (userID: string, userData: User_collect_datatype
             email: userData.email,
             photoURL: userData.photoURL,
             password: userData.password,
-        });
+        }).then(() => { AddColorDefault() });
 
     } catch (error) {
         console.error('Error in getOrCreateUser2:');

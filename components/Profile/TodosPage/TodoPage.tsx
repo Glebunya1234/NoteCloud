@@ -13,7 +13,7 @@ import {
   EditTaskDialog,
   ModalRemoveBlock,
 } from "@/components";
-import { RemoveOrEdit, UpdateArray } from "@/components/Context";
+import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 
 const TodosContent = () => {
@@ -22,6 +22,7 @@ const TodosContent = () => {
   const [BlockName, setNameBlock] = useState("");
   const [nametitle, setNametitle] = useState<string>("");
   const [priorityTitle, setPriorityTitle] = useState<string>("");
+  const DataContext = useContext(NavButSet);
   const theme = useContext(RemoveOrEdit);
 
   //#region Functions
@@ -123,11 +124,13 @@ const TodosContent = () => {
               }
             >
               <div
-                className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between bg-bg-myyellow shadow-xl rounded-3xl overflow-hidden`}
+                className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${DataContext?.importTheme.CardColor} shadow-xl rounded-3xl overflow-hidden`}
               >
                 {/* Name of block */}
 
-                <section className="z-[2] bg-bg-myyellow">
+                <section
+                  className={`z-[2] ${DataContext?.importTheme.CardColor}`}
+                >
                   <h2 className="text-black text-lg font-bold m-5 mb-2">
                     {block[0].nameBlock}
                   </h2>
@@ -138,7 +141,7 @@ const TodosContent = () => {
                     theme?.ModeEditOrRemove !== "none"
                       ? "pointer-events-none"
                       : ""
-                  } z-[2] bg-bg-myyellow`}
+                  } z-[2] ${DataContext?.importTheme.CardColor}`}
                 >
                   {block.map((todo, todoIndex) => (
                     <li key={todoIndex}>
@@ -202,7 +205,9 @@ const TodosContent = () => {
 
                 {/* Bottom of block */}
                 <section
-                  className={`p-5 pt-3 flex z-[2] bg-bg-myyellow ${
+                  className={`p-5 pt-3 flex z-[2] ${
+                    DataContext?.importTheme.CardColor
+                  } ${
                     theme?.ModeEditOrRemove !== "none"
                       ? "pointer-events-none"
                       : ""
