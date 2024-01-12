@@ -1,4 +1,4 @@
-import { themetype } from "@/types/ColorScheme/ColorScheme-types";
+import { ThemeObject } from "@/types/ColorScheme/ColorScheme-types";
 import { HiOutlinePlusSm, HiOutlineTrash, HiPencil } from "react-icons/hi";
 interface MaketBlockComponentProps {
   CardColor: string;

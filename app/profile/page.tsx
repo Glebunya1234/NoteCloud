@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { userService, MyUser } from "@services/User-Service/UserServ";
 import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
 import Logo2 from "@/public/logoNC.svg";
@@ -31,15 +31,14 @@ import {
   NavButMenuType,
   NavButMenu,
 } from "@/components/Context";
-import { AnimatePresence, motion } from "framer-motion";
+
 import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
 import {
-  ReadImageData,
+
   ReadNameData,
 } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
-import { themetype } from "@/types/ColorScheme/ColorScheme-types";
 
 const UserPage = () => {
   const linkDefaultPhoto =
@@ -64,6 +63,7 @@ const UserPage = () => {
     backgroundColor: "bg-bg-mygrey",
     textColor: "text-base",
     blur: "backdrop-blur-0",
+    borderColor:"bg-mydurkgrey",
     CardColor: "bg-bg-myyellow",
   });
 
@@ -151,9 +151,6 @@ const UserPage = () => {
   };
   //#endregion
 
-  // useEffect(() => {
-  //   fetchDataIMG();
-  // }, []);
   useEffect(() => {
     const ReadShemeColorUseEffect = () => {
       const theme = ReadShemeColor();
@@ -161,6 +158,7 @@ const UserPage = () => {
         backgroundColor: theme.backgroundColor,
         textColor: theme.textColor,
         blur: theme.blur,
+        borderColor:theme.borderColor,
         CardColor: theme.CardColor,
       });
     };
@@ -180,7 +178,7 @@ const UserPage = () => {
             className="absolute top-5 right-[4px]  z-50 hidden lg:block"
             style={{ transform: "scaleX(-1) rotate(-20deg)" }}
           />
-          <div className="flex w-screen justify-center items-center h-screen bg-cover md:bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
+          <div className="flex w-screen justify-center items-center h-screen bg-cover bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
             <div
               className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
                 importTheme === null
@@ -188,10 +186,10 @@ const UserPage = () => {
                   : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
               }  md:rounded-3xl  w-full`}
             >
-              <section className="hidden md:flex border-r-bg-mydurkgrey border-r-[1px]  w-w-300 h-full  items-center  flex-col ">
-                <aside className="w-full h-24 mt-[1px] flex items-center border-b-[1px] border-bg-mydurkgrey justify-center ">
+              <section className={`hidden md:flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}>
+                <aside className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}>
                   <Image src={Logo2} width={30} height={30} alt="  " />
-                  <h1 className="text-center text-lg mx-2 text-gray-300 font-Orbitron">
+                  <h1 className="text-center text-lg mx-2 font-Orbitron">
                     NoteCloud
                   </h1>
                 </aside>
@@ -214,7 +212,7 @@ const UserPage = () => {
                   </h3>
                 </aside>
 
-                <section className="w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-bg-mydurkgrey justify-center ">
+                <section className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}>
                   <NavButMenu.Provider value={valueForNavMenu}>
                     <ButtonMenuNavigations />
                   </NavButMenu.Provider>
@@ -222,14 +220,14 @@ const UserPage = () => {
               </section>
 
               <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
-                <header className="w-full border-b-[1px] border-bg-mydurkgrey">
+                <header className={`w-full border-b-[1px] border-${importTheme.borderColor}`}>
                   <header className="hidden w-full h-24 md:flex items-center p-5">
                     {activeMain === "Settings" && (
                       <ButtonSetNaw onButtonClick={handleButtonSetClick} />
                     )}
                     {activeMain === "Todos" && (
                       <>
-                        <h1 className="text-center text-3xl ml-5 mr-10 text-gray-300 ">
+                        <h1 className="text-center text-3xl ml-5 mr-10">
                           Task&nbsp;bar
                         </h1>
 

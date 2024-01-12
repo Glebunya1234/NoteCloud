@@ -6,12 +6,14 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode:`class`,
   theme: { 
     extend: {
       colors: {
         'bg-mygrey': '#242426',
         'bg-myyellow': '#fff67a',
         'bg-mydurkgrey': '#3e4043',
+        'bg-myLightkgrey': '#e8e9ee',
         'bg-myLightGreen': '#a1ff9a',
         'bg-myBlueSky': '#baffff',
         'bg-myRedPink': '#f87272',

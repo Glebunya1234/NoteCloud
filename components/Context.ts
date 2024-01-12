@@ -1,4 +1,5 @@
-import { themetype } from "@/types/ColorScheme/ColorScheme-types";
+import { ThemeObject } from "@/types/ColorScheme/ColorScheme-types";
+import { TypeSetState } from "@/types/TypeSetSstateForUseState/type";
 import { Auth } from "firebase/auth";
 import { createContext } from "react";
 
@@ -6,7 +7,7 @@ import { createContext } from "react";
 export type HoverContextType = {
     id: string;
     ModeEditOrRemove: "edit" | "remove" | "none";
-    setModeEditOrRemove: React.Dispatch<React.SetStateAction<"edit" | "remove" | "none">>;
+    setModeEditOrRemove: TypeSetState<"edit" | "remove" | "none">;
 };
 
 export const RemoveOrEdit = createContext<HoverContextType>({
@@ -19,18 +20,11 @@ export const RemoveOrEdit = createContext<HoverContextType>({
 export type NavButMenuType = {
 
     activeMain: "Home" | "Todos" | "Settings";
-    setActiveMain: React.Dispatch<React.SetStateAction<"Home" | "Todos" | "Settings">>;
+    setActiveMain: TypeSetState<"Home" | "Todos" | "Settings">;
 };
 
 export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 //-------------------------------------------------------------------------------------//
-
-export type ThemeObject = {
-    backgroundColor: string;
-    textColor: string;
-    blur: string;
-    CardColor: string;
-};
 
 
 
@@ -41,15 +35,15 @@ export type NavButSetType = {
     fetchDataName: () => void;
 
     userDisplayName: string | null | undefined
-    setuserDisplayName: React.Dispatch<React.SetStateAction<string | null | undefined>>;
+    setuserDisplayName: TypeSetState<string | null | undefined>;
 
     setSrc: string | undefined
-    setSetSrc: React.Dispatch<React.SetStateAction<string | undefined>>;
+    setSetSrc: TypeSetState<string | undefined>;
     importTheme: ThemeObject;
-    setImportTheme: React.Dispatch<React.SetStateAction<ThemeObject>>;
+    setImportTheme: TypeSetState<ThemeObject>;
 
     activeSetName: string;
-    setActiveSetName: React.Dispatch<React.SetStateAction<string>>;
+    setActiveSetName: TypeSetState<string>;
 };
 
 export const NavButSet = createContext<NavButSetType>({
@@ -65,6 +59,7 @@ export const NavButSet = createContext<NavButSetType>({
         backgroundColor: "",
         textColor: "",
         blur: "",
+        borderColor: "",
         CardColor: "",
     },
     setImportTheme: () => { },
@@ -76,7 +71,7 @@ export const NavButSet = createContext<NavButSetType>({
 
 export type ChangeTegButton = {
     tegButName: string;
-    setTegButName: React.Dispatch<React.SetStateAction<string>>;
+    setTegButName: TypeSetState<string>;
 };
 
 export const ChangeTeg = createContext<ChangeTegButton | undefined>(undefined);
@@ -92,7 +87,7 @@ export const UpdateArray = createContext<UpdateArray | undefined>(undefined);
 export type ChangeNickNameAndPhotoUrl = {
 
     nicknameAndphoto: string | undefined | void;
-    setNicknameAndphoto: React.Dispatch<React.SetStateAction<string | undefined | void>>;
+    setNicknameAndphoto: TypeSetState<string | undefined | void>;
 };
 export const ChandeNameAndPhoto = createContext<ChangeNickNameAndPhotoUrl | undefined>(undefined);
 //-------------------------------------------------------------------------------------//

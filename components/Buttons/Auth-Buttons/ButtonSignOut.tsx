@@ -1,7 +1,7 @@
 import { signOut } from "firebase/auth";
 import { authh } from "@services/Firebase-Config/firebaseConfig";
 import { useRouter } from "next/navigation";
-import AuthPage from "@/app/Authorization/page";
+import AuthPage from "@/app/authorization/page";
 
 const BottonSignOut = () => {
   const router = useRouter();
@@ -9,7 +9,7 @@ const BottonSignOut = () => {
     try {
       await signOut(authh)
         .then(() => {
-          router.push("../Authorization?typeAuth=Log In");
+          router.push("../authorization?typeAuth=Log In");
         })
         .catch((error) => {
           console.error("Error during sign out:");

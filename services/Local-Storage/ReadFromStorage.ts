@@ -1,5 +1,5 @@
-import { ThemeObject } from "@/components/Context";
-import { themetype } from "@/types/ColorScheme/ColorScheme-types";
+
+import { ThemeObject } from "@/types/ColorScheme/ColorScheme-types";
 
 // Чтение цветовой схемы 
 export const ReadShemeColor = (): ThemeObject => {

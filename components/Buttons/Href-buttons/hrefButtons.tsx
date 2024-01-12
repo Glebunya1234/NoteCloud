@@ -10,7 +10,7 @@ const HrefButtons: React.FC<ButtonType> = ({ typeButton }) => {
   const router = useRouter();
   const handlClick = (typeAuth: ButtonType) => {
     
-    router.push(`/Authorization?typeAuth=${typeAuth.typeButton}`);
+    router.push(`/authorization?typeAuth=${typeAuth.typeButton}`);
   };
   return (
     <>
