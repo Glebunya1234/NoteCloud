@@ -29,7 +29,7 @@ const DrawerSide = () => {
           <section className="flex flex-col w-full justify-center items-start">
             <div className="w-full flex flex-col justify-center items-center my-5 ">
               <img
-                className="mask mask-circle"
+                 className={`${DataContext.importTheme.AvatarShape}`}
                 src={DataContext.setSrc}
                 style={{
                   minWidth: "100px",

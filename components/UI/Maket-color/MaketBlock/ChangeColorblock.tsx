@@ -1,15 +1,24 @@
 import { FC } from "react";
+import ChangeColor from "./ChangeColor";
 
 const ChangeColorblock: FC<{
-  Color: string;
-  margin?:string;
-  onButtonClick: (Color: string ) => void;
-}> = ({ onButtonClick, Color,margin }) => {
+  onButtonClick: (Color: string) => void;
+}> = ({ onButtonClick }) => {
   return (
-    <div
-      className={`w-14 h-14 rounded-lg hover:scale-110 transition-all ${Color} ${margin}`}
-      onClick={() => onButtonClick(Color)}
-    ></div>
+    <aside className="flex md:flex-row mt-3 p-5 bg-bg-mydurkgrey rounded-2xl ">
+      <ChangeColor Color="bg-bg-myyellow" onButtonClick={onButtonClick} />
+      <ChangeColor
+        Color="bg-bg-myRedPink"
+        margin="mx-2"
+        onButtonClick={onButtonClick}
+      />
+      <ChangeColor
+        Color="bg-bg-myBlueSky"
+        margin="mr-2"
+        onButtonClick={onButtonClick}
+      />
+      <ChangeColor Color="bg-bg-myLightGreen" onButtonClick={onButtonClick} />
+    </aside>
   );
 };
 export default ChangeColorblock;

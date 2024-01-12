@@ -61,6 +61,7 @@ export const NavButSet = createContext<NavButSetType>({
         blur: "",
         borderColor: "",
         CardColor: "",
+        AvatarShape:"",
     },
     setImportTheme: () => { },
     activeSetName: "",

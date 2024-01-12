@@ -33,10 +33,7 @@ import {
 } from "@/components/Context";
 
 import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
-import {
-
-  ReadNameData,
-} from "@/services/Firebase-Methods/ReadDataForUser";
+import { ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
 
@@ -63,8 +60,9 @@ const UserPage = () => {
     backgroundColor: "bg-bg-mygrey",
     textColor: "text-base",
     blur: "backdrop-blur-0",
-    borderColor:"bg-mydurkgrey",
+    borderColor: "bg-mydurkgrey",
     CardColor: "bg-bg-myyellow",
+    AvatarShape: "rounded-full",
   });
 
   const [userDisplayName, setuserDisplayName] =
@@ -154,13 +152,16 @@ const UserPage = () => {
   useEffect(() => {
     const ReadShemeColorUseEffect = () => {
       const theme = ReadShemeColor();
-      setImportTheme({
-        backgroundColor: theme.backgroundColor,
-        textColor: theme.textColor,
-        blur: theme.blur,
-        borderColor:theme.borderColor,
-        CardColor: theme.CardColor,
-      });
+      if (theme) {
+        setImportTheme({
+          backgroundColor: theme?.backgroundColor,
+          textColor: theme?.textColor,
+          blur: theme?.blur,
+          borderColor: theme?.borderColor,
+          CardColor: theme?.CardColor,
+          AvatarShape: theme?.AvatarShape,
+        });
+      }
     };
     ReadShemeColorUseEffect();
   }, []);
@@ -186,8 +187,12 @@ const UserPage = () => {
                   : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
               }  md:rounded-3xl  w-full`}
             >
-              <section className={`hidden md:flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}>
-                <aside className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}>
+              <section
+                className={`hidden md:flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
+              >
+                <aside
+                  className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
+                >
                   <Image src={Logo2} width={30} height={30} alt="  " />
                   <h1 className="text-center text-lg mx-2 font-Orbitron">
                     NoteCloud
@@ -196,7 +201,7 @@ const UserPage = () => {
 
                 <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
                   <img
-                    className="mask mask-circle"
+                    className={`${importTheme.AvatarShape}`}
                     src={setSrc}
                     style={{
                       minWidth: "100px",
@@ -212,7 +217,9 @@ const UserPage = () => {
                   </h3>
                 </aside>
 
-                <section className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}>
+                <section
+                  className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                >
                   <NavButMenu.Provider value={valueForNavMenu}>
                     <ButtonMenuNavigations />
                   </NavButMenu.Provider>
@@ -220,7 +227,9 @@ const UserPage = () => {
               </section>
 
               <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
-                <header className={`w-full border-b-[1px] border-${importTheme.borderColor}`}>
+                <header
+                  className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
+                >
                   <header className="hidden w-full h-24 md:flex items-center p-5">
                     {activeMain === "Settings" && (
                       <ButtonSetNaw onButtonClick={handleButtonSetClick} />
