@@ -15,10 +15,10 @@ const ChangeNameComponent = () => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           updateProfile(user, {
-            displayName: userName,
+            displayName: userName.trim(),
           });
           
-          await ChangeNameUser(userName, Refresh?.id).then(()=>{
+          await ChangeNameUser(userName.trim(), Refresh?.id).then(()=>{
             Refresh?.fetchDataName();
             showSuccessToast("The username has been updated!");
 
@@ -57,7 +57,11 @@ const ChangeNameComponent = () => {
       </span>
 
       <button
-        className="btn btn-outline btn-sm w-[180px] mt-2"
+        className={`${
+          userName.trim() === "" 
+            ? "btn-disabled"
+            : ""
+        } btn btn-outline  btn-sm w-[180px] mt-2`}
         onClick={handleClickUpload}
       >
         Update username
