@@ -12,6 +12,7 @@ const AddNewTaskComnponent: React.FC<{
   nameBlock: string;
 }> = ({ nameBlock }) => {
   const [taskname, setTaskname] = useState("");
+  
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
   const handleClickAddButton = () => {

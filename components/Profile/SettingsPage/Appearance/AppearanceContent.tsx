@@ -3,16 +3,14 @@ import { NavButSet } from "@/components/Context";
 import MaketBlockComponent from "@/components/UI/Maket-color/MaketBlock/MaketBlockComponent";
 
 import MaketNoteCloudComponent from "@/components/UI/Maket-color/MaketNoteCloud/MaketNoteCloudComponent";
-import {
-
-  AddColorScheme,
-} from "@/services/Local-Storage/AddtoStorage";
+import { AddColorScheme } from "@/services/Local-Storage/AddtoStorage";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
 import { useContext, useState } from "react";
 
 import ChangeColorblock from "@/components/UI/Maket-color/MaketBlock/ChangeColorblock";
 import ChangeColorNote from "@/components/UI/Maket-color/MaketNoteCloud/ChangeColorNote";
 import ChangeAvatarBlock from "@/components/UI/Maket-color/MaketAvatar/ChangeAvatarBlock";
+import { motion } from "framer-motion";
 
 export default function ApperanceContent() {
   const DataContext = useContext(NavButSet);
@@ -45,8 +43,7 @@ export default function ApperanceContent() {
     CardColor: string,
     AvatarShape: string
   ) => {
-
-    console.log(AvatarShape)
+    console.log(AvatarShape);
     AddColorScheme(
       backgroundColor,
       textColor,
@@ -80,7 +77,14 @@ export default function ApperanceContent() {
         >
           <h3 className="font-bold text-lg my-2">Preferred Avatar Shape</h3>
         </li>
-        <li>
+        <motion.li
+          animate={{
+            x: 0,
+            scale: 1,
+            opacity: 1,
+          }}
+          initial={{ opacity: 0, scale: 0.5, x: 2000 }}
+        >
           <p className="text-sm">Choose what shape your avatar will be.</p>
           <section
             className={`flex w-full  lg:w-min md:flex-row border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl`}
@@ -90,7 +94,7 @@ export default function ApperanceContent() {
               onButtonClick={ChangeAvatar}
             />
           </section>
-        </li>
+        </motion.li>
         <li
           className={`border-b-[1px] border-${DataContext.importTheme.borderColor}  mt-8 mb-5 `}
         >
@@ -98,7 +102,13 @@ export default function ApperanceContent() {
         </li>
 
         <li className="flex flex-wrap w-full">
-          <aside className="lg:mr-5 mb-5 xl:mb-0 transition-all w-full lg:w-min">
+          <motion.aside
+            animate={{
+              opacity: 1,
+            }}
+            initial={{ opacity: 0 }}
+            className="lg:mr-5 mb-5 xl:mb-0 transition-all w-full lg:w-min"
+          >
             <h3 className="font-bold text-sm ">
               Choose what color the task blocks will be
             </h3>
@@ -109,9 +119,15 @@ export default function ApperanceContent() {
               <MaketBlockComponent CardColor={blocktheme.CardColor} />
               <ChangeColorblock onButtonClick={ChangeBlockColor} />
             </section>
-          </aside>
+          </motion.aside>
 
-          <aside className="w-full lg:w-min">
+          <motion.aside
+            animate={{
+              opacity: 1,
+            }}
+            initial={{ opacity: 0 }}
+            className="w-full lg:w-min"
+          >
             <h3 className="font-bold text-sm ">
               Choose what NoteCloud will look like
             </h3>
@@ -126,7 +142,7 @@ export default function ApperanceContent() {
 
               <ChangeColorNote onButtonClick={OnClickNoteScheme} />
             </section>
-          </aside>
+          </motion.aside>
         </li>
         <button
           className="btn btn-outline btn-sm w-[180px] mt-2"

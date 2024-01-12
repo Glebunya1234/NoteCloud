@@ -1,14 +1,14 @@
 import { showErrorToast, showSuccessToast } from "@/components";
-import { RemoveOrEdit, UpdateArray } from "@/components/Context";
+import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import { UpdateBlockName } from "@/services/Firebase-Methods/Task-Management-methods";
 import { useContext, useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const EditBlockModal: React.FC<{
-
   blockName: string;
-}> = ({blockName }) => {
+}> = ({ blockName }) => {
   const [newblockname, setNewblockname] = useState<string>("");
+  const dataContext = useContext(NavButSet);
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
   useEffect(() => {
@@ -29,7 +29,7 @@ const EditBlockModal: React.FC<{
 
   return (
     <dialog id="EditBlockModal" className="modal">
-      <div className="modal-box bg-bg-mygrey">
+      <div className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.backgroundColor}`}>
         <h3 className="font-bold text-lg mb-2 ">
           Editing a block "{blockName}"
         </h3>
@@ -51,11 +51,11 @@ const EditBlockModal: React.FC<{
               className="btn btn-square bg-transparent border-[#3a393c] w-full hover:bg-bg-mydurkgrey"
               onClick={UpdateBlockNameFunc}
             >
-               Save change<FiCheck style={{ fontSize: "20px" }} />
+              Save change
+              <FiCheck style={{ fontSize: "20px" }} />
             </button>
           </form>
         </div>
-        
 
         {/* Текст ниже */}
         <p className="mt-5 text-xs text-right">

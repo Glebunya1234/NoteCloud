@@ -3,7 +3,7 @@ import {
   showErrorToast,
   showSuccessToast,
 } from "@/components";
-import { ChangeTeg, ChangeTegButton, RemoveOrEdit, UpdateArray } from "@/components/Context";
+import { ChangeTeg, ChangeTegButton, NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import {
   UpdateTask,
 } from "@/services/Firebase-Methods/Task-Management-methods";
@@ -19,6 +19,7 @@ const EditTaskDialog: React.FC<{
   priorityTitle: string;
 
 }> = ({oldtaskName, blockName, priorityTitle }) => {
+  const dataContext = useContext(NavButSet);
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");
   const updateContext = useContext(UpdateArray);
@@ -51,7 +52,7 @@ const EditTaskDialog: React.FC<{
 
   return (
     <dialog id="EditTaskDialog" className="modal">
-      <div className="modal-box bg-bg-mygrey">
+      <div className={`modal-box backdrop-blur-3xl  ${dataContext.importTheme.backgroundColor}`}>
         <h3 className="font-bold text-lg mb-2 ">
           Editing the task "{oldtaskName}" in the "{blockNamess}" block
         </h3>

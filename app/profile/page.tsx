@@ -277,10 +277,10 @@ const UserPage = () => {
                 {activeMain === "Todos" && (
                   <motion.footer
                     animate={{
-                      x: 0,
+                      y: 0,
                       opacity: 1,
                     }}
-                    initial={{ opacity: 0, x: -500 }}
+                    initial={{ opacity: 0, y: 500 }}
                     className="w-full h-24 mt-5 items-center  flex"
                   >
                     <RemoveOrEdit.Provider value={valueForAllert}>
@@ -294,15 +294,6 @@ const UserPage = () => {
               </section>
             </div>
             <AllertToast />
-
-            {/* <ModalEditProf
-              id={userUid || ""}
-              oldUserName={`${userDisplayName}`}
-              onPhotoChange={fetchDataIMG}
-              onNameChange={fetchDataName}
-            /> */}
-
-            {/* <EditBlockModal /> */}
           </div>
         </main>
       </div>

@@ -1,5 +1,5 @@
 import { showErrorToast, showSuccessToast } from "@/components";
-import { RemoveOrEdit, UpdateArray } from "@/components/Context";
+import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import { deleteBlockInName } from "@/services/Firebase-Methods/Task-Management-methods";
 import { useContext } from "react";
 import { FiCheck } from "react-icons/fi";
@@ -9,6 +9,7 @@ const ModalRemoveBlock: React.FC<{
   blockName: string;
 }> = ({ blockName }) => {
   const updateContext = useContext(UpdateArray);
+  const dataContext = useContext(NavButSet);
   const Refresh = useContext(RemoveOrEdit);
   const handleClickDell = () => {
     try {
@@ -22,7 +23,7 @@ const ModalRemoveBlock: React.FC<{
 
   return (
     <dialog id="ModalRemoveBlock" className="modal">
-      <div className="modal-box bg-bg-mygrey">
+      <div className={`modal-box backdrop-blur-3xl  ${dataContext.importTheme.backgroundColor}`}>
         <h3 className="font-bold text-lg mb-2 ">
           Editing a block "{blockName}"
         </h3>
