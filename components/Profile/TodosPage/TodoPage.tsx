@@ -99,14 +99,40 @@ const TodosContent = () => {
     fetchData();
   }, [theme?.id]);
 
+  const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
   return (
     <UpdateArray.Provider value={{ onTaskAdded: fetchData }}>
-      <main className={`flex w-full pr-9 pb-9 h-min `}>
+      <motion.main
+        variants={container}
+        initial="hidden"
+        animate="visible"
+        className={`container flex w-full pr-9 pb-9 h-min `}
+      >
         {blocks.map((block, index) => (
-          <motion.article
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={animationTransition}
+          <motion.aside
+            className="item"
+            variants={item}
+            // initial={{ opacity: 0, scale: 0.5 }}
+            // animate={{ opacity: 1, scale: 1 }}
+            // transition={animationTransition}
             key={index}
           >
             <section
@@ -137,17 +163,20 @@ const TodosContent = () => {
                 </section>
 
                 <motion.ul
-                  className={`${
+                  variants={container}
+                  initial="hidden"
+                  animate="visible"
+                  className={`container ${
                     theme?.ModeEditOrRemove !== "none"
                       ? "pointer-events-none"
                       : ""
                   } z-[2] ${DataContext?.importTheme.CardColor}`}
                 >
                   {block.map((todo, todoIndex) => (
-                    <li key={todoIndex}>
+                    <motion.li className="item" variants={item} key={todoIndex}>
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        // initial={{ opacity: 0, scale: 0.5 }}
+                        // animate={{ opacity: 1, scale: 1 }}
                         whileHover={animationVariants.hover}
                         transition={animationTransition}
                         className="collapse my-1 collapse-arrow overflow-visible text-black"
@@ -199,7 +228,7 @@ const TodosContent = () => {
                         oldtaskName={nametitle}
                         priorityTitle={priorityTitle}
                       />
-                    </li>
+                    </motion.li>
                   ))}
                 </motion.ul>
 
@@ -217,12 +246,12 @@ const TodosContent = () => {
                 </section>
               </div>
             </section>
-          </motion.article>
+          </motion.aside>
         ))}
         <AddBlockModal />
         <EditBlockModal blockName={BlockName} />
         <ModalRemoveBlock blockName={BlockName} />
-      </main>
+      </motion.main>
     </UpdateArray.Provider>
   );
 };

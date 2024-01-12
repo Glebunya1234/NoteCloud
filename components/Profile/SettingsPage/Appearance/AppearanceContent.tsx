@@ -83,7 +83,7 @@ export default function ApperanceContent() {
         <li>
           <p className="text-sm">Choose what shape your avatar will be.</p>
           <section
-            className={`flex w-full  lg:w-min flex-wrap md:flex-nowrap justify-center items-center md:flex-row mt-3 p-5 border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl`}
+            className={`flex w-full  lg:w-min md:flex-row border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl`}
           >
             <ChangeAvatarBlock
               AvatarScr={DataContext.setSrc}
@@ -104,7 +104,7 @@ export default function ApperanceContent() {
             </h3>
 
             <section
-              className={`flex flex-col justify-center items-center mt-3 p-5 border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl `}
+              className={`flex flex-col overflow-scroll justify-center items-center mt-3 p-5 border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl `}
             >
               <MaketBlockComponent CardColor={blocktheme.CardColor} />
               <ChangeColorblock onButtonClick={ChangeBlockColor} />
@@ -117,7 +117,7 @@ export default function ApperanceContent() {
             </h3>
 
             <section
-              className={`flex flex-col justify-center items-center mt-3 p-5 border-[2px]  border-${DataContext.importTheme.borderColor} rounded-2xl `}
+              className={`flex flex-col justify-center overflow-scroll items-center mt-3 p-5 border-[2px]  border-${DataContext.importTheme.borderColor} rounded-2xl `}
             >
               <MaketNoteCloudComponent
                 bgCol={NoteCloudColor.backgroundColor}

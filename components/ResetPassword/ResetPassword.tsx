@@ -10,10 +10,10 @@ import { showErrorToast, showSuccessToast } from "..";
 
 const ResetPassword = () => {
   const dataContext = useContext(NavButSet);
-  const [email, setEmail] = useState("");
 
   const [newPassword, setNewPassword] = useState("");
   const [confNewpassword, setConfNewPassword] = useState("");
+
   const [errorInputNewPassStyle, SetErrorInputNewPassStyle] = useState(true);
   const [errorInputConfPassStyle, SetErrorInputConfPassStyle] = useState(true);
 
@@ -45,7 +45,7 @@ const ResetPassword = () => {
     }
   };
   useEffect(() => {
-    // Внутри useEffect пароли уже обновились
+   
     if (newPassword === confNewpassword) {
       SetErrorInputConfPassStyle(false);
     } else {

@@ -5,42 +5,92 @@ import { NavButSet } from "@/components/Context";
 import ChangeNameComponent from "@/components/Inputs/Profile-Inputs/ChangeNameComponent";
 import ResetPassword from "@/components/ResetPassword/ResetPassword";
 import EditPictureProfile from "@/components/UI/Edit-Picture-Profile/EditPictureProfile";
+import { motion } from "framer-motion";
 import { useContext } from "react";
 
 export default function AccountContent() {
-  const DataContext = useContext(NavButSet) 
+  const DataContext = useContext(NavButSet);
+  const animationTransition = {
+    type: "spring",
+    stiffness: 400,
+    damping: 20,
+  };
   return (
-    <main className="w-full h-full flex flex-col p-3">
+    <motion.main
+      // initial={{ opacity: 0, scale: 0.5 }}
+      // animate={{ opacity: 1, scale: 1 }}
+      // transition={animationTransition}
+      className="w-full h-full flex flex-col p-3 "
+    >
       <ul>
-        <li className={`border-b-[1px] border-${DataContext.importTheme.borderColor} mb-5`}>
+        <li
+          className={`border-b-[1px] border-${DataContext.importTheme.borderColor} mb-5`}
+        >
           <h3 className="font-bold text-lg my-2">Account</h3>
         </li>
 
         <li className="flex flex-col-reverse lg:flex-row">
-          <div className="flex flex-col">
+          <motion.div
+            animate={{
+              x: 0,
+
+              scale: 1,
+              rotate: 0,
+              opacity: 1,
+            }}
+            initial={{ opacity: 0, scale: 0.5, x: -200 }}
+            className="flex flex-col"
+          >
             <h3 className="font-bold text-sm ">Change username</h3>
             <ChangeNameComponent />
-          </div>
-          <div className="flex flex-col lg:mx-20">
+          </motion.div>
+          <motion.div
+            animate={{
+              x: 0,
+
+              scale: 1,
+              rotate: 0,
+              opacity: 1,
+            }}
+            initial={{ opacity: 0, scale: 0.5, x: 200 }}
+            className="flex flex-col lg:mx-20"
+          >
             <h3 className="font-bold text-sm ">Profile picture</h3>
             <EditPictureProfile />
-          </div>
+          </motion.div>
         </li>
       </ul>
-      <ul>
-        <li className={`border-b-[1px] border-${DataContext.importTheme.borderColor}  mt-8 mb-5`}>
+      <motion.ul
+        animate={{
+          y: 0,
+
+          rotate: 0,
+          opacity: 1,
+        }}
+        initial={{ opacity: 0, y: 200 }}
+      >
+        <li
+          className={`border-b-[1px] border-${DataContext.importTheme.borderColor}  mt-5 mb-5`}
+        >
           <h3 className="font-bold text-lg my-2">Security </h3>
         </li>
 
-        {/* <li className="flex flex-col">
-          <ChangeEmail />
-        </li> */}
         <li className="flex flex-col">
           <ResetPassword />
         </li>
-      </ul>
-      <ul>
-        <li className={`border-b-[1px] border-${DataContext.importTheme.borderColor}  mt-8 mb-5`}>
+      </motion.ul>
+      <motion.ul
+        animate={{
+          y: 0,
+
+          rotate: 0,
+          opacity: 1,
+        }}
+        initial={{ opacity: 0, y: -200 }}
+      >
+        <li
+          className={`border-b-[1px] border-${DataContext.importTheme.borderColor}  mt-8 mb-5`}
+        >
           <h3 className="font-bold text-lg my-2">Sign out of your account</h3>
         </li>
 
@@ -51,8 +101,8 @@ export default function AccountContent() {
           </p>
           <BottonSignOut />
         </li>
-      </ul>
+      </motion.ul>
       <ModalEditProf />
-    </main>
+    </motion.main>
   );
 }

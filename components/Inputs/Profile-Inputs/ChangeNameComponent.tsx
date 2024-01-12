@@ -51,7 +51,7 @@ const ChangeNameComponent = () => {
           setUserName(e.target.value);
         }}
       />
-      <span className="text-xs">
+      <span className="text-xs mb-2">
         Your name may appear on NoteCloud, you can change it at any time, it is
         only visible to you
       </span>
@@ -61,7 +61,7 @@ const ChangeNameComponent = () => {
           userName.trim() === "" 
             ? "btn-disabled"
             : ""
-        } btn btn-outline  btn-sm w-[180px] mt-2`}
+        } btn btn-outline  btn-sm w-[180px] mt-auto mb-6 `}
         onClick={handleClickUpload}
       >
         Update username

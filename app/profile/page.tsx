@@ -36,6 +36,7 @@ import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockCom
 import { ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
+import { motion } from "framer-motion";
 
 const UserPage = () => {
   const linkDefaultPhoto =
@@ -274,14 +275,21 @@ const UserPage = () => {
                 </aside>
                 {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
                 {activeMain === "Todos" && (
-                  <footer className="w-full h-24 mt-5 items-center  flex">
+                  <motion.footer
+                    animate={{
+                      x: 0,
+                      opacity: 1,
+                    }}
+                    initial={{ opacity: 0, x: -500 }}
+                    className="w-full h-24 mt-5 items-center  flex"
+                  >
                     <RemoveOrEdit.Provider value={valueForAllert}>
                       <div className="flex justify-between items-center w-full">
                         <AllertCall />
                         <DropdownEditBlockCopy />
                       </div>
                     </RemoveOrEdit.Provider>
-                  </footer>
+                  </motion.footer>
                 )}
               </section>
             </div>
