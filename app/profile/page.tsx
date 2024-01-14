@@ -21,6 +21,7 @@ import {
   HomeContent,
   SettingsContent,
   TodosContent,
+  showSuccessToast,
 } from "@/components";
 
 import {
@@ -95,6 +96,7 @@ const UserPage = () => {
 
   //#region Functions
   const fetchDataIMG = async () => {
+    console.log("z ddff")
     if (userUid !== null) {
       let imgref = await ReadNameData(userUid);
       if (

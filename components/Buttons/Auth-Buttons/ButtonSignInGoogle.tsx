@@ -41,14 +41,13 @@ export default function ButtonGoogle() {
             userID: `${userss?.uid}`,
             password: "",
           };
-          // console.log("userData.userID",userData.userID)
-          // console.log("userss",userss)
-          //если пользователь есть то выведет его данные а если нет то создаст а потом выведет
-          getOrCreateUser2(userData.userID, userData)
-          router.push(`/profile?userUid=${userData.userID}`);
-          // router.push(`/profile/${userss?.uid}`);
-          // const googleUser = getOrCreateUser(userData.userID, userData);
-          showSuccessToast("Successful login!");
+          
+          getOrCreateUser2(userData.userID, userData).then(()=>{
+            router.push(`/profile?userUid=${userData.userID}`);
+
+            // showSuccessToast("Successful login!");
+          })
+          
           
 
         }
