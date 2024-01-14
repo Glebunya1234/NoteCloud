@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Component, FC } from "react";
+import React, { Component, FC, useState } from "react";
 import ChangeAvatar from "./ChangeAvatar";
 import { motion } from "framer-motion";
 
@@ -7,6 +7,8 @@ const ChangeAvatarBlock: FC<{
   AvatarScr: string | undefined;
   onButtonClick: (shape: string) => void;
 }> = ({ AvatarScr, onButtonClick }) => {
+  const [change, setChange] = useState("");
+
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -28,7 +30,7 @@ const ChangeAvatarBlock: FC<{
   };
   return (
     <motion.ul
-      className="container flex w-full  lg:w-min flex-wrap md:flex-nowrap justify-center items-center md:flex-row  p-5 "
+      className="container flex w-full  flex-wrap xl:flex-nowrap justify-center items-center xl:flex-row  p-5 "
       variants={container}
       initial="hidden"
       animate="visible"
@@ -36,25 +38,27 @@ const ChangeAvatarBlock: FC<{
       <motion.li
         className="item"
         variants={item}
-        whileHover={{ scale: 1.01}}
+        whileHover={{ scale: 1.01 }}
         whileTap={{
-          scale: 0.8
-          
+          scale: 0.8,
         }}
       >
         <ChangeAvatar
           AvatarScr={AvatarScr}
           Shape="rounded-xl"
+          onСhangeClick={() => {
+            setChange("rounded-xl");
+          }}
+          changeAvatar={change}
           onButtonClick={onButtonClick}
         />
       </motion.li>
       <motion.li
         className="item"
         variants={item}
-        whileHover={{ scale: 1.01}}
+        whileHover={{ scale: 1.01 }}
         whileTap={{
           scale: 0.8,
-        
         }}
       >
         <ChangeAvatar
@@ -62,6 +66,10 @@ const ChangeAvatarBlock: FC<{
           margin="lg:mx-5"
           Shape="rounded-full"
           onButtonClick={onButtonClick}
+          onСhangeClick={() => {
+            setChange("rounded-full");
+          }}
+          changeAvatar={change}
         />
       </motion.li>
       <motion.li
@@ -70,13 +78,16 @@ const ChangeAvatarBlock: FC<{
         whileHover={{ scale: 1.01 }}
         whileTap={{
           scale: 0.8,
-         
         }}
       >
         <ChangeAvatar
           AvatarScr={AvatarScr}
           Shape="mask mask-squircle"
           onButtonClick={onButtonClick}
+          onСhangeClick={() => {
+            setChange("mask mask-squircle");
+          }}
+          changeAvatar={change}
         />
       </motion.li>
       <motion.li
@@ -85,14 +96,54 @@ const ChangeAvatarBlock: FC<{
         whileHover={{ scale: 1.01 }}
         whileTap={{
           scale: 0.8,
-       
+        }}
+      >
+        <ChangeAvatar
+          AvatarScr={AvatarScr}
+          margin="lg:mx-5"
+          Shape="mask mask-hexagon"
+          onButtonClick={onButtonClick}
+          onСhangeClick={() => {
+            setChange("mask mask-hexagon");
+          }}
+          changeAvatar={change}
+        />
+      </motion.li>
+      <motion.li
+        className="item"
+        variants={item}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{
+          scale: 0.8,
+        }}
+      >
+        <ChangeAvatar
+          AvatarScr={AvatarScr}
+          Shape="mask mask-hexagon-2"
+          onButtonClick={onButtonClick}
+          onСhangeClick={() => {
+            setChange("mask mask-hexagon-2");
+          }}
+          changeAvatar={change}
+        />
+      </motion.li>
+      <motion.li
+        className="item"
+        variants={item}
+        whileHover={{ scale: 1.01 }}
+        whileTap={{
+          scale: 0.8,
         }}
       >
         <ChangeAvatar
           AvatarScr={AvatarScr}
           margin="lg:ml-5"
-          Shape="mask mask-hexagon"
+          Shape="mask mask-heart"
           onButtonClick={onButtonClick}
+          onСhangeClick={() => {
+            setChange("mask mask-heart");
+          }}
+          changeAvatar={change}
         />
       </motion.li>
     </motion.ul>

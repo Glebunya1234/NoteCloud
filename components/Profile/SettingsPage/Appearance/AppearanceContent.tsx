@@ -43,7 +43,6 @@ export default function ApperanceContent() {
     CardColor: string,
     AvatarShape: string
   ) => {
-    console.log(AvatarShape);
     AddColorScheme(
       backgroundColor,
       textColor,
@@ -53,7 +52,6 @@ export default function ApperanceContent() {
       AvatarShape
     );
     DataContext?.setImportTheme(ReadShemeColor());
-    console.log(ReadShemeColor());
   };
   const OnClickNoteScheme = (
     backgroundColor: string,
@@ -87,7 +85,7 @@ export default function ApperanceContent() {
         >
           <p className="text-sm">Choose what shape your avatar will be.</p>
           <section
-            className={`flex w-full  lg:w-min md:flex-row border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl`}
+            className={`flex w-full sm:overflow-x-auto  xl:w-min md:flex-row border-[2px] border-${DataContext.importTheme.borderColor} rounded-2xl`}
           >
             <ChangeAvatarBlock
               AvatarScr={DataContext.setSrc}
