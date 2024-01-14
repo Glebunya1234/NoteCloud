@@ -18,6 +18,13 @@ const ResetPassword = () => {
   const [errorInputConfPassStyle, SetErrorInputConfPassStyle] = useState(true);
 
   const handleClickChangePassw = (PaswNew: string, PaswConf: string) => {
+    const dropState = () => {
+      setNewPassword("");
+      setConfNewPassword("");
+      SetErrorInputNewPassStyle(true);
+      SetErrorInputConfPassStyle(true);
+    };
+
     if (typeof dataContext?.auth !== "string") {
       onAuthStateChanged(dataContext?.auth, (user) => {
         if (user) {
@@ -25,9 +32,11 @@ const ResetPassword = () => {
             updatePassword(user, PaswConf)
               .then(() => {
                 showSuccessToast("Password change");
+                dropState();
               })
               .catch((error) => {
                 showErrorToast("Passw not change");
+                dropState();
               });
           } else {
           }
@@ -45,7 +54,6 @@ const ResetPassword = () => {
     }
   };
   useEffect(() => {
-   
     if (newPassword === confNewpassword) {
       SetErrorInputConfPassStyle(false);
     } else {

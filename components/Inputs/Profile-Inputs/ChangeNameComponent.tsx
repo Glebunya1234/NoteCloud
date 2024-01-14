@@ -5,23 +5,25 @@ import { getAuth, onAuthStateChanged, updateProfile } from "firebase/auth";
 import { useContext, useState } from "react";
 
 const ChangeNameComponent = () => {
-  const [userName, setUserName] = useState("");
   const Refresh = useContext(NavButSet);
+  const import_User_Name = Refresh.userDisplayName;
+  const [userName, setUserName] = useState<string | null | undefined>(
+    import_User_Name
+  );
   const auth = getAuth();
 
   //#region Functions
   const handleClickUpload = async () => {
-    if (userName.trim() !== "") {
+    if (userName!.trim() !== "") {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           updateProfile(user, {
-            displayName: userName.trim(),
+            displayName: userName!.trim(),
           });
-          
-          await ChangeNameUser(userName.trim(), Refresh?.id).then(()=>{
+
+          await ChangeNameUser(userName!.trim(), Refresh?.id).then(() => {
             Refresh?.fetchDataName();
             showSuccessToast("The username has been updated!");
-
           });
 
           setUserName("");
@@ -46,7 +48,7 @@ const ChangeNameComponent = () => {
       <input
         type="text"
         className="input input-bordered bg-transparent max-w-xs my-2 transition-all ease-linear hover:bg-black hover:bg-opacity-20"
-        value={userName}
+        value={userName!}
         onChange={(e) => {
           setUserName(e.target.value);
         }}
@@ -58,9 +60,7 @@ const ChangeNameComponent = () => {
 
       <button
         className={`${
-          userName.trim() === "" 
-            ? "btn-disabled"
-            : ""
+          userName!.trim() === "" ? "btn-disabled" : ""
         } btn btn-outline  btn-sm w-[180px] mt-auto mb-6 `}
         onClick={handleClickUpload}
       >

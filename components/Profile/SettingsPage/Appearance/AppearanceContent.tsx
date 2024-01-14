@@ -11,6 +11,7 @@ import ChangeColorblock from "@/components/UI/Maket-color/MaketBlock/ChangeColor
 import ChangeColorNote from "@/components/UI/Maket-color/MaketNoteCloud/ChangeColorNote";
 import ChangeAvatarBlock from "@/components/UI/Maket-color/MaketAvatar/ChangeAvatarBlock";
 import { motion } from "framer-motion";
+import { showSuccessToast } from "@/components";
 
 export default function ApperanceContent() {
   const DataContext = useContext(NavButSet);
@@ -51,7 +52,8 @@ export default function ApperanceContent() {
       CardColor,
       AvatarShape
     );
-    DataContext?.setImportTheme(ReadShemeColor());
+    DataContext?.setImportTheme(ReadShemeColor())
+    showSuccessToast("Color theme has been changed!");
   };
   const OnClickNoteScheme = (
     backgroundColor: string,

@@ -24,27 +24,6 @@ export function readDoc(userID: string) {
 
 
 
-
-// export const getOrCreateUser2 = async (userID: string, userData:User_collect_datatype): Promise<void> => {
-
-//     const newdoc = doc(mydatabase, `collection-users/${userID}`);
-//     onSnapshot(newdoc, (docSnapsh) => {
-//         if (docSnapsh.exists()) {
-//             const docData = docSnapsh.data();
-//             console.log(`my data = ${JSON.stringify(docData)}`);
-//         }
-//         else {
-//             setDoc(doc(mydatabase, "collection-users/",`${userID}`), {
-//                 userID: `${userID}`,
-//                 displayName: `${userData.displayName}`,
-//                 email:`${userData.email}`,
-//                 photoURL:`${userData.photoURL}`,
-//                 password:`${userData.password}`
-//               });
-//         }
-//     })
-
-// }
 export const getOrCreateUser2 = async (userID: string, userData: User_collect_datatype): Promise<void> => {
     const userDocRef = doc(mydatabase, `collection-users/${userID}`);
 
@@ -85,12 +64,6 @@ export const CreateUser = async (userID: string, userData: User_collect_datatype
         // Здесь можно добавить дополнительную обработку ошибок, если необходимо
     }
 };
-
-
-
-
-
-
 
 
 
@@ -159,7 +132,7 @@ export const addImageData = async (data: string, userID: string): Promise<void> 
             const docRef = doc(usersCollection, documentSnapshot.id);
             await updateDoc(docRef, { photoURL: data });
         });
-        console.log('Данные успешно добавлены в коллекцию');
+
     } catch (error) {
         console.error('Ошибка при добавлении данных в коллекцию', error);
         throw error;
@@ -177,7 +150,7 @@ export const ChangeNameUser = async (newNickName: string, userID: string): Promi
             const docRef = doc(usersCollection, documentSnapshot.id);
             await updateDoc(docRef, { displayName: newNickName });
         });
-        console.log('Данные успешно добавлены в коллекцию');
+
 
 
     } catch (error) {
@@ -186,6 +159,26 @@ export const ChangeNameUser = async (newNickName: string, userID: string): Promi
     }
 };
 
+// export const getOrCreateUser2 = async (userID: string, userData:User_collect_datatype): Promise<void> => {
+
+//     const newdoc = doc(mydatabase, `collection-users/${userID}`);
+//     onSnapshot(newdoc, (docSnapsh) => {
+//         if (docSnapsh.exists()) {
+//             const docData = docSnapsh.data();
+//             console.log(`my data = ${JSON.stringify(docData)}`);
+//         }
+//         else {
+//             setDoc(doc(mydatabase, "collection-users/",`${userID}`), {
+//                 userID: `${userID}`,
+//                 displayName: `${userData.displayName}`,
+//                 email:`${userData.email}`,
+//                 photoURL:`${userData.photoURL}`,
+//                 password:`${userData.password}`
+//               });
+//         }
+//     })
+
+// }
 
 // // поиск задач по айди юзера
 // export async function readDocTodo(userID: string): Promise<IdataTodos[]> {
