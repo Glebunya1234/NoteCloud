@@ -4,7 +4,7 @@ const ButtonDrawer = () => {
     <label
       aria-label="toggle sidebar"
       htmlFor="my-drawer"
-      className="swap swap-rotate btn w-14 bg-transparent border-none"
+      className="swap swap-rotate btn w-14 btn-ghost border-none"
     >
       {/* this hidden checkbox controls the state */}
       <input id="my-drawer" type="checkbox" />

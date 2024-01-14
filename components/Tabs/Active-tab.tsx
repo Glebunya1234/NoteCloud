@@ -1,10 +1,9 @@
 "use client";
 import { useState } from "react";
 import { LogInInputs,RegisterInputs } from "@/components";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export function ActiveTabs() {
-  const router = useRouter(); 
   const searchParams = useSearchParams()
  
   const typeAuth = searchParams.get('typeAuth')

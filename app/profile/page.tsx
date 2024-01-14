@@ -253,7 +253,7 @@ const UserPage = () => {
                 {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
                 <aside className="flex flex-row w-full h-full overflow-hidden ">
                   <NavButSet.Provider value={valueForNavBut}>
-                    <main className="w-full h-full flex  scroll-smooth overflow-auto  ">
+                    <main className="w-full h-full flex   scroll-smooth px-5 overflow-auto  ">
                       {activeMain === "Home" && <HomeContent />}
 
                       {activeMain === "Settings" && <SettingsContent />}
