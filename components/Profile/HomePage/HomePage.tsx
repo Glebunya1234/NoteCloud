@@ -1,10 +1,13 @@
+import { NavButSet } from "@/components/Context";
 import { motion } from "framer-motion";
+import { useContext } from "react";
 import { CgHomeAlt, CgLaptop } from "react-icons/cg";
 import { FiHome } from "react-icons/fi";
 
 export default function HomeContent() {
+  const DataContext = useContext(NavButSet);
   return (
-    <main className="w-full h-full px-5 flex flex-col justify-center items-center overflow-hidden ">
+    <main className={` w-full h-full px-5 flex flex-col justify-center items-center overflow-hidden ${DataContext.importTheme.textColor} `}>
       <motion.h1
         animate={{
           x: 0,
@@ -12,7 +15,7 @@ export default function HomeContent() {
           opacity: 1,
         }}
         initial={{ opacity: 0, scale: 0.5, x: 2000 }}
-        className="font-Orbitron text-base md:text-2xl lg:text-3xl text-center "
+        className="font-Orbitron md:text-2xl lg:text-3xl text-center "
       >
         Welcome to NoteCloud
       </motion.h1>

@@ -38,7 +38,7 @@ export async function deleteTaskInBlick(userID: string, nameBlock: string, title
     const q = query(dataRefTodos, where('userId', '==', userID), where('titleTodos', '==', titleTodos), where('nameBlock', '==', nameBlock));
     // Get the documents that match the query
     const querySnapshot = await getDocs(q);
-    console.log("querySnapshot=", querySnapshot)
+   
     // Iterate through the documents and delete each one
     querySnapshot.forEach(async (documentSnapshot) => {
 
@@ -53,7 +53,7 @@ export async function deleteBlockInName(userID: string, nameBlock: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
     // Get the documents that match the query
     const querySnapshot = await getDocs(q);
-    console.log("querySnapshot=", querySnapshot)
+
     // Iterate through the documents and delete each one
     querySnapshot.forEach(async (documentSnapshot) => {
 

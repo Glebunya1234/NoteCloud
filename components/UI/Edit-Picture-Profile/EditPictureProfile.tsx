@@ -4,7 +4,9 @@ import { openAModalWindowbyID } from "../Dialog/Modal-MethodOpen";
 
 const EditPictureProfile = () => {
   const DataContext = useContext(NavButSet);
-
+  const handleClick = () => {
+    console.log(DataContext.auth)
+  };
   return (
     <aside className="mb-6 mt-2 flex flex-col relative">
       <img
@@ -29,11 +31,20 @@ const EditPictureProfile = () => {
           className="dropdown-content z-[1] menu p-2  shadow backdrop-blur-sm bg-bg-mydurkgrey/50 rounded-box "
         >
           <li>
-            <button  onClick={()=> openAModalWindowbyID("ModalEditProf")} className="btn btn-ghost btn-sm justify-start mb-1">Upload a photo…</button>
+            <button
+              onClick={() => openAModalWindowbyID("ModalEditProf")}
+              className="btn btn-ghost btn-sm justify-start mb-1"
+            >
+              Upload a photo…
+            </button>
           </li>
           <li>
-          <button className="btn btn-ghost btn-sm justify-start">Remove photo</button>
-            
+            <button
+              className="btn btn-ghost btn-sm justify-start"
+              onClick={handleClick}
+            >
+              Remove photo
+            </button>
           </li>
         </ul>
       </div>

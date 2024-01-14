@@ -54,10 +54,6 @@ const UserPage = () => {
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
 
-  // const [importTheme, setImportTheme] = useState<string | null>(
-  //   "bg-bg-mygrey backdrop-blur-0"
-  // );
-
   const [importTheme, setImportTheme] = useState({
     backgroundColor: "bg-bg-mygrey",
     textColor: "text-base",
@@ -78,25 +74,8 @@ const UserPage = () => {
 
   const auth = getAuth();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      onAuthStateChanged(auth, (user) => {
-        if (user?.uid === userUid) {
-          // setuserDisplayName(user.displayName);
-          fetchDataName();
-          fetchDataIMG();
-        } else {
-          router.push("../404");
-        }
-      });
-    };
-
-    fetchData();
-  }, []);
-
   //#region Functions
   const fetchDataIMG = async () => {
-    console.log("z ddff")
     if (userUid !== null) {
       let imgref = await ReadNameData(userUid);
       if (
@@ -151,6 +130,22 @@ const UserPage = () => {
     setActiveMain,
   };
   //#endregion
+
+  useEffect(() => {
+    const fetchData = async () => {
+      onAuthStateChanged(auth, (user) => {
+        if (user?.uid === userUid) {
+          // setuserDisplayName(user.displayName);
+          fetchDataName();
+          fetchDataIMG();
+        } else {
+          router.push("../404");
+        }
+      });
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     const ReadShemeColorUseEffect = () => {

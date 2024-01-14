@@ -34,7 +34,7 @@ const AddBlockModal = () => {
 
   return (
     <dialog id="ModalAddBlock1" className="modal">
-      <div className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.backgroundColor}`}>
+      <div className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.textColor} ${dataContext.importTheme.backgroundColor}`}>
         <h3 className="font-bold text-lg mb-2 ">Add a new block for tasks</h3>
 
         <div className="my-3">

@@ -100,10 +100,10 @@ const TodosContent = () => {
   }, [theme?.id]);
 
   const container = {
-    hidden: { opacity: 1, scale: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
-      scale: 1,
+
       transition: {
         delayChildren: 0.3,
         staggerChildren: 0.2,
@@ -130,9 +130,6 @@ const TodosContent = () => {
           <motion.aside
             className="item"
             variants={item}
-            // initial={{ opacity: 0, scale: 0.5 }}
-            // animate={{ opacity: 1, scale: 1 }}
-            // transition={animationTransition}
             key={index}
           >
             <section

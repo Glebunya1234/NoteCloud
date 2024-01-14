@@ -18,6 +18,8 @@ import Cropper, { Area } from "react-easy-crop";
 import { FiCheck } from "react-icons/fi";
 
 const ModalEditProf = () => {
+  const auth = getAuth();
+
   const [imageSrc, setImageSrc] = useState<string | null>(null);
   const [croppedImage, setCroppedImage] = useState<string | null>(null);
   const [crop, setCrop] = useState({ x: 0, y: 0 });
@@ -56,11 +58,13 @@ const ModalEditProf = () => {
     try {
       if (imageSrc && croppedAreaPixels) {
         const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels);
-        console.log("donee", { croppedImage });
+
         setCroppedImage(croppedImage);
-        const auth = getAuth();
+
         const user = auth.currentUser;
-        const filename = `profile_image_${user?.uid}_${Date.now()}.jpg`;
+
+        // const filename = `profile_image_${user?.uid}_${Date.now()}.jpg`;
+        const filename = `profile_image_${user?.uid}.jpg`;
 
         const fileRef = ref(storageRef, filename);
 
@@ -80,7 +84,9 @@ const ModalEditProf = () => {
 
   return (
     <dialog id="ModalEditProf" className="modal">
-      <div className="modal-box bg-bg-mygrey">
+      <div
+        className={`modal-box backdrop-blur-3xl ${DataContext.importTheme.textColor} ${DataContext.importTheme.backgroundColor}`}
+      >
         <h3 className="font-bold text-lg mb-2 ">Upload a photo</h3>
         <div className=" relative h-32 sm:h-72 md:h-96 my-5">
           {imageSrc ? (
@@ -99,7 +105,6 @@ const ModalEditProf = () => {
         </div>
 
         <span className="label-text">Upload a photo...</span>
-        {/* Вторая пара инпута и кнопки */}
 
         <input
           type="file"
@@ -118,7 +123,6 @@ const ModalEditProf = () => {
           </button>
         </form>
 
-        {/* Текст ниже */}
         <p className="mt-5 text-xs text-right">
           Press ESC key or click outside to close
         </p>

@@ -52,7 +52,7 @@ const EditTaskDialog: React.FC<{
 
   return (
     <dialog id="EditTaskDialog" className="modal">
-      <div className={`modal-box backdrop-blur-3xl  ${dataContext.importTheme.backgroundColor}`}>
+      <div className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.textColor}  ${dataContext.importTheme.backgroundColor}`}>
         <h3 className="font-bold text-lg mb-2 ">
           Editing the task "{oldtaskName}" in the "{blockNamess}" block
         </h3>
