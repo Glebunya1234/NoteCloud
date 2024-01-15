@@ -1,5 +1,5 @@
 import { BottonSignOut, ModalEditProf } from "@/components";
-import ChangeEmail from "@/components/ChangeEmail/ChangeEmail";
+import ChangeEmail from "@/components/Inputs/ChangeEmail/ChangeEmail";
 import { NavButSet } from "@/components/Context";
 
 import ChangeNameComponent from "@/components/Inputs/Profile-Inputs/ChangeNameComponent";
@@ -10,18 +10,8 @@ import { useContext } from "react";
 
 export default function AccountContent() {
   const DataContext = useContext(NavButSet);
-  const animationTransition = {
-    type: "spring",
-    stiffness: 400,
-    damping: 20,
-  };
   return (
-    <motion.main
-      // initial={{ opacity: 0, scale: 0.5 }}
-      // animate={{ opacity: 1, scale: 1 }}
-      // transition={animationTransition}
-      className="w-full h-full flex flex-col p-3 "
-    >
+    <motion.main className="w-full h-full flex flex-col p-3 ">
       <ul>
         <li
           className={`border-b-[1px] border-${DataContext.importTheme.borderColor} mb-5`}
@@ -33,9 +23,7 @@ export default function AccountContent() {
           <motion.div
             animate={{
               x: 0,
-
               scale: 1,
-              rotate: 0,
               opacity: 1,
             }}
             initial={{ opacity: 0, scale: 0.5, x: -200 }}
@@ -47,9 +35,7 @@ export default function AccountContent() {
           <motion.div
             animate={{
               x: 0,
-
               scale: 1,
-              rotate: 0,
               opacity: 1,
             }}
             initial={{ opacity: 0, scale: 0.5, x: 200 }}
@@ -63,8 +49,6 @@ export default function AccountContent() {
       <motion.ul
         animate={{
           y: 0,
-
-          rotate: 0,
           opacity: 1,
         }}
         initial={{ opacity: 0, y: 200 }}
@@ -82,8 +66,6 @@ export default function AccountContent() {
       <motion.ul
         animate={{
           y: 0,
-
-          rotate: 0,
           opacity: 1,
         }}
         initial={{ opacity: 0, y: -200 }}

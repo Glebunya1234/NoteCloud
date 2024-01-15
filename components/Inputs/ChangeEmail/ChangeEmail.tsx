@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext, useEffect, useState } from "react";
-import { NavButSet } from "../Context";
+import { NavButSet } from "../../Context";
 import {
   Auth,
   getAuth,
@@ -8,7 +8,7 @@ import {
   updateEmail,
   updatePassword,
 } from "firebase/auth";
-import { showErrorToast, showSuccessToast } from "..";
+import { showErrorToast, showSuccessToast } from "../..";
 
 const ChangeEmail = () => {
   const dataContext = useContext(NavButSet);

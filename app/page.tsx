@@ -5,8 +5,8 @@ import reacthoticocion from "@/public/alpha_h_box_icon_137974.svg";
 import allertIco from "@/public/exclamation_icon_160163.svg";
 import qeastionico from "@/public/questionmark_99738.svg";
 
-import HrefButtons from "@/components/Buttons/Href-buttons/hrefButtons";
 import { TbBrandNextjs } from "react-icons/tb";
+import HrefButtons from "@/components/Buttons/Href-buttons/hrefButtons";
 export default function HomePageNoteCloud() {
   return (
     <div className="flex w-full justify-center flex-col items-center h-full bg-cover bg-fixed bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
@@ -142,42 +142,80 @@ export default function HomePageNoteCloud() {
             <div className="flex-row text-xs sm:text-sm md:text-base justify-center md:justify-start pl-10 md:pl-0 flex w-[500px]">
               <div className="font-bold flex-col mr-5">
                 <p className="flex items-center">
-                  <SiReact /> <a href="https://react.dev/learn "target="_blank" className="ml-1 link link-hover">React js</a>
+                  <SiReact />{" "}
+                  <a
+                    href="https://react.dev/learn "
+                    target="_blank"
+                    className="ml-1 link link-hover"
+                  >
+                    React js
+                  </a>
                 </p>
                 <p className="flex items-center">
-                  <SiTailwindcss /> <a href="https://tailwindcss.com" target="_blank" className="ml-1 link link-hover">TailwindCSS</a>
+                  <SiTailwindcss />{" "}
+                  <a
+                    href="https://tailwindcss.com"
+                    target="_blank"
+                    className="ml-1 link link-hover"
+                  >
+                    TailwindCSS
+                  </a>
                 </p>
                 <p className="flex items-center">
                   <TbBrandNextjs />
-                  <a href="https://nextjs.org" target="_blank" className="ml-1 link link-hover">Next.js</a>
+                  <a
+                    href="https://nextjs.org"
+                    target="_blank"
+                    className="ml-1 link link-hover"
+                  >
+                    Next.js
+                  </a>
                 </p>
               </div>
               <div className="font-bold flex-col mx-10">
                 <p className="flex items-center">
                   <SiReact />
-                  <a href="https://react-icons.github.io/react-icons/" target="_blank" className="ml-1 link link-hover">React-icons</a>
+                  <a
+                    href="https://react-icons.github.io/react-icons/"
+                    target="_blank"
+                    className="ml-1 link link-hover"
+                  >
+                    React-icons
+                  </a>
                 </p>
                 <p className="flex items-center">
                   <Image src={reacthoticocion} className="w-[16px]" alt={""} />
-                  <a href="https://react-hot-toast.com" target="_blank" className="ml-1 link link-hover">React-Hot-Toast</a>
+                  <a
+                    href="https://react-hot-toast.com"
+                    target="_blank"
+                    className="ml-1 link link-hover"
+                  >
+                    React-Hot-Toast
+                  </a>
                 </p>
                 <p className="flex items-center">
-                  <SiFramer /> <a href="https://www.framer.com/motion/" target="_blank" className="ml-1 link link-hover">framer-motion</a>
+                  <SiFramer />{" "}
+                  <a
+                    href="https://www.framer.com/motion/"
+                    target="_blank"
+                    className="ml-1 link link-hover"
+                  >
+                    framer-motion
+                  </a>
                 </p>
               </div>
             </div>
           </div>
-            <div className="mt-4 text-white w-full flex-row flex justify-center md:justify-end  text-sm md:text-base ">
-              <p>Source code available on&nbsp;</p>
-              <a
-                href="https://github.com/Glebunya1234/NoteCloud"
-                target="_blank"
-               
-                className="link link-hover"
-              >
-                GitHub
-              </a>
-            </div>
+          <div className="mt-4 text-white w-full flex-row flex justify-center md:justify-end  text-sm md:text-base ">
+            <p>Source code available on&nbsp;</p>
+            <a
+              href="https://github.com/Glebunya1234/NoteCloud"
+              target="_blank"
+              className="link link-hover"
+            >
+              GitHub
+            </a>
+          </div>
         </footer>
       </main>
     </div>

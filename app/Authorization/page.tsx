@@ -25,7 +25,7 @@ export default function AuthPage() {
                 <div className="w-full flex justify-center flex-col items-center">
                   <Image src={Logo2} width={80} height={80} alt="NoteCloud" />
                   <h1 className="text-center font-Orbitron text-gray-300 text-2xl">
-                    NoteCloud
+                    NoteCloud  
                   </h1>
                 </div>
              </div>
