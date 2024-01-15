@@ -134,15 +134,15 @@ const UserPage = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      // onAuthStateChanged(auth, (user) => {
-      if (user?.uid === userUid) {
-        // setuserDisplayName(user.displayName);
-        fetchDataName();
-        fetchDataIMG();
-      } else {
-        router.push("../404");
-      }
-      // });
+      onAuthStateChanged(auth, (user) => {
+        if (user?.uid === userUid) {
+          // setuserDisplayName(user.displayName);
+          fetchDataName();
+          fetchDataIMG();
+        } else {
+          router.push("../404");
+        }
+      });
     };
     fetchData();
   }, []);

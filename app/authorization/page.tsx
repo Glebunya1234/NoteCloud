@@ -1,5 +1,6 @@
+"use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
+
 import Logo2 from "@/public/logoNC.svg";
 import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
 import { AllertToast, ActiveTabs, ButtonGoogle } from "@/components";
@@ -26,7 +27,13 @@ export default function AuthPage() {
               </section>
               <section className="flex w-full h-full flex-col  justify-center items-center py-3 ">
                 <div className="w-full flex justify-center mb-8 flex-col items-center">
-                  <Image src={Logo2} width={80} height={80} alt="NoteCloud" className="" />
+                  <Image
+                    src={Logo2}
+                    width={80}
+                    height={80}
+                    alt="NoteCloud"
+                    className=""
+                  />
                   <h1 className="text-center font-Orbitron text-gray-300 text-2xl">
                     NoteCloud
                   </h1>
