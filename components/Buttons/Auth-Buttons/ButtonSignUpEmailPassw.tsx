@@ -23,7 +23,7 @@ export function RegisterButton({
   const auth = getAuth();
 
   const handleSignUp = () => {
-    console.log(isEmailValid(email));
+    
     if (password === confirm_password && isEmailValid(email)) {
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {

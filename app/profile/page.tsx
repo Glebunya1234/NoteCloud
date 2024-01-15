@@ -73,6 +73,7 @@ const UserPage = () => {
     useState<HoverContextType["ModeEditOrRemove"]>("none");
 
   const auth = getAuth();
+  const user = auth.currentUser;
 
   //#region Functions
   const fetchDataIMG = async () => {
@@ -132,18 +133,17 @@ const UserPage = () => {
   //#endregion
 
   useEffect(() => {
-    const fetchData = async () => {
-      onAuthStateChanged(auth, (user) => {
-        if (user?.uid === userUid) {
-          // setuserDisplayName(user.displayName);
-          fetchDataName();
-          fetchDataIMG();
-        } else {
-          router.push("../404");
-        }
-      });
+    const fetchData = () => {
+      // onAuthStateChanged(auth, (user) => {
+      if (user?.uid === userUid) {
+        // setuserDisplayName(user.displayName);
+        fetchDataName();
+        fetchDataIMG();
+      } else {
+        router.push("../404");
+      }
+      // });
     };
-
     fetchData();
   }, []);
 
