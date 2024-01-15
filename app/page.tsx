@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import { SiReact, SiTailwindcss, SiFramer } from "react-icons/si";
 import Logo2 from "@/public/logoNC.svg";
@@ -7,7 +8,9 @@ import qeastionico from "@/public/questionmark_99738.svg";
 
 import { TbBrandNextjs } from "react-icons/tb";
 import HrefButtons from "@/components/Buttons/Href-buttons/hrefButtons";
-export default function HomePageNoteCloud() {
+
+
+export default  function HomePageNoteCloud() {
   return (
     <div className="flex w-full justify-center flex-col items-center h-full bg-cover bg-fixed bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
       <header className="w-94% h-24 rounded-b-3xl backdrop-blur-lg  px-10 md:px-26  flex items-center justify-between bg-bg-mygrey/80 z-50 fixed top-0 shadow-xl">
@@ -22,7 +25,9 @@ export default function HomePageNoteCloud() {
           <HrefButtons typeButton="Sign Up" />
         </nav>
       </header>
-      <main className="w-full flex h-auto mt-[135px] flex-col justify-center items-center ">
+      <main      
+        className="w-full flex h-auto mt-[135px] flex-col justify-center items-center "
+      >
         <section className="h-[300px] sm:h-[500px] 2xl:h-[700px]  w-94% rounded-3xl backdrop-blur-lg bg-bg-mygrey/80 items-center flex  px-10">
           <div className="lg:w-8/12 w-full xl:ml-20 text-center lg:text-left ">
             <h1 className="brightness-150 text-base-content flex justify-center lg:justify-start  contrast-150 font-Figtree font-extrabold text-2xl sm:text-6xl xl:text-8xl">
@@ -134,6 +139,7 @@ export default function HomePageNoteCloud() {
             </h1>
           </div>
         </section>
+
         <footer className="h-[215px] w-94% rounded-t-3xl backdrop-blur-lg md:mt-10 bg-bg-mygrey/80 items-center pt-14 flex flex-col md:px-32">
           <div className="w-full text-white flex flex-col items-center md:items-start justify-center overflow-hidden ">
             <p className="font-extrabold  text-base md:text-xl  mb-3">

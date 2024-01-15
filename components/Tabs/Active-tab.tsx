@@ -21,7 +21,7 @@ export function ActiveTabs() {
   };
 
   return (
-    <main className="flex w-full h-full flex-col  items-center ">
+    <main className="flex w-full flex-col  items-center ">
       <div className="tabs mb-2">
         <a
           className={getTabClassName("Log In")}
