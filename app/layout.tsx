@@ -30,10 +30,6 @@ export const metadata: Metadata = {
 
     url: "https://note-cloud-five.vercel.app", // Замініть на реальний URL вашої сторінки
   },
-  twitter: {
-    title: "NoteCloud",
-    description: "Created by Glebunya1234",
-  },
 };
 
 export default function RootLayout({
@@ -47,7 +43,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta
           name="viewport"
-          content="width=device-width, initial-scale=1"
+          content="width=device-width, height=device-height, initial-scale=1"
           key="viewport"
         />
         <meta name="robots" content="index, nofollow"/>
