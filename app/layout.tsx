@@ -50,6 +50,8 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1"
           key="viewport"
         />
+        <meta name="robots" content="index, nofollow"/>
+        <meta name="google" content="notranslate" />
       </head>
       <body className={fonts.className}>{children}</body>
     </html>
