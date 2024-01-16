@@ -1,4 +1,7 @@
 User-Agent: *
 Allow: /
-Disallow: /profile/
-Sitemap: https://acme.com/sitemap.xml
+
+Disallow: /profile*
+Disallow: /profile?userUid=*
+
+Sitemap: https://note-cloud-five.vercel.app/sitemap.xml
