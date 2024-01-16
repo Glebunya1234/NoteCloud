@@ -1,5 +1,5 @@
 .ButtonsNav {
-  @apply btn btn-ghost my-1 w-full rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center;
+  @apply btn btn-ghost pt-[14px] md:pt-0 my-1 w-full rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center;
 }
 .DivIcoAndSpan {
   @apply flex w-full pl-0 md:pl-5 items-center text-left;

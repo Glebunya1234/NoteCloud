@@ -39,6 +39,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
 import { motion } from "framer-motion";
 
+import useMediaQueryHook from "@/hooks/useMediaQueryHook";
 const UserPage = () => {
   const linkDefaultPhoto =
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
@@ -50,6 +51,10 @@ const UserPage = () => {
 
   const [activeMain, setActiveMain] =
     useState<NavButMenuType["activeMain"]>("Home");
+
+  const shouldSMRender = useMediaQueryHook("(max-width: 768px)", false);
+  const shouldMDRender = useMediaQueryHook("(min-width: 768px)", false);
+  const shouldLGRender = useMediaQueryHook("(min-width: 1024px)", false);
 
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
@@ -107,6 +112,7 @@ const UserPage = () => {
   //#endregion
 
   //#region Objects
+
   const valueForAllert = {
     id: userUid || "",
     ModeEditOrRemove,
@@ -168,15 +174,17 @@ const UserPage = () => {
     <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
-        <main className="relative overflow-hidden ">
-          <Image
-            src={hat}
-            width={110}
-            height={120}
-            alt="NoteCloud"
-            className="absolute top-5 right-[4px]  z-50 hidden lg:block"
-            style={{ transform: "scaleX(-1) rotate(-20deg)" }}
-          />
+        <main className="relative overflow-hidden  ">
+          {shouldLGRender && (
+            <Image
+              src={hat}
+              width={110}
+              height={120}
+              alt="NoteCloud"
+              className="absolute top-5 right-[4px]  z-50 block"
+              style={{ transform: "scaleX(-1) rotate(-20deg)" }}
+            />
+          )}
           <div className="flex w-screen justify-center items-center h-screen bg-cover bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
             <div
               className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
@@ -185,71 +193,92 @@ const UserPage = () => {
                   : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
               }  md:rounded-3xl  w-full`}
             >
-              <section
-                className={`hidden md:flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
-              >
-                <aside
-                  className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
-                >
-                  <Image src={Logo2} width={30} height={30} alt="  " />
-                  <h1 className="text-center text-lg mx-2 font-Orbitron">
-                    NoteCloud
-                  </h1>
-                </aside>
-
-                <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
-                  <img
-                    className={`${importTheme.AvatarShape}`}
-                    src={setSrc}
-                    style={{
-                      minWidth: "100px",
-                      minHeight: "100px",
-                      width: "100px",
-                      height: "100px",
-                      objectFit: "cover",
-                    }}
-                    alt="  "
-                  />
-                  <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
-                    {userDisplayName}
-                  </h3>
-                </aside>
-
+              {shouldMDRender && (
                 <section
-                  className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                  className={`flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
                 >
-                  <NavButMenu.Provider value={valueForNavMenu}>
-                    <ButtonMenuNavigations />
-                  </NavButMenu.Provider>
-                </section>
-              </section>
+                  <aside
+                    className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
+                  >
+                    <Image src={Logo2} width={30} height={30} alt="  " />
+                    <h1 className="text-center text-lg mx-2 font-Orbitron">
+                      NoteCloud
+                    </h1>
+                  </aside>
 
+                  <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
+                    <img
+                      className={`${importTheme.AvatarShape} min-w-[100px] min-h-[100px] w-[100px] h-[100px] object-cover `}
+                      src={setSrc}
+                      alt="  "
+                    />
+                    <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
+                      {userDisplayName}
+                    </h3>
+                  </aside>
+
+                  <section
+                    className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                  >
+                    <NavButMenu.Provider value={valueForNavMenu}>
+                      <ButtonMenuNavigations />
+                    </NavButMenu.Provider>
+                  </section>
+                </section>
+              )}
               <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
                 <header
                   className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
                 >
-                  <header className="hidden w-full h-24 md:flex items-center p-5">
-                    {activeMain === "Settings" && (
-                      <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                    )}
-                    {activeMain === "Todos" && (
-                      <>
-                        <h1 className="text-center text-3xl ml-5 mr-10">
-                          Task&nbsp;bar
-                        </h1>
+                  {shouldMDRender ? (
+                    <header className="w-full h-24 md:flex items-center p-5">
+                      {activeMain === "Settings" && (
+                        <ButtonSetNaw onButtonClick={handleButtonSetClick} />
+                      )}
+                      {activeMain === "Todos" && (
+                        <>
+                          <motion.h1
+                            animate={{
+                              y: 0,
+                              opacity: 1,
+                            }}
+                            initial={{ opacity: 0, y: -200 }}
+                            className="text-center text-3xl ml-5 mr-10"
+                          >
+                            Task&nbsp;bar
+                          </motion.h1>
 
-                        {/* <SearchInput /> */}
-                      </>
-                    )}
-                  </header>
-                  <header className="md:hidden w-full h-24 flex items-center p-5">
-                    <ButtonDrawer />
-                    {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
-                    {activeMain === "Settings" && (
-                      <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                    )}
-                  </header>
+                          {/* <SearchInput /> */}
+                        </>
+                      )}
+                    </header>
+                  ) : (
+                    <header className="w-full h-24 flex items-center p-5">
+                      <ButtonDrawer />
+                      {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
+                      {activeMain === "Settings" && (
+                        <ButtonSetNaw onButtonClick={handleButtonSetClick} />
+                      )}
+                      {activeMain === "Todos" && (
+                        <>
+                          <motion.h1
+                            animate={{
+                              y: 0,
+                              opacity: 1,
+                            }}
+                            initial={{ opacity: 0, y: -200 }}
+                            className="text-center text-3xl ml-5 mr-10"
+                          >
+                            Task&nbsp;bar
+                          </motion.h1>
+
+                          {/* <SearchInput /> */}
+                        </>
+                      )}
+                    </header>
+                  )}
                 </header>
+
                 {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
                 <aside className="flex flex-row w-full h-full overflow-hidden ">
                   <NavButSet.Provider value={valueForNavBut}>
@@ -277,7 +306,7 @@ const UserPage = () => {
                       y: 0,
                       opacity: 1,
                     }}
-                    initial={{ opacity: 0, y: 500 }}
+                    initial={{ opacity: 0, y: 200 }}
                     className="w-full h-24 mt-5 items-center  flex"
                   >
                     <RemoveOrEdit.Provider value={valueForAllert}>
@@ -294,11 +323,13 @@ const UserPage = () => {
           </div>
         </main>
       </div>
-      <NavButMenu.Provider value={valueForNavMenu}>
-        <NavButSet.Provider value={valueForNavBut}>
-          <DrawerSide />
-        </NavButSet.Provider>
-      </NavButMenu.Provider>
+      {shouldSMRender && (
+        <NavButMenu.Provider value={valueForNavMenu}>
+          <NavButSet.Provider value={valueForNavBut}>
+            <DrawerSide />
+          </NavButSet.Provider>
+        </NavButMenu.Provider>
+      )}
     </div>
   );
 };

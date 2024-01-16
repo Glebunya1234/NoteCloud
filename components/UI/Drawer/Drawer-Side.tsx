@@ -3,11 +3,12 @@ import { NavButMenu, NavButMenuType, NavButSet } from "@/components/Context";
 import Logo2 from "@/public/logoNC.svg";
 import Image from "next/image";
 import { useContext, useState } from "react";
-import { FaHome, FaTasks, FaWhmcs } from "react-icons/fa";
+
 const DrawerSide = () => {
   const DataContext = useContext(NavButSet);
+
   return (
-    <div className="drawer-side z-50 md:hidden">
+    <div className="drawer-side z-50">
       <label
         htmlFor="my-drawer"
         aria-label="close sidebar"
@@ -29,7 +30,7 @@ const DrawerSide = () => {
           <section className="flex flex-col w-full justify-center items-start">
             <div className="w-full flex flex-col justify-center items-center my-5 ">
               <img
-                 className={`${DataContext.importTheme.AvatarShape}`}
+                className={`${DataContext.importTheme.AvatarShape}`}
                 src={DataContext.setSrc}
                 style={{
                   minWidth: "100px",
@@ -46,10 +47,9 @@ const DrawerSide = () => {
               </h1>
             </div>
             <nav className="flex flex-col w-full px-5 ">
-              <ButtonMenuNavigations/>
+              <ButtonMenuNavigations />
             </nav>
           </section>
-            
         </ul>
       </main>
     </div>
