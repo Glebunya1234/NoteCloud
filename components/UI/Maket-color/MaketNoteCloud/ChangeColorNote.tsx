@@ -66,7 +66,7 @@ const ChangeColorNote: FC<{
       >
         <ChangeColor
           backgroundColor="bg-bg-mygrey"
-          textColor="text-base"
+          textColor="text-myGreyForFont"
           blur="backdrop-blur-0"
           borderColor="bg-mydurkgrey"
           margin="mx-2"
@@ -102,7 +102,7 @@ const ChangeColorNote: FC<{
       >
         <ChangeColor
           backgroundColor="bg-bg-mygrey/20"
-          textColor="text-base"
+          textColor="text-myGreyForFont"
           borderColor="bg-mydurkgrey"
           blur="backdrop-blur-md"
           onButtonClick={onButtonClick}

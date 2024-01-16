@@ -30,11 +30,11 @@ export default  function HomePageNoteCloud() {
       >
         <section className="h-[300px] sm:h-[500px] 2xl:h-[700px]  w-94% rounded-3xl backdrop-blur-lg bg-bg-mygrey/80 items-center flex  px-10">
           <div className="lg:w-8/12 w-full xl:ml-20 text-center lg:text-left ">
-            <h1 className="brightness-150 text-base-content flex justify-center lg:justify-start  contrast-150 font-Figtree font-extrabold text-4xl sm:text-6xl xl:text-8xl">
+            <h1 className="brightness-150 text-white flex justify-center lg:justify-start  contrast-150 font-Figtree font-extrabold text-4xl sm:text-6xl xl:text-8xl">
               The <p className="text-bg-myyellow">&nbsp;NoteCloud</p>,
             </h1>
 
-            <h1 className=" brightness-150 text-base-content  contrast-150 font-Figtree font-extrabold text-xl sm:text-3xl xl:text-5xl">
+            <h1 className=" brightness-150 text-white  contrast-150 font-Figtree font-extrabold text-xl sm:text-3xl xl:text-5xl">
               project is a web application designed for creating, editing, and
               deleting scheduled tasks.
             </h1>
@@ -56,7 +56,7 @@ export default  function HomePageNoteCloud() {
 
         <section className="h-[340px] md:h-[500px] w-94% rounded-3xl lg:justify-between mb-10 backdrop-blur-lg bg-bg-mygrey/80 items-center flex justify-start flex-row px-10">
           <div className="lg:w-3/4 w-full ">
-            <h1 className=" brightness-150 text-base-content  contrast-150 font-Figtree font-extrabold text-justify md:text-left text-sm sm:text-2xl lg:text-3xl">
+            <h1 className=" brightness-150 text-white  contrast-150 font-Figtree font-extrabold text-justify md:text-left text-sm sm:text-2xl lg:text-3xl">
               The "NoteCloud" project is an innovative web application designed
               for effective self-management and productivity improvement. It is
               an intelligent system for organizing notes and tasks based on
@@ -70,7 +70,7 @@ export default  function HomePageNoteCloud() {
 
         <section className="h-[100px] md:h-[215px]  w-94% rounded-3xl  mt-0 my-10 backdrop-blur-lg bg-bg-mygrey/80 items-center flex md:px-10">
           <div className="w-full ">
-            <h1 className="brightness-150 text-base-content flex justify-center contrast-150 font-Figtree  font-extrabold text-center text-xl sm:text-4xl  lg:text-6xl">
+            <h1 className="brightness-150  flex justify-center contrast-150 font-Figtree  font-extrabold text-center text-xl sm:text-4xl  lg:text-6xl">
               <p className="text-bg-myyellow">NoteCloud</p>
               <p className="text-[#64ff61]">&nbsp;features:</p>
             </h1>
@@ -116,7 +116,7 @@ export default  function HomePageNoteCloud() {
 
         <section className="h-[100px] md:h-[215px]  w-94% rounded-3xl backdrop-blur-lg my-10 bg-bg-mygrey/80 items-center flex md:px-10">
           <div className="w-full ">
-            <h1 className=" brightness-150 flex justify-center contrast-150 font-Figtree font-extrabold text-center text-xl sm:text-4xl  lg:text-6xl">
+            <h1 className=" brightness-150 text-white flex justify-center contrast-150 font-Figtree font-extrabold text-center text-xl sm:text-4xl  lg:text-6xl">
               NoteCloud Security{" "}
               <p className="text-[#f87272]">&nbsp;Disclaimer</p>
             </h1>
@@ -128,7 +128,7 @@ export default  function HomePageNoteCloud() {
             <Image src={allertIco} className="w-[400px] pr-10" alt=" " />
           </div>
           <div className="lg:w-3/4 w-full ">
-            <h1 className="brightness-150 text-base-content  contrast-150 font-Figtree font-extrabold text-justify md:text-left text-sm sm:text-2xl lg:text-3xl">
+            <h1 className="brightness-150 text-white  contrast-150 font-Figtree font-extrabold text-justify md:text-left text-sm sm:text-2xl lg:text-3xl">
               The author of this project does not take responsibility for the
               security and protection of user data. The application is developed
               solely for educational purposes, and the author does not guarantee

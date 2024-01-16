@@ -20,7 +20,7 @@ interface ThemeProviderProps {
 export const ThemeContext = createContext<IContext>({
   importTheme2: {
     backgroundColor: "bg-bg-mygrey",
-    textColor: "text-base",
+    textColor: "text-myGreyForFont",
     blur: "backdrop-blur-0",
     CardColor: "bg-bg-myyellow",
   },
@@ -30,7 +30,7 @@ export const ThemeContext = createContext<IContext>({
 export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
   const [importTheme2, setImportTheme] = useState({
     backgroundColor: "bg-bg-mygrey",
-    textColor: "text-base",
+    textColor: "text-myGreyForFont", 
     blur: "backdrop-blur-0",
     CardColor: "bg-bg-myyellow",
   });

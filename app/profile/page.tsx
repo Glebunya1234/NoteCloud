@@ -56,7 +56,7 @@ const UserPage = () => {
 
   const [importTheme, setImportTheme] = useState({
     backgroundColor: "bg-bg-mygrey",
-    textColor: "text-base",
+    textColor: "text-myGreyForFont",
     blur: "backdrop-blur-0",
     borderColor: "bg-mydurkgrey",
     CardColor: "bg-bg-myyellow",

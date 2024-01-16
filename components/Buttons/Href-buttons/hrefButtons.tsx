@@ -16,7 +16,7 @@ const HrefButtons: React.FC<ButtonType> = ({ typeButton }) => {
     <>
       {typeButton === "Log In" && (
         <a
-          className="btn btn-sm text-xs sm:text-base sm:btn-md sm:px-5 md:mx-5 p-2 btn-ghost"
+          className="btn btn-sm text-xs sm:text-myGreyForFont sm:btn-md sm:px-5 md:mx-5 p-2  btn-ghost"
           onClick={()=>{handlClick({typeButton: "Log In"})}}
         >
           Log In
@@ -24,7 +24,7 @@ const HrefButtons: React.FC<ButtonType> = ({ typeButton }) => {
       )}
       {typeButton === "Sign Up" && (
         <a
-          className="btn btn-sm text-xs sm:text-base sm:btn-md sm:px-5 p-2 bg-bg-myyellow text-black hover:text-white hover:bg-bg-mydurkgrey border-0"
+          className="btn btn-sm text-xs sm:text-myGreyForFont sm:btn-md sm:px-5 p-2 bg-bg-myyellow text-black hover:text-white hover:bg-bg-mydurkgrey border-0"
           onClick={()=>{handlClick({typeButton: "Sign Up"})}}
         >
           Sign Up
