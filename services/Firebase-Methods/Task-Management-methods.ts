@@ -5,24 +5,23 @@ import type { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 const dataRefTodos = collection(mydatabase, 'collection-todos');
 
 // поиск задач по айди юзера
-export async function readDocTodo(userID: string): Promise<TodosData[]> {
-
-
+export function readDocTodo(userID: string): Promise<TodosData[]> {
     // Create a query against the collection.
     const q = query(dataRefTodos, where("userId", "==", userID));
 
+    return getDocs(q)
+        .then((querySnapshot) => {
+            const todos: TodosData[] = [];
 
-    const querySnapshot = await getDocs(q);
-    const todos: TodosData[] = [];
-    // Преобразовать QueryDocumentSnapshot в обычные объекты данных
-    querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
-        todos.push(todoData);
-    });
+            // Преобразовать QueryDocumentSnapshot в обычные объекты данных
+            querySnapshot.forEach((doc) => {
+                // doc.data() is never undefined for query doc snapshots
+                const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
+                todos.push(todoData);
+            });
 
-    return todos;
-
+            return todos;
+        });
 }
 //Добавление ЗАДАЧИ если есть блок если нету блока создает новый 
 export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
@@ -38,7 +37,7 @@ export async function deleteTaskInBlick(userID: string, nameBlock: string, title
     const q = query(dataRefTodos, where('userId', '==', userID), where('titleTodos', '==', titleTodos), where('nameBlock', '==', nameBlock));
     // Get the documents that match the query
     const querySnapshot = await getDocs(q);
-   
+
     // Iterate through the documents and delete each one
     querySnapshot.forEach(async (documentSnapshot) => {
 

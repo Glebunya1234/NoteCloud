@@ -51,33 +51,33 @@ const TodosContent = () => {
       openAModalWindowbyID("EditTaskDialog");
   };
 
-  const fetchData = async () => {
-    try {
-      const data = await readDocTodo(theme?.id);
+  const fetchData = () => {
+    readDocTodo(theme?.id)
+        .then((data) => {
+            // Создаем объект для группировки по блокам
+            const blocksMap: Record<string, TodosData[]> = {};
 
-      // Создаем объект для группировки по блокам
-      const blocksMap: Record<string, TodosData[]> = {};
+            data.forEach((todo) => {
+                if (!blocksMap[todo.nameBlock]) {
+                    blocksMap[todo.nameBlock] = [];
+                }
+                blocksMap[todo.nameBlock].push({
+                    nameBlock: todo.nameBlock,
+                    titleTodos: todo.titleTodos,
+                    teg: todo.teg,
+                    userId: todo.userId,
+                });
+            });
 
-      data.forEach((todo) => {
-        if (!blocksMap[todo.nameBlock]) {
-          blocksMap[todo.nameBlock] = [];
-        }
-        blocksMap[todo.nameBlock].push({
-          nameBlock: todo.nameBlock,
-          titleTodos: todo.titleTodos,
-          teg: todo.teg,
-          userId: todo.userId,
+            // Преобразуем объект в массив
+            const blocksArray = Object.values(blocksMap);
+
+            setBlocks(blocksArray);
+        })
+        .catch((error) => {
+            console.error(error);
         });
-      });
-
-      // Преобразуем объект в массив
-      const blocksArray = Object.values(blocksMap);
-
-      setBlocks(blocksArray);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+};
 
   //#endregion
 
