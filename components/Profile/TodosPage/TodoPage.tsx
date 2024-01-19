@@ -98,7 +98,7 @@ const TodosContent = () => {
 
   useEffect(() => {
     fetchData();
-  }, [theme?.id]);
+  }, [blocks]);
 
   useEffect(() => {
     fetchData();
