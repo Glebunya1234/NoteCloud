@@ -1,3 +1,4 @@
+"use client"
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "@components/Profile/TodosPage/style.todopage.css";
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
@@ -98,7 +99,7 @@ const TodosContent = () => {
   useEffect(() => {
     fetchData();
   }, [theme?.id]);
-  
+
   useEffect(() => {
     fetchData();
   }, []);
