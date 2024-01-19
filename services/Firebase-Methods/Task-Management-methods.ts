@@ -4,27 +4,52 @@ import type { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 
 const dataRefTodos = collection(mydatabase, 'collection-todos');
 
+// // поиск задач по айди юзера
+// export function readDocTodo(userID: string): Promise<TodosData[]> {
+//     // Create a query against the collection.
+//     const q = query(dataRefTodos, where("userId", "==", userID));
+
+//     return getDocs(q)
+//         .then((querySnapshot) => {
+//             const todos: TodosData[] = [];
+
+//             // Преобразовать QueryDocumentSnapshot в обычные объекты данных
+//             querySnapshot.forEach((doc) => {
+//                 // doc.data() is never undefined for query doc snapshots
+//                 const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
+//                 todos.push(todoData);
+//             });
+
+//             return todos;
+//         });
+// }
+
+
 // поиск задач по айди юзера
-export function readDocTodo(userID: string): Promise<TodosData[]> {
+export async function readDocTodo(userID: string): Promise<TodosData[]> {
+
+
     // Create a query against the collection.
     const q = query(dataRefTodos, where("userId", "==", userID));
 
-    return getDocs(q)
-        .then((querySnapshot) => {
-            const todos: TodosData[] = [];
 
-            // Преобразовать QueryDocumentSnapshot в обычные объекты данных
-            querySnapshot.forEach((doc) => {
-                // doc.data() is never undefined for query doc snapshots
-                const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
-                todos.push(todoData);
-            });
+    const querySnapshot = await getDocs(q);
+    const todos: TodosData[] = [];
+    // Преобразовать QueryDocumentSnapshot в обычные объекты данных
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
+        todos.push(todoData);
+    });
 
-            return todos;
-        });
+    return todos;
+
 }
+
+
+
 //Добавление ЗАДАЧИ если есть блок если нету блока создает новый 
-export async  function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
+export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
 
 
     await setDoc(doc(dataRefTodos), {
@@ -63,73 +88,73 @@ export async function deleteBlockInName(userID: string, nameBlock: string) {
     });
 }
 
-// // Изменение названия блока
-
-// export async function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
-//     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
-//     const querySnapshot = await getDocs(q);
-
-//     querySnapshot.forEach(async (documentSnapshot) => {
-//         const docRef = doc(dataRefTodos, documentSnapshot.id);
-//         await updateDoc(docRef, { nameBlock: newNameBlock });
-//     });
-// }
-
-
 // Изменение названия блока
-export function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
+
+export async function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
+    const querySnapshot = await getDocs(q);
 
-    // Get the documents that match the query
-    getDocs(q)
-        .then((querySnapshot) => {
-            // Map through the documents and create an array of update promises
-            const updatePromises = querySnapshot.docs.map((documentSnapshot) => {
-                const docRef = doc(dataRefTodos, documentSnapshot.id);
-                // Use the document reference to update the document
-                return updateDoc(docRef, { nameBlock: newNameBlock });
-            });
-
-            // Wait for all update promises to resolve
-            return Promise.all(updatePromises);
-        })
-        .catch((error) => {
-            // Handle errors here
-            console.error('Error updating block names:', error);
-        });
+    querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(dataRefTodos, documentSnapshot.id);
+        await updateDoc(docRef, { nameBlock: newNameBlock });
+    });
 }
 
-// // Изменение приоритета задачи
 
-// export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
-//     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
-//     const querySnapshot = await getDocs(q);
+// // Изменение названия блока
+// export function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
+//     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
 
-//     querySnapshot.forEach(async (documentSnapshot) => {
-//         const docRef = doc(dataRefTodos, documentSnapshot.id);
-//         await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
-//     });
+//     // Get the documents that match the query
+//     getDocs(q)
+//         .then((querySnapshot) => {
+//             // Map through the documents and create an array of update promises
+//             const updatePromises = querySnapshot.docs.map((documentSnapshot) => {
+//                 const docRef = doc(dataRefTodos, documentSnapshot.id);
+//                 // Use the document reference to update the document
+//                 return updateDoc(docRef, { nameBlock: newNameBlock });
+//             });
+
+//             // Wait for all update promises to resolve
+//             return Promise.all(updatePromises);
+//         })
+//         .catch((error) => {
+//             // Handle errors here
+//             console.error('Error updating block names:', error);
+//         });
 // }
 
 // Изменение приоритета задачи
-export function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
+
+export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
+    const querySnapshot = await getDocs(q);
 
-    // Get the documents that match the query
-    getDocs(q)
-        .then((querySnapshot) => {
-            // Map through the documents and create an array of update promises
-            const updatePromises = querySnapshot.docs.map((documentSnapshot) => {
-                const docRef = doc(dataRefTodos, documentSnapshot.id);
-                // Use the document reference to update the document
-                return updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
-            });
-
-            // Wait for all update promises to resolve
-            return Promise.all(updatePromises);
-        })
-        .catch((error) => {
-            // Handle errors here
-            console.error('Error updating task:', error);
-        });
+    querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(dataRefTodos, documentSnapshot.id);
+        await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
+    });
 }
+
+// // Изменение приоритета задачи
+// export function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
+//     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
+
+//     // Get the documents that match the query
+//     getDocs(q)
+//         .then((querySnapshot) => {
+//             // Map through the documents and create an array of update promises
+//             const updatePromises = querySnapshot.docs.map((documentSnapshot) => {
+//                 const docRef = doc(dataRefTodos, documentSnapshot.id);
+//                 // Use the document reference to update the document
+//                 return updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
+//             });
+
+//             // Wait for all update promises to resolve
+//             return Promise.all(updatePromises);
+//         })
+//         .catch((error) => {
+//             // Handle errors here
+//             console.error('Error updating task:', error);
+//         });
+// }

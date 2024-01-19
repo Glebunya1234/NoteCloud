@@ -42,10 +42,16 @@ const EditTaskDialog: React.FC<{
 
   const handleClickSaveBut = () => {
     if (newTaskname.trim() !== "") {
-      UpdateTask(Refresh?.id, blockName, oldtaskName, newTaskname, tegButName);
-
-      updateContext?.onTaskAdded();
-      showSuccessToast("The task has been updated!");
+      UpdateTask(
+        Refresh?.id,
+        blockName,
+        oldtaskName,
+        newTaskname,
+        tegButName
+      ).then(() => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The task has been updated!");
+      });
     } else {
       showErrorToast("The task was not updated!");
     }

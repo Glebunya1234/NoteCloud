@@ -17,9 +17,10 @@ const AddNewTaskComnponent: React.FC<{
   const handleClickAddButton = () => {
     setTaskname("");
     if (taskname.trim() !== "" && nameBlock.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, nameBlock, taskname);
-      updateContext?.onTaskAdded();
-      showSuccessToast("The task has been created!");
+      AddNewTaskInBlock(theme?.id, nameBlock, taskname).then(() => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The task has been created!");
+      });
     } else {
       showErrorToast("The task was not created!");
     }

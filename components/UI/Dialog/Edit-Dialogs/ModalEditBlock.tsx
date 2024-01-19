@@ -18,9 +18,10 @@ const EditBlockModal: React.FC<{
   const UpdateBlockNameFunc = () => {
     setNewblockname(blockName);
     if (newblockname.trim() !== "" && blockName.trim() !== "") {
-      UpdateBlockName(theme?.id, blockName, newblockname);
-      updateContext?.onTaskAdded();
-      showSuccessToast("The block has been updated!");
+      UpdateBlockName(theme?.id, blockName, newblockname).then(() => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The block has been updated!");
+      });
     } else {
       showErrorToast("The block was not updated!");
     }

@@ -5,7 +5,6 @@ import { useContext } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const ModalRemoveBlock: React.FC<{
- 
   blockName: string;
 }> = ({ blockName }) => {
   const updateContext = useContext(UpdateArray);
@@ -13,9 +12,10 @@ const ModalRemoveBlock: React.FC<{
   const Refresh = useContext(RemoveOrEdit);
   const handleClickDell = () => {
     try {
-      deleteBlockInName(Refresh?.id, blockName);
-      updateContext?.onTaskAdded();
-      showSuccessToast("The block has been deleted!");
+      deleteBlockInName(Refresh?.id, blockName).then(() => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The block has been deleted!");
+      });
     } catch (error) {
       showErrorToast("The block was not deleted!");
     }
@@ -23,7 +23,9 @@ const ModalRemoveBlock: React.FC<{
 
   return (
     <dialog id="ModalRemoveBlock" className="modal">
-      <div className={`modal-box backdrop-blur-3xl  ${dataContext.importTheme.backgroundColor}`}>
+      <div
+        className={`modal-box backdrop-blur-3xl  ${dataContext.importTheme.backgroundColor}`}
+      >
         <h3 className="font-bold text-lg mb-2 ">
           Editing a block "{blockName}"
         </h3>
