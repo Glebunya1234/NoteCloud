@@ -53,31 +53,31 @@ const TodosContent = () => {
 
   const fetchData = () => {
     readDocTodo(theme?.id)
-        .then((data) => {
-            // Создаем объект для группировки по блокам
-            const blocksMap: Record<string, TodosData[]> = {};
+      .then((data) => {
+        // Создаем объект для группировки по блокам
+        const blocksMap: Record<string, TodosData[]> = {};
 
-            data.forEach((todo) => {
-                if (!blocksMap[todo.nameBlock]) {
-                    blocksMap[todo.nameBlock] = [];
-                }
-                blocksMap[todo.nameBlock].push({
-                    nameBlock: todo.nameBlock,
-                    titleTodos: todo.titleTodos,
-                    teg: todo.teg,
-                    userId: todo.userId,
-                });
-            });
-
-            // Преобразуем объект в массив
-            const blocksArray = Object.values(blocksMap);
-
-            setBlocks(blocksArray);
-        })
-        .catch((error) => {
-            console.error(error);
+        data.forEach((todo) => {
+          if (!blocksMap[todo.nameBlock]) {
+            blocksMap[todo.nameBlock] = [];
+          }
+          blocksMap[todo.nameBlock].push({
+            nameBlock: todo.nameBlock,
+            titleTodos: todo.titleTodos,
+            teg: todo.teg,
+            userId: todo.userId,
+          });
         });
-};
+
+        // Преобразуем объект в массив
+        const blocksArray = Object.values(blocksMap);
+
+        setBlocks(blocksArray);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   //#endregion
 
@@ -98,6 +98,10 @@ const TodosContent = () => {
   useEffect(() => {
     fetchData();
   }, [theme?.id]);
+  
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const container = {
     hidden: { opacity: 1 },
@@ -127,11 +131,7 @@ const TodosContent = () => {
         className={` container flex w-full pr-9 pb-9 h-min `}
       >
         {blocks.map((block, index) => (
-          <motion.aside
-            className="item"
-            variants={item}
-            key={index}
-          >
+          <motion.aside className="item" variants={item} key={index}>
             <section
               className={`${
                 theme?.ModeEditOrRemove === "remove"
