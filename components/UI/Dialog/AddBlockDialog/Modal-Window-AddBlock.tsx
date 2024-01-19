@@ -19,9 +19,10 @@ const AddBlockModal = () => {
     setTaskname("");
 
     if (taskname.trim() !== "" && blockname.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, blockname, taskname);
-      updateContext?.onTaskAdded();
-      showSuccessToast("The block has been created! ");
+      AddNewTaskInBlock(theme?.id, blockname, taskname).then(() => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The block has been created!");
+      });
     } else {
       showErrorToast("The block was not created!");
     }
