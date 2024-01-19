@@ -8,20 +8,18 @@ import { showErrorToast, showSuccessToast } from "@/components";
 import { RemoveOrEdit, UpdateArray } from "../Context";
 
 const AddNewTaskComnponent: React.FC<{
-
   nameBlock: string;
 }> = ({ nameBlock }) => {
   const [taskname, setTaskname] = useState("");
-  
+
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
   const handleClickAddButton = () => {
     setTaskname("");
     if (taskname.trim() !== "" && nameBlock.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, nameBlock, taskname).then(() => {
-        updateContext?.onTaskAdded();
-        showSuccessToast("The task has been created!");
-      });
+      AddNewTaskInBlock(theme?.id, nameBlock, taskname);
+      updateContext?.onTaskAdded();
+      showSuccessToast("The task has been created!");
     } else {
       showErrorToast("The task was not created!");
     }

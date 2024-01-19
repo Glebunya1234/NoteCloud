@@ -3,10 +3,14 @@ import {
   showErrorToast,
   showSuccessToast,
 } from "@/components";
-import { ChangeTeg, ChangeTegButton, NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import {
-  UpdateTask,
-} from "@/services/Firebase-Methods/Task-Management-methods";
+  ChangeTeg,
+  ChangeTegButton,
+  NavButSet,
+  RemoveOrEdit,
+  UpdateArray,
+} from "@/components/Context";
+import { UpdateTask } from "@/services/Firebase-Methods/Task-Management-methods";
 
 import { useContext, useEffect, useState } from "react";
 import { CgArrowRight } from "react-icons/cg";
@@ -17,15 +21,14 @@ const EditTaskDialog: React.FC<{
   oldtaskName: string;
   blockName: string;
   priorityTitle: string;
-
-}> = ({oldtaskName, blockName, priorityTitle }) => {
+}> = ({ oldtaskName, blockName, priorityTitle }) => {
   const dataContext = useContext(NavButSet);
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");
   const updateContext = useContext(UpdateArray);
   const [tegButName, setTegButName] =
     useState<ChangeTegButton["tegButName"]>("");
-    const Refresh = useContext(RemoveOrEdit);
+  const Refresh = useContext(RemoveOrEdit);
   const value = {
     tegButName,
     setTegButName,
@@ -39,12 +42,10 @@ const EditTaskDialog: React.FC<{
 
   const handleClickSaveBut = () => {
     if (newTaskname.trim() !== "") {
-      UpdateTask(Refresh?.id, blockName, oldtaskName, newTaskname, tegButName).then(
-        () => {
-          updateContext?.onTaskAdded();
-          showSuccessToast("The task has been updated!");
-        }
-      );
+      UpdateTask(Refresh?.id, blockName, oldtaskName, newTaskname, tegButName);
+
+      updateContext?.onTaskAdded();
+      showSuccessToast("The task has been updated!");
     } else {
       showErrorToast("The task was not updated!");
     }
@@ -52,7 +53,9 @@ const EditTaskDialog: React.FC<{
 
   return (
     <dialog id="EditTaskDialog" className="modal">
-      <div className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.textColor}  ${dataContext.importTheme.backgroundColor}`}>
+      <div
+        className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.textColor}  ${dataContext.importTheme.backgroundColor}`}
+      >
         <h3 className="font-bold text-lg mb-2 ">
           Editing the task "{oldtaskName}" in the "{blockNamess}" block
         </h3>
@@ -77,11 +80,10 @@ const EditTaskDialog: React.FC<{
             <ChangeTeg.Provider value={value}>
               <div className=" flex items-center">
                 <div className="text-xs flex items-center bg-transparent border-none whitespace-nowrap overflow-hidden">
-                  {tegButName} <CgArrowRight style={{ marginLeft: '5px'}}/> 
+                  {tegButName} <CgArrowRight style={{ marginLeft: "5px" }} />
                 </div>
 
                 <PriorityDropdown
-                
                   blockName={blockName}
                   titleTodos={oldtaskName}
                 />

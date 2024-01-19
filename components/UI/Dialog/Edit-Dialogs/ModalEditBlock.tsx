@@ -18,10 +18,9 @@ const EditBlockModal: React.FC<{
   const UpdateBlockNameFunc = () => {
     setNewblockname(blockName);
     if (newblockname.trim() !== "" && blockName.trim() !== "") {
-      UpdateBlockName(theme?.id, blockName, newblockname).then(() => {
-        updateContext?.onTaskAdded();
-        showSuccessToast("The block has been updated!");
-      });
+      UpdateBlockName(theme?.id, blockName, newblockname);
+      updateContext?.onTaskAdded();
+      showSuccessToast("The block has been updated!");
     } else {
       showErrorToast("The block was not updated!");
     }
@@ -29,7 +28,9 @@ const EditBlockModal: React.FC<{
 
   return (
     <dialog id="EditBlockModal" className="modal">
-      <div className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.textColor}  ${dataContext.importTheme.backgroundColor}`}>
+      <div
+        className={`modal-box backdrop-blur-3xl ${dataContext.importTheme.textColor}  ${dataContext.importTheme.backgroundColor}`}
+      >
         <h3 className="font-bold text-lg mb-2 ">
           Editing a block "{blockName}"
         </h3>
