@@ -40,6 +40,7 @@ import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
 import { motion } from "framer-motion";
 
 import useMediaQueryHook from "@/hooks/useMediaQueryHook";
+import { useMediaQuery } from "react-responsive";
 const UserPage = () => {
   const linkDefaultPhoto =
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
@@ -55,6 +56,7 @@ const UserPage = () => {
   const shouldSMRender = useMediaQueryHook("(max-width: 768px)", false);
   const shouldMDRender = useMediaQueryHook("(min-width: 768px)", false);
   const shouldLGRender = useMediaQueryHook("(min-width: 1024px)", false);
+  const shouldSMRender2222 = useMediaQuery({ maxWidth: '768px' });
 
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
@@ -323,7 +325,7 @@ const UserPage = () => {
           </div>
         </main>
       </div>
-      {shouldSMRender && (
+      {shouldSMRender2222 && (
         <NavButMenu.Provider value={valueForNavMenu}>
           <NavButSet.Provider value={valueForNavBut}>
             <DrawerSide />

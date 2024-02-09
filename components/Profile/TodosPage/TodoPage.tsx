@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { ChangeEvent, useContext, useEffect, useState } from "react";
 import "@components/Profile/TodosPage/style.todopage.css";
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
@@ -52,32 +52,32 @@ const TodosContent = () => {
       openAModalWindowbyID("EditTaskDialog");
   };
 
-  const fetchData = () => {
-    readDocTodo(theme?.id)
-      .then((data) => {
-        // Создаем объект для группировки по блокам
-        const blocksMap: Record<string, TodosData[]> = {};
+  const fetchData = async () => {
+    try {
+      const data = await readDocTodo(theme?.id);
 
-        data.forEach((todo) => {
-          if (!blocksMap[todo.nameBlock]) {
-            blocksMap[todo.nameBlock] = [];
-          }
-          blocksMap[todo.nameBlock].push({
-            nameBlock: todo.nameBlock,
-            titleTodos: todo.titleTodos,
-            teg: todo.teg,
-            userId: todo.userId,
-          });
+      // Создаем объект для группировки по блокам
+      const blocksMap: Record<string, TodosData[]> = {};
+
+      data.forEach((todo) => {
+        if (!blocksMap[todo.nameBlock]) {
+          blocksMap[todo.nameBlock] = [];
+        }
+        blocksMap[todo.nameBlock].push({
+          nameBlock: todo.nameBlock,
+          titleTodos: todo.titleTodos,
+          teg: todo.teg,
+          userId: todo.userId,
         });
-
-        // Преобразуем объект в массив
-        const blocksArray = Object.values(blocksMap);
-
-        setBlocks(blocksArray);
-      })
-      .catch((error) => {
-        console.error(error);
       });
+
+      // Преобразуем объект в массив
+      const blocksArray = Object.values(blocksMap);
+
+      setBlocks(blocksArray);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   //#endregion
