@@ -29,6 +29,10 @@ The NoteCloud - project is a web application designed to simplify task managemen
 - `Editing tasks` Change the task name or update its priority, and if necessary, rename the block in which the task group is located.
 - `Delete tasks` Easily delete tasks that are no longer relevant or completed, or delete their entire block at once.
 - `User-friendly interface` Thanks to the DaisyUI user interface library, an intuitive design has been developed to make task management easy for users of all levels.
+<br/>
+<p align="center">
+  <img src="assets/Frame 1.png" alt="NoteClound Logo">
+</p>
 
 ## 🔧Installation
 
