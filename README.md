@@ -5,7 +5,7 @@
   </p>
  <p align="center">
   <a href="https://note-cloud-five.vercel.app/">
-      <img src="assets/NoteClound-09-02-20242.png" alt="NoteClound Logo" width="900">
+      <img src="assets/NoteClound-09-02-20242.png" alt="NoteClound Logo">
   </a>
 </p>
 
