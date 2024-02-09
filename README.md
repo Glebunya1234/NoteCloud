@@ -61,6 +61,11 @@ NEXT_PUBLIC_MESSAGINGSENDERID=******
 NEXT_PUBLIC_APPID=******
 NEXT_PUBLIC_MEASUREMENTID=******
 ```
+4. Project launch
+```bash
+yarn dev
+```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
