@@ -6,7 +6,7 @@
  <p align="center">
   <a href="https://note-cloud-five.vercel.app/">
       <img src="assets/NoteClound-09-02-20242.png" alt="NoteClound Logo" width="900">
-    </a>
+  </a>
 </p>
 
 
@@ -44,20 +44,19 @@ git clone https://github.com/Glebunya1234/NoteCloud.git
 yarn install
 ```
 
+3. Environment setup
+
+You need to get the firebase keys and create an env file by defining the following variables:
+
+```bash
+NEXT_PUBLIC_APIKEY=******
+NEXT_PUBLIC_AUTHDOMAIN=******
+NEXT_PUBLIC_PROJECTID=******
+NEXT_PUBLIC_STORAGEBUCKET=******
+NEXT_PUBLIC_MESSAGINGSENDERID=******
+NEXT_PUBLIC_APPID=******
+NEXT_PUBLIC_MEASUREMENTID=******
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
