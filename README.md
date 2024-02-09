@@ -1,9 +1,13 @@
 
 
   <p align="center">
-   <img src="assets/NoteClound-09-02-2024.png" alt="NoteClound Logo" width="900">
+  
   </p>
- 
+ <p align="center">
+  <a href="https://note-cloud-five.vercel.app/">
+      <img src="assets/NoteClound-09-02-20242.png" alt="NoteClound Logo" width="900">
+    </a>
+</p>
 
 
      
@@ -26,27 +30,22 @@ The NoteCloud - project is a web application designed to simplify task managemen
 - `Delete tasks` Easily delete tasks that are no longer relevant or completed, or delete their entire block at once.
 - `User-friendly interface` Thanks to the DaisyUI user interface library, an intuitive design has been developed to make task management easy for users of all levels.
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 🔧Installation
 
-## Getting Started
-
-First, run the development server:
+1. Cloning the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Glebunya1234/NoteCloud.git
+```
+
+2. Install dependencies
+
+```bash
+yarn install
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 ## Learn More
 
