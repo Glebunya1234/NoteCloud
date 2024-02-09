@@ -1,69 +1,31 @@
 
-<table>
- <tr>
-  <td>
+
   <p align="center">
    <img src="assets/NoteClound-09-02-2024.png" alt="NoteClound Logo" width="900">
   </p>
-  
-  </tr>
- </td>
  
 
 
- <tr>
-  <td>
-     ## Languages, Frameworks and more
-    
-  ![TypeScript](https://img.shields.io/badge/-TypeScript-090909?style=for-the-badge&logo=typescript&logoColor=white)
-  ![Nextjs](https://img.shields.io/badge/-Nextjs-090909?style=for-the-badge&logo=nextdotjs&logoColor=white)
-     ![Firebase](https://img.shields.io/badge/-Firebase-090909?style=for-the-badge&logo=firebase&logoColor=white)
-     ![Tailwindcss](https://img.shields.io/badge/-TailwindCSS-090909?style=for-the-badge&logo=tailwindcss&logoColor=white)
-     ![Framermotion](https://img.shields.io/badge/-Framer-090909?style=for-the-badge&logo=Framer&logoColor=white)
-  </td>
-</tr>
+     
+  <p align='center'>
+  <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-090909?style=for-the-badge&logo=typescript&logoColor=white">
+  <img alt="NextJS" src="https://img.shields.io/badge/-Next js-090909?style=for-the-badge&logo=nextdotjs&logoColor=white">
+  <img alt="Firebase" src="https://img.shields.io/badge/-Firebase-090909?style=for-the-badge&logo=firebase&logoColor=white">
+  <img alt="TailwindCSS" src="https://img.shields.io/badge/-TailwindCSS-090909?style=for-the-badge&logo=tailwindcss&logoColor=white">
+  <img alt="FramerMotion" src="https://img.shields.io/badge/-Framer Motion-090909?style=for-the-badge&logo=Framer&logoColor=white">
+  <img alt="DaisyUI" src="https://img.shields.io/badge/-daisy ui-090909?style=for-the-badge&logo=daisyui&logoColor=white">
+</p>
 
-<tr> 
- <td>
-   
-   ## Languages, Frameworks and more
-   ![HTML](https://img.shields.io/badge/-HTML-090909?style=for-the-badge&logo=html5&logoColor=white)
-   ![CSS](https://img.shields.io/badge/-CSS-090909?style=for-the-badge&logo=css3&logoColor=white)
-   ![JavaScript](https://img.shields.io/badge/-JavaScript-090909?style=for-the-badge&logo=JavaScript&logoColor=white)
-   ![TypeScript](https://img.shields.io/badge/-TypeScript-090909?style=for-the-badge&logo=typescript&logoColor=white)
-   ![React](https://img.shields.io/badge/-React-090909?style=for-the-badge&logo=react&logoColor=white)
-   ![Nextjs](https://img.shields.io/badge/-Nextjs-090909?style=for-the-badge&logo=nextdotjs&logoColor=white)
-   ![Nodejs](https://img.shields.io/badge/-Nodejs-090909?style=for-the-badge&logo=nodedotjs&logoColor=white)
-   ![Tailwindcss](https://img.shields.io/badge/-Tailwind-090909?style=for-the-badge&logo=tailwindcss&logoColor=white)
-   ![JQuery](https://img.shields.io/badge/-jquery-090909?style=for-the-badge&logo=jquery&logoColor=white) 
-   ![C#](https://img.shields.io/badge/-C%23-090909?style=for-the-badge&logo=csharp)
-   ![Python](https://img.shields.io/badge/-Python-090909?style=for-the-badge&logo=python&logoColor=white)
-   ![Firebase](https://img.shields.io/badge/-Firebase-090909?style=for-the-badge&logo=firebase&logoColor=white)
-   ![MongoDB](https://img.shields.io/badge/-MongoDB-090909?style=for-the-badge&logo=MongoDB&logoColor=white) 
-   ![MySql](https://img.shields.io/badge/-MySql-090909?style=for-the-badge&logo=mysql&logoColor=white) 
- 
- </td>
-</tr>
+<br/>
+The NoteCloud - project is a web application designed to simplify task management, providing users with a platform to create, edit and delete scheduled tasks. With an intuitive, simple interface and features, NoteCloud allows individuals to organize their daily activities.
 
-<tr>
-  <td>
- 
-  </td>
-</tr>
-<tr>
-  <td>
+<p>Main features:</p>
 
+- `Create tasks` Easily create new priority tasks and place them in separate task blocks.
+- `Editing tasks` Change the task name or update its priority, and if necessary, rename the block in which the task group is located.
+- `Delete tasks` Easily delete tasks that are no longer relevant or completed, or delete their entire block at once.
+- `User-friendly interface` Thanks to the DaisyUI user interface library, an intuitive design has been developed to make task management easy for users of all levels.
 
-<tr>
-  <td>
-   
-
-  </td>
-</tr>
-
-  </td>
-</tr>
-</table>
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
