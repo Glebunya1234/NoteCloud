@@ -5,8 +5,8 @@
   </p>
  <p align="center">
   <a href="https://note-cloud-five.vercel.app/">
-      <img src="assets/NoteClound-09-02-20242.png" alt="NoteClound Logo" width="900">
-    </a>
+      <img src="assets/NoteClound-09-02-20242.png" alt="NoteClound Logo">
+  </a>
 </p>
 
 
@@ -29,6 +29,10 @@ The NoteCloud - project is a web application designed to simplify task managemen
 - `Editing tasks` Change the task name or update its priority, and if necessary, rename the block in which the task group is located.
 - `Delete tasks` Easily delete tasks that are no longer relevant or completed, or delete their entire block at once.
 - `User-friendly interface` Thanks to the DaisyUI user interface library, an intuitive design has been developed to make task management easy for users of all levels.
+<br/>
+<p align="center">
+  <img src="assets/Frame 1.png" alt="NoteClound Logo">
+</p>
 
 ## 🔧Installation
 
@@ -44,20 +48,24 @@ git clone https://github.com/Glebunya1234/NoteCloud.git
 yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Environment setup
+
+You need to get the firebase keys and create an env file by defining the following variables:
+
+```bash
+NEXT_PUBLIC_APIKEY=******
+NEXT_PUBLIC_AUTHDOMAIN=******
+NEXT_PUBLIC_PROJECTID=******
+NEXT_PUBLIC_STORAGEBUCKET=******
+NEXT_PUBLIC_MESSAGINGSENDERID=******
+NEXT_PUBLIC_APPID=******
+NEXT_PUBLIC_MEASUREMENTID=******
+```
+4. Project launch
+```bash
+yarn dev
+```
 
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
