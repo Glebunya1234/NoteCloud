@@ -61,7 +61,22 @@ NEXT_PUBLIC_MESSAGINGSENDERID=******
 NEXT_PUBLIC_APPID=******
 NEXT_PUBLIC_MEASUREMENTID=******
 ```
-4. Project launch
+4. Create collections
+   
+You need to create two collections in your Firebase with the following names:
+
+```bash
+collection-todos 
+```
+
+```bash
+collection-users
+```
+
+
+
+
+5. Project launch
 ```bash
 yarn dev
 ```
