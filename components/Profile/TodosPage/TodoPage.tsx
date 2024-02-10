@@ -96,9 +96,7 @@ const TodosContent = () => {
   };
   //#endregion
 
-  useEffect(() => {
-    fetchData();
-  }, [blocks]);
+
 
   useEffect(() => {
     fetchData();
