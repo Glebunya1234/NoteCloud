@@ -18,7 +18,7 @@ export default function HomePageNoteCloud() {
           <aside className="flex items-center">
             <Image src={Logo2} className="w-[40px]" alt="  " />
             <h1 className="text-center text-xs sm:text-lg md:text-2xl mx-2 text-gray-300 font-Orbitron">
-              NoteCloud
+              NoteCloud 22
             </h1>
           </aside>
           <nav>
