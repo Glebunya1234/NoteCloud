@@ -18,13 +18,13 @@ export default function HomePageNoteCloud() {
           <aside className="flex items-center">
             <Image src={Logo2} className="w-[40px]" alt="  " />
             <h1 className="text-center text-xs sm:text-lg md:text-2xl mx-2 text-gray-300 font-Orbitron">
-              NoteCloud 22
+              NoteCloud
             </h1>
           </aside>
-          <nav>
+          {/* <nav>
             <HrefButtons typeButton="Log In" />
             <HrefButtons typeButton="Sign Up" />
-          </nav>
+          </nav> */}
         </header>
         <main className="w-full flex h-auto mt-[135px] flex-col justify-center items-center ">
           <section className="h-[300px] sm:h-[500px] 2xl:h-[700px]  w-94% rounded-3xl backdrop-blur-lg bg-bg-mygrey/80 items-center flex  px-10">
