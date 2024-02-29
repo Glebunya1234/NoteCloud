@@ -21,10 +21,10 @@ export default function HomePageNoteCloud() {
               NoteCloud
             </h1>
           </aside>
-          {/* <nav>
+          <nav>
             <HrefButtons typeButton="Log In" />
             <HrefButtons typeButton="Sign Up" />
-          </nav> */}
+          </nav>
         </header>
         <main className="w-full flex h-auto mt-[135px] flex-col justify-center items-center ">
           <section className="h-[300px] sm:h-[500px] 2xl:h-[700px]  w-94% rounded-3xl backdrop-blur-lg bg-bg-mygrey/80 items-center flex  px-10">
