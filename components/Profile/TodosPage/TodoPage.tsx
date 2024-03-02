@@ -17,6 +17,7 @@ import {
 import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog";
+import Draggable from "react-draggable";
 
 const TodosContent = () => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
@@ -97,8 +98,6 @@ const TodosContent = () => {
   };
   //#endregion
 
-
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -130,121 +129,127 @@ const TodosContent = () => {
         animate="visible"
         className={` container flex w-full pr-9 pb-9 h-min `}
       >
-        {blocks.map((block, index) => (
-          <motion.aside className="item" variants={item} key={index}>
-            <section
-              className={`${
-                theme?.ModeEditOrRemove === "remove"
-                  ? "card CardRemove"
-                  : theme?.ModeEditOrRemove === "edit"
-                  ? "card CardEdit"
-                  : ""
-              }`}
-              onClick={() =>
-                theme?.ModeEditOrRemove === "none"
-                  ? ""
-                  : handleClickOnArticle(block[0].nameBlock)
-              }
-            >
-              <div
-                className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${DataContext?.importTheme.CardColor} shadow-xl rounded-3xl overflow-hidden`}
+        {/* <Draggable> */}
+          {blocks.map((block, index) => (
+            <motion.aside className="item " variants={item} key={index}>
+              <section
+                className={`${
+                  theme?.ModeEditOrRemove === "remove"
+                    ? "card CardRemove"
+                    : theme?.ModeEditOrRemove === "edit"
+                    ? "card CardEdit"
+                    : ""
+                }`}
+                onClick={() =>
+                  theme?.ModeEditOrRemove === "none"
+                    ? ""
+                    : handleClickOnArticle(block[0].nameBlock)
+                }
               >
-                {/* Name of block */}
-
-                <section
-                  className={`z-[2] ${DataContext?.importTheme.CardColor}`}
+                <div
+                  className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${DataContext?.importTheme.CardColor} shadow-xl rounded-3xl overflow-hidden`}
                 >
-                  <h2 className="text-black text-lg font-bold m-5 mb-2">
-                    {block[0].nameBlock}
-                  </h2>
-                </section>
+                  {/* Name of block */}
 
-                <motion.ul
-                  variants={container}
-                  initial="hidden"
-                  animate="visible"
-                  className={`container ${
-                    theme?.ModeEditOrRemove !== "none"
-                      ? "pointer-events-none"
-                      : ""
-                  } z-[2] ${DataContext?.importTheme.CardColor}`}
-                >
-                  {block.map((todo, todoIndex) => (
-                    <motion.li className="item" variants={item} key={todoIndex}>
-                      <motion.div
-                        whileHover={animationVariants.hover}
-                        transition={animationTransition}
-                        className="collapse my-1 collapse-arrow overflow-visible text-black"
+                  <section
+                    className={`z-[2] ${DataContext?.importTheme.CardColor}`}
+                  >
+                    <h2 className="text-black text-lg font-bold m-5 mb-2">
+                      {block[0].nameBlock}
+                    </h2>
+                  </section>
+
+                  <motion.ul
+                    variants={container}
+                    initial="hidden"
+                    animate="visible"
+                    className={`container ${
+                      theme?.ModeEditOrRemove !== "none"
+                        ? "pointer-events-none"
+                        : ""
+                    } z-[2] ${DataContext?.importTheme.CardColor}`}
+                  >
+                    {block.map((todo, todoIndex) => (
+                      <motion.li
+                        className="item"
+                        variants={item}
+                        key={todoIndex}
                       >
-                        <input type="checkbox" name="my-accordion-1" />
-                        {/* collapse-title */}
-                        <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
-                          {todo.titleTodos}
-                        </div>
+                        <motion.div
+                          whileHover={animationVariants.hover}
+                          transition={animationTransition}
+                          className="collapse my-1 collapse-arrow overflow-visible text-black"
+                        >
+                          <input type="checkbox" name="my-accordion-1" />
+                          {/* collapse-title */}
+                          <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
+                            {todo.titleTodos}
+                          </div>
 
-                        {/* collapse-content */}
-                        <div className="collapse-content ">
-                          <nav className="flex justify-between  px-1">
-                            {/* Set priority */}
-                            <section className="flex ">
-                              <div className="flex items-center w-full">
-                                <span className="badge bg-transparent py-3 text-black">
-                                  {todo.teg}
-                                </span>
-                              </div>
-                            </section>
+                          {/* collapse-content */}
+                          <div className="collapse-content ">
+                            <nav className="flex justify-between  px-1">
+                              {/* Set priority */}
+                              <section className="flex ">
+                                <div className="flex items-center w-full">
+                                  <span className="badge bg-transparent py-3 text-black">
+                                    {todo.teg}
+                                  </span>
+                                </div>
+                              </section>
 
-                            <section className="flex items-center ">
-                              <button
-                                className="btn btn-circle btn-xs mx-1 "
-                                onClick={() => {
-                                  handleClickChangeTask(
-                                    block[0].nameBlock,
-                                    todo.titleTodos,
-                                    todo.teg
-                                  );
-                                }}
-                              >
-                                <HiPencil />
-                              </button>
-                              <DeleteTaskButton
-                                nameBlock={block[0].nameBlock}
-                                titleTodo={todo.titleTodos}
-                                onCheckedFunc={() => {
-                                  setIsChecked(!isChecked);
-                                }}
-                              />
-                            </section>
-                          </nav>
-                        </div>
-                      </motion.div>
-                      <EditTaskDialog
-                        blockName={BlockName}
-                        oldtaskName={nametitle}
-                        priorityTitle={priorityTitle}
-                      />
-                    </motion.li>
-                  ))}
-                </motion.ul>
+                              <section className="flex items-center ">
+                                <button
+                                  className="btn btn-circle btn-xs mx-1 "
+                                  onClick={() => {
+                                    handleClickChangeTask(
+                                      block[0].nameBlock,
+                                      todo.titleTodos,
+                                      todo.teg
+                                    );
+                                  }}
+                                >
+                                  <HiPencil />
+                                </button>
+                                <DeleteTaskButton
+                                  nameBlock={block[0].nameBlock}
+                                  titleTodo={todo.titleTodos}
+                                  onCheckedFunc={() => {
+                                    setIsChecked(!isChecked);
+                                  }}
+                                />
+                              </section>
+                            </nav>
+                          </div>
+                        </motion.div>
+                        <EditTaskDialog
+                          blockName={BlockName}
+                          oldtaskName={nametitle}
+                          priorityTitle={priorityTitle}
+                        />
+                      </motion.li>
+                    ))}
+                  </motion.ul>
 
-                {/* Bottom of block */}
-                <section
-                  className={`p-5 pt-3 flex z-[2] ${
-                    DataContext?.importTheme.CardColor
-                  } ${
-                    theme?.ModeEditOrRemove !== "none"
-                      ? "pointer-events-none"
-                      : ""
-                  }`}
-                >
-                  <AddNewTaskComnponent nameBlock={block[0].nameBlock} />
-                </section>
-              </div>
-            </section>
-          </motion.aside>
-        ))}
+                  {/* Bottom of block */}
+                  <section
+                    className={`p-5 pt-3 flex z-[2] ${
+                      DataContext?.importTheme.CardColor
+                    } ${
+                      theme?.ModeEditOrRemove !== "none"
+                        ? "pointer-events-none"
+                        : ""
+                    }`}
+                  >
+                    <AddNewTaskComnponent nameBlock={block[0].nameBlock} />
+                  </section>
+                </div>
+              </section>
+            </motion.aside>
+          ))}
+        {/* </Draggable> */}
         <AddBlockModal />
-        <AddSpaceDialog/>
+        <AddSpaceDialog />
         <EditBlockModal blockName={BlockName} />
         <ModalRemoveBlock blockName={BlockName} />
       </motion.main>

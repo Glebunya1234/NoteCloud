@@ -33,7 +33,7 @@ import {
   NavButMenu,
 } from "@/components/Context";
 
-import DropdownEditBlockCopy from "@/components/UI/DropDown/EditDropDownBlockComponentcopy";
+
 import { ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
@@ -316,7 +316,7 @@ const UserPage = () => {
                     <RemoveOrEdit.Provider value={valueForAllert}>
                       <div className="flex justify-between items-center w-full">
                         <AllertCall />
-                        <DropdownEditBlockCopy />
+                        <DropdownEditBlock />
                       </div>
                     </RemoveOrEdit.Provider>
                   </motion.footer>
