@@ -327,7 +327,7 @@ const UserPage = () => {
           </div>
         </main>
       </div>
-      {shouldSMRender2222 && (
+      {shouldSMRender && (
         <NavButMenu.Provider value={valueForNavMenu}>
           <NavButSet.Provider value={valueForNavBut}>
             <DrawerSide />

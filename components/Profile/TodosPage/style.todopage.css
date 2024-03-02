@@ -96,3 +96,21 @@
 
   );
 }
+.card.CardMove::before {
+  background-image: linear-gradient(
+    var(--rotate),
+    #3abff8 , 
+    #14213d 43%,
+    #3abff8 
+    
+  );
+}
+.card.CardMove::after {
+  background-image: linear-gradient(
+    var(--rotate),
+    #3abff8 , 
+    #14213d 43%, 
+    #3abff8 
+
+  );
+}

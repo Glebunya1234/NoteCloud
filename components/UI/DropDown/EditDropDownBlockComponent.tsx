@@ -7,6 +7,7 @@ import {
 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { ButtonDellBlock, ButtonEditBlock } from "@/components";
+import ButtonMoveBlock from "@/components/Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonEditBlock copy";
 
 const DropdownEditBlock = () => {
   return (
@@ -27,8 +28,11 @@ const DropdownEditBlock = () => {
           <li className="mb-2">
             <ButtonEditBlock />
           </li>
-          <li>
+          <li className="mb-2">
             <ButtonDellBlock />
+          </li>
+          <li>
+            <ButtonMoveBlock />
           </li>
         </motion.ul>
       </div>

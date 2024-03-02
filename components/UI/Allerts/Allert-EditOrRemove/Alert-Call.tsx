@@ -10,6 +10,7 @@ const AllertCall = () => {
     <>
       {Mode?.ModeEditOrRemove === "edit" && <AllertEditOrRemove Mode="edit"/>}
       {Mode?.ModeEditOrRemove === "remove" && <AllertEditOrRemove Mode="remove"/>}
+      {Mode?.ModeEditOrRemove === "move" && <AllertEditOrRemove Mode="move"/>}
       {Mode?.ModeEditOrRemove === "none" && <></>}
     </>
   );

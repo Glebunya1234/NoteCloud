@@ -4,8 +4,9 @@ import "@components/Profile/TodosPage/style.todopage.css";
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 import { readDocTodo } from "@services/Firebase-Methods/Task-Management-methods";
 import { motion, Variants } from "framer-motion";
-import { CgClose } from "react-icons/cg";
-import { HiOutlineTrash, HiPencil } from "react-icons/hi";
+
+import { HiPencil } from "react-icons/hi";
+import { BsArrowsMove } from "react-icons/bs";
 import {
   AddBlockModal,
   AddNewTaskComnponent,
@@ -36,6 +37,9 @@ const TodosContent = () => {
     } else if (theme?.ModeEditOrRemove === "remove") {
       setNameBlock(names);
       openAModalWindowbyID("ModalRemoveBlock");
+    } else if (theme?.ModeEditOrRemove === "move") {
+      setNameBlock(names);
+      
     } else {
       setNameBlock(names);
     }
@@ -130,8 +134,7 @@ const TodosContent = () => {
         className={`container flex w-full pr-9 pb-9 h-min `}
       >
         {blocks.map((block, index) => (
-          <Draggable handle=".handle">
-
+          <Draggable handle=".handle ">
             <div className="draggable-item">
               <motion.aside className="item  " variants={item} key={index}>
                 <section
@@ -140,6 +143,8 @@ const TodosContent = () => {
                       ? "card CardRemove"
                       : theme?.ModeEditOrRemove === "edit"
                       ? "card CardEdit"
+                      : theme?.ModeEditOrRemove === "move"
+                      ? "card CardMove handle cursor-move"
                       : ""
                   }`}
                   onClick={() =>
@@ -152,15 +157,16 @@ const TodosContent = () => {
                     className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${DataContext?.importTheme.CardColor} shadow-xl rounded-3xl overflow-hidden`}
                   >
                     {/* Name of block */}
-  
                     <section
-                      className={`z-[2] handle ${DataContext?.importTheme.CardColor}`}
+                      className={`z-[2] flex flex-col items-center ${DataContext?.importTheme.CardColor}`}
                     >
-                      <h2  className=" text-black text-lg font-bold m-5 mb-2">
-                        {block[0].nameBlock}
-                      </h2>
+                      <div className="w-full px-4 pt-4 pb-2">
+                        <h2 className="text-black overflow-hidden text-ellipsis text-lg font-bold">
+                          {block[0].nameBlock}
+                        </h2>
+                      </div>
                     </section>
-  
+
                     <motion.ul
                       variants={container}
                       initial="hidden"
@@ -187,7 +193,7 @@ const TodosContent = () => {
                             <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
                               {todo.titleTodos}
                             </div>
-  
+
                             {/* collapse-content */}
                             <div className="collapse-content ">
                               <nav className="flex justify-between  px-1">
@@ -199,7 +205,7 @@ const TodosContent = () => {
                                     </span>
                                   </div>
                                 </section>
-  
+
                                 <section className="flex items-center ">
                                   <button
                                     className="btn btn-circle btn-xs mx-1 "
@@ -232,7 +238,7 @@ const TodosContent = () => {
                         </motion.li>
                       ))}
                     </motion.ul>
-  
+
                     {/* Bottom of block */}
                     <section
                       className={`p-5 pt-3 flex z-[2] ${

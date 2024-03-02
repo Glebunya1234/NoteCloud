@@ -6,8 +6,8 @@ import { createContext } from "react";
 
 export type HoverContextType = {
     id: string;
-    ModeEditOrRemove: "edit" | "remove" | "none";
-    setModeEditOrRemove: TypeSetState<"edit" | "remove" | "none">;
+    ModeEditOrRemove: "edit" | "remove" | "move" | "none";
+    setModeEditOrRemove: TypeSetState<"edit" | "remove" |  "move" | "none">;
 };
 
 export const RemoveOrEdit = createContext<HoverContextType>({
