@@ -3,17 +3,14 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import { userService, MyUser } from "@services/User-Service/UserServ";
+
 import { FaRegFolder } from "react-icons/fa";
-import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
+
 import Logo2 from "@/public/logoNC.svg";
 import {
   ButtonMenuNavigations,
   AllertToast,
-  ModalEditProf,
-  BottonCloseTest,
-  SearchInput,
-  ButtonEditProfModal,
+
   DrawerSide,
   ButtonDrawer,
   DropdownEditBlock,
@@ -183,16 +180,7 @@ const UserPage = () => {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
         <main className="relative overflow-hidden  ">
-          {shouldLGRender && (
-            <Image
-              src={hat}
-              width={110}
-              height={120}
-              alt="NoteCloud"
-              className="absolute top-5 right-[4px]  z-50 block"
-              style={{ transform: "scaleX(-1) rotate(-20deg)" }}
-            />
-          )}
+          
           <div className="flex w-screen justify-center items-center h-screen bg-cover bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
             <div
               className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
@@ -234,6 +222,10 @@ const UserPage = () => {
                   </section>
                 </section>
               )}
+
+
+
+              
               <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
                 {/* ---------------------Pc--------------- */}
                 <header
@@ -252,7 +244,7 @@ const UserPage = () => {
                               opacity: 1,
                             }}
                             initial={{ opacity: 0, y: -200 }}
-                            className="text-center text-3xl ml-5 mr-10"
+                            className="overflow-x-auto mr-2"
                           >
                             <SpaceButtons />
                           </motion.aside>
@@ -272,6 +264,10 @@ const UserPage = () => {
                       )}
                     </header>
                   ) : (
+
+
+
+
                     // -----------Mobile ---------------
                     <header className="w-full h-24 flex justify-between  items-center p-5">
                       <motion.aside

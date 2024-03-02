@@ -8,8 +8,10 @@ import {
 import { motion } from "framer-motion";
 import { ButtonDellBlock, ButtonEditBlock } from "@/components";
 import ButtonMoveBlock from "@/components/Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonEditBlock copy";
+import useMediaQueryHook from "@/hooks/useMediaQueryHook";
 
 const DropdownEditBlock = () => {
+  const shouldSMRender = useMediaQueryHook("(min-width: 768px)", false);
   return (
     <main className="ml-auto h-auto m-5 mr-9 mb-5 z-50 ">
       <div className="dropdown dropdown-top ">
@@ -31,9 +33,11 @@ const DropdownEditBlock = () => {
           <li className="mb-2">
             <ButtonDellBlock />
           </li>
-          <li>
-            <ButtonMoveBlock />
-          </li>
+          { shouldSMRender && (
+            <li>
+              <ButtonMoveBlock />
+            </li>
+          )}
         </motion.ul>
       </div>
     </main>

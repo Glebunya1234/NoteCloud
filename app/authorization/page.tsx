@@ -2,7 +2,7 @@
 import Image from "next/image";
 
 import Logo2 from "@/public/logoNC.svg";
-import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
+
 import { AllertToast, ActiveTabs, ButtonGoogle } from "@/components";
 import BottonBack from "@/components/Buttons/Auth-Buttons/Buttons-router-Back";
 
@@ -11,14 +11,7 @@ export default function AuthPage() {
     <div className="flex w-screen justify-center items-center  bg-cover overflow-hidden bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')] h-screen bg-white">
       {/* <main className="lg:relative block w-9/12 max-w-[380px] md:max-w-none md:w-[450px]"> */}
       <main className="lg:relative  h-full sm:h-min block w-full sm:max-w-none sm:w-[450px]">
-        <Image
-          src={hat}
-          width={100}
-          height={100}
-          alt="NoteCloud"
-          className="absolute -top-9 -right-14 m-4 z-50 hidden lg:block"
-          style={{ transform: "scaleX(-1) rotate(-20deg)" }}
-        />
+        
         <section className="w-full  h-full  sm:w-[450px]  flex bg-center shadow-2xl  backdrop-blur-lg  sm:rounded-3xl overflow-hidden transition ease-linear duration-1000 ">
           <div className="w-full items-center flex justify-center sm:px-8 sm:py-9 h-full">
             <div className="w-full  h-full flex flex-col sm:rounded-3xl overflow-hidden pt-4 bg-opacity-70 bg-bg-mygrey shadow-2xl">
