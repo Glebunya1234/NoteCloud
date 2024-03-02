@@ -273,13 +273,13 @@ const UserPage = () => {
                     </header>
                   ) : (
                     // -----------Mobile ---------------
-                    <header className="w-full h-24 flex   items-center p-5">
+                    <header className="w-full h-24 flex justify-between  items-center p-5">
                       <motion.aside
                         animate={{
                           x: 0,
                           opacity: 1,
                         }}
-                        initial={{ opacity: 0, x: -200 }}
+                        initial={{ opacity: 0, x: 200 }}
                       >
                         <ButtonDrawer />
                       </motion.aside>
@@ -295,7 +295,7 @@ const UserPage = () => {
                               opacity: 1,
                             }}
                             initial={{ opacity: 0, y: -200 }}
-                            className="text-center overflow-auto  text-3xl ml-5 mr-10"
+                            className="overflow-x-auto mr-2"
                           >
                             <SpaceButtons />
                           </motion.aside>

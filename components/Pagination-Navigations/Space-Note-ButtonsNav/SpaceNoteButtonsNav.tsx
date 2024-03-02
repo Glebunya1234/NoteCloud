@@ -14,20 +14,20 @@ import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 const SpaceButtons = () => {
   
   return (
-    <ul className="w-full flex flex-row">
+    <ul className="w-full flex items-center ">
       <li className="mx-2">
-        <button className="btn btn-ghost btn-active my-1 w-full rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center">
+        <button className="btn btn-md btn-ghost btn-active w-full rounded-2xl normal-case items-center">
           All
         </button>
       </li>
 
       <li className="mx-2">
-        <button className="btn btn-ghost my-1 w-full rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center">
+        <button className="btn btn-md btn-ghost  w-full rounded-2xl  normal-case items-center">
           Work
         </button>
       </li>
-      <li className="mx-2">
-        <button className="btn btn-ghost my-1 w-full rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center">
+      <li className="">
+        <button className="btn btn-md btn-ghost  w-full  rounded-2xl normal-case items-center">
           Studies
         </button>
       </li>
