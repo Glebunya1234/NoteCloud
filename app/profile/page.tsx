@@ -41,6 +41,7 @@ import { motion } from "framer-motion";
 
 import useMediaQueryHook from "@/hooks/useMediaQueryHook";
 import { useMediaQuery } from "react-responsive";
+import SpaceButtons from "@/components/Pagination-Navigations/Space-Note-ButtonsNav/SpaceNoteButtonsNav";
 const UserPage = () => {
   const linkDefaultPhoto =
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
@@ -247,7 +248,8 @@ const UserPage = () => {
                             initial={{ opacity: 0, y: -200 }}
                             className="text-center text-3xl ml-5 mr-10"
                           >
-                            Task&nbsp;bar
+                            {/* Task&nbsp;bar  */}
+                            <SpaceButtons/>
                           </motion.h1>
 
                           {/* <SearchInput /> */}

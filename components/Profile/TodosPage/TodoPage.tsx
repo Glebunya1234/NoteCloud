@@ -16,6 +16,7 @@ import {
 } from "@/components";
 import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
+import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog";
 
 const TodosContent = () => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
@@ -243,6 +244,7 @@ const TodosContent = () => {
           </motion.aside>
         ))}
         <AddBlockModal />
+        <AddSpaceDialog/>
         <EditBlockModal blockName={BlockName} />
         <ModalRemoveBlock blockName={BlockName} />
       </motion.main>
