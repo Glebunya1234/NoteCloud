@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import "@components/Profile/TodosPage/style.todopage.css";
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 import { readDocTodo } from "@services/Firebase-Methods/Task-Management-methods";
@@ -21,6 +21,7 @@ import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog
 import Draggable from "react-draggable";
 
 const TodosContent = () => {
+ 
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
   const [BlockName, setNameBlock] = useState("");
@@ -39,7 +40,6 @@ const TodosContent = () => {
       openAModalWindowbyID("ModalRemoveBlock");
     } else if (theme?.ModeEditOrRemove === "move") {
       setNameBlock(names);
-      
     } else {
       setNameBlock(names);
     }
@@ -131,13 +131,18 @@ const TodosContent = () => {
         variants={container}
         initial="hidden"
         animate="visible"
+        
         className={`container flex w-full pr-9 pb-9 h-min  `}
       >
         {blocks.map((block, index) => (
           <Draggable handle=".handle ">
-            <div className="draggable-item">
-              <motion.aside className="item snap-center" variants={item} key={index}>
-                <section
+            <div className="draggable-item" >
+              <motion.aside
+                className="item snap-center"
+                variants={item}
+                key={index}
+              >
+                <section 
                   className={`${
                     theme?.ModeEditOrRemove === "remove"
                       ? "card CardRemove"

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { userService, MyUser } from "@services/User-Service/UserServ";
+import { FaRegFolder } from "react-icons/fa";
 import hat from "@/public/dizzy-santa-hat-pompon-down-back.png";
 import Logo2 from "@/public/logoNC.svg";
 import {
@@ -33,7 +34,6 @@ import {
   NavButMenu,
 } from "@/components/Context";
 
-
 import { ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
@@ -42,6 +42,7 @@ import { motion } from "framer-motion";
 import useMediaQueryHook from "@/hooks/useMediaQueryHook";
 import { useMediaQuery } from "react-responsive";
 import SpaceButtons from "@/components/Pagination-Navigations/Space-Note-ButtonsNav/SpaceNoteButtonsNav";
+import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 const UserPage = () => {
   const linkDefaultPhoto =
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
@@ -57,7 +58,7 @@ const UserPage = () => {
   const shouldSMRender = useMediaQueryHook("(max-width: 768px)", false);
   const shouldMDRender = useMediaQueryHook("(min-width: 768px)", false);
   const shouldLGRender = useMediaQueryHook("(min-width: 1024px)", false);
-  const shouldSMRender2222 = useMediaQuery({ maxWidth: '768px' });
+  const shouldSMRender2222 = useMediaQuery({ maxWidth: "768px" });
 
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
@@ -111,6 +112,10 @@ const UserPage = () => {
 
   const handleButtonSetClick = (buttonName: string) => {
     setActiveSetName(buttonName);
+  };
+
+  const hendClickDellButton = () => {
+    openAModalWindowbyID("AddSpaceDialog");
   };
   //#endregion
 
@@ -230,6 +235,7 @@ const UserPage = () => {
                 </section>
               )}
               <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
+                {/* ---------------------Pc--------------- */}
                 <header
                   className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
                 >
@@ -240,7 +246,7 @@ const UserPage = () => {
                       )}
                       {activeMain === "Todos" && (
                         <>
-                          <motion.h1
+                          <motion.aside
                             animate={{
                               y: 0,
                               opacity: 1,
@@ -248,35 +254,71 @@ const UserPage = () => {
                             initial={{ opacity: 0, y: -200 }}
                             className="text-center text-3xl ml-5 mr-10"
                           >
-                            {/* Task&nbsp;bar  */}
-                            <SpaceButtons/>
-                          </motion.h1>
+                            <SpaceButtons />
+                          </motion.aside>
 
                           {/* <SearchInput /> */}
                         </>
                       )}
+                      {activeMain === "Todos" && (
+                        <>
+                          <button
+                            className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                            onClick={hendClickDellButton}
+                          >
+                            <FaRegFolder className="text-[18px]" />
+                          </button>
+                        </>
+                      )}
                     </header>
                   ) : (
-                    <header className="w-full h-24 flex items-center p-5">
-                      <ButtonDrawer />
+                    // -----------Mobile ---------------
+                    <header className="w-full h-24 flex   items-center p-5">
+                      <motion.aside
+                        animate={{
+                          x: 0,
+                          opacity: 1,
+                        }}
+                        initial={{ opacity: 0, x: -200 }}
+                      >
+                        <ButtonDrawer />
+                      </motion.aside>
                       {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
                       {activeMain === "Settings" && (
                         <ButtonSetNaw onButtonClick={handleButtonSetClick} />
                       )}
                       {activeMain === "Todos" && (
                         <>
-                          <motion.h1
+                          <motion.aside
                             animate={{
                               y: 0,
                               opacity: 1,
                             }}
                             initial={{ opacity: 0, y: -200 }}
-                            className="text-center text-3xl ml-5 mr-10"
+                            className="text-center overflow-auto  text-3xl ml-5 mr-10"
                           >
-                            Task&nbsp;bar
-                          </motion.h1>
+                            <SpaceButtons />
+                          </motion.aside>
 
                           {/* <SearchInput /> */}
+                        </>
+                      )}
+                      {activeMain === "Todos" && (
+                        <>
+                          <motion.aside
+                            animate={{
+                              x: 0,
+                              opacity: 1,
+                            }}
+                            initial={{ opacity: 0, x: 200 }}
+                          >
+                            <button
+                              className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                              onClick={hendClickDellButton}
+                            >
+                              <FaRegFolder className="text-[18px]" />
+                            </button>
+                          </motion.aside>
                         </>
                       )}
                     </header>
