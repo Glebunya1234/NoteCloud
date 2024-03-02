@@ -294,7 +294,7 @@ const UserPage = () => {
                       {activeMain === "Todos" && (
                         <>
                           <RemoveOrEdit.Provider value={valueForAllert}>
-                            <div className="relative overflow-auto min-w-full ">
+                            <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
                               <TodosContent />
                             </div>
                           </RemoveOrEdit.Provider>

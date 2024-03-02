@@ -131,12 +131,12 @@ const TodosContent = () => {
         variants={container}
         initial="hidden"
         animate="visible"
-        className={`container flex w-full pr-9 pb-9 h-min `}
+        className={`container flex w-full pr-9 pb-9 h-min  `}
       >
         {blocks.map((block, index) => (
           <Draggable handle=".handle ">
             <div className="draggable-item">
-              <motion.aside className="item  " variants={item} key={index}>
+              <motion.aside className="item snap-center" variants={item} key={index}>
                 <section
                   className={`${
                     theme?.ModeEditOrRemove === "remove"
