@@ -33,7 +33,7 @@ const DeleteTaskButton: React.FC<{
 
   return (
     <button
-      className="btn btn-circle btn-xs mx-1"
+      className="btn btn-circle btn-xs"
       onClick={() => handleClickDelete(nameBlock, titleTodo)}
     >
       <HiOutlineTrash />

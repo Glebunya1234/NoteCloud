@@ -22,7 +22,6 @@ import Draggable from "react-draggable";
 import PriorityBadge from "@/components/UI/Badge/Priority-badge";
 
 const TodosContent = () => {
- 
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
   const [BlockName, setNameBlock] = useState("");
@@ -132,18 +131,17 @@ const TodosContent = () => {
         variants={container}
         initial="hidden"
         animate="visible"
-        
         className={`container flex w-full pr-9 pb-9 h-min  `}
       >
         {blocks.map((block, index) => (
           <Draggable handle=".handle ">
-            <div className="draggable-item" >
+            <div className="draggable-item">
               <motion.aside
                 className="item snap-center"
                 variants={item}
                 key={index}
               >
-                <section 
+                <section
                   className={`${
                     theme?.ModeEditOrRemove === "remove"
                       ? "card CardRemove"
@@ -197,45 +195,55 @@ const TodosContent = () => {
                             <input type="checkbox" name="my-accordion-1" />
                             {/* collapse-title */}
                             <div className="collapse-title border-t-[1px] border-[rgba(26,26,26,0.1)] text-xl w-full flex items-center justify-between font-medium overflow-hidden text-ellipsis ">
-                             <p className="font-medium overflow-hidden text-ellipsis">{todo.titleTodos}</p>
-                              <PriorityBadge Priority={`${todo.teg}`}/>
+                              <p className="font-medium overflow-hidden text-ellipsis">
+                                {todo.titleTodos}
+                              </p>
+                              <PriorityBadge Priority={`${todo.teg}`} />
                             </div>
 
                             {/* collapse-content */}
-                            <div className="collapse-content ">
-                              <nav className="flex justify-between  px-1">
+                            <nav className="collapse-content ">
+                              <div className="flex flex-col items-center">
                                 {/* Set priority */}
-                                <section className="flex ">
-                                  <div className="flex items-center w-full">
+
+                               
+
+                                <section className="flex justify-between mt-2 w-full">
+                                  <aside className="flex items-center w-full">
                                     <span className="badge bg-transparent py-3 text-black">
                                       {todo.teg}
                                     </span>
-                                  </div>
-                                </section>
+                                  </aside>
 
-                                <section className="flex items-center ">
-                                  <button
-                                    className="btn btn-circle btn-xs mx-1 "
-                                    onClick={() => {
-                                      handleClickChangeTask(
-                                        block[0].nameBlock,
-                                        todo.titleTodos,
-                                        todo.teg
-                                      );
-                                    }}
-                                  >
-                                    <HiPencil />
-                                  </button>
-                                  <DeleteTaskButton
-                                    nameBlock={block[0].nameBlock}
-                                    titleTodo={todo.titleTodos}
-                                    onCheckedFunc={() => {
-                                      setIsChecked(!isChecked);
-                                    }}
-                                  />
+                                  <aside className="flex items-center ">
+                                    <button
+                                      className="btn btn-circle btn-xs mx-2 "
+                                      onClick={() => {
+                                        handleClickChangeTask(
+                                          block[0].nameBlock,
+                                          todo.titleTodos,
+                                          todo.teg
+                                        );
+                                      }}
+                                    >
+                                      <HiPencil />
+                                    </button>
+                                    <DeleteTaskButton
+                                      nameBlock={block[0].nameBlock}
+                                      titleTodo={todo.titleTodos}
+                                      onCheckedFunc={() => {
+                                        setIsChecked(!isChecked);
+                                      }}
+                                    />
+                                  </aside>
                                 </section>
-                              </nav>
-                            </div>
+                                <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
+                                  <p > 01.02.2024</p>
+                                  <p className="mx-1">-</p>
+                                  <p > 03.03.2024</p>
+                                </section>
+                              </div>
+                            </nav>
                           </motion.div>
                           <EditTaskDialog
                             blockName={BlockName}
