@@ -1,4 +1,3 @@
-
 import ButtonAddBlock from "@/components/Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonAddBlock";
 import { HiDotsVertical } from "react-icons/hi";
 import { motion } from "framer-motion";
@@ -9,27 +8,36 @@ import {
 } from "@/components";
 import { use, useContext } from "react";
 import { ChangeTeg, UpdateArray } from "@/components/Context";
-import { FiChevronDown, FiChevronUp, FiChevronsDown, FiChevronsUp } from "react-icons/fi";
-import { FaAngleDoubleDown, FaAngleDoubleUp, FaAngleDown, FaAngleUp, FaEquals } from "react-icons/fa";
+import {
+  FiChevronDown,
+  FiChevronUp,
+  FiChevronsDown,
+  FiChevronsUp,
+} from "react-icons/fi";
+import {
+  FaAngleDoubleDown,
+  FaAngleDoubleUp,
+  FaAngleDown,
+  FaAngleUp,
+  FaEquals,
+} from "react-icons/fa";
 
-type priorityType ={
-  Priority: "Highest" | "High" | "Medium" | "Low"  | "Lowest"
-}
+type priorityType = {
+  Priority: string;
+  //   Priority: "Highest priority" | "High priority" | "Medium priority" | "Low priority"  | "Lowest priority"
+};
 
 const PriorityBadge: React.FC<priorityType> = (priorityType) => {
-
-
   return (
-    <div className="lg:tooltip  flex items-center h-full" data-tip={priorityType.Priority}>
-      <button className="flex badge h-full w-fit text-xs border-transparent bg-transparent  hover:border-bg-myyellow " >
-        <span className="">
-          {priorityType.Priority==="Highest" && <FaAngleDoubleUp />}
-          {priorityType.Priority==="High" && <FaAngleUp />}
-          {priorityType.Priority==="Medium" && <FaEquals />}
-          {priorityType.Priority==="Low" && <FaAngleDown />}
-          {priorityType.Priority==="Lowest" && <FaAngleDoubleDown />}
-        </span >
-      </button>
+    <div
+      className="badge ml-2 badge-outline badge-xs h-[20px] text-xs"
+      data-tip={priorityType.Priority}
+    >
+      {priorityType.Priority === "Highest priority" && <FaAngleDoubleUp />}
+      {priorityType.Priority === "High priority" && <FaAngleUp />}
+      {priorityType.Priority === "Medium priority" && <FaEquals />}
+      {priorityType.Priority === "Low priority" && <FaAngleDown />}
+      {priorityType.Priority === "Lowest priority" && <FaAngleDoubleDown />}
     </div>
   );
 };

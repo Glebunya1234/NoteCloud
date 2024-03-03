@@ -19,6 +19,7 @@ import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog";
 import Draggable from "react-draggable";
+import PriorityBadge from "@/components/UI/Badge/Priority-badge";
 
 const TodosContent = () => {
  
@@ -195,8 +196,9 @@ const TodosContent = () => {
                           >
                             <input type="checkbox" name="my-accordion-1" />
                             {/* collapse-title */}
-                            <div className="collapse-title text-xl w-full font-medium overflow-hidden text-ellipsis ">
-                              {todo.titleTodos}
+                            <div className="collapse-title border-t-[1px] border-[rgba(26,26,26,0.1)] text-xl w-full flex items-center justify-between font-medium overflow-hidden text-ellipsis ">
+                             <p className="font-medium overflow-hidden text-ellipsis">{todo.titleTodos}</p>
+                              <PriorityBadge Priority={`${todo.teg}`}/>
                             </div>
 
                             {/* collapse-content */}
@@ -246,7 +248,7 @@ const TodosContent = () => {
 
                     {/* Bottom of block */}
                     <section
-                      className={`p-5 pt-3 flex z-[2] ${
+                      className={`p-5 pt-3 flex z-[2] border-t-[1px] border-[rgba(26,26,26,0.1)] ${
                         DataContext?.importTheme.CardColor
                       } ${
                         theme?.ModeEditOrRemove !== "none"
