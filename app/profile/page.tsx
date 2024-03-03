@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-
+import { GrPowerReset } from "react-icons/gr";
 import { FaRegFolder } from "react-icons/fa";
 
 import Logo2 from "@/public/logoNC.svg";
@@ -20,6 +20,7 @@ import {
   SettingsContent,
   TodosContent,
   showSuccessToast,
+  showMessangeToast,
 } from "@/components";
 
 import {
@@ -37,7 +38,6 @@ import { ReadShemeColor } from "@/services/Local-Storage/ReadFromStorage";
 import { motion } from "framer-motion";
 
 import useMediaQueryHook from "@/hooks/useMediaQueryHook";
-import { useMediaQuery } from "react-responsive";
 import SpaceButtons from "@/components/Pagination-Navigations/Space-Note-ButtonsNav/SpaceNoteButtonsNav";
 import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
 const UserPage = () => {
@@ -54,8 +54,8 @@ const UserPage = () => {
 
   const shouldSMRender = useMediaQueryHook("(max-width: 768px)", false);
   const shouldMDRender = useMediaQueryHook("(min-width: 768px)", false);
-  const shouldLGRender = useMediaQueryHook("(min-width: 1024px)", false);
-  const shouldSMRender2222 = useMediaQuery({ maxWidth: "768px" });
+  // const shouldLGRender = useMediaQueryHook("(min-width: 1024px)", false);
+  // const shouldSMRender2222 = useMediaQuery({ maxWidth: "768px" });
 
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
@@ -113,6 +113,13 @@ const UserPage = () => {
 
   const hendClickDellButton = () => {
     openAModalWindowbyID("AddSpaceDialog");
+  };
+
+  const clearLocalStoragePositions = () => {
+    localStorage.removeItem('positions')
+    showSuccessToast("Positions were reset")
+    showMessangeToast("You can return to the page back", 1000)
+    setActiveMain("Home")
   };
   //#endregion
 
@@ -259,6 +266,14 @@ const UserPage = () => {
                             onClick={hendClickDellButton}
                           >
                             <FaRegFolder className="text-[18px]" />
+                          </button>
+                          <button
+                            className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                            onClick={clearLocalStoragePositions}
+                          >
+                            <p>Reset positions</p>
+                            
+                            <GrPowerReset  className="text-[18px]" />
                           </button>
                         </>
                       )}
