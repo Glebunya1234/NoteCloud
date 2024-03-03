@@ -1,7 +1,8 @@
-import { HiPencil } from "react-icons/hi";
+import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 import { AnimatePresence, motion } from "framer-motion";
 
 import AllertButton from "@/components/Buttons/Allert-Buttons/AllertButton";
+import { BsArrowsMove } from "react-icons/bs";
 type alertType = {
   Mode: "edit" | "remove" | "move";
 };
@@ -20,7 +21,10 @@ const AllertEditOrRemove: React.FC<alertType> = ({ Mode }) => {
             : "alert-error"
         }`}
       >
-        <HiPencil style={{ fontSize: "20px" }} />
+        {Mode === "edit" && <HiPencil style={{ fontSize: "20px" }} />}
+        {Mode === "move" && <BsArrowsMove style={{ fontSize: "20px" }} />}
+        {Mode === "remove" && <HiOutlineTrash style={{ fontSize: "20px" }} />}
+
         <span className="text-xs md:text-myGreyForFont font-medium flex items-center h-full md:whitespace-nowrap md:overflow-hidden">
           {Mode === "edit"
             ? "The EDITING mode is activated"

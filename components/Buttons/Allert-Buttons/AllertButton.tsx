@@ -1,5 +1,6 @@
-import {RemoveOrEdit} from "@/components/Context";
+import { RemoveOrEdit } from "@/components/Context";
 import { useContext } from "react";
+import { FaPowerOff } from "react-icons/fa";
 
 const AllertButton = () => {
   const Mode = useContext(RemoveOrEdit);
@@ -8,8 +9,11 @@ const AllertButton = () => {
   };
   return (
     <div>
-      <button className="btn btn-sm whitespace-nowrap overflow-hidden" onClick={hendClickButton}>
-        Turn off
+      <button
+        className="btn btn-sm btn-circle whitespace-nowrap overflow-hidden"
+        onClick={hendClickButton}
+      >
+        <FaPowerOff />
       </button>
     </div>
   );
