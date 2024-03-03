@@ -27,6 +27,7 @@ const TodosContent = () => {
   const [BlockName, setNameBlock] = useState("");
   const [nametitle, setNametitle] = useState<string>("");
   const [priorityTitle, setPriorityTitle] = useState<string>("");
+  const [positions, setPositions] = useState<{[key: number]: {x: number, y: number}}>({});
   const DataContext = useContext(NavButSet);
   const theme = useContext(RemoveOrEdit);
 
@@ -43,6 +44,15 @@ const TodosContent = () => {
     } else {
       setNameBlock(names);
     }
+  };
+
+  const handleStop = (index: number, data: { x: number; y: number }) => {
+    const newPosition = { x: data.x, y: data.y };
+    setPositions((prevPositions) => ({
+      ...prevPositions,
+      [index]: newPosition,
+    }));
+    localStorage.setItem('positions', JSON.stringify({ ...positions, [index]: newPosition }));
   };
 
   const handleClickChangeTask = (
@@ -100,11 +110,6 @@ const TodosContent = () => {
     stiffness: 400,
     damping: 20,
   };
-  //#endregion
-
-  useEffect(() => {
-    fetchData();
-  }, []);
 
   const container = {
     hidden: { opacity: 1 },
@@ -125,6 +130,29 @@ const TodosContent = () => {
       opacity: 1,
     },
   };
+
+
+
+  //#endregion
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const savedPositions = localStorage.getItem('positions');
+    if (savedPositions) {
+      setPositions(JSON.parse(savedPositions));
+      console.log("positions=", savedPositions)
+    }
+  }, []);
+
+
+
+  
+ 
+
+  
   return (
     <UpdateArray.Provider value={{ onTaskAdded: fetchData }}>
       <motion.main
@@ -134,7 +162,13 @@ const TodosContent = () => {
         className={`container flex w-full pr-9 pb-9 h-min  `}
       >
         {blocks.map((block, index) => (
-          <Draggable handle=".handle ">
+          <Draggable
+            handle=".handle "
+            grid={[5, 5]}
+            key={index}
+            defaultPosition={positions[index] || { x: 0, y: 0 }}
+            onStop={(event, data) => handleStop(index, data)}
+          >
             <div className="draggable-item">
               <motion.aside
                 className="item snap-center"
@@ -182,15 +216,19 @@ const TodosContent = () => {
                       } z-[2] ${DataContext?.importTheme.CardColor}`}
                     >
                       {block.map((todo, todoIndex) => (
-                        
                         <motion.li
-                          className={`item flex flex-row-reverse  ${todo.titleTodos === "Task 1" ? "": ""}`}
+                          className={`item flex flex-row-reverse  ${
+                            todo.titleTodos === "Task 1" ? "" : ""
+                          }`}
                           variants={item}
                           key={todoIndex}
                         >
-                          
-                          {todo.titleTodos === "Old Task" && <p className="w-1 h-auto bg-[rgb(255,57,57)] mt-3 mb-1 rounded-l-full"/>}
-                          {todo.titleTodos === "New Task" && <p className="w-1 h-auto bg-[rgb(255,146,44)] mt-3 mb-1 rounded-l-full"/>}
+                          {todo.titleTodos === "Old Task" && (
+                            <p className="w-1 h-auto bg-[rgb(255,57,57)] mt-3 mb-1 rounded-l-full" />
+                          )}
+                          {todo.titleTodos === "New Task" && (
+                            <p className="w-1 h-auto bg-[rgb(255,146,44)] mt-3 mb-1 rounded-l-full" />
+                          )}
                           <motion.div
                             whileHover={animationVariants.hover}
                             transition={animationTransition}
