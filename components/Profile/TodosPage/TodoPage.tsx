@@ -182,19 +182,23 @@ const TodosContent = () => {
                       } z-[2] ${DataContext?.importTheme.CardColor}`}
                     >
                       {block.map((todo, todoIndex) => (
+                        
                         <motion.li
-                          className="item"
+                          className={`item flex flex-row-reverse  ${todo.titleTodos === "Task 1" ? "": ""}`}
                           variants={item}
                           key={todoIndex}
                         >
+                          
+                          {todo.titleTodos === "Old Task" && <p className="w-1 h-auto bg-[rgb(255,57,57)] mt-3 mb-1 rounded-l-full"/>}
+                          {todo.titleTodos === "New Task" && <p className="w-1 h-auto bg-[rgb(255,146,44)] mt-3 mb-1 rounded-l-full"/>}
                           <motion.div
                             whileHover={animationVariants.hover}
                             transition={animationTransition}
-                            className="collapse my-1 collapse-arrow overflow-visible text-black"
+                            className="collapse py-1 collapse-arrow overflow-visible text-black"
                           >
                             <input type="checkbox" name="my-accordion-1" />
                             {/* collapse-title */}
-                            <div className="collapse-title border-t-[1px] border-[rgba(26,26,26,0.1)] text-xl w-full flex items-center justify-between font-medium overflow-hidden text-ellipsis ">
+                            <div className=" collapse-title border-t-[1px] border-[rgba(26,26,26,0.1)] text-xl w-full flex items-center justify-between font-medium overflow-hidden text-ellipsis ">
                               <p className="font-medium overflow-hidden text-ellipsis">
                                 {todo.titleTodos}
                               </p>
@@ -205,8 +209,6 @@ const TodosContent = () => {
                             <nav className="collapse-content ">
                               <div className="flex flex-col items-center">
                                 {/* Set priority */}
-
-                               
 
                                 <section className="flex justify-between mt-2 w-full">
                                   <aside className="flex items-center w-full">
@@ -238,9 +240,9 @@ const TodosContent = () => {
                                   </aside>
                                 </section>
                                 <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
-                                  <p > 01.02.2024</p>
+                                  <p> 01.02.2024</p>
                                   <p className="mx-1">-</p>
-                                  <p > 03.03.2024</p>
+                                  <p> 03.03.2024</p>
                                 </section>
                               </div>
                             </nav>
@@ -256,7 +258,7 @@ const TodosContent = () => {
 
                     {/* Bottom of block */}
                     <section
-                      className={`p-5 pt-3 flex z-[2] border-t-[1px] border-[rgba(26,26,26,0.1)] ${
+                      className={`p-5 pt-3  flex z-[2] border-t-[1px] border-[rgba(26,26,26,0.1)] ${
                         DataContext?.importTheme.CardColor
                       } ${
                         theme?.ModeEditOrRemove !== "none"
