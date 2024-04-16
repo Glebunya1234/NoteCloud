@@ -68,29 +68,34 @@ const TodosContent = () => {
       openAModalWindowbyID("EditTaskDialog");
   };
 
+
   const fetchData = async () => {
-    try {
-      const data = await readDocTodo(theme?.id);
-
-      // Создаем объект для группировки по блокам
-      const blocksMap: Record<string, TodosData[]> = {};
-
-      data.forEach((todo) => {
-        if (!blocksMap[todo.nameBlock]) {
-          blocksMap[todo.nameBlock] = [];
-        }
-        blocksMap[todo.nameBlock].push({
-          nameBlock: todo.nameBlock,
-          titleTodos: todo.titleTodos,
-          teg: todo.teg,
-          userId: todo.userId,
+      try {
+        const data = await readDocTodo(theme?.id);
+  
+        // Создаем объект для группировки по блокам
+       
+        const blocksMap: Record<string, TodosData[]> = {};
+       
+        data.forEach((todo) => {
+          if (!blocksMap[todo.nameBlock]) {
+            blocksMap[todo.nameBlock] = [];
+          }
+          blocksMap[todo.nameBlock].push({
+            spaceName: todo.spaceName,
+            nameBlock: todo.nameBlock,
+            titleTodos: todo.titleTodos,
+            teg: todo.teg,
+            userId: todo.userId,
+          });
         });
-      });
+      
 
       // Преобразуем объект в массив
       const blocksArray = Object.values(blocksMap);
 
       setBlocks(blocksArray);
+      console.log(blocksArray)
     } catch (error) {
       console.error(error);
     }
@@ -159,9 +164,15 @@ const TodosContent = () => {
         variants={container}
         initial="hidden"
         animate="visible"
-        className={`container flex w-full pr-9 pb-9 h-min  `}
+        className={`container flex w-full pr-9 pb-9 h-min `}
       >
-        {blocks.map((block, index) => (
+  
+  
+        {
+          blocks
+          .filter((block) => block[0].spaceName==="Work")
+          .map((block, index) => (
+
           <Draggable
             handle=".handle "
             grid={[5, 5]}
@@ -311,7 +322,13 @@ const TodosContent = () => {
               </motion.aside>
             </div>
           </Draggable>
-        ))}
+
+
+          ))}
+
+
+
+
         <AddBlockModal />
         <AddSpaceDialog />
         <EditBlockModal blockName={BlockName} />

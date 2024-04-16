@@ -37,12 +37,12 @@ export async function readDocTodo(userID: string): Promise<TodosData[]> {
     const todos: TodosData[] = [];
     // Преобразовать QueryDocumentSnapshot в обычные объекты данных
     querySnapshot.forEach((doc) => {
-        i= i+1
+    
         // doc.data() is never undefined for query doc snapshots
         const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
         todos.push(todoData);
     });
-    console.log("i = ", i)
+    // console.log("i = ", todos)
 
     return todos;
 

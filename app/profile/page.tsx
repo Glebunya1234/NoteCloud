@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { FaRegFolder } from "react-icons/fa";
 
+
 import Logo2 from "@/public/logoNC.svg";
 import {
   ButtonMenuNavigations,
@@ -339,7 +340,7 @@ const UserPage = () => {
                 {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
                 <aside className="flex flex-row w-full h-full overflow-hidden ">
                   <NavButSet.Provider value={valueForNavBut}>
-                    <main className="w-full h-full flex   scroll-smooth px-5 overflow-auto  ">
+                    <main className="w-full h-full flex   scroll-smooth px-5 overflow-auto ">
                       {activeMain === "Home" && <HomeContent />}
 
                       {activeMain === "Settings" && <SettingsContent />}
@@ -347,8 +348,8 @@ const UserPage = () => {
                       {activeMain === "Todos" && (
                         <>
                           <RemoveOrEdit.Provider value={valueForAllert}>
-                            <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
-                              <TodosContent />
+                            <div className="relative overflow-auto snap-mandatory  snap-x min-w-full " >
+                              <TodosContent /> 
                             </div>
                           </RemoveOrEdit.Provider>
                         </>

@@ -1,27 +1,24 @@
 "use client";
-import { MdOutlineFolderOpen } from "react-icons/md";
-import { FaHome, FaRegFolder, FaTasks, FaWhmcs } from "react-icons/fa";
-import { LuFolder, LuSettings2 } from "react-icons/lu";
-import { IoIosBrush } from "react-icons/io";
-import styles from "@components/Pagination-Navigations/Button-Nav.module.css";
-import { HiOutlinePlusSm } from "react-icons/hi";
-import { FiFolder } from "react-icons/fi";
-import { openAModalWindowbyID } from "@/components/UI/Dialog/Modal-MethodOpen";
-// const SpaceButtons: React.FC<{
-//   onButtonClick: (buttonName: string) => void;
-// }> = ({ onButtonClick }) => {
+
+import { useContext } from "react";
+import { NavSpaceNames } from "@/components/Context";
 
 const SpaceButtons = () => {
+  const PageName = useContext(NavSpaceNames);
   
   return (
     <ul className="w-full flex items-center ">
       <li className="mx-2">
-        <button className="btn btn-md btn-ghost btn-active w-full rounded-2xl normal-case items-center">
+        <button
+          className="btn btn-md btn-ghost btn-active w-full rounded-2xl normal-case items-center"
+          onClick={() => {
+            PageName?.setActiveSpace("");
+          }}
+        >
           All
         </button>
       </li>
 
-      
       <li className="mx-2">
         <button className="btn btn-md btn-ghost  w-full rounded-2xl  normal-case items-center">
           Work

@@ -26,6 +26,15 @@ export type NavButMenuType = {
 export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 //-------------------------------------------------------------------------------------//
 
+export type NavSpaceNames = {
+
+    activeSpace: string
+    setActiveSpace: TypeSetState<string>;
+};
+export const NavSpaceNames = createContext<NavSpaceNames | undefined>(undefined);
+//-------------------------------------------------------------------------------------//
+
+
 
 
 export type NavButSetType = {
