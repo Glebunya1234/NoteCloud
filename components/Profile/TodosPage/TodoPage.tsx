@@ -170,7 +170,7 @@ const TodosContent = () => {
   
         {
           blocks
-          .filter((block) => block[0].spaceName==="Work")
+          // .filter((block) => block[0].spaceName==="Work")
           .map((block, index) => (
 
           <Draggable

@@ -1,6 +1,6 @@
-import { collection, deleteDoc, deleteField, doc, getDocs, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, deleteField, doc, getDocs, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
-import type { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
+import type { SpaceNamesbyUser, TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 
 const dataRefTodos = collection(mydatabase, 'collection-todos');
 
@@ -30,14 +30,14 @@ export async function readDocTodo(userID: string): Promise<TodosData[]> {
 
 
     // Create a query against the collection.
-    const q = query(dataRefTodos, where("userId", "==", userID));
-    let i = 0;
+    const q = query(dataRefTodos, where("userId", "==", userID), orderBy("priority"));
+
 
     const querySnapshot = await getDocs(q);
     const todos: TodosData[] = [];
     // Преобразовать QueryDocumentSnapshot в обычные объекты данных
     querySnapshot.forEach((doc) => {
-    
+
         // doc.data() is never undefined for query doc snapshots
         const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
         todos.push(todoData);
@@ -48,14 +48,35 @@ export async function readDocTodo(userID: string): Promise<TodosData[]> {
 
 }
 
+// поиск всех существующих пространств по айди юзера
+export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]> {
 
+
+    // Create a query against the collection.
+    const q = query(dataRefTodos, where("userId", "==", "yeKv7dHxJVYQ07vXSx5c5CfWyLI2"), orderBy("spaceName"));
+
+
+    const querySnapshot = await getDocs(q);
+    const spaces: SpaceNamesbyUser[] = [];
+    // Преобразовать QueryDocumentSnapshot в обычные объекты данных
+    querySnapshot.forEach((doc) => {
+
+        // doc.data() is never undefined for query doc snapshots
+        const SpaceData = doc.data() as SpaceNamesbyUser; // Приводим тип данных к интерфейсу Todo
+        spaces.push(SpaceData);
+    });
+    console.log("issss = ", spaces)
+
+    return spaces;
+
+}
 
 //Добавление ЗАДАЧИ если есть блок если нету блока создает новый 
 export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
 
 
     await setDoc(doc(dataRefTodos), {
-        nameBlock: nameBlock, teg: "Medium priority",
+        nameBlock: nameBlock, teg: "Medium priority", priority: "3",
         titleTodos: titleTodos, userId: userID
     });
 }
@@ -127,14 +148,22 @@ export async function UpdateBlockName(userID: string, nameBlock: string, newName
 // }
 
 // Изменение приоритета задачи
-
+const priorityMap: Record<string, number> = {
+    "Highest priority": 5,
+    "High priority": 4,
+    "Medium priority": 3,
+    "Low priority": 2,
+    "Lowest priority": 1
+};
 export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (documentSnapshot) => {
         const docRef = doc(dataRefTodos, documentSnapshot.id);
-        await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
+        const prior = priorityMap[titlePriority] || 3;
+
+        await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority, priority: prior });
     });
 }
 

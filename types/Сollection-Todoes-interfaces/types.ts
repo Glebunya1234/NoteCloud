@@ -1,9 +1,4 @@
-// export type TodosData = {
-//   nameBlock: string;
-//   titleTodos: string;
-//   teg: string;
-//   userId: string;
-// };
+
 export type TodosData = {
   spaceName: string;
   nameBlock: string;
@@ -11,3 +6,9 @@ export type TodosData = {
   teg: string;
   userId: string;
 };
+
+
+export type SpaceNamesbyUser = {
+  spaceName: string;
+};
+
