@@ -1,4 +1,4 @@
-import { collection, deleteDoc, deleteField, doc, getDocs, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { collection, deleteDoc, deleteField, doc, getDocs, limit, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import type { SpaceNamesbyUser, TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 
@@ -53,7 +53,7 @@ export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]>
 
 
     // Create a query against the collection.
-    const q = query(dataRefTodos, where("userId", "==", "yeKv7dHxJVYQ07vXSx5c5CfWyLI2"), orderBy("spaceName"));
+    const q = query(dataRefTodos, where("userId", "==", "yeKv7dHxJVYQ07vXSx5c5CfWyLI2"), orderBy("spaceName"),);
 
 
     const querySnapshot = await getDocs(q);
@@ -65,7 +65,7 @@ export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]>
         const SpaceData = doc.data() as SpaceNamesbyUser; // Приводим тип данных к интерфейсу Todo
         spaces.push(SpaceData);
     });
-    console.log("issss = ", spaces)
+   
 
     return spaces;
 
