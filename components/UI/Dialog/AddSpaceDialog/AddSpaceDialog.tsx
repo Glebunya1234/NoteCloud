@@ -3,7 +3,13 @@ import {
   showSuccessToast,
   showErrorToast,
 } from "@/components";
-import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
+import {
+  ArraySpaceNamesContex,
+  NavButSet,
+  NavSpaceNames,
+  RemoveOrEdit,
+  UpdateArray,
+} from "@/components/Context";
 import {
   AddNewTaskInBlock,
   RemoveSpace,
@@ -18,8 +24,9 @@ const AddSpaceDialog = () => {
   // const [blockname, setBlockname] = useState<string>("");
   // const [taskname, setTaskname] = useState<string>("");
   const dataContext = useContext(NavButSet);
-  const [arraySP, setArraySP] = useState<SpaceNamesbyUser[][]>([]);
+  const SpaceNameContext = useContext(NavSpaceNames);
   const updateContext = useContext(UpdateArray);
+  const ContextArraSP = useContext(ArraySpaceNamesContex);
   // const theme = useContext(RemoveOrEdit);
   // const AddNewBlockButton = () => {
   //   setBlockname("");
@@ -35,16 +42,16 @@ const AddSpaceDialog = () => {
   //   }
   // };
 
-  const RemoveSpaceFunc = (spaceName: string) => {
-    RemoveSpace(dataContext.id, spaceName).then(async () => {
-      setArraySP(await SpaceFunc()), updateContext?.onTaskAdded();
-    });
+  const RemoveSpaceFunc = async (spaceName: string) => {
+    RemoveSpace(dataContext.id, spaceName);
+    ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+    SpaceNameContext?.setActiveSpace("All");
   };
 
   useEffect(() => {
     const Func = async () => {
       try {
-        setArraySP(await SpaceFunc());
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
       } catch (error) {
         console.error(error);
       }
@@ -62,7 +69,7 @@ const AddSpaceDialog = () => {
 
         <span className="label-text">Your spaces</span>
         <ul className="snap-y snap-mandatory max-h-[175px] overflow-y-auto ">
-          {arraySP.map((SpaceNames, index) => (
+          {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
             <li id={`${index}`}>
               {SpaceNames.filter(
                 (name, idx, self) =>

@@ -30,6 +30,7 @@ import {
   NavButMenuType,
   NavButMenu,
   NavSpaceNames,
+  ArraySpaceNamesContex,
 } from "@/components/Context";
 
 import { ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
@@ -78,6 +79,10 @@ const UserPage = () => {
 
   const [activeSpace, setActiveSpace] =
     useState<NavSpaceNames["activeSpace"]>("All");
+
+  const [ArraySpaceCont, setArraySpaceNames] = useState<
+    ArraySpaceNamesContex["ArraySpaceCont"]
+  >([]);
 
   const auth = getAuth();
 
@@ -137,6 +142,10 @@ const UserPage = () => {
   const valueForSpace = {
     activeSpace,
     setActiveSpace,
+  };
+  const valueForSpaceArray = {
+    ArraySpaceCont,
+    setArraySpaceNames,
   };
   const valueForNavBut: NavButSetType = {
     id: userUid || "",
@@ -264,9 +273,13 @@ const UserPage = () => {
                               initial={{ opacity: 0, y: -200 }}
                               className="overflow-x-auto mr-2"
                             >
-                              <NavSpaceNames.Provider value={valueForSpace}>
-                                <SpaceButtons />
-                              </NavSpaceNames.Provider>
+                              <ArraySpaceNamesContex.Provider
+                                value={valueForSpaceArray}
+                              >
+                                <NavSpaceNames.Provider value={valueForSpace}>
+                                  <SpaceButtons />
+                                </NavSpaceNames.Provider>
+                              </ArraySpaceNamesContex.Provider>
                             </motion.aside>
 
                             {/* <SearchInput /> */}
@@ -317,9 +330,13 @@ const UserPage = () => {
                               initial={{ opacity: 0, y: -200 }}
                               className="overflow-x-auto mr-2"
                             >
-                              <NavSpaceNames.Provider value={valueForSpace}>
-                                <SpaceButtons />
-                              </NavSpaceNames.Provider>
+                              <ArraySpaceNamesContex.Provider
+                                value={valueForSpaceArray}
+                              >
+                                <NavSpaceNames.Provider value={valueForSpace}>
+                                  <SpaceButtons />
+                                </NavSpaceNames.Provider>
+                              </ArraySpaceNamesContex.Provider>
                             </motion.aside>
 
                             {/* <SearchInput /> */}
@@ -357,13 +374,17 @@ const UserPage = () => {
 
                         {activeMain === "Todos" && (
                           <>
-                            <NavSpaceNames.Provider value={valueForSpace}>
-                              <RemoveOrEdit.Provider value={valueForAllert}>
-                                <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
-                                  <TodosContent />
-                                </div>
-                              </RemoveOrEdit.Provider>
-                            </NavSpaceNames.Provider>
+                            <ArraySpaceNamesContex.Provider
+                              value={valueForSpaceArray}
+                            >
+                              <NavSpaceNames.Provider value={valueForSpace}>
+                                <RemoveOrEdit.Provider value={valueForAllert}>
+                                  <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
+                                    <TodosContent />
+                                  </div>
+                                </RemoveOrEdit.Provider>
+                              </NavSpaceNames.Provider>
+                            </ArraySpaceNamesContex.Provider>
                           </>
                         )}
                       </main>
