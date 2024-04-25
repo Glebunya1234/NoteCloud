@@ -4,26 +4,6 @@ import type { SpaceNamesbyUser, TodosData } from "@/types/Сollection-Todoes-int
 
 const dataRefTodos = collection(mydatabase, 'collection-todos');
 
-// // поиск задач по айди юзера
-// export function readDocTodo(userID: string): Promise<TodosData[]> {
-//     // Create a query against the collection.
-//     const q = query(dataRefTodos, where("userId", "==", userID));
-
-//     return getDocs(q)
-//         .then((querySnapshot) => {
-//             const todos: TodosData[] = [];
-
-//             // Преобразовать QueryDocumentSnapshot в обычные объекты данных
-//             querySnapshot.forEach((doc) => {
-//                 // doc.data() is never undefined for query doc snapshots
-//                 const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
-//                 todos.push(todoData);
-//             });
-
-//             return todos;
-//         });
-// }
-
 
 // поиск задач по айди юзера
 export async function readDocTodo(userID: string): Promise<TodosData[]> {
@@ -122,30 +102,31 @@ export async function UpdateBlockName(userID: string, nameBlock: string, newName
         await updateDoc(docRef, { nameBlock: newNameBlock });
     });
 }
+// Изменение названия Пространства
+export async function СhangeNewNameSpace(userID: string, spaceName: string, newSpaceNane: string) {
+    const q = query(dataRefTodos, where('userId', '==', userID), where('spaceName', '==', spaceName));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(dataRefTodos, documentSnapshot.id);
+        await updateDoc(docRef, { spaceName: newSpaceNane });
+    });
+}
+
+// Удаление Пространства
+export async function RemoveSpace(userID: string, spaceName: string) {
+    const q = query(dataRefTodos, where('userId', '==', userID), where('spaceName', '==', spaceName));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach(async (documentSnapshot) => {
+        const docRef = doc(dataRefTodos, documentSnapshot.id);
+        await updateDoc(docRef, { spaceName: "All" });
+    });
+}
 
 
-// // Изменение названия блока
-// export function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
-//     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
 
-//     // Get the documents that match the query
-//     getDocs(q)
-//         .then((querySnapshot) => {
-//             // Map through the documents and create an array of update promises
-//             const updatePromises = querySnapshot.docs.map((documentSnapshot) => {
-//                 const docRef = doc(dataRefTodos, documentSnapshot.id);
-//                 // Use the document reference to update the document
-//                 return updateDoc(docRef, { nameBlock: newNameBlock });
-//             });
 
-//             // Wait for all update promises to resolve
-//             return Promise.all(updatePromises);
-//         })
-//         .catch((error) => {
-//             // Handle errors here
-//             console.error('Error updating block names:', error);
-//         });
-// }
 
 // Изменение приоритета задачи
 const priorityMap: Record<string, number> = {

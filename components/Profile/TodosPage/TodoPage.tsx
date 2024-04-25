@@ -150,7 +150,6 @@ const TodosContent = () => {
 
   useEffect(() => {
     fetchData();
-    console.log("Я обновил массив")
   }, []);
 
   // useEffect(() => {

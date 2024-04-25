@@ -54,7 +54,6 @@ const UserPage = () => {
 
   const shouldSMRender = useMediaQueryHook("(max-width: 768px)", false);
   const shouldMDRender = useMediaQueryHook("(min-width: 768px)", false);
-  
 
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
@@ -80,8 +79,10 @@ const UserPage = () => {
   const [activeSpace, setActiveSpace] =
     useState<NavSpaceNames["activeSpace"]>("All");
 
-
   const auth = getAuth();
+
+  const [isLoading, setIsLoading] = useState(true);
+
   const user = auth.currentUser;
 
   //#region Functions
@@ -189,198 +190,206 @@ const UserPage = () => {
     ReadShemeColorUseEffect();
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 2800);
+  }, []);
+
   return (
     <div className="drawer ">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
         <main className="relative overflow-hidden  ">
           <div className="flex w-screen justify-center items-center h-screen bg-cover bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
-            <div
-              className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
-                importTheme === null
-                  ? "bg-bg-mygrey backdrop-blur-0"
-                  : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
-              }  md:rounded-3xl  w-full`}
-            >
-              {shouldMDRender && (
-                <section
-                  className={`flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
-                >
-                  <aside
-                    className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
-                  >
-                    <Image src={Logo2} width={30} height={30} alt="  " />
-                    <h1 className="text-center text-lg mx-2 font-Orbitron">
-                      NoteCloud
-                    </h1>
-                  </aside>
-
-                  <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
-                    <img
-                      className={`${importTheme.AvatarShape} min-w-[100px] min-h-[100px] w-[100px] h-[100px] object-cover `}
-                      src={setSrc}
-                      alt="  "
-                    />
-                    <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
-                      {userDisplayName}
-                    </h3>
-                  </aside>
-
+            {isLoading ? (
+              <div className="spinner"></div>
+            ) : (
+              <div
+                className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
+                  importTheme === null
+                    ? "bg-bg-mygrey backdrop-blur-0"
+                    : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
+                }  md:rounded-3xl  w-full`}
+              >
+                {shouldMDRender && (
                   <section
-                    className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                    className={`flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
                   >
-                    <NavButMenu.Provider value={valueForNavMenu}>
-                      <ButtonMenuNavigations />
-                    </NavButMenu.Provider>
+                    <aside
+                      className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
+                    >
+                      <Image src={Logo2} width={30} height={30} alt="  " />
+                      <h1 className="text-center text-lg mx-2 font-Orbitron">
+                        NoteCloud
+                      </h1>
+                    </aside>
+
+                    <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
+                      <img
+                        className={`${importTheme.AvatarShape} min-w-[100px] min-h-[100px] w-[100px] h-[100px] object-cover `}
+                        src={setSrc}
+                        alt="  "
+                      />
+                      <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
+                        {userDisplayName}
+                      </h3>
+                    </aside>
+
+                    <section
+                      className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                    >
+                      <NavButMenu.Provider value={valueForNavMenu}>
+                        <ButtonMenuNavigations />
+                      </NavButMenu.Provider>
+                    </section>
                   </section>
-                </section>
-              )}
+                )}
 
-              <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
-                {/* ---------------------Pc--------------- */}
-                <header
-                  className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
-                >
-                  {shouldMDRender ? (
-                    <header className="w-full h-24 md:flex items-center p-5">
-                      {activeMain === "Settings" && (
-                        <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                      )}
-                      {activeMain === "Todos" && (
-                        <>
-                          <motion.aside
-                            animate={{
-                              y: 0,
-                              opacity: 1,
-                            }}
-                            initial={{ opacity: 0, y: -200 }}
-                            className="overflow-x-auto mr-2"
-                          >
-                            <NavSpaceNames.Provider value={valueForSpace}>
-                              <SpaceButtons />
-                            </NavSpaceNames.Provider>
-                          </motion.aside>
+                <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
+                  {/* ---------------------Pc--------------- */}
+                  <header
+                    className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
+                  >
+                    {shouldMDRender ? (
+                      <header className="w-full h-24 md:flex items-center p-5">
+                        {activeMain === "Settings" && (
+                          <ButtonSetNaw onButtonClick={handleButtonSetClick} />
+                        )}
+                        {activeMain === "Todos" && (
+                          <>
+                            <motion.aside
+                              animate={{
+                                y: 0,
+                                opacity: 1,
+                              }}
+                              initial={{ opacity: 0, y: -200 }}
+                              className="overflow-x-auto mr-2"
+                            >
+                              <NavSpaceNames.Provider value={valueForSpace}>
+                                <SpaceButtons />
+                              </NavSpaceNames.Provider>
+                            </motion.aside>
 
-                          {/* <SearchInput /> */}
-                        </>
-                      )}
-                      {activeMain === "Todos" && (
-                        <>
-                          <button
-                            className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                            onClick={hendClickDellButton}
-                          >
-                            <FaRegFolder className="text-[18px]" />
-                          </button>
-                          <button
-                            className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                            onClick={clearLocalStoragePositions}
-                          >
-                            <p>Reset positions</p>
-
-                            <GrPowerReset className="text-[18px]" />
-                          </button>
-                        </>
-                      )}
-                    </header>
-                  ) : (
-                    // -----------Mobile ---------------
-                    <header className="w-full h-24 flex justify-between  items-center p-5">
-                      <motion.aside
-                        animate={{
-                          x: 0,
-                          opacity: 1,
-                        }}
-                        initial={{ opacity: 0, x: 200 }}
-                      >
-                        <ButtonDrawer />
-                      </motion.aside>
-                      {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
-                      {activeMain === "Settings" && (
-                        <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                      )}
-                      {activeMain === "Todos" && (
-                        <>
-                          <motion.aside
-                            animate={{
-                              y: 0,
-                              opacity: 1,
-                            }}
-                            initial={{ opacity: 0, y: -200 }}
-                            className="overflow-x-auto mr-2"
-                          >
-                            <NavSpaceNames.Provider value={valueForSpace}>
-                              <SpaceButtons />
-                            </NavSpaceNames.Provider>
-                          </motion.aside>
-
-                          {/* <SearchInput /> */}
-                        </>
-                      )}
-                      {activeMain === "Todos" && (
-                        <>
-                          <motion.aside
-                            animate={{
-                              x: 0,
-                              opacity: 1,
-                            }}
-                            initial={{ opacity: 0, x: 200 }}
-                          >
+                            {/* <SearchInput /> */}
+                          </>
+                        )}
+                        {activeMain === "Todos" && (
+                          <>
                             <button
                               className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
                               onClick={hendClickDellButton}
                             >
                               <FaRegFolder className="text-[18px]" />
                             </button>
-                          </motion.aside>
-                        </>
-                      )}
-                    </header>
+                            <button
+                              className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                              onClick={clearLocalStoragePositions}
+                            >
+                              <p>Reset positions</p>
+
+                              <GrPowerReset className="text-[18px]" />
+                            </button>
+                          </>
+                        )}
+                      </header>
+                    ) : (
+                      // -----------Mobile ---------------
+                      <header className="w-full h-24 flex justify-between  items-center p-5">
+                        <motion.aside
+                          animate={{
+                            x: 0,
+                            opacity: 1,
+                          }}
+                          initial={{ opacity: 0, x: 200 }}
+                        >
+                          <ButtonDrawer />
+                        </motion.aside>
+                        {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
+                        {activeMain === "Settings" && (
+                          <ButtonSetNaw onButtonClick={handleButtonSetClick} />
+                        )}
+                        {activeMain === "Todos" && (
+                          <>
+                            <motion.aside
+                              animate={{
+                                y: 0,
+                                opacity: 1,
+                              }}
+                              initial={{ opacity: 0, y: -200 }}
+                              className="overflow-x-auto mr-2"
+                            >
+                              <NavSpaceNames.Provider value={valueForSpace}>
+                                <SpaceButtons />
+                              </NavSpaceNames.Provider>
+                            </motion.aside>
+
+                            {/* <SearchInput /> */}
+                          </>
+                        )}
+                        {activeMain === "Todos" && (
+                          <>
+                            <motion.aside
+                              animate={{
+                                x: 0,
+                                opacity: 1,
+                              }}
+                              initial={{ opacity: 0, x: 200 }}
+                            >
+                              <button
+                                className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                                onClick={hendClickDellButton}
+                              >
+                                <FaRegFolder className="text-[18px]" />
+                              </button>
+                            </motion.aside>
+                          </>
+                        )}
+                      </header>
+                    )}
+                  </header>
+
+                  {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
+                  <aside className="flex flex-row w-full h-full overflow-hidden ">
+                    <NavButSet.Provider value={valueForNavBut}>
+                      <main className="w-full h-full flex   scroll-smooth px-5 overflow-auto ">
+                        {activeMain === "Home" && <HomeContent />}
+
+                        {activeMain === "Settings" && <SettingsContent />}
+
+                        {activeMain === "Todos" && (
+                          <>
+                            <NavSpaceNames.Provider value={valueForSpace}>
+                              <RemoveOrEdit.Provider value={valueForAllert}>
+                                <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
+                                  <TodosContent />
+                                </div>
+                              </RemoveOrEdit.Provider>
+                            </NavSpaceNames.Provider>
+                          </>
+                        )}
+                      </main>
+                    </NavButSet.Provider>
+                  </aside>
+                  {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
+                  {activeMain === "Todos" && (
+                    <motion.footer
+                      animate={{
+                        y: 0,
+                        opacity: 1,
+                      }}
+                      initial={{ opacity: 0, y: 200 }}
+                      className="w-full h-24 mt-5 items-center  flex"
+                    >
+                      <RemoveOrEdit.Provider value={valueForAllert}>
+                        <div className="flex justify-between items-center w-full">
+                          <AllertCall />
+                          <DropdownEditBlock />
+                        </div>
+                      </RemoveOrEdit.Provider>
+                    </motion.footer>
                   )}
-                </header>
-
-                {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
-                <aside className="flex flex-row w-full h-full overflow-hidden ">
-                  <NavButSet.Provider value={valueForNavBut}>
-                    <main className="w-full h-full flex   scroll-smooth px-5 overflow-auto ">
-                      {activeMain === "Home" && <HomeContent />}
-
-                      {activeMain === "Settings" && <SettingsContent />}
-
-                      {activeMain === "Todos" && (
-                        <>
-                          <NavSpaceNames.Provider value={valueForSpace}>
-                            <RemoveOrEdit.Provider value={valueForAllert}>
-                              <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
-                                <TodosContent />
-                              </div>
-                            </RemoveOrEdit.Provider>
-                          </NavSpaceNames.Provider>
-                        </>
-                      )}
-                    </main>
-                  </NavButSet.Provider>
-                </aside>
-                {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
-                {activeMain === "Todos" && (
-                  <motion.footer
-                    animate={{
-                      y: 0,
-                      opacity: 1,
-                    }}
-                    initial={{ opacity: 0, y: 200 }}
-                    className="w-full h-24 mt-5 items-center  flex"
-                  >
-                    <RemoveOrEdit.Provider value={valueForAllert}>
-                      <div className="flex justify-between items-center w-full">
-                        <AllertCall />
-                        <DropdownEditBlock />
-                      </div>
-                    </RemoveOrEdit.Provider>
-                  </motion.footer>
-                )}
-              </section>
-            </div>
+                </section>
+              </div>
+            )}
             <AllertToast />
           </div>
         </main>

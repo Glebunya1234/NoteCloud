@@ -4,7 +4,10 @@ import {
   showErrorToast,
 } from "@/components";
 import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
-import { AddNewTaskInBlock } from "@/services/Firebase-Methods/Task-Management-methods";
+import {
+  AddNewTaskInBlock,
+  RemoveSpace,
+} from "@/services/Firebase-Methods/Task-Management-methods";
 import { SpaceNamesbyUser } from "@/types/Сollection-Todoes-interfaces/types";
 import { SpaceFunc } from "@/utils/SpaceFunc";
 import { useContext, useEffect, useState } from "react";
@@ -16,7 +19,7 @@ const AddSpaceDialog = () => {
   // const [taskname, setTaskname] = useState<string>("");
   const dataContext = useContext(NavButSet);
   const [arraySP, setArraySP] = useState<SpaceNamesbyUser[][]>([]);
-  // const updateContext = useContext(UpdateArray);
+  const updateContext = useContext(UpdateArray);
   // const theme = useContext(RemoveOrEdit);
   // const AddNewBlockButton = () => {
   //   setBlockname("");
@@ -31,6 +34,13 @@ const AddSpaceDialog = () => {
   //     showErrorToast("The block was not created!");
   //   }
   // };
+
+  const RemoveSpaceFunc = (spaceName: string) => {
+    RemoveSpace(dataContext.id, spaceName).then(async () => {
+      setArraySP(await SpaceFunc()), updateContext?.onTaskAdded();
+    });
+  };
+
   useEffect(() => {
     const Func = async () => {
       try {
@@ -71,7 +81,11 @@ const AddSpaceDialog = () => {
                         >
                           <HiPencil />
                         </button>
-                        <button className="btn btn-square btn-ghost btn-sm mx-1">
+
+                        <button
+                          className="btn btn-square btn-ghost btn-sm mx-1"
+                          onClick={() => RemoveSpaceFunc(name.spaceName)}
+                        >
                           <HiOutlineTrash />
                         </button>
                       </>
@@ -87,7 +101,6 @@ const AddSpaceDialog = () => {
 
         <div className="my-3">
           <span className="label-text">
-          
             Press button or click outside to close
           </span>
         </div>
