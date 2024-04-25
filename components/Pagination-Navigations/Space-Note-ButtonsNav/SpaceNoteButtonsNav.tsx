@@ -4,31 +4,22 @@ import { useContext, useEffect, useState } from "react";
 import { NavSpaceNames } from "@/components/Context";
 import { readSpaceName } from "@/services/Firebase-Methods/Task-Management-methods";
 import { SpaceNamesbyUser } from "@/types/Сollection-Todoes-interfaces/types";
+import { SpaceFunc } from "@/utils/SpaceFunc";
 
 const SpaceButtons = () => {
   const spaceName = useContext(NavSpaceNames);
   const [arraySP, setArraySP] = useState<SpaceNamesbyUser[][]>([]);
 
   useEffect(() => {
+   
     const Func = async () => {
       try {
-        const dataSpaceName = await readSpaceName("");
-
-        const SpaceArrayMap: Record<string, SpaceNamesbyUser[]> = {};
-        dataSpaceName.forEach((names, index) => {
-          if (!SpaceArrayMap[names.spaceName]) {
-            SpaceArrayMap[names.spaceName] = [];
-          }
-
-          SpaceArrayMap[names.spaceName].push({ spaceName: names.spaceName });
-        });
-        const spaceArray = Object.values(SpaceArrayMap);
-
-        setArraySP(spaceArray);
+        setArraySP(await SpaceFunc());
       } catch (error) {
         console.error(error);
       }
     };
+
     Func();
   }, []);
 
@@ -110,3 +101,24 @@ const SpaceButtons = () => {
   // );
 };
 export default SpaceButtons;
+ // const Func = async () => {
+    //   try {
+    //     const dataSpaceName = await readSpaceName("");
+
+    //     const SpaceArrayMap: Record<string, SpaceNamesbyUser[]> = {};
+    //     dataSpaceName.forEach((names, index) => {
+    //       if (!SpaceArrayMap[names.spaceName]) {
+    //         SpaceArrayMap[names.spaceName] = [];
+    //       }
+
+    //       SpaceArrayMap[names.spaceName].push({ spaceName: names.spaceName });
+    //     });
+    //     const spaceArray = Object.values(SpaceArrayMap);
+
+    //     setArraySP(spaceArray);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
+
+    // Func();
