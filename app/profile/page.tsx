@@ -6,12 +6,10 @@ import { useContext, useEffect, useState } from "react";
 import { GrPowerReset } from "react-icons/gr";
 import { FaRegFolder } from "react-icons/fa";
 
-
 import Logo2 from "@/public/logoNC.svg";
 import {
   ButtonMenuNavigations,
   AllertToast,
-
   DrawerSide,
   ButtonDrawer,
   DropdownEditBlock,
@@ -31,6 +29,7 @@ import {
   NavButSet,
   NavButMenuType,
   NavButMenu,
+  NavSpaceNames,
 } from "@/components/Context";
 
 import { ReadNameData } from "@/services/Firebase-Methods/ReadDataForUser";
@@ -55,8 +54,7 @@ const UserPage = () => {
 
   const shouldSMRender = useMediaQueryHook("(max-width: 768px)", false);
   const shouldMDRender = useMediaQueryHook("(min-width: 768px)", false);
-  // const shouldLGRender = useMediaQueryHook("(min-width: 1024px)", false);
-  // const shouldSMRender2222 = useMediaQuery({ maxWidth: "768px" });
+  
 
   const [activeSetName, setActiveSetName] =
     useState<NavButSetType["activeSetName"]>("Account");
@@ -78,6 +76,10 @@ const UserPage = () => {
 
   const [ModeEditOrRemove, setModeEditOrRemove] =
     useState<HoverContextType["ModeEditOrRemove"]>("none");
+
+  const [activeSpace, setActiveSpace] =
+    useState<NavSpaceNames["activeSpace"]>("All");
+
 
   const auth = getAuth();
   const user = auth.currentUser;
@@ -117,10 +119,10 @@ const UserPage = () => {
   };
 
   const clearLocalStoragePositions = () => {
-    localStorage.removeItem('positions')
-    showSuccessToast("Positions were reset")
-    showMessangeToast("You can return to the page back", 1000)
-    setActiveMain("Home")
+    localStorage.removeItem("positions");
+    showSuccessToast("Positions were reset");
+    showMessangeToast("You can return to the page back", 1000);
+    setActiveMain("Home");
   };
   //#endregion
 
@@ -130,6 +132,10 @@ const UserPage = () => {
     id: userUid || "",
     ModeEditOrRemove,
     setModeEditOrRemove,
+  };
+  const valueForSpace = {
+    activeSpace,
+    setActiveSpace,
   };
   const valueForNavBut: NavButSetType = {
     id: userUid || "",
@@ -188,7 +194,6 @@ const UserPage = () => {
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content ">
         <main className="relative overflow-hidden  ">
-          
           <div className="flex w-screen justify-center items-center h-screen bg-cover bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
             <div
               className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
@@ -231,9 +236,6 @@ const UserPage = () => {
                 </section>
               )}
 
-
-
-              
               <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
                 {/* ---------------------Pc--------------- */}
                 <header
@@ -254,7 +256,9 @@ const UserPage = () => {
                             initial={{ opacity: 0, y: -200 }}
                             className="overflow-x-auto mr-2"
                           >
-                            <SpaceButtons />
+                            <NavSpaceNames.Provider value={valueForSpace}>
+                              <SpaceButtons />
+                            </NavSpaceNames.Provider>
                           </motion.aside>
 
                           {/* <SearchInput /> */}
@@ -273,17 +277,13 @@ const UserPage = () => {
                             onClick={clearLocalStoragePositions}
                           >
                             <p>Reset positions</p>
-                            
-                            <GrPowerReset  className="text-[18px]" />
+
+                            <GrPowerReset className="text-[18px]" />
                           </button>
                         </>
                       )}
                     </header>
                   ) : (
-
-
-
-
                     // -----------Mobile ---------------
                     <header className="w-full h-24 flex justify-between  items-center p-5">
                       <motion.aside
@@ -309,7 +309,9 @@ const UserPage = () => {
                             initial={{ opacity: 0, y: -200 }}
                             className="overflow-x-auto mr-2"
                           >
-                            <SpaceButtons />
+                            <NavSpaceNames.Provider value={valueForSpace}>
+                              <SpaceButtons />
+                            </NavSpaceNames.Provider>
                           </motion.aside>
 
                           {/* <SearchInput /> */}
@@ -347,11 +349,13 @@ const UserPage = () => {
 
                       {activeMain === "Todos" && (
                         <>
-                          <RemoveOrEdit.Provider value={valueForAllert}>
-                            <div className="relative overflow-auto snap-mandatory  snap-x min-w-full " >
-                              <TodosContent /> 
-                            </div>
-                          </RemoveOrEdit.Provider>
+                          <NavSpaceNames.Provider value={valueForSpace}>
+                            <RemoveOrEdit.Provider value={valueForAllert}>
+                              <div className="relative overflow-auto snap-mandatory  snap-x min-w-full ">
+                                <TodosContent />
+                              </div>
+                            </RemoveOrEdit.Provider>
+                          </NavSpaceNames.Provider>
                         </>
                       )}
                     </main>

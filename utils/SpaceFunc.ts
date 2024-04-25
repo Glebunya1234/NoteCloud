@@ -1,8 +1,6 @@
-"use client"
+
 import { readSpaceName } from "@/services/Firebase-Methods/Task-Management-methods";
 import { SpaceNamesbyUser } from "@/types/Сollection-Todoes-interfaces/types";
-import { Console } from "console";
-import { Dispatch, SetStateAction, useState } from "react";
 
 export const SpaceFunc = async (): Promise<SpaceNamesbyUser[][]> => {
     try {

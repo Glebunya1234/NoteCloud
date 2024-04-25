@@ -34,7 +34,8 @@ const SpaceButtons = () => {
             <button
               className="btn btn-md btn-ghost  w-full rounded-2xl  normal-case items-center"
               onClick={() => {
-                console.log("names", name);
+                spaceName?.setActiveSpace(name.spaceName)
+                
               }}
             >
               {name.spaceName}

@@ -85,34 +85,24 @@ const AddSpaceDialog = () => {
           ))}
         </ul>
 
-        <div className="mb-3">
-          <span className="label-text">Create a new space</span>
-          <input
-            type="text"
-            placeholder="Space name"
-            className="input input-ghost w-full bg-transparent max-w-4xl border-[1px] border-[#3a393c] ml-auto transition-all ease-linear hover:bg-bg-mydurkgrey "
-            // onChange={(e) => {
-            //   setBlockname(e.target.value);
-            // }}
-            // value={blockname}
-          />
+        <div className="my-3">
+          <span className="label-text">
+          
+            Press button or click outside to close
+          </span>
         </div>
         <form method="dialog">
           <button
             className="btn btn-square bg-transparent border-[#3a393c] w-full text-center hover:bg-bg-mydurkgrey"
             //   onClick={AddNewBlockButton}
           >
-            Create
+            Close
           </button>
         </form>
-
-        <p className="mt-4 text-xs text-right">
-          Press ESC key or click outside to close
-        </p>
       </div>
 
       <form method="dialog" className="modal-backdrop">
-        <button>close</button>
+        <button>Close</button>
       </form>
     </dialog>
   );
