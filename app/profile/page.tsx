@@ -209,163 +209,184 @@ const UserPage = () => {
       <div className="drawer-content ">
         <main className="relative overflow-hidden  ">
           <div className="flex w-screen justify-center items-center h-screen bg-cover bg-[url('https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg')]">
-            {isLoading ? (
-              <div className="spinner"></div>
-            ) : (
-              <div
-                className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
-                  importTheme === null
-                    ? "bg-bg-mygrey backdrop-blur-0"
-                    : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
-                }  md:rounded-3xl  w-full`}
-              >
-                {shouldMDRender && (
-                  <section
-                    className={`flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
-                  >
-                    <aside
-                      className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
-                    >
-                      <Image src={Logo2} width={30} height={30} alt="  " />
-                      <h1 className="text-center text-lg mx-2 font-Orbitron">
-                        NoteCloud
-                      </h1>
-                    </aside>
-
-                    <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
-                      <img
-                        className={`${importTheme.AvatarShape} min-w-[100px] min-h-[100px] w-[100px] h-[100px] object-cover `}
-                        src={setSrc}
-                        alt="  "
-                      />
-                      <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
-                        {userDisplayName}
-                      </h3>
-                    </aside>
-
+            <div
+              className={`md:w-94% h-full md:h-90%   max-w-1/2 flex  shadow-2xl overflow-hidden ${
+                importTheme === null
+                  ? "bg-bg-mygrey backdrop-blur-0"
+                  : `${importTheme.backgroundColor} ${importTheme.blur} ${importTheme.textColor}`
+              }  md:rounded-3xl  w-full`}
+            >
+              {isLoading ? (
+                <div className=" justify-center items-center flex"></div>
+              ) : (
+                <>
+                  {shouldMDRender && (
                     <section
-                      className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                      className={`flex border-${importTheme.borderColor} border-r-[1px]  w-w-300 h-full  items-center  flex-col `}
                     >
-                      <NavButMenu.Provider value={valueForNavMenu}>
-                        <ButtonMenuNavigations />
-                      </NavButMenu.Provider>
+                      <aside
+                        className={`w-full h-24 mt-[1px] flex items-center border-b-[1px] border-${importTheme.borderColor}  justify-center `}
+                      >
+                        <Image src={Logo2} width={30} height={30} alt="  " />
+                        <h1 className="text-center text-lg mx-2 font-Orbitron">
+                          NoteCloud
+                        </h1>
+                      </aside>
+
+                      <aside className="w-full h-auto py-10 flex items-center justify-center flex-col">
+                        <img
+                          className={`${importTheme.AvatarShape} min-w-[100px] min-h-[100px] w-[100px] h-[100px] object-cover `}
+                          src={setSrc}
+                          alt="  "
+                        />
+
+                        <h3 className="pt-2 px-10 max-h-20 w-[230px] font-bold text-center text-ellipsis overflow-hidden">
+                          {userDisplayName}
+                        </h3>
+                      </aside>
+
+                      <section
+                        className={`w-full  pt-10 px-10 flex items-center flex-col border-t-[1px] border-${importTheme.borderColor} justify-center `}
+                      >
+                        <NavButMenu.Provider value={valueForNavMenu}>
+                          <ButtonMenuNavigations />
+                        </NavButMenu.Provider>
+                      </section>
                     </section>
-                  </section>
-                )}
+                  )}
+                </>
+              )}
 
-                <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
-                  {/* ---------------------Pc--------------- */}
-                  <header
-                    className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
-                  >
-                    {shouldMDRender ? (
-                      <header className="w-full h-24 md:flex items-center p-5">
-                        {activeMain === "Settings" && (
-                          <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                        )}
-                        {activeMain === "Todos" && (
-                          <>
-                            <motion.aside
-                              animate={{
-                                y: 0,
-                                opacity: 1,
-                              }}
-                              initial={{ opacity: 0, y: -200 }}
-                              className="overflow-x-auto mr-2"
-                            >
-                              <ArraySpaceNamesContex.Provider
-                                value={valueForSpaceArray}
+              <section className="w-full h-full overflow-hidden flex flex-col  pb-5  items-center">
+                {/* ---------------------Pc--------------- */}
+                {isLoading ? (
+                  <div className=" justify-center items-center flex"></div>
+                ) : (
+                  <>
+                    <header
+                      className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
+                    >
+                      {shouldMDRender ? (
+                        <header className="w-full h-24 md:flex items-center p-5">
+                          {activeMain === "Settings" && (
+                            <ButtonSetNaw
+                              onButtonClick={handleButtonSetClick}
+                            />
+                          )}
+                          {activeMain === "Todos" && (
+                            <>
+                              <motion.aside
+                                animate={{
+                                  y: 0,
+                                  opacity: 1,
+                                }}
+                                initial={{ opacity: 0, y: -200 }}
+                                className="overflow-x-auto mr-2"
                               >
-                                <NavSpaceNames.Provider value={valueForSpace}>
-                                  <SpaceButtons />
-                                </NavSpaceNames.Provider>
-                              </ArraySpaceNamesContex.Provider>
-                            </motion.aside>
+                                <ArraySpaceNamesContex.Provider
+                                  value={valueForSpaceArray}
+                                >
+                                  <NavSpaceNames.Provider value={valueForSpace}>
+                                    <SpaceButtons />
+                                  </NavSpaceNames.Provider>
+                                </ArraySpaceNamesContex.Provider>
+                              </motion.aside>
 
-                            {/* <SearchInput /> */}
-                          </>
-                        )}
-                        {activeMain === "Todos" && (
-                          <>
-                            <button
-                              className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                              onClick={hendClickDellButton}
-                            >
-                              <FaRegFolder className="text-[18px]" />
-                            </button>
-                            <button
-                              className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                              onClick={clearLocalStoragePositions}
-                            >
-                              <p>Reset positions</p>
-
-                              <GrPowerReset className="text-[18px]" />
-                            </button>
-                          </>
-                        )}
-                      </header>
-                    ) : (
-                      // -----------Mobile ---------------
-                      <header className="w-full h-24 flex justify-between  items-center p-5">
-                        <motion.aside
-                          animate={{
-                            x: 0,
-                            opacity: 1,
-                          }}
-                          initial={{ opacity: 0, x: 200 }}
-                        >
-                          <ButtonDrawer />
-                        </motion.aside>
-                        {activeMain === "Todos" && <>{/* <SearchInput /> */}</>}
-                        {activeMain === "Settings" && (
-                          <ButtonSetNaw onButtonClick={handleButtonSetClick} />
-                        )}
-                        {activeMain === "Todos" && (
-                          <>
-                            <motion.aside
-                              animate={{
-                                y: 0,
-                                opacity: 1,
-                              }}
-                              initial={{ opacity: 0, y: -200 }}
-                              className="overflow-x-auto mr-2"
-                            >
-                              <ArraySpaceNamesContex.Provider
-                                value={valueForSpaceArray}
-                              >
-                                <NavSpaceNames.Provider value={valueForSpace}>
-                                  <SpaceButtons />
-                                </NavSpaceNames.Provider>
-                              </ArraySpaceNamesContex.Provider>
-                            </motion.aside>
-
-                            {/* <SearchInput /> */}
-                          </>
-                        )}
-                        {activeMain === "Todos" && (
-                          <>
-                            <motion.aside
-                              animate={{
-                                x: 0,
-                                opacity: 1,
-                              }}
-                              initial={{ opacity: 0, x: 200 }}
-                            >
+                              {/* <SearchInput /> */}
+                            </>
+                          )}
+                          {activeMain === "Todos" && (
+                            <>
                               <button
                                 className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
                                 onClick={hendClickDellButton}
                               >
                                 <FaRegFolder className="text-[18px]" />
                               </button>
-                            </motion.aside>
-                          </>
-                        )}
-                      </header>
-                    )}
-                  </header>
+                              <button
+                                className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                                onClick={clearLocalStoragePositions}
+                              >
+                                <p>Reset positions</p>
 
-                  {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
-                  <aside className="flex flex-row w-full h-full overflow-hidden ">
+                                <GrPowerReset className="text-[18px]" />
+                              </button>
+                            </>
+                          )}
+                        </header>
+                      ) : (
+                        // -----------Mobile ---------------
+                        <header className="w-full h-24 flex justify-between  items-center p-5">
+                          <motion.aside
+                            animate={{
+                              x: 0,
+                              opacity: 1,
+                            }}
+                            initial={{ opacity: 0, x: 200 }}
+                          >
+                            <ButtonDrawer />
+                          </motion.aside>
+                          {activeMain === "Todos" && (
+                            <>{/* <SearchInput /> */}</>
+                          )}
+                          {activeMain === "Settings" && (
+                            <ButtonSetNaw
+                              onButtonClick={handleButtonSetClick}
+                            />
+                          )}
+                          {activeMain === "Todos" && (
+                            <>
+                              <motion.aside
+                                animate={{
+                                  y: 0,
+                                  opacity: 1,
+                                }}
+                                initial={{ opacity: 0, y: -200 }}
+                                className="overflow-x-auto mr-2"
+                              >
+                                <ArraySpaceNamesContex.Provider
+                                  value={valueForSpaceArray}
+                                >
+                                  <NavSpaceNames.Provider value={valueForSpace}>
+                                    <SpaceButtons />
+                                  </NavSpaceNames.Provider>
+                                </ArraySpaceNamesContex.Provider>
+                              </motion.aside>
+
+                              {/* <SearchInput /> */}
+                            </>
+                          )}
+                          {activeMain === "Todos" && (
+                            <>
+                              <motion.aside
+                                animate={{
+                                  x: 0,
+                                  opacity: 1,
+                                }}
+                                initial={{ opacity: 0, x: 200 }}
+                              >
+                                <button
+                                  className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                                  onClick={hendClickDellButton}
+                                >
+                                  <FaRegFolder className="text-[18px]" />
+                                </button>
+                              </motion.aside>
+                            </>
+                          )}
+                        </header>
+                      )}
+                    </header>
+                  </>
+                )}
+                {/* ----------------------------------------------------------------------PageReder---------------------------------------------------------------- */}
+                <aside className="flex flex-row w-full h-full overflow-hidden ">
+                  {/* <span className="loading loading-ring loading-lg"></span> */}
+                  {isLoading ? (
+                    <div className="w-full h-full justify-center items-center flex">
+                      <span className="loading loading-ring loading-lg"></span>
+                    </div>
+                  ) : (
                     <NavButSet.Provider value={valueForNavBut}>
                       <main className="w-full h-full flex   scroll-smooth px-5 overflow-auto ">
                         {activeMain === "Home" && <HomeContent />}
@@ -389,28 +410,29 @@ const UserPage = () => {
                         )}
                       </main>
                     </NavButSet.Provider>
-                  </aside>
-                  {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
-                  {activeMain === "Todos" && (
-                    <motion.footer
-                      animate={{
-                        y: 0,
-                        opacity: 1,
-                      }}
-                      initial={{ opacity: 0, y: 200 }}
-                      className="w-full h-24 mt-5 items-center  flex"
-                    >
-                      <RemoveOrEdit.Provider value={valueForAllert}>
-                        <div className="flex justify-between items-center w-full">
-                          <AllertCall />
-                          <DropdownEditBlock />
-                        </div>
-                      </RemoveOrEdit.Provider>
-                    </motion.footer>
                   )}
-                </section>
-              </div>
-            )}
+                </aside>
+                {/* -------------------------------------------------------------------Footer------------------------------------------------------------------- */}
+                {activeMain === "Todos" && (
+                  <motion.footer
+                    animate={{
+                      y: 0,
+                      opacity: 1,
+                    }}
+                    initial={{ opacity: 0, y: 200 }}
+                    className="w-full h-24 mt-5 items-center  flex"
+                  >
+                    <RemoveOrEdit.Provider value={valueForAllert}>
+                      <div className="flex justify-between items-center w-full">
+                        <AllertCall />
+                        <DropdownEditBlock />
+                      </div>
+                    </RemoveOrEdit.Provider>
+                  </motion.footer>
+                )}
+              </section>
+            </div>
+
             <AllertToast />
           </div>
         </main>
