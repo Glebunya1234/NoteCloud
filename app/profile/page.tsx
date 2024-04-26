@@ -200,7 +200,7 @@ const UserPage = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => setIsLoading(false), 2800);
+    setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
   return (
@@ -384,7 +384,7 @@ const UserPage = () => {
                   {/* <span className="loading loading-ring loading-lg"></span> */}
                   {isLoading ? (
                     <div className="w-full h-full justify-center items-center flex">
-                      <span className="loading loading-ring loading-lg"></span>
+                      <span className="loading loading-bars loading-lg"></span>
                     </div>
                   ) : (
                     <NavButSet.Provider value={valueForNavBut}>

@@ -13,6 +13,7 @@ import {
 import {
   AddNewTaskInBlock,
   RemoveSpace,
+  СhangeNewNameSpace,
 } from "@/services/Firebase-Methods/Task-Management-methods";
 import { SpaceNamesbyUser } from "@/types/Сollection-Todoes-interfaces/types";
 import { SpaceFunc } from "@/utils/SpaceFunc";
@@ -22,11 +23,15 @@ import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 
 const AddSpaceDialog = () => {
   // const [blockname, setBlockname] = useState<string>("");
-  // const [taskname, setTaskname] = useState<string>("");
+  const [newSPName, setNewSPName] = useState<string>("");
+  const [oldSPName, setOldSPName] = useState<string>("");
+  const [activeDiv, setActiveDiv] = useState<boolean>(false);
+
   const dataContext = useContext(NavButSet);
   const SpaceNameContext = useContext(NavSpaceNames);
   const updateContext = useContext(UpdateArray);
   const ContextArraSP = useContext(ArraySpaceNamesContex);
+
   // const theme = useContext(RemoveOrEdit);
   // const AddNewBlockButton = () => {
   //   setBlockname("");
@@ -46,6 +51,21 @@ const AddSpaceDialog = () => {
     RemoveSpace(dataContext.id, spaceName);
     ContextArraSP?.setArraySpaceNames(await SpaceFunc());
     SpaceNameContext?.setActiveSpace("All");
+  };
+
+  const RenameSpaceFunc = async (spaceName: string) => {
+    СhangeNewNameSpace(dataContext.id, spaceName, newSPName).then(async () => {
+      ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+      updateContext?.onTaskAdded();
+      SpaceNameContext?.setActiveSpace("All");
+      setActiveDiv(false);
+    });
+  };
+
+  const Click = async (spaceName: string) => {
+    setActiveDiv(true);
+    setOldSPName(spaceName);
+    setNewSPName(spaceName);
   };
 
   useEffect(() => {
@@ -82,9 +102,7 @@ const AddSpaceDialog = () => {
                       <>
                         <button
                           className="btn btn-square btn-ghost btn-sm mx-1 "
-                          onClick={() => {
-                            console.log("names", name);
-                          }}
+                          onClick={() => Click(name.spaceName)}
                         >
                           <HiPencil />
                         </button>
@@ -105,6 +123,33 @@ const AddSpaceDialog = () => {
             </li>
           ))}
         </ul>
+        {activeDiv ? (
+          <div className="my-3 flex flex-col">
+            <span className="label-text">Please enter a new name</span>
+            <div className="w-full flex flex-row justify-around items-center">
+              <input
+                type="text"
+                placeholder="New Name"
+                className="input input-ghost w-full  bg-transparent max-w-4xl transition-all ease-linear hover:bg-bg-mydurkgrey"
+                onChange={(e) => {
+                  setNewSPName(e.target.value);
+                }}
+                value={newSPName}
+              />
+              <button
+                className="btn btn-square bg-transparent  border-[#3a393c] ml-[8px] w-44 hover:bg-bg-mydurkgrey"
+                onClick={() => {
+                  RenameSpaceFunc(oldSPName);
+                }}
+              >
+                Save change
+                <FiCheck style={{ fontSize: "20px" }} />
+              </button>
+            </div>
+          </div>
+        ) : (
+          <></>
+        )}
 
         <div className="my-3">
           <span className="label-text">
