@@ -20,6 +20,8 @@ const config: Config = {
         'bg-myRedPink': '#f87272',
         'bg-myOrange': '#fbbd23',
       },
+
+     
       width: {
         'w-900': '900px',
         'w-300': '300px',

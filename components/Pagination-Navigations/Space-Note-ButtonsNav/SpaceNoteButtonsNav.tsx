@@ -22,7 +22,7 @@ const SpaceButtons = () => {
   }, []);
 
   return (
-    <ul className="w-full flex snap-x snap-mandatory mt-4 my-2 overflow-scroll overflow-y-hidden">
+    <ul className="settingForNavSpace w-full flex snap-x snap-mandatory mt-4 pb-2  overflow-scroll overflow-y-hidden">
       {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
         <li id={`${index}`} className="mx-2 snap-start">
           {SpaceNames.filter(
@@ -30,7 +30,7 @@ const SpaceButtons = () => {
               self.findIndex((n) => n.spaceName === name.spaceName) === idx
           ).map((name, inx) => (
             <button
-              className="btn btn-md btn-ghost  justify-start  max-w-[150px] rounded-2xl  normal-case items-center"
+              className="btn btn-md btn-ghost border-[1px] border-bg-mydurkgrey justify-start  max-w-[150px] rounded-2xl  normal-case items-center"
               onClick={() => {
                 spaceName?.setActiveSpace(name.spaceName);
               }}

@@ -45,19 +45,21 @@ export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]>
         const SpaceData = doc.data() as SpaceNamesbyUser; // Приводим тип данных к интерфейсу Todo
         spaces.push(SpaceData);
     });
-   
+
 
     return spaces;
 
 }
 
 //Добавление ЗАДАЧИ если есть блок если нету блока создает новый 
-export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string) {
+export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string, spaceName: string) {
 
 
     await setDoc(doc(dataRefTodos), {
         nameBlock: nameBlock, teg: "Medium priority", priority: "3",
-        titleTodos: titleTodos, userId: userID
+        titleTodos: titleTodos, userId: userID,
+        spaceName: spaceName
+
     });
 }
 //Удаление Задачи 
