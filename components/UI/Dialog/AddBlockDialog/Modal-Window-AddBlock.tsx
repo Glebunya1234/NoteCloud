@@ -3,14 +3,21 @@ import {
   showSuccessToast,
   showErrorToast,
 } from "@/components";
-import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
+import {
+  ArraySpaceNamesContex,
+  NavButSet,
+  RemoveOrEdit,
+  UpdateArray,
+} from "@/components/Context";
 import { AddNewTaskInBlock } from "@/services/Firebase-Methods/Task-Management-methods";
-import { useContext, useState } from "react";
+import { SpaceFunc } from "@/utils/SpaceFunc";
+import { useContext, useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 const AddBlockModal = () => {
   const [blockname, setBlockname] = useState<string>("");
   const [taskname, setTaskname] = useState<string>("");
+  const ContextArraSP = useContext(ArraySpaceNamesContex);
   const dataContext = useContext(NavButSet);
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
@@ -27,6 +34,18 @@ const AddBlockModal = () => {
       showErrorToast("The block was not created!");
     }
   };
+
+  useEffect(() => {
+    const Func = async () => {
+      try {
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    Func();
+  }, []);
 
   return (
     <dialog id="ModalAddBlock1" className="modal">
@@ -62,6 +81,29 @@ const AddBlockModal = () => {
             value={taskname}
           />
         </div>
+
+        <ul className="snap-x snap-mandatory w-full mb-2 py-2 pb-2 flex flex-row  items-center overflow-scroll overflow-y-hidden ">
+          {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
+            <li id={`${index}`} className="max-w-[220px] mr-2 snap-start">
+              {SpaceNames.filter(
+                (name, idx, self) =>
+                  self.findIndex((n) => n.spaceName === name.spaceName) === idx
+              ).map((name, inx) => (
+                <button
+                  className="btn btn-ghost py-2 px-4 flex justify-center items-center w-full h-full border-[#3a393c] rounded-[8px]"
+                  onClick={() => {
+                    console.log("Name-", name.spaceName);
+                  }}
+                >
+                  <p className="truncate overflow-hidden text-ellipsis">
+                    {name.spaceName}
+                  </p>
+                </button>
+              ))}
+            </li>
+          ))}
+        </ul>
+
         <form method="dialog">
           <button
             className="btn btn-square bg-transparent border-[#3a393c] w-full text-center hover:bg-bg-mydurkgrey"
