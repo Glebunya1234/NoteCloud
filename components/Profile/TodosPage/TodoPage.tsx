@@ -324,7 +324,7 @@ const TodosContent = () => {
                             : ""
                         }`}
                       >
-                        <AddNewTaskComnponent nameBlock={block[0].nameBlock} />
+                        <AddNewTaskComnponent nameBlock={block[0].nameBlock} spaceName={block[0].spaceName} />
                       </section>
                     </div>
                   </section>

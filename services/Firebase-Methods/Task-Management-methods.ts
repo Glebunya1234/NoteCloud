@@ -132,11 +132,11 @@ export async function RemoveSpace(userID: string, spaceName: string) {
 
 // Изменение приоритета задачи
 const priorityMap: Record<string, number> = {
-    "Highest priority": 5,
-    "High priority": 4,
+    "Highest priority": 1,
+    "High priority": 2,
     "Medium priority": 3,
-    "Low priority": 2,
-    "Lowest priority": 1
+    "Low priority": 4,
+    "Lowest priority": 5
 };
 export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
