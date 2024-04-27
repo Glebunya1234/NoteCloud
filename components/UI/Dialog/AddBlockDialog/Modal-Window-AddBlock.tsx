@@ -16,6 +16,8 @@ import { FiCheck } from "react-icons/fi";
 import { HiOutlinePlus } from "react-icons/hi";
 
 const AddBlockModal = () => {
+  //#region hoocks
+  //-----------------------UseState----------------------//
   const [blockname, setBlockname] = useState<string>("");
   const [taskname, setTaskname] = useState<string>("");
   const [newSPName, setNewSPName] = useState<string>("");
@@ -23,21 +25,17 @@ const AddBlockModal = () => {
   const [targetValue, setTargetValue] = useState<string>("");
   const [activeDiv, setActiveDiv] = useState<boolean>(false);
   const [IsCreatednewSpace, setIsCreatednewSpace] = useState<boolean>(false);
+
+  //-----------------------UseContext----------------------//
   const ContextArraSP = useContext(ArraySpaceNamesContex);
-  
   const dataContext = useContext(NavButSet);
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
-  const AddNewBlockButton = () => {
-    if (taskname.trim() !== "" && blockname.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, blockname, taskname, activeSpace).then(async () => {
-        updateContext?.onTaskAdded();
-        showSuccessToast("The block has been created!");
-        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
-      });
-    } else {
-      showErrorToast("The block was not created!");
-    }
+
+  //#endregion
+
+  //#region Func
+  const DefaultState = () => {
     setBlockname("");
     setTaskname("");
     setActiveSpace("All");
@@ -45,6 +43,21 @@ const AddBlockModal = () => {
     setNewSPName("");
     setActiveDiv(false);
     setIsCreatednewSpace(false);
+  };
+
+  const AddNewBlockButton = () => {
+    if (taskname.trim() !== "" && blockname.trim() !== "") {
+      AddNewTaskInBlock(theme?.id, blockname, taskname, activeSpace).then(
+        async () => {
+          updateContext?.onTaskAdded();
+          showSuccessToast("The block has been created!");
+          ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+        }
+      );
+    } else {
+      showErrorToast("The block was not created!");
+    }
+    DefaultState();
   };
 
   const ClickSpaceFunc = (newSPName: string) => {
@@ -57,7 +70,9 @@ const AddBlockModal = () => {
         setIsCreatednewSpace(true),
         setActiveDiv(false));
   };
+  //#endregion
 
+  //#region UseEffect
   useEffect(() => {
     const Func = async () => {
       try {
@@ -70,6 +85,7 @@ const AddBlockModal = () => {
     Func();
   }, []);
 
+  //#endregion
   return (
     <dialog id="ModalAddBlock1" className="modal">
       <div

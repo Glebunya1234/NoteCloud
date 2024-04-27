@@ -1,5 +1,5 @@
 import { RemoveOrEdit } from "@/components/Context";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaPowerOff } from "react-icons/fa";
 
 const AllertButton = () => {
@@ -7,6 +7,21 @@ const AllertButton = () => {
   const hendClickButton = () => {
     Mode?.setModeEditOrRemove("none");
   };
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key == 'Escape') {
+      hendClickButton();
+    }
+  };
+  useEffect(() => {
+    // Добавляет обработчик события клавиатуры при монтировании компонента
+    document.addEventListener('keydown', handleKeyDown);
+
+    // Удаляет обработчик события клавиатуры при размонтировании компонента
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   return (
     <div>
       <button
