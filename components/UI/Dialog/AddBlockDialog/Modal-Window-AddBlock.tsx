@@ -24,14 +24,16 @@ const AddBlockModal = () => {
   const [activeDiv, setActiveDiv] = useState<boolean>(false);
   const [IsCreatednewSpace, setIsCreatednewSpace] = useState<boolean>(false);
   const ContextArraSP = useContext(ArraySpaceNamesContex);
+  
   const dataContext = useContext(NavButSet);
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
   const AddNewBlockButton = () => {
     if (taskname.trim() !== "" && blockname.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, blockname, taskname, activeSpace).then(() => {
+      AddNewTaskInBlock(theme?.id, blockname, taskname, activeSpace).then(async () => {
         updateContext?.onTaskAdded();
         showSuccessToast("The block has been created!");
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
       });
     } else {
       showErrorToast("The block was not created!");
@@ -106,6 +108,7 @@ const AddBlockModal = () => {
         <span className="label-text ">
           Select space (shift + wheel up/down = scroll) or create a new one
         </span>
+
         <ul className="settingForNavSpace snap-x snap-mandatory w-full mb-2 pb-2 flex flex-row  items-center overflow-scroll overflow-y-hidden ">
           {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
             <li id={`${index}`} className="max-w-[220px] mr-2 snap-start">
@@ -130,7 +133,7 @@ const AddBlockModal = () => {
           {IsCreatednewSpace ? (
             <li>
               <button
-                className="btn btn-ghost  mr-2 flex justify-center items-center  h-full border-[#3a393c] rounded-[8px]"
+                className="btn btn-ghost  mr-2 flex justify-center items-center  h-[28px] overflow-hidden truncate text-ellipsis border-[#3a393c] rounded-[8px]"
                 onClick={() => {
                   setActiveSpace(newSPName);
                 }}

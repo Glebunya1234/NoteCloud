@@ -22,7 +22,7 @@ import { FiCheck } from "react-icons/fi";
 import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 
 const AddSpaceDialog = () => {
-  // const [blockname, setBlockname] = useState<string>("");
+ 
   const [newSPName, setNewSPName] = useState<string>("");
   const [oldSPName, setOldSPName] = useState<string>("");
   const [activeDiv, setActiveDiv] = useState<boolean>(false);
@@ -32,20 +32,7 @@ const AddSpaceDialog = () => {
   const updateContext = useContext(UpdateArray);
   const ContextArraSP = useContext(ArraySpaceNamesContex);
 
-  // const theme = useContext(RemoveOrEdit);
-  // const AddNewBlockButton = () => {
-  //   setBlockname("");
-  //   setTaskname("");
-
-  //   if (taskname.trim() !== "" && blockname.trim() !== "") {
-  //     AddNewTaskInBlock(theme?.id, blockname, taskname).then(() => {
-  //       updateContext?.onTaskAdded();
-  //       showSuccessToast("The block has been created!");
-  //     });
-  //   } else {
-  //     showErrorToast("The block was not created!");
-  //   }
-  // };
+  
 
   const RemoveSpaceFunc = async (spaceName: string) => {
     RemoveSpace(dataContext.id, spaceName);
@@ -95,9 +82,9 @@ const AddSpaceDialog = () => {
                 (name, idx, self) =>
                   self.findIndex((n) => n.spaceName === name.spaceName) === idx
               ).map((name, inx) => (
-                <div className="snap-end bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
-                  <p>{name.spaceName}</p>
-                  <nav>
+                <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
+                  <p className=" truncate overflow-hidden text-ellipsis">{name.spaceName}</p>
+                  <nav className="flex flex-row">
                     {name.spaceName !== "All" ? (
                       <>
                         <button
