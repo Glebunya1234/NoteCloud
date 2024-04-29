@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   ArraySpaceNamesContex,
   NavButSet,
@@ -8,11 +8,14 @@ import {
 } from "@/components/Context";
 
 import { SpaceFunc } from "@/utils/SpaceFunc";
-
+import { TextField, styled } from "@mui/material";
 const SpaceButtons = () => {
   const spaceName = useContext(NavSpaceNames);
   const ContextArraSP = useContext(ArraySpaceNamesContex);
   const dataContext = useContext(NavButSet);
+
+
+ 
 
   useEffect(() => {
     const Func = async () => {
@@ -62,6 +65,7 @@ const SpaceButtons = () => {
           </li>
         ))
       )}
+    
     </ul>
 
     // <ul className="w-full flex items-center ">
