@@ -36,13 +36,13 @@ const AddSpaceDialog = () => {
 
   const RemoveSpaceFunc = async (spaceName: string) => {
     RemoveSpace(dataContext.id, spaceName);
-    ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+    ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
     SpaceNameContext?.setActiveSpace("All");
   };
 
   const RenameSpaceFunc = async (spaceName: string) => {
     СhangeNewNameSpace(dataContext.id, spaceName, newSPName).then(async () => {
-      ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+      ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
       updateContext?.onTaskAdded();
       SpaceNameContext?.setActiveSpace("All");
       setActiveDiv(false);
@@ -58,7 +58,7 @@ const AddSpaceDialog = () => {
   useEffect(() => {
     const Func = async () => {
       try {
-        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
       } catch (error) {
         console.error(error);
       }

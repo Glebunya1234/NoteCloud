@@ -21,7 +21,7 @@ const ModalRemoveBlock: React.FC<{
     try {
       deleteBlockInName(Refresh?.id, blockName).then(async () => {
         updateContext?.onTaskAdded();
-        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
         showSuccessToast("The block has been deleted!");
       });
     } catch (error) {

@@ -2,9 +2,9 @@
 import { readSpaceName } from "@/services/Firebase-Methods/Task-Management-methods";
 import { SpaceNamesbyUser } from "@/types/Сollection-Todoes-interfaces/types";
 
-export const SpaceFunc = async (): Promise<SpaceNamesbyUser[][]> => {
+export const SpaceFunc = async (userID: string): Promise<SpaceNamesbyUser[][]> => {
     try {
-        const dataSpaceName = await readSpaceName("");
+        const dataSpaceName = await readSpaceName(userID);
 
         const SpaceArrayMap: Record<string, SpaceNamesbyUser[]> = {};
         dataSpaceName.forEach((names, index) => {

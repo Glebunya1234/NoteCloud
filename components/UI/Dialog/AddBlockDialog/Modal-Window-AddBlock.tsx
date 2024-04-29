@@ -63,7 +63,7 @@ const AddBlockModal = () => {
         async () => {
           updateContext?.onTaskAdded();
           showSuccessToast("The block has been created!");
-          ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+          ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
         }
       );
     } else {
@@ -78,7 +78,7 @@ const AddBlockModal = () => {
   useEffect(() => {
     const Func = async () => {
       try {
-        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
       } catch (error) {
         console.error(error);
       }

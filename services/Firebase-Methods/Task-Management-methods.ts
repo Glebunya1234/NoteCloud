@@ -33,7 +33,7 @@ export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]>
 
 
     // Create a query against the collection.
-    const q = query(dataRefTodos, where("userId", "==", "yeKv7dHxJVYQ07vXSx5c5CfWyLI2"), orderBy("spaceName"),);
+    const q = query(dataRefTodos, where("userId", "==", userID), orderBy("spaceName"),);
 
 
     const querySnapshot = await getDocs(q);
@@ -101,7 +101,7 @@ export async function UpdateBlockName(userID: string, nameBlock: string, newName
 
     querySnapshot.forEach(async (documentSnapshot) => {
         const docRef = doc(dataRefTodos, documentSnapshot.id);
-        await updateDoc(docRef, { nameBlock: newNameBlock , spaceName: spaceName });
+        await updateDoc(docRef, { nameBlock: newNameBlock, spaceName: spaceName });
     });
 }
 // Изменение названия Пространства

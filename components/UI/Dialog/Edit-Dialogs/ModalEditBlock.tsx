@@ -58,7 +58,7 @@ const EditBlockModal: React.FC<{
       UpdateBlockName(theme?.id, blockName, newblockname, activeSpace).then(
         async () => {
           updateContext?.onTaskAdded();
-          ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+          ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
           showSuccessToast("The block has been updated!");
         }
       );
@@ -73,7 +73,7 @@ const EditBlockModal: React.FC<{
   useEffect(() => {
     const Func = async () => {
       try {
-        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
       } catch (error) {
         console.error(error);
       }

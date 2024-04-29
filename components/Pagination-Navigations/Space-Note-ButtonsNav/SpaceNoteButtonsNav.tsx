@@ -1,18 +1,23 @@
 "use client";
 
 import { useContext, useEffect } from "react";
-import { ArraySpaceNamesContex, NavSpaceNames } from "@/components/Context";
+import {
+  ArraySpaceNamesContex,
+  NavButSet,
+  NavSpaceNames,
+} from "@/components/Context";
 
 import { SpaceFunc } from "@/utils/SpaceFunc";
 
 const SpaceButtons = () => {
   const spaceName = useContext(NavSpaceNames);
-
   const ContextArraSP = useContext(ArraySpaceNamesContex);
+  const dataContext = useContext(NavButSet);
+
   useEffect(() => {
     const Func = async () => {
       try {
-        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
       } catch (error) {
         console.error(error);
       }
