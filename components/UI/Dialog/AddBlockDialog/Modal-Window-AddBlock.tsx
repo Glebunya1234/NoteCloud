@@ -15,16 +15,17 @@ import { useContext, useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 import { HiOutlinePlus } from "react-icons/hi";
 
+
 const AddBlockModal = () => {
   //#region hoocks
   //-----------------------UseState----------------------//
   const [blockname, setBlockname] = useState<string>("");
   const [taskname, setTaskname] = useState<string>("");
-  const [newSPName, setNewSPName] = useState<string>("");
   const [activeSpace, setActiveSpace] = useState<string>("All");
-  const [targetValue, setTargetValue] = useState<string>("");
   const [activeDiv, setActiveDiv] = useState<boolean>(false);
   const [IsCreatednewSpace, setIsCreatednewSpace] = useState<boolean>(false);
+  const [newSPName, setNewSPName] = useState<string>("");
+  const [targetValue, setTargetValue] = useState<string>("");
 
   //-----------------------UseContext----------------------//
   const ContextArraSP = useContext(ArraySpaceNamesContex);
@@ -39,10 +40,21 @@ const AddBlockModal = () => {
     setBlockname("");
     setTaskname("");
     setActiveSpace("All");
+    setActiveDiv(false);
     setTargetValue("");
     setNewSPName("");
-    setActiveDiv(false);
     setIsCreatednewSpace(false);
+  };
+
+  const ClickSpaceFunc = (newSPName: string) => {
+    targetValue.trim() === ""
+      ? (setIsCreatednewSpace(false),
+        setActiveSpace("All"),
+        setActiveDiv(false))
+      : (setTargetValue(""),
+        setNewSPName(newSPName.trim()),
+        setIsCreatednewSpace(true),
+        setActiveDiv(false));
   };
 
   const AddNewBlockButton = () => {
@@ -60,16 +72,6 @@ const AddBlockModal = () => {
     DefaultState();
   };
 
-  const ClickSpaceFunc = (newSPName: string) => {
-    targetValue.trim() === ""
-      ? (setIsCreatednewSpace(false),
-        setActiveSpace("All"),
-        setActiveDiv(false))
-      : (setTargetValue(""),
-        setNewSPName(newSPName.trim()),
-        setIsCreatednewSpace(true),
-        setActiveDiv(false));
-  };
   //#endregion
 
   //#region UseEffect
@@ -84,6 +86,10 @@ const AddBlockModal = () => {
 
     Func();
   }, []);
+
+  const CallbackFunc = (value: string) => {
+    setActiveSpace(value);
+  };
 
   //#endregion
   return (
@@ -206,6 +212,8 @@ const AddBlockModal = () => {
         ) : (
           <></>
         )}
+
+       
 
         <form method="dialog">
           <button

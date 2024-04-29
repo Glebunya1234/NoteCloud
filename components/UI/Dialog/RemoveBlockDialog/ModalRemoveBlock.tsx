@@ -1,6 +1,12 @@
 import { showErrorToast, showSuccessToast } from "@/components";
-import { NavButSet, RemoveOrEdit, UpdateArray } from "@/components/Context";
+import {
+  ArraySpaceNamesContex,
+  NavButSet,
+  RemoveOrEdit,
+  UpdateArray,
+} from "@/components/Context";
 import { deleteBlockInName } from "@/services/Firebase-Methods/Task-Management-methods";
+import { SpaceFunc } from "@/utils/SpaceFunc";
 import { useContext } from "react";
 import { FiCheck } from "react-icons/fi";
 
@@ -10,10 +16,12 @@ const ModalRemoveBlock: React.FC<{
   const updateContext = useContext(UpdateArray);
   const dataContext = useContext(NavButSet);
   const Refresh = useContext(RemoveOrEdit);
+  const ContextArraSP = useContext(ArraySpaceNamesContex);
   const handleClickDell = () => {
     try {
-      deleteBlockInName(Refresh?.id, blockName).then(() => {
+      deleteBlockInName(Refresh?.id, blockName).then(async () => {
         updateContext?.onTaskAdded();
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
         showSuccessToast("The block has been deleted!");
       });
     } catch (error) {

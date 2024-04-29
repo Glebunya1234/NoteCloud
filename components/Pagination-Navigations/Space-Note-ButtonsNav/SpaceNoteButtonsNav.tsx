@@ -35,7 +35,9 @@ const SpaceButtons = () => {
                 spaceName?.setActiveSpace(name.spaceName);
               }}
             >
-             <p className="max-w-[100px] max-h-[28px] truncate overflow-hidden text-ellipsis"> {name.spaceName}</p>
+              <p className="max-w-[100px]  text-sm truncate overflow-hidden text-ellipsis">
+                {name.spaceName}
+              </p>
             </button>
           ))}
         </li>

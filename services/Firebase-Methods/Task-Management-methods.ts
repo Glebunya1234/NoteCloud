@@ -93,15 +93,15 @@ export async function deleteBlockInName(userID: string, nameBlock: string) {
     });
 }
 
-// Изменение названия блока
+// Изменение названия блока и или пространство к нему
 
-export async function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string) {
+export async function UpdateBlockName(userID: string, nameBlock: string, newNameBlock: string, spaceName: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach(async (documentSnapshot) => {
         const docRef = doc(dataRefTodos, documentSnapshot.id);
-        await updateDoc(docRef, { nameBlock: newNameBlock });
+        await updateDoc(docRef, { nameBlock: newNameBlock , spaceName: spaceName });
     });
 }
 // Изменение названия Пространства

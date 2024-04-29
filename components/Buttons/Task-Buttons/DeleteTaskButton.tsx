@@ -8,7 +8,8 @@ import {
 import { HiOutlineTrash } from "react-icons/hi";
 
 import { showErrorToast, showSuccessToast } from "@/components";
-import { RemoveOrEdit, UpdateArray } from "@/components/Context";
+import { ArraySpaceNamesContex, RemoveOrEdit, UpdateArray } from "@/components/Context";
+import { SpaceFunc } from "@/utils/SpaceFunc";
 
 const DeleteTaskButton: React.FC<{
  
@@ -18,11 +19,13 @@ const DeleteTaskButton: React.FC<{
 }> = ({ nameBlock, titleTodo, onCheckedFunc }) => {
   const updateContext = useContext(UpdateArray);
   const Refresh = useContext(RemoveOrEdit);
+  const ContextArraSP = useContext(ArraySpaceNamesContex);
 
   const handleClickDelete = (Blockname: string, Todostitle: string) => {
     try {
-      deleteTaskInBlick(Refresh?.id, Blockname, Todostitle).then(() => {
+      deleteTaskInBlick(Refresh?.id, Blockname, Todostitle).then(async () => {
         updateContext?.onTaskAdded();
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc());
         onCheckedFunc();
         showSuccessToast("The task has been deleted!");
       });
