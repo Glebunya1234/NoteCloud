@@ -281,7 +281,7 @@ const UserPage = () => {
                                   opacity: 1,
                                 }}
                                 initial={{ opacity: 0, y: -200 }}
-                                className="overflow-x-auto mr-2"
+                                className="overflow-x-auto"
                               >
                                 <ArraySpaceNamesContex.Provider
                                   value={valueForSpaceArray}

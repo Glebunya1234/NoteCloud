@@ -22,7 +22,6 @@ import { FiCheck } from "react-icons/fi";
 import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 
 const AddSpaceDialog = () => {
- 
   const [newSPName, setNewSPName] = useState<string>("");
   const [oldSPName, setOldSPName] = useState<string>("");
   const [activeDiv, setActiveDiv] = useState<boolean>(false);
@@ -31,8 +30,6 @@ const AddSpaceDialog = () => {
   const SpaceNameContext = useContext(NavSpaceNames);
   const updateContext = useContext(UpdateArray);
   const ContextArraSP = useContext(ArraySpaceNamesContex);
-
-  
 
   const RemoveSpaceFunc = async (spaceName: string) => {
     RemoveSpace(dataContext.id, spaceName);
@@ -76,34 +73,37 @@ const AddSpaceDialog = () => {
 
         <span className="label-text">Your spaces</span>
         <ul className="snap-y snap-mandatory max-h-[175px] overflow-y-auto ">
+          <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
+            <p className=" truncate overflow-hidden text-ellipsis">All</p>
+            <nav className="flex flex-row"></nav>
+          </div>
           {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
             <li id={`${index}`}>
               {SpaceNames.filter(
                 (name, idx, self) =>
-                  self.findIndex((n) => n.spaceName === name.spaceName) === idx
+                  self.findIndex(
+                    (n) =>
+                      n.spaceName === name.spaceName && n.spaceName !== "All"
+                  ) === idx
               ).map((name, inx) => (
                 <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
-                  <p className=" truncate overflow-hidden text-ellipsis">{name.spaceName}</p>
+                  <p className=" truncate overflow-hidden text-ellipsis">
+                    {name.spaceName}
+                  </p>
                   <nav className="flex flex-row">
-                    {name.spaceName !== "All" ? (
-                      <>
-                        <button
-                          className="btn btn-square btn-ghost btn-sm mx-1 "
-                          onClick={() => Click(name.spaceName)}
-                        >
-                          <HiPencil />
-                        </button>
+                    <button
+                      className="btn btn-square btn-ghost btn-sm mx-1 "
+                      onClick={() => Click(name.spaceName)}
+                    >
+                      <HiPencil />
+                    </button>
 
-                        <button
-                          className="btn btn-square btn-ghost btn-sm mx-1"
-                          onClick={() => RemoveSpaceFunc(name.spaceName)}
-                        >
-                          <HiOutlineTrash />
-                        </button>
-                      </>
-                    ) : (
-                      <></>
-                    )}
+                    <button
+                      className="btn btn-square btn-ghost btn-sm mx-1"
+                      onClick={() => RemoveSpaceFunc(name.spaceName)}
+                    >
+                      <HiOutlineTrash />
+                    </button>
                   </nav>
                 </div>
               ))}

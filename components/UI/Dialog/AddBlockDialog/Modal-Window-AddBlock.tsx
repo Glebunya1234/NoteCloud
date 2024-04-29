@@ -15,7 +15,6 @@ import { useContext, useEffect, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 import { HiOutlinePlus } from "react-icons/hi";
 
-
 const AddBlockModal = () => {
   //#region hoocks
   //-----------------------UseState----------------------//
@@ -132,11 +131,23 @@ const AddBlockModal = () => {
         </span>
 
         <ul className="settingForNavSpace snap-x snap-mandatory w-full mb-2 pb-2 flex flex-row  items-center overflow-scroll overflow-y-hidden ">
+          <button
+            className="btn btn-ghost py-2 px-4 flex justify-center items-center h-full border-[#3a393c] rounded-[8px]"
+            onClick={() => {
+              setActiveSpace("All");
+            }}
+          >
+            <p className="truncate overflow-hidden text-ellipsis">All</p>
+          </button>
+          
           {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
             <li id={`${index}`} className="max-w-[220px] mr-2 snap-start">
               {SpaceNames.filter(
                 (name, idx, self) =>
-                  self.findIndex((n) => n.spaceName === name.spaceName) === idx
+                  self.findIndex(
+                    (n) =>
+                      n.spaceName === name.spaceName && n.spaceName !== "All"
+                  ) === idx
               ).map((name) => (
                 <button
                   className="btn btn-ghost py-2 px-4 flex justify-center items-center w-full h-full border-[#3a393c] rounded-[8px]"
@@ -212,8 +223,6 @@ const AddBlockModal = () => {
         ) : (
           <></>
         )}
-
-       
 
         <form method="dialog">
           <button
