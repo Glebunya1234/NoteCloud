@@ -14,18 +14,24 @@ import { HiOutlinePlus } from "react-icons/hi";
 const EditBlockModal: React.FC<{
   blockName: string;
 }> = ({ blockName }) => {
+  //#region UseState
   const [newblockname, setNewblockname] = useState<string>("");
-
   const [activeSpace, setActiveSpace] = useState<string>("All");
   const [activeDiv, setActiveDiv] = useState<boolean>(false);
   const [IsCreatednewSpace, setIsCreatednewSpace] = useState<boolean>(false);
   const [newSPName, setNewSPName] = useState<string>("");
   const [targetValue, setTargetValue] = useState<string>("");
 
+  //#endregion
+
+  //#region UseCont
   const dataContext = useContext(NavButSet);
   const updateContext = useContext(UpdateArray);
   const ContextArraSP = useContext(ArraySpaceNamesContex);
   const theme = useContext(RemoveOrEdit);
+  //#endregion
+
+  //#region func
 
   const ClickSpaceFunc = (newSPName: string) => {
     targetValue.trim() === ""
@@ -37,6 +43,7 @@ const EditBlockModal: React.FC<{
         setIsCreatednewSpace(true),
         setActiveDiv(false));
   };
+
   const DefaultState = () => {
     setActiveSpace("All");
     setTargetValue("");
@@ -44,6 +51,7 @@ const EditBlockModal: React.FC<{
     setActiveDiv(false);
     setIsCreatednewSpace(false);
   };
+
   const UpdateBlockNameFunc = () => {
     setNewblockname(blockName);
     if (newblockname.trim() !== "" && blockName.trim() !== "") {
@@ -59,7 +67,9 @@ const EditBlockModal: React.FC<{
     }
     DefaultState();
   };
+  //#endregion
 
+  //#region UseEffect
   useEffect(() => {
     const Func = async () => {
       try {
@@ -76,6 +86,9 @@ const EditBlockModal: React.FC<{
     setNewblockname(blockName);
   }, [blockName]);
 
+  //#endregion
+
+  
   return (
     <dialog id="EditBlockModal" className="modal">
       <div

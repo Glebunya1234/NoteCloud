@@ -87,9 +87,9 @@ const AddBlockModal = () => {
     Func();
   }, []);
 
-  const CallbackFunc = (value: string) => {
-    setActiveSpace(value);
-  };
+  // const CallbackFunc = (value: string) => {
+  //   setActiveSpace(value);
+  // };
 
   //#endregion
   return (
