@@ -56,6 +56,7 @@ const AddSpaceDialog = () => {
     const Func = async () => {
       try {
         ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
+        console.log(ContextArraSP?.ArraySpaceCont);
       } catch (error) {
         console.error(error);
       }
@@ -73,19 +74,20 @@ const AddSpaceDialog = () => {
 
         <span className="label-text">Your spaces</span>
         <ul className="snap-y snap-mandatory max-h-[175px] overflow-y-auto ">
-          <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
-            <p className=" truncate overflow-hidden text-ellipsis">All</p>
-            <nav className="flex flex-row"></nav>
-          </div>
-          {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
-            <li id={`${index}`}>
-              {SpaceNames.filter(
-                (name, idx, self) =>
-                  self.findIndex(
-                    (n) =>
-                      n.spaceName === name.spaceName && n.spaceName !== "All"
-                  ) === idx
-              ).map((name, inx) => (
+          <li id={`${0}`} className="mr-2 snap-start">
+            <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
+              <p className=" truncate overflow-hidden text-ellipsis">All</p>
+              <nav className="flex flex-row"></nav>
+            </div>
+          </li>
+          {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) =>
+            SpaceNames.filter(
+              (name, idx, self) =>
+                self.findIndex(
+                  (n) => n.spaceName === name.spaceName && n.spaceName !== "All"
+                ) === idx
+            ).map((name, inx) => (
+              <li id={`${index + 1}`}>
                 <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
                   <p className=" truncate overflow-hidden text-ellipsis">
                     {name.spaceName}
@@ -106,9 +108,9 @@ const AddSpaceDialog = () => {
                     </button>
                   </nav>
                 </div>
-              ))}
-            </li>
-          ))}
+              </li>
+            ))
+          )}
         </ul>
         {activeDiv ? (
           <div className="my-3 flex flex-col">

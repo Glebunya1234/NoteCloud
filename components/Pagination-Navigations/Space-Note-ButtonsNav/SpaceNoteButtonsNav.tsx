@@ -28,22 +28,27 @@ const SpaceButtons = () => {
 
   return (
     <ul className="settingForNavSpace w-full flex snap-x snap-mandatory mt-4 pb-2  overflow-scroll overflow-y-hidden">
-      <button
-        className="btn btn-md btn-ghost border-[1px]  border-bg-mydurkgrey justify-start  max-w-[150px] rounded-2xl  normal-case items-center"
-        onClick={() => {
-          spaceName?.setActiveSpace("All");
-        }}
-      >
-        <p className="max-w-[100px]  text-sm truncate overflow-hidden text-ellipsis">
-          All
-        </p>
-      </button>
-      {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
-        <li id={`${index}`} className="mr-2 snap-start">
-          {SpaceNames.filter(
-            (name, idx, self) =>
-              self.findIndex((n) => n.spaceName === name.spaceName && n.spaceName !== "All") === idx
-          ).map((name, inx) => (
+      <li id={`${0}`} className="mr-2 snap-start">
+        <button
+          className="btn btn-md btn-ghost border-[1px]  border-bg-mydurkgrey justify-start  max-w-[150px] rounded-2xl  normal-case items-center"
+          onClick={() => {
+            spaceName?.setActiveSpace("All");
+          }}
+        >
+          <p className="max-w-[100px]  text-sm truncate overflow-hidden text-ellipsis">
+            All
+          </p>
+        </button>
+      </li>
+
+      {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) =>
+        SpaceNames.filter(
+          (name, idx, self) =>
+            self.findIndex(
+              (n) => n.spaceName === name.spaceName && n.spaceName !== "All"
+            ) === idx
+        ).map((name, inx) => (
+          <li id={`${index + 1}`} className="mr-2 snap-start">
             <button
               className="btn btn-md btn-ghost border-[1px] border-bg-mydurkgrey justify-start  max-w-[150px] rounded-2xl  normal-case items-center"
               onClick={() => {
@@ -54,9 +59,9 @@ const SpaceButtons = () => {
                 {name.spaceName}
               </p>
             </button>
-          ))}
-        </li>
-      ))}
+          </li>
+        ))
+      )}
     </ul>
 
     // <ul className="w-full flex items-center ">

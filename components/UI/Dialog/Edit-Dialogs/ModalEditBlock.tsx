@@ -115,7 +115,7 @@ const EditBlockModal: React.FC<{
         </span>
 
         <ul className="settingForNavSpace snap-x snap-mandatory w-full  pb-2 flex flex-row  items-center overflow-scroll overflow-y-hidden ">
-         
+          <li id={`${0}`} className="mr-2 snap-start">
             <button
               className="btn btn-ghost py-2 px-4 flex justify-center items-center h-full border-[#3a393c] rounded-[8px]"
               onClick={() => {
@@ -124,17 +124,16 @@ const EditBlockModal: React.FC<{
             >
               <p className="truncate overflow-hidden text-ellipsis">All</p>
             </button>
-        
+          </li>
 
-          {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) => (
-            <li id={`${index}`} className="max-w-[220px] mr-2 snap-start">
-              {SpaceNames.filter(
-                (name, idx, self) =>
-                  self.findIndex(
-                    (n) =>
-                      n.spaceName === name.spaceName && n.spaceName !== "All"
-                  ) === idx
-              ).map((name) => (
+          {ContextArraSP?.ArraySpaceCont.map((SpaceNames, index) =>
+            SpaceNames.filter(
+              (name, idx, self) =>
+                self.findIndex(
+                  (n) => n.spaceName === name.spaceName && n.spaceName !== "All"
+                ) === idx
+            ).map((name) => (
+              <li id={`${index + 1}`} className="max-w-[220px] mr-2 snap-start">
                 <button
                   className="btn btn-ghost py-2 px-4 flex justify-center items-center w-full h-full border-[#3a393c] rounded-[8px]"
                   onClick={() => {
@@ -145,9 +144,9 @@ const EditBlockModal: React.FC<{
                     {name.spaceName}
                   </p>
                 </button>
-              ))}
-            </li>
-          ))}
+              </li>
+            ))
+          )}
 
           {IsCreatednewSpace ? (
             <li>
