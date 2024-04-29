@@ -82,30 +82,7 @@ const TodosContent = () => {
 
   const fetchData = async () => {
     try {
-      // const data = await readDocTodo(theme?.id);
-
-      // // Создаем объект для группировки по блокам
-
-      // const blocksMap: Record<string, TodosData[]> = {};
-
-      // data.forEach((todo) => {
-      //   if (!blocksMap[todo.nameBlock]) {
-      //     blocksMap[todo.nameBlock] = [];
-      //   }
-      //   blocksMap[todo.nameBlock].push({
-      //     spaceName: todo.spaceName,
-      //     nameBlock: todo.nameBlock,
-      //     titleTodos: todo.titleTodos,
-      //     teg: todo.teg,
-      //     userId: todo.userId,
-      //   });
-      // });
-
-      // // Преобразуем объект в массив
-      // const blocksArray = Object.values(blocksMap);
-
       setBlocks(await ArrayUpdater(theme?.id));
-      // console.log(blocksArray);
     } catch (error) {
       console.error(error);
     }
@@ -152,15 +129,10 @@ const TodosContent = () => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   fetchData();
-  // }, [SpaceContext?.activeSpace]);
-
   useEffect(() => {
     const savedPositions = localStorage.getItem("positions");
     if (savedPositions) {
       setPositions(JSON.parse(savedPositions));
-      // console.log("positions=", savedPositions)
     }
   }, []);
 
@@ -173,7 +145,6 @@ const TodosContent = () => {
         className={`container flex w-full pr-9 pb-9 h-min `}
       >
         {blocks
-
           .filter((block) => {
             return (
               SpaceContext?.activeSpace === "All" ||
@@ -324,7 +295,10 @@ const TodosContent = () => {
                             : ""
                         }`}
                       >
-                        <AddNewTaskComnponent nameBlock={block[0].nameBlock} spaceName={block[0].spaceName} />
+                        <AddNewTaskComnponent
+                          nameBlock={block[0].nameBlock}
+                          spaceName={block[0].spaceName}
+                        />
                       </section>
                     </div>
                   </section>

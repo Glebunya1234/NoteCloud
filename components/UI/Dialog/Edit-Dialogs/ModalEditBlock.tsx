@@ -111,10 +111,12 @@ const EditBlockModal: React.FC<{
         />
 
         <span className="label-text ">
-          Select space (shift + wheel up/down = scroll) or create a new one
+          Select space (<kbd className="kbd kbd-xs">Shift</kbd> +
+          <kbd className="kbd kbd-xs">Wheel Up/Down</kbd> = scroll) or create a
+          new one
         </span>
 
-        <ul className="settingForNavSpace snap-x snap-mandatory w-full  pb-2 flex flex-row  items-center overflow-scroll overflow-y-hidden ">
+        <ul className="settingForNavSpace mt-1 snap-x snap-mandatory w-full   flex flex-row  items-center overflow-scroll overflow-y-hidden ">
           <li id={`${0}`} className="mr-2 snap-start">
             <button
               className="btn btn-ghost py-2 px-4 flex justify-center items-center h-full border-[#3a393c] rounded-[8px]"
@@ -182,7 +184,7 @@ const EditBlockModal: React.FC<{
         </p>
 
         {activeDiv ? (
-          <div className="mb-3 flex flex-col">
+          <div className="flex flex-col">
             <span className="label-text">Please enter a new name</span>
             <div className="w-full flex flex-row justify-around items-center">
               <input
@@ -209,9 +211,9 @@ const EditBlockModal: React.FC<{
           <></>
         )}
 
-        <form method="dialog" className="mt-4 w-full">
+        <form method="dialog" className=" w-full">
           <button
-            className="btn btn-square bg-transparent border-[#3a393c] w-full hover:bg-bg-mydurkgrey"
+            className="btn btn-square mt-3 bg-transparent border-[#3a393c] w-full hover:bg-bg-mydurkgrey"
             onClick={UpdateBlockNameFunc}
           >
             Save change

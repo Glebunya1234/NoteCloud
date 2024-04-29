@@ -127,10 +127,10 @@ const AddBlockModal = () => {
         </div>
 
         <span className="label-text ">
-          Select space (shift + wheel up/down = scroll) or create a new one
+          Select space (<kbd className="kbd kbd-xs">Shift</kbd> + <kbd className="kbd kbd-xs">Wheel Up/Down</kbd> = scroll)  or create a new one
         </span>
 
-        <ul className="settingForNavSpace snap-x snap-mandatory w-full mb-2 pb-2 flex flex-row  items-center overflow-scroll overflow-y-hidden ">
+        <ul className="settingForNavSpace mt-1 snap-x snap-mandatory w-full  flex flex-row  items-center overflow-scroll overflow-y-hidden ">
           <li id={`${0}`} className="mr-2 snap-start">
             <button
               className="btn btn-ghost py-2 px-4 flex justify-center items-center h-full border-[#3a393c] rounded-[8px]"
@@ -189,7 +189,7 @@ const AddBlockModal = () => {
             </button>
           </li>
         </ul>
-        <p className="my-2 text-xs truncate overflow-hidden text-ellipsis flex justify-end">
+        <p className="text-xs truncate overflow-hidden text-ellipsis flex justify-end">
           Space selected: "
           <p className="truncate overflow-hidden text-ellipsis">
             {activeSpace}
@@ -198,7 +198,7 @@ const AddBlockModal = () => {
         </p>
 
         {activeDiv ? (
-          <div className="mb-3 flex flex-col">
+          <div className=" flex flex-col">
             <span className="label-text">Please enter a new name</span>
             <div className="w-full flex flex-row justify-around items-center">
               <input
@@ -227,7 +227,7 @@ const AddBlockModal = () => {
 
         <form method="dialog">
           <button
-            className="btn btn-square bg-transparent border-[#3a393c] w-full text-center hover:bg-bg-mydurkgrey"
+            className="btn btn-square bg-transparent mt-3 border-[#3a393c] w-full text-center hover:bg-bg-mydurkgrey"
             onClick={AddNewBlockButton}
           >
             Add new block
