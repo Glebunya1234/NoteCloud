@@ -32,7 +32,7 @@ const AddBlockModal = () => {
   const [IsCreatednewSpace, setIsCreatednewSpace] = useState<boolean>(false);
   const [newSPName, setNewSPName] = useState<string>("");
   const [targetValue, setTargetValue] = useState<string>("");
-  const [value, setValue] = useState<Dayjs | null>(dayjs("2022-04-17"));
+  const [deadLine, setDeadLine] = useState<Dayjs | null>(dayjs(""));
   //-----------------------UseContext----------------------//
   const ContextArraSP = useContext(ArraySpaceNamesContex);
   const dataContext = useContext(NavButSet);
@@ -65,13 +65,17 @@ const AddBlockModal = () => {
 
   const AddNewBlockButton = () => {
     if (taskname.trim() !== "" && blockname.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, blockname, taskname, activeSpace).then(
-        async () => {
-          updateContext?.onTaskAdded();
-          showSuccessToast("The block has been created!");
-          ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
-        }
-      );
+      AddNewTaskInBlock(
+        theme?.id,
+        blockname,
+        taskname,
+        activeSpace,
+        `${deadLine}`
+      ).then(async () => {
+        updateContext?.onTaskAdded();
+        showSuccessToast("The block has been created!");
+        ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
+      });
     } else {
       showErrorToast("The block was not created!");
     }
@@ -237,10 +241,11 @@ const AddBlockModal = () => {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <span className="label-text">Please set a deadline</span>
           <DateTimeField
-            value={value}
+            value={deadLine}
+            format="L HH:mm"
             className="rounded-lg w-full  h-12 flex justify-center   hover:bg-bg-mydurkgrey transition-all ease-linear "
             sx={styleDatePicker.datePicker}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={(newValue) => setDeadLine(newValue)}
           />
         </LocalizationProvider>
 

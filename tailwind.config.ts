@@ -24,7 +24,9 @@ const config: Config = {
         'bg-myOrange': '#fbbd23',
       },
 
-
+      divider:{
+        'black':'#000000'
+      },
       width: {
         'w-900': '900px',
         'w-300': '300px',

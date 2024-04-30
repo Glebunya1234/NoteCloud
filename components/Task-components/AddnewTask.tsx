@@ -15,10 +15,17 @@ const AddNewTaskComnponent: React.FC<{
 
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
+
   const handleClickAddButton = () => {
     setTaskname("");
     if (taskname.trim() !== "" && nameBlock.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, nameBlock, taskname,spaceName).then(() => {
+      AddNewTaskInBlock(
+        theme?.id,
+        nameBlock,
+        taskname,
+        spaceName,
+        `${new Date()}`
+      ).then(() => {
         updateContext?.onTaskAdded();
         showSuccessToast("The task has been created!");
       });

@@ -19,6 +19,7 @@ export const ArrayUpdater = async (theme: string): Promise<TodosData[][]> => {
             blocksMap[todo.nameBlock].push({
                 spaceName: todo.spaceName,
                 nameBlock: todo.nameBlock,
+                deadLine: todo.deadLine,
                 titleTodos: todo.titleTodos,
                 teg: todo.teg,
                 userId: todo.userId,

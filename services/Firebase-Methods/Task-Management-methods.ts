@@ -1,4 +1,4 @@
-import { collection, deleteDoc, deleteField, doc, getDocs, limit, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore";
+import { Timestamp, collection, deleteDoc, deleteField, doc, getDocs, limit, orderBy, query, setDoc, updateDoc, where } from "firebase/firestore";
 import { mydatabase } from "@services/Firebase-Config/firebaseConfig";
 import type { SpaceNamesbyUser, TodosData } from "@/types/Сollection-Todoes-interfaces/types";
 
@@ -21,8 +21,9 @@ export async function readDocTodo(userID: string): Promise<TodosData[]> {
         // doc.data() is never undefined for query doc snapshots
         const todoData = doc.data() as TodosData; // Приводим тип данных к интерфейсу Todo
         todos.push(todoData);
+
     });
-    // console.log("i = ", todos)
+    
 
     return todos;
 
@@ -52,14 +53,15 @@ export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]>
 }
 
 //Добавление ЗАДАЧИ если есть блок если нету блока создает новый 
-export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string, spaceName: string) {
+export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string, spaceName: string, deadLine:string) {
 
 
     await setDoc(doc(dataRefTodos), {
         nameBlock: nameBlock, teg: "Medium priority", priority: "3",
         titleTodos: titleTodos, userId: userID,
-        spaceName: spaceName
-
+        spaceName: spaceName,
+        deadLine: Timestamp.fromDate(new Date(`${deadLine}`))
+        // dateExample: Timestamp.fromDate(new Date("December 10, 1815")),
     });
 }
 //Удаление Задачи 

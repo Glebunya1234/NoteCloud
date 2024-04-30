@@ -2,7 +2,7 @@
 import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import "@components/Profile/TodosPage/style.todopage.css";
 import { TodosData } from "@/types/Сollection-Todoes-interfaces/types";
-import { readDocTodo } from "@services/Firebase-Methods/Task-Management-methods";
+
 import { motion, Variants } from "framer-motion";
 
 import { HiPencil } from "react-icons/hi";
@@ -26,6 +26,7 @@ import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog
 import Draggable from "react-draggable";
 import PriorityBadge from "@/components/UI/Badge/Priority-badge";
 import { ArrayUpdater } from "@/utils/ArrayUpdater";
+import { DataFormater } from "@/utils/DataTime-Formater";
 
 const TodosContent = () => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
@@ -36,11 +37,13 @@ const TodosContent = () => {
   const [positions, setPositions] = useState<{
     [key: number]: { x: number; y: number };
   }>({});
+
   const DataContext = useContext(NavButSet);
   const SpaceContext = useContext(NavSpaceNames);
   const theme = useContext(RemoveOrEdit);
 
   //#region Functions
+
   const handleClickOnArticle = (names: string) => {
     if (theme?.ModeEditOrRemove === "edit") {
       setNameBlock(names);
@@ -125,6 +128,8 @@ const TodosContent = () => {
 
   //#endregion
 
+  //#region UseEffect
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -135,6 +140,8 @@ const TodosContent = () => {
       setPositions(JSON.parse(savedPositions));
     }
   }, []);
+
+  //#endregion
 
   return (
     <UpdateArray.Provider value={{ onTaskAdded: fetchData }}>
@@ -268,11 +275,48 @@ const TodosContent = () => {
                                       />
                                     </aside>
                                   </section>
-                                  <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
-                                    <p> 01.02.2024</p>
-                                    <p className="mx-1">-</p>
-                                    <p> 03.03.2024</p>
-                                  </section>
+
+                                  <div className="flex flex-col mt-4 w-full border-opacity-50">
+                                    <section className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
+                                      Created
+                                    </section>
+
+                                    <section className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
+                                      {DataFormater(todo.deadLine)}
+                                    </section>
+                                    <div className="divider divider-neutral my-0"/>
+                                    <section className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
+                                      {DataFormater(todo.deadLine)}
+                                    </section>
+                                    <section className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
+                                      Deadline
+                                    </section>
+
+                                    {/* <div className=" divider-end divider divider-error">
+                                      
+                                    </div> */}
+                                  </div>
+
+                                  {/* <aside className="w-full flex flex-row text-sm ">
+                                  <span className="badge badge-outline mr-1  mt-5 py-3">Created:</span>
+                                    <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
+                                      <p className="w-full  truncate overflow-hidden text-center text-ellipsis">
+                                        {DataFormater(todo.deadLine)}
+                                      </p>
+  
+                                  
+                                    </section>
+                               </aside>
+                               <aside className="w-full flex flex-row text-sm ">
+                                  <span className="badge badge-outline mr-1  mt-5 py-3">Deadline:</span>
+                                    <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
+                                      <p className="w-full  truncate overflow-hidden text-center text-ellipsis">
+                                        {DataFormater(todo.deadLine)}
+                                      </p>
+  
+                         
+                                    </section>
+                               </aside> */}
                                 </div>
                               </nav>
                             </motion.div>
