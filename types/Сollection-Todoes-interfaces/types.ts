@@ -7,6 +7,7 @@ export type TodosData = {
   nameBlock: string;
   titleTodos: string;
   deadLine: Timestamp;
+  created: Timestamp;
   teg: string;
   userId: string;
 };

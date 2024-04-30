@@ -23,7 +23,7 @@ export async function readDocTodo(userID: string): Promise<TodosData[]> {
         todos.push(todoData);
 
     });
-    
+
 
     return todos;
 
@@ -53,13 +53,14 @@ export async function readSpaceName(userID: string): Promise<SpaceNamesbyUser[]>
 }
 
 //Добавление ЗАДАЧИ если есть блок если нету блока создает новый 
-export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string, spaceName: string, deadLine:string) {
+export async function AddNewTaskInBlock(userID: string, nameBlock: string, titleTodos: string, spaceName: string, deadLine: string) {
 
 
     await setDoc(doc(dataRefTodos), {
         nameBlock: nameBlock, teg: "Medium priority", priority: "3",
         titleTodos: titleTodos, userId: userID,
         spaceName: spaceName,
+        created: new Date(),
         deadLine: Timestamp.fromDate(new Date(`${deadLine}`))
         // dateExample: Timestamp.fromDate(new Date("December 10, 1815")),
     });
@@ -140,7 +141,7 @@ const priorityMap: Record<string, number> = {
     "Low priority": 4,
     "Lowest priority": 5
 };
-export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
+export async function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string, deadLine: string) {
     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
     const querySnapshot = await getDocs(q);
 
@@ -148,29 +149,7 @@ export async function UpdateTask(userID: string, nameBlock: string, titleTodos: 
         const docRef = doc(dataRefTodos, documentSnapshot.id);
         const prior = priorityMap[titlePriority] || 3;
 
-        await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority, priority: prior });
+        await updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority, priority: prior, deadLine: Timestamp.fromDate(new Date(`${deadLine}`)) });
     });
 }
 
-// // Изменение приоритета задачи
-// export function UpdateTask(userID: string, nameBlock: string, titleTodos: string, newtitleTodos: string, titlePriority: string) {
-//     const q = query(dataRefTodos, where('userId', '==', userID), where('nameBlock', '==', nameBlock), where('titleTodos', '==', titleTodos));
-
-//     // Get the documents that match the query
-//     getDocs(q)
-//         .then((querySnapshot) => {
-//             // Map through the documents and create an array of update promises
-//             const updatePromises = querySnapshot.docs.map((documentSnapshot) => {
-//                 const docRef = doc(dataRefTodos, documentSnapshot.id);
-//                 // Use the document reference to update the document
-//                 return updateDoc(docRef, { titleTodos: newtitleTodos, teg: titlePriority });
-//             });
-
-//             // Wait for all update promises to resolve
-//             return Promise.all(updatePromises);
-//         })
-//         .catch((error) => {
-//             // Handle errors here
-//             console.error('Error updating task:', error);
-//         });
-// }

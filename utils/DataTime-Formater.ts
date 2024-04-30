@@ -1,20 +1,11 @@
-import { orange } from "@mui/material/colors";
+
+import { months } from "@/types/ColorScheme/ColorScheme-types";
 import { Timestamp } from "firebase/firestore";
+import dayjs, { Dayjs } from "dayjs";
 
 
-export const months: string[] = [
-    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-];
 
-export const color = {
-    green: "rgb(81,255,65)",
-    orange: "rgb(255,146,44)",
-    red: "rgb(255,57,57)",
-
-}
-
-export const DataFormater = (timestamp: Timestamp): string => {
+export const DataFormaterToString = (timestamp: Timestamp): string => {
     const date: Date = timestamp.toDate();
 
 
@@ -34,57 +25,26 @@ export const DataFormater = (timestamp: Timestamp): string => {
     return `${month} - ${day} - ${date.getFullYear()} - ${timeFormat}`;
 };
 
-export const SetColorIndicator = (timestamp: Timestamp, NowDate: Date): string => {
+
+export const DataFormaterToDayjs = (timestamp: Timestamp): Dayjs => {
     const date: Date = timestamp.toDate();
-    const year: number = date.getFullYear();
-    const month: number = date.getMonth() + 1; 
+  
+    const month: string = dayjs(date).format('MMM'); // Форматируем месяц в сокращенном формате (например, 'Jan')
     const day: number = date.getDate();
-    const timestampHours: number = date.getHours();
-    const timestampMinutes: number = date.getMinutes();
+    const year: number = date.getFullYear();
+    const hours: number = date.getHours();
+    const minutes: number = date.getMinutes();
+  
+    // Форматируем минуты с ведущим нулем, если нужно
+    const formattedMinutes: string = (minutes < 10 ? '0' : '') + minutes.toString();
+  
+    // Форматируем дату и время в строку в формате 'MMM DD YYYY HH:mm'
+    const formattedDate: string = `${month} ${day} ${year} ${hours}:${formattedMinutes}`;
+  
+    // Возвращаем объект Dayjs, созданный из отформатированной строки
+    return dayjs(formattedDate);
+  };
 
-    const nowYear: number = NowDate.getFullYear();
-    const nowMonth: number = NowDate.getMonth() + 1; 
-    const nowDay: number = NowDate.getDate();
-    const nowHours: number = NowDate.getHours();
-    const nowMinutes: number = NowDate.getMinutes();
-
-    if (year > nowYear) {
-        return color.green; 
-    } else if (year < nowYear) {
-        return color.red;
-    }
-    else {
-        
-        if (month > nowMonth) {
-            return color.green; 
-        } else if (month < nowMonth) {
-            return color.red; 
-        }
-        else {
-           
-            if (day > nowDay) {
-                return color.green; 
-            } else if (day < nowDay) {
-                return color.red; 
-            }
-            else
-                if (timestampHours < nowHours) {
-                    return color.red; 
-                } else if (timestampHours > nowHours) {
-                    return color.orange; 
-                } else {
-            
-                    if (timestampMinutes < nowMinutes) {
-                        return color.red; 
-                    } else if (timestampMinutes > nowMinutes) {
-                        return color.orange; 
-                    } else {
-                        return color.orange; 
-                    }
-                }
-        }
-    }
-}
 
 
 

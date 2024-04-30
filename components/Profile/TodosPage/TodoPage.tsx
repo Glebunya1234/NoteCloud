@@ -26,13 +26,20 @@ import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog
 import Draggable from "react-draggable";
 import PriorityBadge from "@/components/UI/Badge/Priority-badge";
 import { ArrayUpdater } from "@/utils/ArrayUpdater";
-import { DataFormater, SetColorIndicator } from "@/utils/DataTime-Formater";
+import {
+  DataFormaterToDayjs,
+  DataFormaterToString,
+} from "@/utils/DataTime-Formater";
+import { SetColorIndicator } from "@/utils/SetColorIndicator";
+import { Timestamp } from "firebase/firestore";
+import dayjs, { Dayjs } from "dayjs";
 
 const TodosContent = () => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
   const [isChecked, setIsChecked] = useState(false);
   const [BlockName, setNameBlock] = useState("");
   const [nametitle, setNametitle] = useState<string>("");
+  const [deadLineEdit, setDeadLineEdit] = useState<Dayjs>(dayjs(""));
   const [priorityTitle, setPriorityTitle] = useState<string>("");
   const [positions, setPositions] = useState<{
     [key: number]: { x: number; y: number };
@@ -73,12 +80,14 @@ const TodosContent = () => {
   const handleClickChangeTask = (
     namesBlock: string,
     titleTodo: string,
+    deadLine: Timestamp,
     teg: string
   ) => {
     const f = namesBlock;
     setNameBlock(f);
     setNameBlock(f);
     setNametitle(titleTodo),
+      setDeadLineEdit(DataFormaterToDayjs(deadLine)),
       setPriorityTitle(teg),
       openAModalWindowbyID("EditTaskDialog");
   };
@@ -215,23 +224,20 @@ const TodosContent = () => {
                       >
                         {block.map((todo, todoIndex) => (
                           <motion.li
-                            className={`item flex flex-row-reverse  ${
-                              todo.titleTodos === "Task 1" ? "" : ""
-                            }`}
+                            className="item flex flex-row-reverse"
                             variants={item}
                             key={todoIndex}
                           >
-                            {/* {todo.titleTodos === "Old Task" && (
-                              <p className="w-1 h-auto bg-[rgb(81,255,65)] mt-3 mb-1 rounded-l-full" />
-                            )} */}
-                           
-                            {/* <p className="w-1 h-auto bg-[rgb(255,146,44)] mt-3 mb-1 rounded-l-full" /> */}
-                            <p
-                              className={`w-1 h-auto bg-[${SetColorIndicator(
-                                todo.deadLine,
-                                new Date()
-                              )}] mt-3 mb-1 rounded-l-full`}
-                            />
+                            {todo.created ? (
+                              <aside
+                                className={`w-1 h-auto bg-[${SetColorIndicator(
+                                  todo.deadLine,
+                                  new Date()
+                                )}] mt-3 mb-1 rounded-l-full`}
+                              />
+                            ) : (
+                              <></>
+                            )}
                             <motion.div
                               whileHover={animationVariants.hover}
                               transition={animationTransition}
@@ -265,6 +271,7 @@ const TodosContent = () => {
                                           handleClickChangeTask(
                                             block[0].nameBlock,
                                             todo.titleTodos,
+                                            todo.deadLine,
                                             todo.teg
                                           );
                                         }}
@@ -281,30 +288,35 @@ const TodosContent = () => {
                                     </aside>
                                   </section>
 
-                                  <section className="flex flex-col mt-4 w-full border-opacity-50">
-                                    <span className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
-                                      Created
-                                    </span>
+                                  {todo.created ? (
+                                    <section className="flex flex-col mt-4 w-full border-opacity-50">
+                                      <span className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
+                                        Created
+                                      </span>
 
-                                    <aside className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
-                                      {DataFormater(todo.deadLine)}
-                                    </aside>
+                                      <aside className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
+                                        {DataFormaterToString(todo.created)}
+                                      </aside>
 
-                                    <div className="divider divider-neutral my-0" />
+                                      <div className="divider divider-neutral my-0" />
 
-                                    <aside className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
-                                      {DataFormater(todo.deadLine)}
-                                    </aside>
-                                    <span className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
-                                      Deadline
-                                    </span>
-                                  </section>
+                                      <aside className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
+                                        {DataFormaterToString(todo.deadLine)}
+                                      </aside>
+                                      <span className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
+                                        Deadline
+                                      </span>
+                                    </section>
+                                  ) : (
+                                    <></>
+                                  )}
                                 </div>
                               </nav>
                             </motion.div>
                             <EditTaskDialog
                               blockName={BlockName}
                               oldtaskName={nametitle}
+                              deadLineProp={deadLineEdit}
                               priorityTitle={priorityTitle}
                             />
                           </motion.li>
