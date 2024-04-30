@@ -50,6 +50,7 @@ const AddBlockModal = () => {
     setTargetValue("");
     setNewSPName("");
     setIsCreatednewSpace(false);
+    setDeadLine(dayjs(""));
   };
 
   const ClickSpaceFunc = (newSPName: string) => {
@@ -245,7 +246,7 @@ const AddBlockModal = () => {
             format="L HH:mm"
             className="rounded-lg w-full  h-12 flex justify-center   hover:bg-bg-mydurkgrey transition-all ease-linear "
             sx={styleDatePicker.datePicker}
-            onChange={(newValue) => {setDeadLine(newValue),console.log(deadLine)}}
+            onChange={(newValue) => setDeadLine(newValue)}
           />
         </LocalizationProvider>
 
