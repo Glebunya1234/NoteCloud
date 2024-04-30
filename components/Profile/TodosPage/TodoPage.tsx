@@ -26,7 +26,7 @@ import AddSpaceDialog from "@/components/UI/Dialog/AddSpaceDialog/AddSpaceDialog
 import Draggable from "react-draggable";
 import PriorityBadge from "@/components/UI/Badge/Priority-badge";
 import { ArrayUpdater } from "@/utils/ArrayUpdater";
-import { DataFormater } from "@/utils/DataTime-Formater";
+import { DataFormater, SetColorIndicator } from "@/utils/DataTime-Formater";
 
 const TodosContent = () => {
   const [blocks, setBlocks] = useState<TodosData[][]>([]);
@@ -221,12 +221,17 @@ const TodosContent = () => {
                             variants={item}
                             key={todoIndex}
                           >
-                            {todo.titleTodos === "Old Task" && (
-                              <p className="w-1 h-auto bg-[rgb(255,57,57)] mt-3 mb-1 rounded-l-full" />
-                            )}
-                            {todo.titleTodos === "New Task" && (
-                              <p className="w-1 h-auto bg-[rgb(255,146,44)] mt-3 mb-1 rounded-l-full" />
-                            )}
+                            {/* {todo.titleTodos === "Old Task" && (
+                              <p className="w-1 h-auto bg-[rgb(81,255,65)] mt-3 mb-1 rounded-l-full" />
+                            )} */}
+                           
+                            {/* <p className="w-1 h-auto bg-[rgb(255,146,44)] mt-3 mb-1 rounded-l-full" /> */}
+                            <p
+                              className={`w-1 h-auto bg-[${SetColorIndicator(
+                                todo.deadLine,
+                                new Date()
+                              )}] mt-3 mb-1 rounded-l-full`}
+                            />
                             <motion.div
                               whileHover={animationVariants.hover}
                               transition={animationTransition}
@@ -276,47 +281,24 @@ const TodosContent = () => {
                                     </aside>
                                   </section>
 
-                                  <div className="flex flex-col mt-4 w-full border-opacity-50">
-                                    <section className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
+                                  <section className="flex flex-col mt-4 w-full border-opacity-50">
+                                    <span className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
                                       Created
-                                    </section>
+                                    </span>
 
-                                    <section className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
+                                    <aside className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
                                       {DataFormater(todo.deadLine)}
-                                    </section>
-                                    <div className="divider divider-neutral my-0"/>
-                                    <section className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
+                                    </aside>
+
+                                    <div className="divider divider-neutral my-0" />
+
+                                    <aside className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
                                       {DataFormater(todo.deadLine)}
-                                    </section>
-                                    <section className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
+                                    </aside>
+                                    <span className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
                                       Deadline
-                                    </section>
-
-                                    {/* <div className=" divider-end divider divider-error">
-                                      
-                                    </div> */}
-                                  </div>
-
-                                  {/* <aside className="w-full flex flex-row text-sm ">
-                                  <span className="badge badge-outline mr-1  mt-5 py-3">Created:</span>
-                                    <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
-                                      <p className="w-full  truncate overflow-hidden text-center text-ellipsis">
-                                        {DataFormater(todo.deadLine)}
-                                      </p>
-  
-                                  
-                                    </section>
-                               </aside>
-                               <aside className="w-full flex flex-row text-sm ">
-                                  <span className="badge badge-outline mr-1  mt-5 py-3">Deadline:</span>
-                                    <section className="badge badge-outline  mt-5 py-3  w-full  flex flex-row ">
-                                      <p className="w-full  truncate overflow-hidden text-center text-ellipsis">
-                                        {DataFormater(todo.deadLine)}
-                                      </p>
-  
-                         
-                                    </section>
-                               </aside> */}
+                                    </span>
+                                  </section>
                                 </div>
                               </nav>
                             </motion.div>
