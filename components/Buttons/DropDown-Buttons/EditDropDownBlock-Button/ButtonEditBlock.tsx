@@ -5,10 +5,10 @@ import { HiOutlineTrash, HiPencil } from "react-icons/hi";
 const ButtonEditBlock = () => {
   const theme = useContext(RemoveOrEdit);
   const hendClickDellButton = () => {
-    console.log(theme);
+    // console.log(theme);
     // theme?.setTheme("hover:shadow-white/50");
     theme?.setModeEditOrRemove("edit");
-    console.log(theme);
+    // console.log(theme);
   };
   return (
     <button

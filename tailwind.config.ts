@@ -22,6 +22,10 @@ const config: Config = {
         'bg-myBlueSky': '#baffff',
         'bg-myRedPink': '#f87272',
         'bg-myOrange': '#fbbd23',
+        'green-indicator':'#51ff41',
+        'orange-indicator':'#FF922C',
+        'red-indicator':'#ff3939',
+       
       },
 
       divider:{

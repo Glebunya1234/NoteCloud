@@ -9,6 +9,7 @@ export const SetColorIndicator = (timestamp: Timestamp, NowDate: Date): string =
     const timestampHours: number = date.getHours();
     const timestampMinutes: number = date.getMinutes();
 
+
     const nowYear: number = NowDate.getFullYear();
     const nowMonth: number = NowDate.getMonth() + 1;
     const nowDay: number = NowDate.getDate();

@@ -13,8 +13,8 @@ export const months: string[] = [
 ];
 
 export const color = {
-  green: "rgb(81,255,65)",
-  orange: "rgb(255,146,44)",
-  red: "rgb(255,57,57)",
-
+  green: "green-indicator",
+  orange: "orange-indicator",
+  red: "red-indicator",
+ 
 }

@@ -229,11 +229,12 @@ const TodosContent = () => {
                             key={todoIndex}
                           >
                             {todo.created ? (
-                              <aside
-                                className={`w-1 h-auto bg-[${SetColorIndicator(
+                              // <div className="w-1  h-auto mt-3 mb-1 rounded-l-full " />
+                              <div
+                                className={`w-1  h-auto mt-3 mb-1 rounded-l-full bg-${SetColorIndicator(
                                   todo.deadLine,
                                   new Date()
-                                )}] mt-3 mb-1 rounded-l-full`}
+                                )} `}
                               />
                             ) : (
                               <></>

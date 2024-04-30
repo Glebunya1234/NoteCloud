@@ -56,7 +56,7 @@ const AddSpaceDialog = () => {
     const Func = async () => {
       try {
         ContextArraSP?.setArraySpaceNames(await SpaceFunc(dataContext?.id));
-        console.log(ContextArraSP?.ArraySpaceCont);
+        // console.log(ContextArraSP?.ArraySpaceCont);
       } catch (error) {
         console.error(error);
       }
