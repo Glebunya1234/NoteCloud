@@ -3,10 +3,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import favicon from "./favicon.ico";
 import { Inter, Poppins, Raleway } from "next/font/google";
+import { Suspense } from "react";
 
 // const inter = Inter({ subsets: ["latin"] });
 
-const fonts = Poppins({ weight: "400", subsets: ["devanagari"] });
+const fonts = Poppins({ weight: "400", subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
   title: "NoteCloud",
@@ -46,10 +47,12 @@ export default function RootLayout({
           content="width=device-width, height=device-height, initial-scale=1"
           key="viewport"
         />
-        <meta name="robots" content="index, nofollow"/>
+        <meta name="robots" content="index, nofollow" />
         <meta name="google" content="notranslate" />
       </head>
-      <body className={fonts.className}>{children}</body>
+      <Suspense fallback={<div>Loading...</div>}>
+        <body className={fonts.className}>{children}</body>
+      </Suspense>
     </html>
   );
 }
