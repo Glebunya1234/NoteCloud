@@ -229,9 +229,8 @@ const TodosContent = () => {
                             key={todoIndex}
                           >
                             {todo.created ? (
-                              // <div className="w-1  h-auto mt-3 mb-1 rounded-l-full " />
                               <div
-                                className={`w-1  h-auto mt-3 mb-1 rounded-l-full bg-${SetColorIndicator(
+                                className={`w-1 flex flex-col h-auto mt-3 mb-1 rounded-l-full bg-${SetColorIndicator(
                                   todo.deadLine,
                                   new Date()
                                 )} `}
@@ -313,6 +312,10 @@ const TodosContent = () => {
                                   )}
                                 </div>
                               </nav>
+                              {/* исправляет какой то баг с цветами  */}
+                              <div className="w-full h-0 bg-green-indicator" />
+                              <div className="w-full h-0 bg-orange-indicator" />
+                              <div className="w-full h-0 bg-red-indicator" />
                             </motion.div>
                             <EditTaskDialog
                               blockName={BlockName}

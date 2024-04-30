@@ -50,7 +50,13 @@ export default function RootLayout({
         <meta name="robots" content="index, nofollow" />
         <meta name="google" content="notranslate" />
       </head>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="w-full h-full justify-center items-center flex">
+            <span className="loading loading-bars loading-lg"></span>
+          </div>
+        }
+      >
         <body className={fonts.className}>{children}</body>
       </Suspense>
     </html>
