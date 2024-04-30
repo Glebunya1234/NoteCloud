@@ -1,13 +1,14 @@
 import { ThemeObject } from "@/types/ColorScheme/ColorScheme-types";
 import { TypeSetState } from "@/types/TypeSetSstateForUseState/type";
+import { SpaceNamesbyUser } from "@/types/Сollection-Todoes-interfaces/types";
 import { Auth } from "firebase/auth";
 import { createContext } from "react";
 
 
 export type HoverContextType = {
     id: string;
-    ModeEditOrRemove: "edit" | "remove" | "none";
-    setModeEditOrRemove: TypeSetState<"edit" | "remove" | "none">;
+    ModeEditOrRemove: "edit" | "remove" | "move" | "none";
+    setModeEditOrRemove: TypeSetState<"edit" | "remove" |  "move" | "none">;
 };
 
 export const RemoveOrEdit = createContext<HoverContextType>({
@@ -25,6 +26,26 @@ export type NavButMenuType = {
 
 export const NavButMenu = createContext<NavButMenuType | undefined>(undefined);
 //-------------------------------------------------------------------------------------//
+
+export type NavSpaceNames = {
+
+    activeSpace: string
+    setActiveSpace: TypeSetState<string>;
+};
+export const NavSpaceNames = createContext<NavSpaceNames | undefined>(undefined);
+//-------------------------------------------------------------------------------------//
+
+
+
+
+export type ArraySpaceNamesContex= {
+
+    ArraySpaceCont: SpaceNamesbyUser[][];
+    setArraySpaceNames: TypeSetState<SpaceNamesbyUser[][]>;
+};
+export const ArraySpaceNamesContex = createContext<ArraySpaceNamesContex | undefined >(undefined);
+//-------------------------------------------------------------------------------------//
+
 
 
 

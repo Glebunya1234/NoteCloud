@@ -23,7 +23,7 @@ import DrawerSide from "./UI/Drawer/Drawer-Side";
 import ButtonDrawer from "./Buttons/Profile-Buttons/ButtonDrawer";
 import ButtonCloseDrawer from "./Buttons/Profile-Buttons/ButtonCloseDrawer";
 import ModalAddBlock from "./UI/Dialog/AddBlockDialog/Modal-Window-AddBlock";
-import DropdownEditBlock from "./UI/DropDown/EditDropDownBlockComponent";
+
 import DeleteTaskButton from "./Buttons/Task-Buttons/DeleteTaskButton";
 
 import ButtonDellBlock from "./Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtomDeleteBlock";
@@ -39,6 +39,7 @@ import ButtonSetNaw from "./Pagination-Navigations/Buttons-SettingsNav/Button-Se
 import TodosContent from "./Profile/TodosPage/TodoPage";
 import SettingsContent from "./Profile/SettingsPage/SettingsPage";
 import HomeContent from "./Profile/HomePage/HomePage";
+import DropdownEditBlock from "./UI/DropDown/EditDropDownBlockComponent";
 
 
 

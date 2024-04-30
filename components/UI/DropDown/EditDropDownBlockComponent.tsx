@@ -7,15 +7,18 @@ import {
 } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { ButtonDellBlock, ButtonEditBlock } from "@/components";
+import ButtonMoveBlock from "@/components/Buttons/DropDown-Buttons/EditDropDownBlock-Button/ButtonEditBlock copy";
+import useMediaQueryHook from "@/hooks/useMediaQueryHook";
 
 const DropdownEditBlock = () => {
+  const shouldSMRender = useMediaQueryHook("(min-width: 768px)", false);
   return (
-    <main className="absolute bottom-0 right-0 h-auto m-5  mb-5 z-50 ">
+    <main className="ml-auto h-auto m-5 mr-9 mb-5 z-50 ">
       <div className="dropdown dropdown-top ">
         <div
           tabIndex={0}
           role="button"
-          className="btn btn-circle btn-active border-0 "
+          className="btn btn-active btn-ghost  btn-circle  border-0 "
         >
           <HiDotsVertical style={{ fontSize: "20px" }} />
         </div>
@@ -27,9 +30,14 @@ const DropdownEditBlock = () => {
           <li className="mb-2">
             <ButtonEditBlock />
           </li>
-          <li>
+          <li className="mb-2">
             <ButtonDellBlock />
           </li>
+          { shouldSMRender && (
+            <li>
+              <ButtonMoveBlock />
+            </li>
+          )}
         </motion.ul>
       </div>
     </main>

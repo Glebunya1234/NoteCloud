@@ -1,7 +1,0 @@
-User-Agent: *
-Allow: /
-
-Disallow: /profile*
-Disallow: /profile?userUid=*
-
-Sitemap: https://note-cloud-five.vercel.app/sitemap.xml

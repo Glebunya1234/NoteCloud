@@ -15,8 +15,8 @@ export const getUser = async (id: string): Promise<MyUser> => {
 export const getOrCreateUser = async (id: string, userData:User_collect_datatype): Promise<MyUser> => {
     
     const uuuu = await userService.getOrCreateUser(id, userData);
-    console.log("id: string, = ",id)
-    console.log("userData = ",userData)
+    // console.log("id: string, = ",id)
+    // console.log("userData = ",userData)
     if (uuuu===null) {
         // Обработка случая, когда userService.getOrCreateUser возвращает null
         throw new Error('User not found or creation failed\nuserService.getOrCreateUser==null');

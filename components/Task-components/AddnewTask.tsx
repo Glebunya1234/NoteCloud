@@ -9,15 +9,23 @@ import { RemoveOrEdit, UpdateArray } from "../Context";
 
 const AddNewTaskComnponent: React.FC<{
   nameBlock: string;
-}> = ({ nameBlock }) => {
+  spaceName: string;
+}> = ({ nameBlock, spaceName }) => {
   const [taskname, setTaskname] = useState("");
 
   const updateContext = useContext(UpdateArray);
   const theme = useContext(RemoveOrEdit);
+
   const handleClickAddButton = () => {
     setTaskname("");
     if (taskname.trim() !== "" && nameBlock.trim() !== "") {
-      AddNewTaskInBlock(theme?.id, nameBlock, taskname).then(() => {
+      AddNewTaskInBlock(
+        theme?.id,
+        nameBlock,
+        taskname,
+        spaceName,
+        `${new Date()}`
+      ).then(() => {
         updateContext?.onTaskAdded();
         showSuccessToast("The task has been created!");
       });

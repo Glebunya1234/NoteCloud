@@ -11,20 +11,31 @@ import {
   UpdateArray,
 } from "@/components/Context";
 import { UpdateTask } from "@/services/Firebase-Methods/Task-Management-methods";
-
+import { DateTimeField } from "@mui/x-date-pickers/DateTimeField";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider/LocalizationProvider";
+import dayjs, { Dayjs } from "dayjs";
 import { useContext, useEffect, useState } from "react";
 import { CgArrowRight } from "react-icons/cg";
 
 import { FiCheck } from "react-icons/fi";
+import { styleDatePicker } from "@/utils/StyleDatePicker";
+import { Timestamp } from "firebase/firestore";
+import {
+  DataFormaterToDayjs,
+  DataFormaterToString,
+} from "@/utils/DataTime-Formater";
 
 const EditTaskDialog: React.FC<{
   oldtaskName: string;
   blockName: string;
   priorityTitle: string;
-}> = ({ oldtaskName, blockName, priorityTitle }) => {
+  deadLineProp: Dayjs;
+}> = ({ oldtaskName, blockName, priorityTitle, deadLineProp }) => {
   const dataContext = useContext(NavButSet);
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");
+  const [deadLine, setDeadLine] = useState<Dayjs | null>(dayjs(""));
   const updateContext = useContext(UpdateArray);
   const [tegButName, setTegButName] =
     useState<ChangeTegButton["tegButName"]>("");
@@ -36,6 +47,7 @@ const EditTaskDialog: React.FC<{
 
   useEffect(() => {
     setNewtaskName(oldtaskName);
+    setDeadLine(deadLineProp);
     setTegButName(priorityTitle);
     setBlockNamess(blockName);
   }, [oldtaskName]);
@@ -47,7 +59,8 @@ const EditTaskDialog: React.FC<{
         blockName,
         oldtaskName,
         newTaskname,
-        tegButName
+        tegButName,
+        `${deadLine}`
       ).then(() => {
         updateContext?.onTaskAdded();
         showSuccessToast("The task has been updated!");
@@ -79,9 +92,20 @@ const EditTaskDialog: React.FC<{
           />
         </div>
 
-        <span className="label-text">Change priority</span>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <span className="label-text">Please set a deadline</span>
+          <DateTimeField
+            value={deadLine}
+            format="L HH:mm"
+            className="rounded-lg w-full  h-12 flex justify-center   hover:bg-bg-mydurkgrey transition-all ease-linear "
+            sx={styleDatePicker.datePicker}
+            onChange={(newValue) => setDeadLine(newValue)}
+          />
+        </LocalizationProvider>
 
-        <section>
+        <span className="label-text mt-2">Change priority</span>
+
+        <section className="">
           <div className="dropdown  dropdown-right mt-2">
             <ChangeTeg.Provider value={value}>
               <div className=" flex items-center">

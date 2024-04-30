@@ -1,3 +1,5 @@
+import { nextui } from '@nextui-org/theme'
+import { text } from 'stream/consumers'
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -5,8 +7,9 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+   
   ],
-  darkMode: `class`,
+
   theme: {
     extend: {
       colors: {
@@ -19,6 +22,10 @@ const config: Config = {
         'bg-myBlueSky': '#baffff',
         'bg-myRedPink': '#f87272',
         'bg-myOrange': '#fbbd23',
+      },
+
+      divider:{
+        'black':'#000000'
       },
       width: {
         'w-900': '900px',
@@ -50,10 +57,10 @@ const config: Config = {
       },
     },
   },
+
   plugins: [require("daisyui")],
   daisyui: {
     themes: ["dark"], // false: only light + dark | true: all themes | array: specific themes like this ["light", "dark", "cupcake"]
-
   },
 }
 export default config
