@@ -46,7 +46,11 @@ const UserPage = () => {
     "https://i.pinimg.com/564x/43/14/0a/43140a3803e5f1b39c1ffac1a35a3ec7.jpg";
 
   const router = useRouter();
+  
+
+  // useSearchParams() !++== 
   const searchParams = useSearchParams();
+
 
   const userUid = searchParams.get("userUid");
 
