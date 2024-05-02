@@ -74,7 +74,7 @@ const AddSpaceDialog = () => {
 
         <span className="label-text">Your spaces</span>
         <ul className="snap-y snap-mandatory max-h-[175px] overflow-y-auto ">
-          <li id={`${0}`} className="mr-2 snap-start">
+          <li id={`${0}`} className="snap-start">
             <div className="snap-end  bg-transparent border-[1px] border-[#3a393c] rounded-[8px] w-full mb-2 flex justify-between items-center h-12 px-5 py-2 ">
               <p className=" truncate overflow-hidden text-ellipsis">All</p>
               <nav className="flex flex-row"></nav>
