@@ -8,6 +8,7 @@ import {
 } from "@/components";
 
 export function ButtonSignIn({ email, password }: EmailAndPassw) {
+  const [isEnter, setEnter] = useState<Boolean>(false);
   const auth = getAuth();
 
   const handleLogIn = () => {
@@ -19,6 +20,7 @@ export function ButtonSignIn({ email, password }: EmailAndPassw) {
         // console.log("authh", auth);
         // showSuccessToast("Successful login!");
         // ...
+        setEnter(true);
       })
       .catch((error) => {
         showErrorToast("Registration error!");
@@ -26,12 +28,17 @@ export function ButtonSignIn({ email, password }: EmailAndPassw) {
           "Check your email and/or password! \n\nMail should be gmail and the password is at least 6 characters",
           2000
         );
+        setEnter(false);
       });
   };
 
   return (
     <button className="btn glass w-90% max-w-xs m-1 " onClick={handleLogIn}>
-      Log In
+      {isEnter ? (
+        <span className="loading loading-bars loading-xs"></span>
+      ) : (
+        "Log In"
+      )}
     </button>
   );
 }
