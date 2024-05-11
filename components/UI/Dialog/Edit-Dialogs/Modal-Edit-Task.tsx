@@ -35,7 +35,7 @@ const EditTaskDialog: React.FC<{
   const dataContext = useContext(NavButSet);
   const [newTaskname, setNewtaskName] = useState<string>("");
   const [blockNamess, setBlockNamess] = useState<string>("");
-  const [deadLine, setDeadLine] = useState<Dayjs | null>(dayjs(""));
+  const [deadLine, setDeadLine] = useState<Dayjs | null>(null);
   const updateContext = useContext(UpdateArray);
   const [tegButName, setTegButName] =
     useState<ChangeTegButton["tegButName"]>("");
@@ -60,7 +60,7 @@ const EditTaskDialog: React.FC<{
         oldtaskName,
         newTaskname,
         tegButName,
-        `${deadLine}`
+        deadLine! ? `${deadLine}` : `${new Date()}`
       ).then(() => {
         updateContext?.onTaskAdded();
         showSuccessToast("The task has been updated!");
