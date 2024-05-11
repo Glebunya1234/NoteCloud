@@ -21,6 +21,7 @@ import { FiCheck } from "react-icons/fi";
 import { HiOutlinePlus } from "react-icons/hi";
 
 import { styleDatePicker } from "@/utils/StyleDatePicker";
+import { Timestamp } from "firebase/firestore";
 
 const AddBlockModal = () => {
   //#region hoocks
@@ -32,7 +33,7 @@ const AddBlockModal = () => {
   const [IsCreatednewSpace, setIsCreatednewSpace] = useState<boolean>(false);
   const [newSPName, setNewSPName] = useState<string>("");
   const [targetValue, setTargetValue] = useState<string>("");
-  const [deadLine, setDeadLine] = useState<Dayjs | null>(dayjs(""));
+  const [deadLine, setDeadLine] = useState<Dayjs | null>(null);
   //-----------------------UseContext----------------------//
   const ContextArraSP = useContext(ArraySpaceNamesContex);
   const dataContext = useContext(NavButSet);
@@ -50,7 +51,7 @@ const AddBlockModal = () => {
     setTargetValue("");
     setNewSPName("");
     setIsCreatednewSpace(false);
-    setDeadLine(dayjs(""));
+    setDeadLine(null);
   };
 
   const ClickSpaceFunc = (newSPName: string) => {
@@ -71,7 +72,7 @@ const AddBlockModal = () => {
         blockname,
         taskname,
         activeSpace,
-        `${deadLine}`
+        deadLine! ? `${deadLine}` : `${new Date()}`
       ).then(async () => {
         updateContext?.onTaskAdded();
         showSuccessToast("The block has been created!");
