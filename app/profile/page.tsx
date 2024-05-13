@@ -264,127 +264,6 @@ const UserPage = () => {
                 {isLoading ? (
                   <div className=" justify-center items-center flex"></div>
                 ) : (
-                  // <>
-                  //   <header
-                  //     className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
-                  //   >
-                  //     {shouldMDRender ? (
-                  //       <header className="w-full h-24 md:flex items-center p-5">
-                  //         {activeMain === "Settings" && (
-                  //           <ButtonSetNaw
-                  //             onButtonClick={handleButtonSetClick}
-                  //           />
-                  //         )}
-                  //         {activeMain === "Todos" && (
-                  //           <>
-                  //             <motion.aside
-                  //               animate={{
-                  //                 y: 0,
-                  //                 opacity: 1,
-                  //               }}
-                  //               initial={{ opacity: 0, y: -200 }}
-                  //               className="overflow-x-auto"
-                  //             >
-                  //               <ArraySpaceNamesContex.Provider
-                  //                 value={valueForSpaceArray}
-                  //               >
-                  //                 <NavSpaceNames.Provider
-                  //                   value={valueForSpace}
-                  //                 >
-                  //                   <SpaceButtons />
-                  //                 </NavSpaceNames.Provider>
-                  //               </ArraySpaceNamesContex.Provider>
-                  //             </motion.aside>
-
-                  //             {/* <SearchInput /> */}
-                  //           </>
-                  //         )}
-                  //         {activeMain === "Todos" && (
-                  //           <>
-                  //             <button
-                  //               className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                  //               onClick={hendClickDellButton}
-                  //             >
-                  //               <FaRegFolder className="text-[18px]" />
-                  //             </button>
-                  //             <button
-                  //               className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                  //               onClick={clearLocalStoragePositions}
-                  //             >
-                  //               <p>Reset positions</p>
-
-                  //               <GrPowerReset className="text-[18px]" />
-                  //             </button>
-                  //           </>
-                  //         )}
-                  //       </header>
-                  //     ) : (
-                  //       // -----------Mobile ---------------
-                  //       <header className="w-full h-24 flex justify-between  items-center p-5">
-                  //         <motion.aside
-                  //           animate={{
-                  //             x: 0,
-                  //             opacity: 1,
-                  //           }}
-                  //           initial={{ opacity: 0, x: 200 }}
-                  //         >
-                  //           <ButtonDrawer />
-                  //         </motion.aside>
-                  //         {activeMain === "Todos" && (
-                  //           <>{/* <SearchInput /> */}</>
-                  //         )}
-                  //         {activeMain === "Settings" && (
-                  //           <ButtonSetNaw
-                  //             onButtonClick={handleButtonSetClick}
-                  //           />
-                  //         )}
-                  //         {activeMain === "Todos" && (
-                  //           <>
-                  //             <motion.aside
-                  //               animate={{
-                  //                 y: 0,
-                  //                 opacity: 1,
-                  //               }}
-                  //               initial={{ opacity: 0, y: -200 }}
-                  //               className="overflow-x-auto mr-2"
-                  //             >
-                  //               <ArraySpaceNamesContex.Provider
-                  //                 value={valueForSpaceArray}
-                  //               >
-                  //                 <NavSpaceNames.Provider
-                  //                   value={valueForSpace}
-                  //                 >
-                  //                   <SpaceButtons />
-                  //                 </NavSpaceNames.Provider>
-                  //               </ArraySpaceNamesContex.Provider>
-                  //             </motion.aside>
-
-                  //             {/* <SearchInput /> */}
-                  //           </>
-                  //         )}
-                  //         {activeMain === "Todos" && (
-                  //           <>
-                  //             <motion.aside
-                  //               animate={{
-                  //                 x: 0,
-                  //                 opacity: 1,
-                  //               }}
-                  //               initial={{ opacity: 0, x: 200 }}
-                  //             >
-                  //               <button
-                  //                 className="btn btn-ghost my-1  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                  //                 onClick={hendClickDellButton}
-                  //               >
-                  //                 <FaRegFolder className="text-[18px]" />
-                  //               </button>
-                  //             </motion.aside>
-                  //           </>
-                  //         )}
-                  //       </header>
-                  //     )}
-                  //   </header>
-                  // </>
-
                   <header
                     className={`w-full border-b-[1px] border-${importTheme.borderColor}`}
                   >
@@ -432,25 +311,23 @@ const UserPage = () => {
                       )}
 
                       {shouldMDRender ? (
-                        <>
-                          <motion.aside
-                            animate={{
-                              x: 0,
-                              opacity: 1,
-                            }}
-                            initial={{ opacity: 0, x: 200 }}
-                            className="ml-auto min-w-[166px]"
+                        <motion.aside
+                          animate={{
+                            x: 0,
+                            opacity: 1,
+                          }}
+                          initial={{ opacity: 0, x: 200 }}
+                          className="ml-auto min-w-[166px]"
+                        >
+                          <button
+                            className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
+                            onClick={clearLocalStoragePositions}
                           >
-                            <button
-                              className="btn btn-ghost my-1 ml-auto  rounded-lg md:rounded-2xl flex justify-between md:justify-start normal-case items-center"
-                              onClick={clearLocalStoragePositions}
-                            >
-                              <p>Reset positions</p>
+                            <p>Reset positions</p>
 
-                              <GrPowerReset className="text-[18px]" />
-                            </button>
-                          </motion.aside>
-                        </>
+                            <GrPowerReset className="text-[18px]" />
+                          </button>
+                        </motion.aside>
                       ) : (
                         <></>
                       )}
