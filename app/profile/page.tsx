@@ -310,7 +310,7 @@ const UserPage = () => {
                         </motion.aside>
                       )}
 
-                      {shouldMDRender ? (
+                      {activeMain === "Todos" && shouldMDRender ?  (
                         <motion.aside
                           animate={{
                             x: 0,
