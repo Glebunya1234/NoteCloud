@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Prew  from "@assets/Prew.png";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,7 @@ export const metadata: Metadata = {
     title: "NoteCloud",
     description: "The project is a web application designed for creating, editing, and deleting scheduled tasks.",
     type: "website",
-    images: "../assets/Prew.png",
+    images: `${Prew}`,
     url: "https://note-cloud-five.vercel.app",
   },
 };
