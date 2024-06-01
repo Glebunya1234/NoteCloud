@@ -1,9 +1,6 @@
-import { url } from "inspector";
 import "./globals.css";
 import type { Metadata } from "next";
-import favicon from "./favicon.ico";
-import { Inter, Poppins, Raleway } from "next/font/google";
-import { Suspense } from "react";
+import { Poppins } from "next/font/google";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +23,10 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "NoteCloud",
-    description: "Created by Glebunya1234",
+    description: "The project is a web application designed for creating, editing, and deleting scheduled tasks.",
     type: "website",
-
-    url: "https://note-cloud-five.vercel.app", // Замініть на реальний URL вашої сторінки
+    images: "https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg",
+    url: "https://note-cloud-five.vercel.app",
   },
 };
 
@@ -47,26 +44,19 @@ export default function RootLayout({
           content="width=device-width, height=device-height, initial-scale=1"
           key="viewport"
         />
-        <meta property="og:type" content="website" />
+        {/* <meta property="og:type" content="website" />
         <meta property="og:url" content="https://note-cloud-five.vercel.app" />
         <meta property="og:title" content="The NoteCloud" />
         <meta
           property="og:description"
           content="The NoteCloud, project is a web application designed for creating, editing, and deleting scheduled tasks."
         />
-        <meta property="og:image" content="https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg" />
+        <meta property="og:image" content="https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg" /> */}
         <meta name="robots" content="index, nofollow" />
         <meta name="google" content="notranslate" />
       </head>
-      {/* <Suspense
-        fallback={
-          <div className="w-full h-full justify-center items-center flex">
-            <span className="loading loading-bars loading-lg"></span>
-          </div>
-        }
-      > */}
+
       <body className={fonts.className}>{children}</body>
-      {/* </Suspense> */}
     </html>
   );
 }
