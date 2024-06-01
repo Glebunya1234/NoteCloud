@@ -47,6 +47,14 @@ export default function RootLayout({
           content="width=device-width, height=device-height, initial-scale=1"
           key="viewport"
         />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://note-cloud-five.vercel.app" />
+        <meta property="og:title" content="The NoteCloud" />
+        <meta
+          property="og:description"
+          content="The NoteCloud, project is a web application designed for creating, editing, and deleting scheduled tasks."
+        />
+        <meta property="og:image" content="https://images.wallpaperscraft.ru/image/single/iabloki_knigi_ochki_215087_3840x2400.jpg" />
         <meta name="robots" content="index, nofollow" />
         <meta name="google" content="notranslate" />
       </head>
@@ -57,7 +65,7 @@ export default function RootLayout({
           </div>
         }
       > */}
-        <body className={fonts.className}>{children}</body>
+      <body className={fonts.className}>{children}</body>
       {/* </Suspense> */}
     </html>
   );
