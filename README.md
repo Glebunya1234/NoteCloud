@@ -34,6 +34,7 @@ The NoteCloud - project is a web application designed to simplify task managemen
   <img src="assets/Frame 1.png" alt="NoteClound Logo">
 </p>
 
+ <h6 align="right">*Old version of the project</h6>
 ## 🔧Installation
 
 1. Cloning the repository
