@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     title: "NoteCloud",
     description: "The project is a web application designed for creating, editing, and deleting scheduled tasks.",
     type: "website",
-    images: "https://github.com/Glebunya1234/NoteCloud/blob/master/assets/Prew.png?raw=true",
+    images: "../assets/Prew.png",
     url: "https://note-cloud-five.vercel.app",
   },
 };
