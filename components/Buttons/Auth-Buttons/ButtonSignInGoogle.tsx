@@ -18,6 +18,7 @@ import {
   User,
   signInWithRedirect,
   getAuth,
+  signInWithPopup,
 } from "firebase/auth";
 import { getOrCreateUser2 } from "@/services/Firebase-Methods/ReadDataForUser";
 
@@ -28,7 +29,7 @@ export default function ButtonGoogle() {
   const auth = getAuth();
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider();
-    signInWithRedirect(authh, provider);
+    signInWithPopup(authh, provider);
   };
 
   const handleSignInWithGoogle = () => {
