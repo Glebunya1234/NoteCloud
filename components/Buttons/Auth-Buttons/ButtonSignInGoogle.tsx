@@ -51,7 +51,7 @@ export default function ButtonGoogle() {
 
         getOrCreateUser2(userData.userID, userData).then(() => {
           setEnter(true);
-          router.push(`/profile?userUid=${userData.userID}`);
+          router.replace(`/profile?userUid=${userData.userID}`);
 
           // showSuccessToast("Successful login!");
         });
