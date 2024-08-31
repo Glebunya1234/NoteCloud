@@ -199,135 +199,134 @@ const TodosContent = () => {
                     }
                   >
                     <div
-                      className={`min-w-[250px] w-[250px] m-5 h-auto flex flex-col justify-between ${DataContext?.importTheme.CardColor} shadow-xl rounded-3xl overflow-hidden`}
+                      className={`min-w-[250px] md:resize-x  w-[250px] m-5  h-auto flex flex-col  justify-between ${DataContext?.importTheme.CardColor} shadow-xl rounded-3xl overflow-hidden`}
                     >
-                      {/* Name of block */}
-                      <section
-                        className={`z-[2] flex flex-col items-center ${DataContext?.importTheme.CardColor}`}
-                      >
-                        <div className="w-full px-4 pt-4 pb-2">
-                          <h2 className="text-black overflow-hidden text-ellipsis text-lg font-bold">
-                            {block[0].nameBlock}
-                          </h2>
-                        </div>
-                      </section>
+                      <section className="flex flex-col justify-start">
+                        <section
+                          className={`z-[2] flex flex-col items-center ${DataContext?.importTheme.CardColor}`}
+                        >
+                          <div className="w-full px-4 pt-4 pb-2">
+                            <h2 className="text-black overflow-hidden text-ellipsis text-lg font-bold">
+                              {block[0].nameBlock}
+                            </h2>
+                          </div>
+                        </section>
 
-                      <motion.ul
-                        variants={container}
-                        initial="hidden"
-                        animate="visible"
-                        className={`container ${
-                          theme?.ModeEditOrRemove !== "none"
-                            ? "pointer-events-none"
-                            : ""
-                        } z-[2] ${DataContext?.importTheme.CardColor}`}
-                      >
-                        {block.map((todo, todoIndex) => (
-                          <motion.li
-                            className="item flex flex-row-reverse"
-                            variants={item}
-                            key={todoIndex}
-                          >
-                            {todo.created ? (
-                              <div
-                                className={`w-1 flex flex-col h-auto mt-3 mb-1 rounded-l-full bg-${SetColorIndicator(
-                                  todo.deadLine,
-                                  new Date()
-                                )} `}
-                              />
-                            ) : (
-                              <></>
-                            )}
-                            <motion.div
-                              whileHover={animationVariants.hover}
-                              transition={animationTransition}
-                              className="collapse py-1 collapse-arrow overflow-visible text-black"
+                        <motion.ul
+                          variants={container}
+                          initial="hidden"
+                          animate="visible"
+                          className={`container ${
+                            theme?.ModeEditOrRemove !== "none"
+                              ? "pointer-events-none"
+                              : ""
+                          } z-[2] ${DataContext?.importTheme.CardColor}`}
+                        >
+                          {block.map((todo, todoIndex) => (
+                            <motion.li
+                              className="item flex flex-row-reverse"
+                              variants={item}
+                              key={todoIndex}
                             >
-                              <input type="checkbox" name="my-accordion-1" />
-                              {/* collapse-title */}
-                              <div className=" collapse-title border-t-[1px] border-[rgba(26,26,26,0.1)] text-xl w-full flex items-center justify-between font-medium overflow-hidden text-ellipsis ">
-                                <p className="font-medium overflow-hidden text-ellipsis">
-                                  {todo.titleTodos}
-                                </p>
-                                <PriorityBadge Priority={`${todo.teg}`} />
-                              </div>
-
-                              {/* collapse-content */}
-                              <nav className="collapse-content ">
-                                <div className="flex flex-col items-center">
-                                  {/* Set priority */}
-
-                                  <section className="flex justify-between mt-2 w-full">
-                                    <aside className="flex items-center w-full">
-                                      <span className="badge bg-transparent py-3 text-black">
-                                        {todo.teg}
-                                      </span>
-                                    </aside>
-
-                                    <aside className="flex items-center ">
-                                      <button
-                                        className="btn btn-circle btn-xs mx-2 "
-                                        onClick={() => {
-                                          handleClickChangeTask(
-                                            block[0].nameBlock,
-                                            todo.titleTodos,
-                                            todo.deadLine,
-                                            todo.teg
-                                          );
-                                        }}
-                                      >
-                                        <HiPencil />
-                                      </button>
-                                      <DeleteTaskButton
-                                        nameBlock={block[0].nameBlock}
-                                        titleTodo={todo.titleTodos}
-                                        onCheckedFunc={() => {
-                                          setIsChecked(!isChecked);
-                                        }}
-                                      />
-                                    </aside>
-                                  </section>
-
-                                  {todo.created ? (
-                                    <section className="flex flex-col mt-4 w-full border-opacity-50">
-                                      <span className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
-                                        Created
-                                      </span>
-
-                                      <aside className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
-                                        {DataFormaterToString(todo.created)}
-                                      </aside>
-
-                                      <div className="divider divider-neutral my-0" />
-
-                                      <aside className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
-                                        {DataFormaterToString(todo.deadLine)}
-                                      </aside>
-                                      <span className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
-                                        Deadline
-                                      </span>
-                                    </section>
-                                  ) : (
-                                    <></>
-                                  )}
+                              {todo.created ? (
+                                <div
+                                  className={`w-1 flex flex-col h-auto mt-3 mb-1 rounded-l-full bg-${SetColorIndicator(
+                                    todo.deadLine,
+                                    new Date()
+                                  )} `}
+                                />
+                              ) : (
+                                <></>
+                              )}
+                              <motion.div
+                                whileHover={animationVariants.hover}
+                                transition={animationTransition}
+                                className="collapse py-1 collapse-arrow overflow-visible text-black"
+                              >
+                                <input type="checkbox" name="my-accordion-1" />
+                                {/* collapse-title */}
+                                <div className=" collapse-title border-t-[1px] border-[rgba(26,26,26,0.1)] text-xl w-full flex items-center justify-between font-medium overflow-hidden text-ellipsis ">
+                                  <p className="font-medium overflow-hidden text-ellipsis">
+                                    {todo.titleTodos}
+                                  </p>
+                                  <PriorityBadge Priority={`${todo.teg}`} />
                                 </div>
-                              </nav>
-                              {/* исправляет какой то баг с цветами  */}
-                              <div className="w-full h-0 bg-green-indicator" />
-                              <div className="w-full h-0 bg-orange-indicator" />
-                              <div className="w-full h-0 bg-red-indicator" />
-                            </motion.div>
-                            <EditTaskDialog
-                              blockName={BlockName}
-                              oldtaskName={nametitle}
-                              deadLineProp={deadLineEdit}
-                              priorityTitle={priorityTitle}
-                            />
-                          </motion.li>
-                        ))}
-                      </motion.ul>
 
-                      {/* Bottom of block */}
+                                {/* collapse-content */}
+                                <nav className="collapse-content ">
+                                  <div className="flex flex-col items-center">
+                                    {/* Set priority */}
+
+                                    <section className="flex justify-between mt-2 w-full">
+                                      <aside className="flex items-center w-full">
+                                        <span className="badge bg-transparent py-3 text-black">
+                                          {todo.teg}
+                                        </span>
+                                      </aside>
+
+                                      <aside className="flex items-center ">
+                                        <button
+                                          className="btn btn-circle btn-xs mx-2 "
+                                          onClick={() => {
+                                            handleClickChangeTask(
+                                              block[0].nameBlock,
+                                              todo.titleTodos,
+                                              todo.deadLine,
+                                              todo.teg
+                                            );
+                                          }}
+                                        >
+                                          <HiPencil />
+                                        </button>
+                                        <DeleteTaskButton
+                                          nameBlock={block[0].nameBlock}
+                                          titleTodo={todo.titleTodos}
+                                          onCheckedFunc={() => {
+                                            setIsChecked(!isChecked);
+                                          }}
+                                        />
+                                      </aside>
+                                    </section>
+
+                                    {todo.created ? (
+                                      <section className="flex flex-col mt-4 w-full border-opacity-50">
+                                        <span className="badge badge-md w-[140px] badge-outline py-2 rounded-b-none rounded-t-xl border-b-0  flex flex-row ">
+                                          Created
+                                        </span>
+
+                                        <aside className="badge badge-outline rounded-b-none rounded-tr-xl rounded-l-none py-3  w-full  flex flex-row ">
+                                          {DataFormaterToString(todo.created)}
+                                        </aside>
+
+                                        <div className="divider divider-neutral my-0" />
+
+                                        <aside className="badge badge-outline rounded-t-none rounded-bl-xl rounded-r-none py-3   w-full  flex flex-row ">
+                                          {DataFormaterToString(todo.deadLine)}
+                                        </aside>
+                                        <span className="badge badge-md ml-auto w-[140px] badge-outline py-2 rounded-t-none rounded-b-xl border-t-0  flex flex-row ">
+                                          Deadline
+                                        </span>
+                                      </section>
+                                    ) : (
+                                      <></>
+                                    )}
+                                  </div>
+                                </nav>
+                                {/* исправляет какой то баг с цветами  */}
+                                <div className="w-full h-0 bg-green-indicator" />
+                                <div className="w-full h-0 bg-orange-indicator" />
+                                <div className="w-full h-0 bg-red-indicator" />
+                              </motion.div>
+                              <EditTaskDialog
+                                blockName={BlockName}
+                                oldtaskName={nametitle}
+                                deadLineProp={deadLineEdit}
+                                priorityTitle={priorityTitle}
+                              />
+                            </motion.li>
+                          ))}
+                        </motion.ul>
+                      </section>
                       <section
                         className={`p-5 pt-3  flex z-[2] border-t-[1px] border-[rgba(26,26,26,0.1)] ${
                           DataContext?.importTheme.CardColor
